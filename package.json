@@ -1,0 +1,24 @@
+{
+  "name": "gbf-bookmark",
+  "version": "0.0.1",
+  "main": "main.js",
+  "repository": "git@github.com:biuuu/ShinyColors.git",
+  "author": "umisuna <blhx@danmu9.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup --config build.js",
+    "deploy": "yarn build && node ./deploy.js"
+  },
+  "dependencies": {
+    "core-js": "3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "fs-extra": "^7.0.1",
+    "gh-pages": "^2.0.1",
+    "rollup": "^1.7.4",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-json": "^4.0.0"
+  }
+}
