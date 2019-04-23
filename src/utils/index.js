@@ -17,8 +17,6 @@ const trim = (str) => {
   return str.trim()
 }
 
-restoreConsole()
-
 export {
   trim,
   restoreConsole,

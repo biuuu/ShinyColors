@@ -6,7 +6,7 @@ const getPhraseObj = () => {
     const modulePhrases = primJsp([],[],[4])
     phrases = modulePhrases.default._polyglot.phrases
   } catch (e) {
-    console.error(e)
+    console.log(e)
   }
   return phrases
 }
@@ -16,6 +16,6 @@ export default async function transPhrase () {
   const obj = getPhraseObj()
   if (!obj) return
   for (let [key, value] of phraseMap) {
-    obj[key] = value
+    obj[key] = `\u200b${value}`
   }
 }

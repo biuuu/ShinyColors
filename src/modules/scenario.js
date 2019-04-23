@@ -11,6 +11,6 @@ const transScenario = () => {
       throw new Error('模块不匹配')
     }
   } catch (e) {
-    console.error(e)
+    console.log(e)
   }
 }

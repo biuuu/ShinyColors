@@ -18,7 +18,7 @@ const getLocalData = async (type) => {
     }
     return data[type]
   } catch (err) {
-    console.error(err)
+    console.log(err)
   }
   return false
 }
@@ -30,7 +30,7 @@ const setLocalData = (type, value) => {
   try {
     sessionStorage.setItem('sczh:data', str)
   } catch (err) {
-    console.error(err)
+    console.log(err)
   }
 }
 
