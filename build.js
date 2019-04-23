@@ -1,6 +1,8 @@
 const babel = require('rollup-plugin-babel')
 const { version } = require('./package.json')
 const json = require('rollup-plugin-json')
+const resolve = require('rollup-plugin-node-resolve')
+const cmjs = require('rollup-plugin-commonjs')
 
 const banner = `// ==UserScript==
 // @name         偶像大师ShinyColors汉化
@@ -16,12 +18,14 @@ const banner = `// ==UserScript==
 module.exports = {
   input: 'src/main.js',
   plugins: [
+    resolve({ preferBuiltins: false }),
+    cmjs({ ignore: ['stream'] }),
     json(),
     babel({
       exclude: 'node_modules/**',
       presets: [['@babel/preset-env', {
         modules: false,
-        targets: 'since 2015'
+        targets: 'last 3 iOS versions'
       }]]
     })
   ],
