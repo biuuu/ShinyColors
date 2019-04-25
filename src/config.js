@@ -4,6 +4,11 @@ import isBoolean from 'lodash/isBoolean'
 import isPlainObject from 'lodash/isPlainObject'
 import { version } from '../package.json'
 
+const MODULE_ID = {
+  REQUEST: 2,
+  PHRASE: 4
+}
+
 const config = {
   origin: 'https://biuuu.github.io/ShinyColors',
   hash: '',
@@ -43,4 +48,5 @@ const getLocalHash = () => {
 getLocalConfig()
 getLocalHash()
 
+export { MODULE_ID }
 export default config

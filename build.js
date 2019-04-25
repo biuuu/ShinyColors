@@ -33,6 +33,7 @@ module.exports = {
     file: './dist/ShinyColors.user.js',
     format: 'iife',
     name: 'shinycolors_zh',
-    banner: banner
+    banner: banner,
+    intro: `const ENVIRONMENT = "${process.env.BUILD === 'development' ? 'development' : ''}";`
   }
 };

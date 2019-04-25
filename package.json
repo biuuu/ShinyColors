@@ -6,8 +6,8 @@
   "author": "umisuna <blhx@danmu9.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rollup --config build.js",
-    "deploy": "yarn build && node ./deploy.js"
+    "build": "rollup --config build.js --environment BUILD:development",
+    "deploy": "rollup --config build.js && node ./deploy.js"
   },
   "dependencies": {
     "core-js": "3",
@@ -18,6 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
+    "cross-env": "^5.2.0",
     "fs-extra": "^7.0.1",
     "gh-pages": "^2.0.1",
     "md5-dir": "^0.2.0",

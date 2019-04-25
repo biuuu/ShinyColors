@@ -1,9 +1,10 @@
 import getPhrase from '../store/phrase'
+import { MODULE_ID } from '../config'
 
 const getPhraseObj = () => {
   let phrases
   try {
-    const modulePhrases = primJsp([],[],[4])
+    const modulePhrases = primJsp([],[],[MODULE_ID.PHRASE])
     phrases = modulePhrases.default._polyglot.phrases
   } catch (e) {
     console.log(e)

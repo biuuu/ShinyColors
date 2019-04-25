@@ -218,7 +218,7 @@ fes.top.rankingTitle,グレード内順位/,当前等级内排名/
 fes.top.score,%{value}pt,
 fes.top.ranking,%{value}位,
 fes.top.rankingInCalculation,集計中,
-fes.top.gradeTotalUserNum,%{value}人中,
+fes.top.gradeTotalUserNum,%{value}人中,%{value}人中
 fes.top.gradeEvaluationLimit,グレード判定期間  %{mounth}/%{date} %{hour}:%{minute}まで,
 fes.top.gradeProcessing,グレード集計期間  %{mounth}/%{date} %{hour}:%{minute}まで,
 fes.difficultySelect.rehearsalMessage,フェスリハーサルの難易度を選択してください,
