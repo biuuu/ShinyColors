@@ -1,6 +1,7 @@
 import { MODULE_ID } from '../config'
 import { getSupportSkill } from '../store/skill'
 import replaceSkill from '../utils/replaceSkill'
+import tagText from '../utils/tagText'
 
 const getRequest = () => {
   let request
@@ -26,7 +27,7 @@ export default async function requestHook () {
     if (/^userSupportIdols\/\d+$/.test(type)) {
       const sskill = res.body.supportSkills
       sskill.forEach(item => {
-        item.description = '\u200b' + replaceSkill(item.description, supportSkillData)
+        item.description = tagText(replaceSkill(item.description, supportSkillData))
       })
     }
     return res

@@ -1,13 +1,24 @@
 import isString from 'lodash/isString'
 import isObject from 'lodash/isObject'
 import getCommMap from '../store/commText'
+import { FONT } from '../config'
 
 const replaceFont = (option) => {
   if (isObject(option)) {
-    if (option.fontFamily === 'UDKakugo_SmallPr6-B') {
-      option.fontFamily = 'Source Han Sans SC Medium'
-    } else if (option.fontFamily === 'HummingStd-E') {
-      option.fontFamily = 'FZCuYuanSongS-R-GB'
+    if (option.fontFamily === FONT.HEITI_JA) {
+      option.fontFamily = FONT.HEITI_TRANS
+    } else if (option.fontFamily === FONT.YUAN_JA) {
+      option.fontFamily = FONT.YUAN_TRANS
+    }
+  }
+}
+
+const restoreFont = (option) => {
+  if (isObject(option)) {
+    if (option.fontFamily === FONT.HEITI_TRANS) {
+      option.fontFamily = FONT.HEITI_JA
+    } else if (option.fontFamily === FONT.YUAN_TRANS) {
+      option.fontFamily = FONT.YUAN_JA
     }
   }
 }
@@ -22,7 +33,7 @@ export default async function watchText () {
       const option = args[1]
       if (text && isString(text)) {
         //GLOBAL.console.log(...args)
-        if (text.startsWith('\u200b')) {
+        if (text.startsWith('\u200b\u200b')) {
           // 是被替换过的文本
           args[0] = text.slice(1)
           replaceFont(option)
@@ -30,6 +41,8 @@ export default async function watchText () {
           if (commMap.has(text)) {
             args[0] = commMap.get(text)
             replaceFont(option)
+          } else if (!text.startsWith('\u200b')) {
+            restoreFont(option)
           }
         }
       }
@@ -40,7 +53,7 @@ export default async function watchText () {
   // watch typeText
   const originTypeText = aoba.Text.prototype.typeText
   aoba.Text.prototype.typeText = function (...args) {
-    console.log('type text', ...args)
+    ENVIRONMENT === 'development' && console.log('type text', ...args)
     return originTypeText.apply(this, args)
   }
 

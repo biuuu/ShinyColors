@@ -1,5 +1,6 @@
 import getPhrase from '../store/phrase'
 import { MODULE_ID } from '../config'
+import tagText from '../utils/tagText'
 
 const getPhraseObj = () => {
   let phrases
@@ -17,6 +18,6 @@ export default async function transPhrase () {
   const obj = getPhraseObj()
   if (!obj) return
   for (let [key, value] of phraseMap) {
-    obj[key] = `\u200b${value}`
+    obj[key] = tagText(value)
   }
 }

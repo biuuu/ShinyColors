@@ -9,6 +9,13 @@ const MODULE_ID = {
   PHRASE: 4
 }
 
+const FONT = {
+  HEITI_JA: 'UDKakugo_SmallPr6-B',
+  HEITI_TRANS: 'Source Han Sans SC Medium',
+  YUAN_JA: 'HummingStd-E',
+  YUAN_TRANS: 'FZCuYuanSongS-R-GB'
+}
+
 const config = {
   origin: 'https://biuuu.github.io/ShinyColors',
   hash: '',
@@ -48,5 +55,5 @@ const getLocalHash = () => {
 getLocalConfig()
 getLocalHash()
 
-export { MODULE_ID }
+export { MODULE_ID, FONT }
 export default config
