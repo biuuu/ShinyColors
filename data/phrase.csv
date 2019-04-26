@@ -1,62 +1,62 @@
 name,ja,zh
-availableInform.title,アイテム有効期限のお知らせ,
-availableInform.description,アイテムの有効期限が                 となっております\n有効期限が過ぎますと\n%{contentName}の\n使用ができなくなります,
-availableInform.remainTime,あと%{remainTime},
-achievementRewardDialog.message,以下のアイテムがプレゼントBOXに送られました,
+availableInform.title,アイテム有効期限のお知らせ,道具有效期限提示
+availableInform.description,アイテムの有効期限が                 となっております\n有効期限が過ぎますと\n%{contentName}の\n使用ができなくなります,道具即将过期                 若过有效期限\n%{contentName}\n将无法再使用
+availableInform.remainTime,あと%{remainTime},还剩%{remainTime}
+achievementRewardDialog.message,以下のアイテムがプレゼントBOXに送られました,以下的道具已送至礼物箱
 achievementRewardDialog.rewardNameNum,%{name} x %{num},
-beginnerMission.headerTitle,初心者ミッション,
-beginnerMission.detailPopTitle,初心者ミッション詳細,
-beginnerMission.receivePopTitle,初心者ミッション達成,
-downLoad.confirmTitle,データダウンロード,
-downLoad.confirmComment,ゲームデータを一括でダウンロードし、端末に保存しますゲーム中の読み込み時間が減るため、より快適にプレイすることができます最大約 %{gb} GB のデバイスの空き容量が必要となります,
-downLoad.persistMessageMobile,データダウンロードを開始するためには\rアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\rホーム画面に追加、またはブックマークする必要があります,
-downLoad.persistMessagePc,データダウンロードを開始するためには\nアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\nブックマークする必要があります,
-downLoad.deleteTitle,ダウンロードデータ削除,
-downLoad.deletingComment,データを削除中です\n,
-downLoad.deletedComment,データ削除が完了しました\n,
-downLoad.completeMessage,ダウンロードが完了しました,
-comic.categories.web,WEB４コマ,
-comic.categories.special,特別編,
-comic.categories.limited,限定４コマ,
-comic.otherUnitName,[その他],
-comic.storyNumberText,第%{chapter}話,
-comic.filterTitle,４コマ漫画検索,
-comic.notFound,条件に合うものが見つかりません,
+beginnerMission.headerTitle,初心者ミッション,新手任务
+beginnerMission.detailPopTitle,初心者ミッション詳細,新手任务详情
+beginnerMission.receivePopTitle,初心者ミッション達成,新手任务达成
+downLoad.confirmTitle,データダウンロード,数据下载
+downLoad.confirmComment,ゲームデータを一括でダウンロードし、端末に保存しますゲーム中の読み込み時間が減るため、より快適にプレイすることができます最大約 %{gb} GB のデバイスの空き容量が必要となります,为了游戏数据一并下载保存在末端，进而减少游戏读取时间更方便地进行游戏，最多还需 %{gb} GB的设备存储空间。
+downLoad.persistMessageMobile,データダウンロードを開始するためには\rアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\rホーム画面に追加、またはブックマークする必要があります,要进行数据下载的话，需将\r偶像大师闪耀色彩的URL(shinycolors.enza.fun)\r追加至主界面以及收藏夹中。
+downLoad.persistMessagePc,データダウンロードを開始するためには\nアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\nブックマークする必要があります,要进行数据下载的话\n需将偶像大师闪耀色彩的URL(shinycolors.enza.fun)追加至收藏夹中。
+downLoad.deleteTitle,ダウンロードデータ削除,删除下载数据
+downLoad.deletingComment,データを削除中です\n,数据删除中\n
+downLoad.deletedComment,データ削除が完了しました\n,数据删除完成\n
+downLoad.completeMessage,ダウンロードが完了しました,下载完成
+comic.categories.web,WEB４コマ,WEB四格漫画
+comic.categories.special,特別編,特别篇
+comic.categories.limited,限定４コマ,限定四格漫画
+comic.otherUnitName,[その他],[其他]
+comic.storyNumberText,第%{chapter}話,第%{chapter}话
+comic.filterTitle,４コマ漫画検索,四格漫画检索
+comic.notFound,条件に合うものが見つかりません,未找到符合条件的项目
 comic.paginationLabel,%{currentPage} / %{maxPage},
 comic.openAt,%{openAt}更新,
-comic.charactersDialogTitle,登場人物一覧,
-splash.message,■ご注意■\nこのゲームは無料で遊ぶことができますが、\n一部有料のコンテンツがあります。\n\n■未成年の方へ■\n未成年の方が有料コンテンツを購入する場合は、 \n必ず法定代理人（ご両親等）の同意を得てから\n購入してください。\n※ないようがわからないときは\nおうちのひとにがめんをみせてください\n,
-temp.supportEvent,サポートイベント,
+comic.charactersDialogTitle,登場人物一覧,登场人物一览
+splash.message,■ご注意■\nこのゲームは無料で遊ぶことができますが、\n一部有料のコンテンツがあります。\n\n■未成年の方へ■\n未成年の方が有料コンテンツを購入する場合は、 \n必ず法定代理人（ご両親等）の同意を得てから\n購入してください。\n※ないようがわからないときは\nおうちのひとにがめんをみせてください\n,■注意■\n此游戏基本免费，\n一部分内容需付费。\n\n■关于未成年玩家■\n未成年玩家在购买付费内容时，\n必须经过法定代理人（父母等）的同意之后\n才可购买。\n※在不清楚购买内容时\n请给家人确认购买画面\n
+temp.supportEvent,サポートイベント,支援活动
 announce.event,イベント,活动
 announce.campaign,キャンペーン,
 announce.gasha,ガシャ,抽卡
 announce.update,アップデート,更新
-announce.maintenance,メンテナンス,
-announce.problem,不具合,
-announce.ticket,チケット,
-businessSlotExpansion,追加営業枠,
-bnCoin,バナコイン,
-characterAlbum.tab.voice,ボイス,
-characterAlbum.tab.costume,衣装,
-characterAlbum.tab.commu,共通コミュ,
-characterAlbum.tab.pIdol,アイドル,
-characterAlbum.tab.sIdol,アイドル,
-characterAlbum.tab.profile,プロフィール,
+announce.maintenance,メンテナンス,维护
+announce.problem,不具合,故障
+announce.ticket,チケット,票
+businessSlotExpansion,追加営業枠,追加营业槽
+bnCoin,バナコイン,BC币
+characterAlbum.tab.voice,ボイス,声音
+characterAlbum.tab.costume,衣装,衣服
+characterAlbum.tab.commu,共通コミュ,共通剧情
+characterAlbum.tab.pIdol,アイドル,偶像
+characterAlbum.tab.sIdol,アイドル,偶像
+characterAlbum.tab.profile,プロフィール,人物简介
 characterAlbum.menu.itemCountLabel.released,解放数,
 characterAlbum.menu.itemCountLabel.possession,所持数,
-characterAlbum.commu.albumType.wing,W.I.N.G.編,
-characterAlbum.commu.albumType.fan_meeting,283プロダクション ファン感謝祭編,
+characterAlbum.commu.albumType.wing,W.I.N.G.編,W.I.N.G.篇
+characterAlbum.commu.albumType.fan_meeting,283プロダクション ファン感謝祭編,283事务所 粉丝感谢祭篇
 characterAlbum.commu.albumType.common,共通,
-characterAlbum.voiceDetailPop.title,ボイス詳細,
-characterAlbum.voiceDetailPop.useItem.title,%{itemName}を使ってボイスを解放できます,
-characterAlbum.voiceDetailPop.notice,%{itemName}での解放は%{date}より可能です,
+characterAlbum.voiceDetailPop.title,ボイス詳細,语音详情
+characterAlbum.voiceDetailPop.useItem.title,%{itemName}を使ってボイスを解放できます,使用%{itemName}解锁语音
+characterAlbum.voiceDetailPop.notice,%{itemName}での解放は%{date}より可能です,%{itemName}可在%{date}后解锁
 common.day,%{day}日,
 common.hour,%{hour}時間,%{hour}小时
 common.min,%{min}分,
 common.sec,%{sec}秒,
 common.title,称号,
-common.login,ログイン,
-common.item,アイテム,
+common.login,ログイン,登录
+common.item,アイテム,道具
 common.exSkill,Exスキル,Ex技能
 common.people,%{num}人,
 common.sheet,%{num}枚,
