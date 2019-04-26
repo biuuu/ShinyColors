@@ -27,10 +27,10 @@ comic.openAt,%{openAt}更新,
 comic.charactersDialogTitle,登場人物一覧,
 splash.message,■ご注意■\nこのゲームは無料で遊ぶことができますが、\n一部有料のコンテンツがあります。\n\n■未成年の方へ■\n未成年の方が有料コンテンツを購入する場合は、 \n必ず法定代理人（ご両親等）の同意を得てから\n購入してください。\n※ないようがわからないときは\nおうちのひとにがめんをみせてください\n,
 temp.supportEvent,サポートイベント,
-announce.event,イベント,
+announce.event,イベント,活动
 announce.campaign,キャンペーン,
-announce.gasha,ガシャ,
-announce.update,アップデート,
+announce.gasha,ガシャ,抽卡
+announce.update,アップデート,更新
 announce.maintenance,メンテナンス,
 announce.problem,不具合,
 announce.ticket,チケット,
@@ -406,7 +406,7 @@ header.comic,４コマ漫画,4格漫画
 header.exSkill,Exスキル変更,Ex技能更换
 header.training,トレーニング,
 header.trainingIdolList,トレーニングアイドル選択,
-header.evolution,特訓,
+header.evolution,特訓,特训
 header.evolutionIdolList,特訓アイドル選択,
 header.deckEdit,ユニット編成,
 header.option,オプション,
@@ -476,7 +476,7 @@ loginBonus.receive.title,報酬受け取り,
 loginBonus.receive.message,以下の報酬を受け取りました,
 maintenance.title,メンテナンス,
 maintenance.defaultMessage,ただいま、メンテナンスを実施しております。\nご迷惑をおかけし、大変申し訳ございません。,
-exSkill.none,未設定,
+exSkill.none,未設定,未设定
 exSkill.possessionLabel,所持数 %{num},
 exSkill.notConditionPop.title,Exスキル確認,
 exSkill.notConditionPop.text,Exスキル枠が解放されていないため\nExスキルを設定できません,
@@ -495,12 +495,12 @@ exSkill.exSkillChangeResultPop.text,Exスキルを変更しました,
 exSkill.exSkillSetResultPop.title,Exスキル設定結果,
 exSkill.exSkillSetResultPop.text,Exスキルを設定しました,
 money,マニー,
-mission.headerTitle,ミッション,
+mission.headerTitle,ミッション,任务
 mission.popSort,達成状況絞り込み,
 mission.popMissionDetail,ミッション詳細,
 mission.popReceive.title,報酬受け取り,
 mission.popReceive.comment,以下の報酬を受け取りました,
-mission.noLimit,期限なし,无时间限制
+mission.noLimit,期限なし,没有期限
 mission.noMissionMessage,挑戦できるミッションはありません,
 mission.expiredMission,ミッション挑戦期限を過ぎています,
 mission.remainingMinutes,あと%{minutes}分,还剩{minutes}分
@@ -523,7 +523,7 @@ option.produceContentTitle.concertConfirm,ライブ選択時に確認画面を�
 option.twitterProfileDescription,設定したイラストをTwitterでシェアできます\n投稿にはTwitter連携が必要です,
 option.twitterDeAuthorizeDialog.title,連携解除,
 option.twitterDeAuthorizeDialog.message,Twitter連携を解除しました,
-idol,アイドル,
+idol,アイドル,偶像
 supportIdolDetail.fromGashaNotice,最大まで特訓とトレーニングを行なった状態を表示しています。,
 idolDetail.fromGashaNotice,最大特訓時の状態を表示しています。,
 idolDetail.headerTitle.produce,プロデュースアイドル詳細,
@@ -609,7 +609,7 @@ present.noPresent.present,受け取れるプレゼントはありません,
 present.noPresent.history,受け取り済みのプレゼントはありません,
 present.present.title,%{name} ×%{num},
 present.present.presentNum,×%{num},
-present.present.noExpire,期限なし,
+present.present.noExpire,期限なし,没有期限
 present.present.expireTime,%{expire}まで,
 present.main.count.title.received,受取済プレゼント,
 present.main.count.title.unReceive,未受取プレゼント,
@@ -648,7 +648,7 @@ produce.produceItemPop.titleConfirm,使用確認,使用确认
 produce.produceItemPop.titleResult,プロデュースアイテム使用,
 produce.produceItemPop.messageConfirm,以下のアイテムを使用しますか？,
 produce.produceItemPop.messageResult,以下のアイテムを使用しました,
-produceHeader.produceSeason,シーズン %{seasonNum},
+produceHeader.produceSeason,シーズン %{seasonNum},季度 %{seasonNum}
 produceItemPreparation.filterTitle,絞り込み,
 produceItemPreparation.sortTitle,並び替え,
 produceItemPreparation.description.unselected,アイテムを選択していません,
@@ -658,7 +658,7 @@ produceItemPreparation.isNotRestricted,なし,
 produceItemPreparation.isAreaRestricted,このアイテムは選択したプロデュースに\n持ち込むことができません,
 produceItemPreparation.sameEffectType,同じ効果のプロデュースアイテムを複数持ち込むことはできません,
 produceItemPreparation.beforeRelease,%{useOpenAt}以前は持ち込めません,
-produceTop.deadline.season,シーズン%{seasonNum},
+produceTop.deadline.season,シーズン%{seasonNum},季度%{seasonNum}
 produceTop.homeConfirmPop.title,ホームに戻る,
 produceTop.homeConfirmPop.message,現在のプロデュース内容を保存して、ホームに戻りますか？,
 produceTop.restConfirmPop.title,確認画面,
