@@ -5,6 +5,10 @@
 2. 扩展安装完成后，点击脚本的地址 https://biuuu.github.io/ShinyColors/ShinyColors.user.js ，根据扩展的提示安装脚本
 3. 回到游戏页面刷新
 
+目前使用的字体文件如下，不过看起来也不是最合适的，后面还会调整。考虑到字体版权问题不会内嵌，需要自行安装。
+
+https://pan.baidu.com/s/1PYbfObAO9zGZaNmAIsDP6A 提取码: z4b5
+
 ## 翻译
 翻译数据在 data 目录下，欢迎提交或修改。
 
