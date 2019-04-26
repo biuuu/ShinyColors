@@ -76,13 +76,13 @@ common.gaugeNumberMessage,%{progress}/%{progressMax},%{progress}/%{progressMax}
 common.leftBracket,【,【
 common.rightBracket,】,】
 common.bulletPoint,・,・
-common.useItemToReleaseSomething,%{itemName}を使用して%{releasedThingName}を解放しました,
-common.commu,コミュ,对话
+common.useItemToReleaseSomething,%{itemName}を使用して%{releasedThingName}を解放しました,%{itemName}使用后%{releasedThingName}开放了
+common.commu,コミュ,剧情
 common.voice,ボイス,语音
 common.nicknameChangedForRanking.title,ご案内,帮助
 common.nicknameChangedForRanking.message,ランキング上の表示は次回集計時に反映されます,
 commonMenu.bannerListTitle,キャンペーン一覧,
-commonMenu.fesIdolLimit.title,フェスアイドル所属上限,fes偶像所属上限
+commonMenu.fesIdolLimit.title,フェスアイドル所属上限,Fes偶像所属上限
 commonMenu.fesIdolLimit.text,これ以上フェスアイドルを所属させられません\nフェスアイドル詳細画面から移籍を行ってください,无法拥有更多的fes偶像\n请在fes偶像详情中进行移籍
 commonMenu.produceRetire.title,プロデュース終了,培育结束
 commonMenu.produceRetire.comment1,プロデュース中のデータは失われます\n消費したスタミナと\nプロデュースアイテムは返却されません,正在培育中的数据将会消失\n已消耗的体力和\n培育道具将不会返还
@@ -125,38 +125,38 @@ deck.autoSelectSuccessDialog.advice2.afterType,を重点的に,为重点
 deck.autoSelectSuccessDialog.advice2.nextLine,レッスンするといいですよ♪,进行课程安排更为合适哦♪
 deck.autoSelectSuccessDialog.description,サポートアイドルを%{type}編成で設定しました,支援偶像由%{type}编成设定完毕
 deck.deckNumber,ユニット%{deckNumber},队伍%{deckNumber}
-deck.memberShortageNotice,アイドルがセットされていないのでスタートできません,
-deck.swapCharacterWarning,ユニット内の同一のアイドルが外れてしまいますが本当によろしいですか？,
+deck.memberShortageNotice,アイドルがセットされていないのでスタートできません,由于偶像未配置完成无法开始培育
+deck.swapCharacterWarning,ユニット内の同一のアイドルが外れてしまいますが本当によろしいですか？,确认要将队伍内同一偶像排除到队伍之外吗？
 deck.title.confirm,確認,确认
-deck.title.deckModify,ユニット名編集,
-deck.title.orderSelectPop,並べ替え変更,
-deck.title.staminaRecoverPop,スタミナ回復,
+deck.title.deckModify,ユニット名編集,队伍名设定
+deck.title.orderSelectPop,並べ替え変更,排序变更
+deck.title.staminaRecoverPop,スタミナ回復,体力恢复
 deck.title.startProducePop,使用確認,使用确认
 deck.title.useCoinPop,使用確認,使用确认
-deck.title.supportSkillListPop,サポートスキルボーナス一覧,
+deck.title.supportSkillListPop,サポートスキルボーナス一覧,支援偶像技能加成一览
 emSpace,　,
-ending.headerTitle.endingCEOReport,社長からの評価,
-ending.headerTitle.fesIdolBirth,フェスアイドル誕生,
-ending.fesIdolCheckPop.title,フェスアイドル確認,
-ending.fesIdolCheckPop.comment,フェスアイドルの誕生を行います。よろしいですか？,
-ending.fesIdolCheckPop.warning,残りの所持SPは失われます。,
-ending.fesIdolRewardPop.title,プロデュースクリア報酬,
-ending.fesIdolRewardPop.comment,下記アイテムを入手しました,
-ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼントボックスに送られました,
-ending.fesIdolRewardPop.itemNameNum,%{type} ×%{num},
-ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,
-ending.totalFan.idolName,【%{name}】累計ファン人数,
-ending.reward.multipleNum,×%{num},
-ending.possessionCountOverExSkillRewardPop.title,所持上限に達しています,
-ending.possessionCountOverExSkillRewardPop.exSkillName,%{idolType}【%{idolName}専用】\n%{skillName},
-ending.possessionCountOverExSkillRewardPop.idolType.produce,プロデュース,
-ending.possessionCountOverExSkillRewardPop.idolType.support,サポート,
-error.pageNotFound,Page Not Found\n指定されたページは見つかりませんでした。,
-errorDialog.announceTitle,ご案内,
-errorDialog.errorTitle,エラー,
+ending.headerTitle.endingCEOReport,社長からの評価,来自社长的评价
+ending.headerTitle.fesIdolBirth,フェスアイドル誕生,Fes偶像诞生
+ending.fesIdolCheckPop.title,フェスアイドル確認,Fes偶像确认
+ending.fesIdolCheckPop.comment,フェスアイドルの誕生を行います。よろしいですか？,确认要进行Fes偶像诞生吗？
+ending.fesIdolCheckPop.warning,残りの所持SPは失われます。,残余的SP将会丢失
+ending.fesIdolRewardPop.title,プロデュースクリア報酬,培育完成报酬
+ending.fesIdolRewardPop.comment,下記アイテムを入手しました,获得了以下道具
+ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼントボックスに送られました,超过所持数上限的已经送入礼物盒中
+ending.fesIdolRewardPop.itemNameNum,%{type} ×%{num},%{type} ×%{num}
+ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！很期待你的表现
+ending.totalFan.idolName,【%{name}】累計ファン人数,【%{name}】累计粉丝人数
+ending.reward.multipleNum,×%{num},×%{num}
+ending.possessionCountOverExSkillRewardPop.title,所持上限に達しています,达到所持上限
+ending.possessionCountOverExSkillRewardPop.exSkillName,%{idolType}【%{idolName}専用】\n%{skillName},%{idolType}【%{idolName}专用】\n%{skillName}
+ending.possessionCountOverExSkillRewardPop.idolType.produce,プロデュース,培育
+ending.possessionCountOverExSkillRewardPop.idolType.support,サポート,支援
+error.pageNotFound,Page Not Found\n指定されたページは見つかりませんでした。,找不到指定的页面。
+errorDialog.announceTitle,ご案内,帮助
+errorDialog.errorTitle,エラー,错误
 errorDialog.confirmTitle,確認,确认
-errorDialog.updateNativeAppVersionTitle,最新バージョン確認,
-errorDialog.fesResumeTitle,フェス再開,
+errorDialog.updateNativeAppVersionTitle,最新バージョン確認,最新版本确认
+errorDialog.fesResumeTitle,フェス再開,Fes继续
 errorDialog.updateVersion,バージョンが更新されました。,
 errorDialog.updateNativeAppVersion,アプリのバージョンアップが必要です。\nストアから最新バージョンを\nダウンロードしてください。,
 errorDialog.invalidSession,セッション更新の必要があります。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
