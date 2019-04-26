@@ -1,9 +1,9 @@
 {
-  "name": "gbf-bookmark",
+  "name": "shinycolors-zh",
   "version": "0.0.3",
   "main": "main.js",
   "repository": "git@github.com:biuuu/ShinyColors.git",
-  "author": "umisuna <blhx@danmu9.com>",
+  "author": "biuuu",
   "license": "MIT",
   "scripts": {
     "build": "rollup --config build.js --environment BUILD:development",
