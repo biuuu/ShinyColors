@@ -17,8 +17,18 @@ const trim = (str) => {
   return str.trim()
 }
 
+if (ENVIRONMENT === 'development') {
+  GLOBAL && (GLOBAL.console = restoreConsole())
+}
+const log = (...args) => {
+  if (ENVIRONMENT === 'development') {
+    GLOBAL.console.log(...args)
+  }
+}
+
 export {
   trim,
   restoreConsole,
-  isDomain
+  isDomain,
+  log
 }

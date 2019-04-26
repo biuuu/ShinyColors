@@ -2,6 +2,7 @@ import isString from 'lodash/isString'
 import isObject from 'lodash/isObject'
 import getCommMap from '../store/commText'
 import { FONT } from '../config'
+import { log } from '../utils/index'
 
 const replaceFont = (option) => {
   if (isObject(option)) {
@@ -32,7 +33,7 @@ export default async function watchText () {
       const text = args[0]
       const option = args[1]
       if (text && isString(text)) {
-        //GLOBAL.console.log(...args)
+        //log(...args)
         if (text.startsWith('\u200b\u200b')) {
           // 是被替换过的文本
           args[0] = text.slice(1)
@@ -53,14 +54,14 @@ export default async function watchText () {
   // watch typeText
   const originTypeText = aoba.Text.prototype.typeText
   aoba.Text.prototype.typeText = function (...args) {
-    ENVIRONMENT === 'development' && console.log('type text', ...args)
+    log('type text', ...args)
     return originTypeText.apply(this, args)
   }
 
   // watch drawLetterSpacing
   // const originDrawLetter = aoba.Text.prototype.drawLetterSpacing
   // aoba.Text.prototype.drawLetterSpacing = function (...args) {
-  //   console.log('draw letter', ...args)
+  //   log('draw letter', ...args)
   //   return originDrawLetter.apply(this, args)
   // }
 
