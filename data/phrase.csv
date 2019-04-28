@@ -75,7 +75,7 @@ common.exchangeItemForAlbum,アルバムの鍵,相册钥匙
 common.gaugeNumberMessage,%{progress}/%{progressMax},%{progress}/%{progressMax}
 common.leftBracket,【,【
 common.rightBracket,】,】
-common.bulletPoint,・,・
+common.bulletPoint,・,•
 common.useItemToReleaseSomething,%{itemName}を使用して%{releasedThingName}を解放しました,%{itemName}使用后%{releasedThingName}解锁了
 common.commu,コミュ,剧情
 common.voice,ボイス,语音
@@ -91,7 +91,7 @@ commonMenu.produceResume.title,プロデュース再開,Produce继续
 commonMenu.menuPop.title,メニュー,菜单
 commonMenu.backToTitleConfirm.title,タイトルへ戻る,回到标题
 commonMenu.backToTitleConfirm.text,タイトルへ戻ります。\nよろしいですか？,将回到标题。\n确认吗？
-commonMenu.dataLinkPop.title,機種変更・データ連携,机种变更・数据连携
+commonMenu.dataLinkPop.title,機種変更・データ連携,机种变更•数据连携
 commonMenu.dataLinkConfirmPop.title,データ連携確認,数据连携确认
 commonMenu.loginPop.title,ログイン,登录
 commonMenu.loginConfirm.title,ログイン確認,登录确认
@@ -517,7 +517,7 @@ option.saveMessage, \n \n設定を保存しました。, \n \n您的设置已保
 option.volumeTitle.voice,ボイス,语音
 option.produceContentTitle.touch,アイドルへのタップ判定,偶像的触摸判定
 option.produceContentTitle.hint,はづきさんのヒント表示,叶月的提示显示
-option.produceContentTitle.newEventSpeed,未読イベント開始時に早送り解除\n（アイドル・サポートイベント）,未读过的事件开始时取消快进\n（偶像・Support事件）
+option.produceContentTitle.newEventSpeed,未読イベント開始時に早送り解除\n（アイドル・サポートイベント）,未读过的事件开始时取消快进\n（偶像•Support事件）
 option.produceContentTitle.restConfirm,休む選択時に確認画面を表示,选择休息时显示确认画面
 option.produceContentTitle.concertConfirm,ライブ選択時に確認画面を表示,选择Live时显示确认画面
 option.twitterProfileDescription,設定したイラストをTwitterでシェアできます\n投稿にはTwitter連携が必要です,设定的插画可分享至Twitter\n投稿须绑定Twitter
@@ -549,7 +549,7 @@ idolDetail.tradeResultDialog.money,%{money}マニー,%{money}金币
 idolDetail.tradeResultDialog.comment3,を獲得しました,已获得
 idolDetail.tradeResultDialog.comment4,フェスアイドルの移籍により,从Fes偶像的移籍中
 idolDetail.trueEndDialog.title,True End詳細,True End详情
-idolDetail.trueEndDialog.condition,・アイドルランクA達成・W.I.N.G.優勝,・偶像等级A达成・W.I.N.G.优胜
+idolDetail.trueEndDialog.condition,・アイドルランクA達成・W.I.N.G.優勝,•偶像等级A达成•W.I.N.G.优胜
 idolDetail.tradeMemorialPieceDialog.title,メモリアルピース変換確認,回忆碎片变换确认
 idolDetail.tradeMemorialPieceDialog.comment,このアイドルとはお別れすることになります。変換を確定してよろしいですか？,即将与该偶像分别。确定进行变换吗？
 idolDetail.tradeMemorialPieceDialog.afterPieceCount,%{afterPieceCount}(+%{addPieceCount}),%{afterPieceCount}(+%{addPieceCount})
@@ -607,8 +607,8 @@ popPaymentLimitation.limitations,"16歳未満　：　1ヶ月5,400円まで16歳
 present.headerTitle,プレゼント,礼物
 present.noPresent.present,受け取れるプレゼントはありません,没有可领取的礼物
 present.noPresent.history,受け取り済みのプレゼントはありません,没有已领取的礼物
-present.present.title,%{name} ×%{num},%{name} ×%{num}
-present.present.presentNum,×%{num},×%{num}
+present.present.title,%{name} ×%{num},
+present.present.presentNum,×%{num},
 present.present.noExpire,期限なし,无期限
 present.present.expireTime,%{expire}まで,%{expire}截止
 present.main.count.title.received,受取済プレゼント,已领取的礼物
@@ -640,7 +640,7 @@ filterPop.filter.vocal,Vocal,Vocal
 filterPop.filter.visual,Visual,Visual
 filterPop.filter.mental,メンタル,Mental
 filterPop.filter.limitStaminaUp,体力,体力
-filterPop.filter.placeAppearRate,レッスン・\nお仕事,训练・\n工作
+filterPop.filter.placeAppearRate,レッスン・\nお仕事,训练•\n工作
 filterPop.filter.commu,コミュ,剧情
 produce.header.ideaNote.emptyNotice,使用していません,未使用
 produce.resumePop.progress,シーズン %{season} / 残り %{restOfSeasonWeek}週,季度 %{season} /剩余 %{restOfSeasonWeek}周
@@ -731,7 +731,7 @@ shop.shopDescriptions.gameEvent,イベントで入手したポイントとアイ
 shop.shopDescriptions.premium,いろいろなお買い得アイテムを購入できます,可购买各种实惠商品
 shop.shopDescriptions.staffItemPoint,はづきさんシールを使用してアイテムと交換できます,可使用叶月贴纸兑换道具
 shop.shopDescriptions.memorialPiece,メモリアルピースを使用してアイテムと交換できます,可使用回忆碎片兑换道具
-shop.shopDescriptions.exchangeItem,特別な衣装の交換・確認ができます,特别服装兑换・确认
+shop.shopDescriptions.exchangeItem,特別な衣装の交換・確認ができます,特别服装兑换•确认
 shop.shopDescriptions.trade,複数のアイテムを別のアイテムに変換できます,可使用复数道具兑换其他道具
 shop.possessionLabel,所持%{currencyName},所持%{currencyName}
 shop.shopItem.jewel,ジュエル,羽石
