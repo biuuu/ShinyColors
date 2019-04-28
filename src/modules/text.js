@@ -72,8 +72,6 @@ export default async function watchText () {
     if (isString(text)) {
       if (text.startsWith('\u200b\u200b')) {
         replaceFont(this.style)
-      } else if (!text.startsWith('\u200b')) {
-        restoreFont(this.style)
       }
     }
     return originDrawLetter.apply(this, args)
