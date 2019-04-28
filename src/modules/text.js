@@ -67,7 +67,7 @@ export default async function watchText () {
   aoba.Text.prototype.drawLetterSpacing = function (...args) {
     // log('draw letter', ...args)
     const text = args[0]
-    if (isString(text) && text.startsWith('\u200b')) {
+    if (isString(text) && text.startsWith('\u200b\u200b')) {
       replaceFont(this.style)
     }
     return originDrawLetter.apply(this, args)
