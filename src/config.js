@@ -11,9 +11,9 @@ const MODULE_ID = {
 
 const FONT = {
   HEITI_JA: 'UDKakugo_SmallPr6-B',
-  HEITI_TRANS: 'Source Han Sans SC Medium',
+  HEITI_TRANS: 'HYQiHeiX1 75W',
   YUAN_JA: 'HummingStd-E',
-  YUAN_TRANS: 'FZCuYuanSongS-R-GB'
+  YUAN_TRANS: 'Tensentype QinYuanJ W5'
 }
 
 const config = {

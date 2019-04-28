@@ -1,27 +1,44 @@
 import isString from 'lodash/isString'
-import isObject from 'lodash/isObject'
 import getCommMap from '../store/commText'
 import { FONT } from '../config'
 import { log } from '../utils/index'
 
-const replaceFont = (option) => {
-  if (isObject(option)) {
-    if (option.fontFamily === FONT.HEITI_JA) {
-      option.fontFamily = FONT.HEITI_TRANS
-    } else if (option.fontFamily === FONT.YUAN_JA) {
-      option.fontFamily = FONT.YUAN_TRANS
+const replaceFont = (style) => {
+  if (style && style.fontFamily) {
+    if (style.fontFamily === FONT.HEITI_JA) {
+      style.fontFamily = FONT.HEITI_TRANS
+    } else if (style.fontFamily === FONT.YUAN_JA) {
+      style.fontFamily = FONT.YUAN_TRANS
     }
   }
 }
 
-const restoreFont = (option) => {
-  if (isObject(option)) {
-    if (option.fontFamily === FONT.HEITI_TRANS) {
-      option.fontFamily = FONT.HEITI_JA
-    } else if (option.fontFamily === FONT.YUAN_TRANS) {
-      option.fontFamily = FONT.YUAN_JA
+const restoreFont = (style) => {
+  if (style && style.fontFamily) {
+    if (style.fontFamily === FONT.HEITI_TRANS) {
+      style.fontFamily = FONT.HEITI_JA
+    } else if (style.fontFamily === FONT.YUAN_TRANS) {
+      style.fontFamily = FONT.YUAN_JA
     }
   }
+}
+
+const fontCheck = (text, style, textMap) => {
+  if (!isString(text)) return text
+  let _text = text
+  if (text.startsWith('\u200b\u200b')) {
+    // 是被替换过的文本
+    _text = text.slice(1)
+    replaceFont(style)
+  } else if (text.trim()) {
+    if (textMap.has(text)) {
+      _text = '\u200b' + textMap.get(text)
+      replaceFont(style)
+    } else if (!text.startsWith('\u200b')) {
+      restoreFont(style)
+    }
+  }
+  return _text
 }
 
 export default async function watchText () {
@@ -32,21 +49,7 @@ export default async function watchText () {
     construct (target, args, newTarget) {
       const text = args[0]
       const option = args[1]
-      if (text && isString(text)) {
-        //log(...args)
-        if (text.startsWith('\u200b\u200b')) {
-          // 是被替换过的文本
-          args[0] = text.slice(1)
-          replaceFont(option)
-        } else if (text.trim()) {
-          if (commMap.has(text)) {
-            args[0] = commMap.get(text)
-            replaceFont(option)
-          } else if (!text.startsWith('\u200b')) {
-            restoreFont(option)
-          }
-        }
-      }
+      args[0] = fontCheck(text, option, commMap)
       return Reflect.construct(target, args, newTarget)
     }
   })
@@ -54,16 +57,21 @@ export default async function watchText () {
   // watch typeText
   const originTypeText = aoba.Text.prototype.typeText
   aoba.Text.prototype.typeText = function (...args) {
-    log('type text', ...args)
+    const text = args[0]
+    args[0] = fontCheck(text, this.style, commMap)
     return originTypeText.apply(this, args)
   }
 
   // watch drawLetterSpacing
-  // const originDrawLetter = aoba.Text.prototype.drawLetterSpacing
-  // aoba.Text.prototype.drawLetterSpacing = function (...args) {
-  //   log('draw letter', ...args)
-  //   return originDrawLetter.apply(this, args)
-  // }
+  const originDrawLetter = aoba.Text.prototype.drawLetterSpacing
+  aoba.Text.prototype.drawLetterSpacing = function (...args) {
+    // log('draw letter', ...args)
+    const text = args[0]
+    if (isString(text) && text.startsWith('\u200b\u200b')) {
+      replaceFont(this.style)
+    }
+    return originDrawLetter.apply(this, args)
+  }
 
   GLOBAL.aoba = new Proxy(aoba, {
     get (target, name, receiver) {
