@@ -1,2 +1,4 @@
 name,url
-images/ui/common/parts_buttons.json_image,parts_buttons.png
+images/ui/common/parts_buttons.json_image,common.parts_buttons.png
+images/ui/start_and_common/parts.json_image,start_and_common.parts.png
+images/ui/my_page/parts.json_image,my_page.parts.png

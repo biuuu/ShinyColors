@@ -10,7 +10,7 @@ const parseRegExp = (str, nounRE) => {
 
 const autoTransCache = new Map()
 
-const replaceSkill = (text, { skillMap, nounMap, nounRE }) => {
+const replaceText = (text, { skillMap, nounMap, nounRE }) => {
   if (autoTransCache.has(text)) return autoTransCache.get(text)
   let result = text
   for (let [key, trans] of skillMap) {
@@ -32,4 +32,4 @@ const replaceSkill = (text, { skillMap, nounMap, nounRE }) => {
   return result
 }
 
-export default replaceSkill
+export default replaceText
