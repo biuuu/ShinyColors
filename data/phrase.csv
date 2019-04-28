@@ -617,7 +617,7 @@ present.main.count.unit,件,件
 present.main.notice,期限が切れたプレゼントは自動的に削除されます。また、一度に受け取れるプレゼントは100件までです。,到期的礼物将被自动削除。此外，一次可领取100件礼物
 present.receive.title,プレゼント受け取り,领取礼物
 present.receive.message,以下のプレゼントを受け取りました,已领取以下礼物
-present.receive.itemNameNum,%{Name} ×%{Num},%{Name} ×%{Num}
+present.receive.itemNameNum,%{Name} ×%{Num},
 present.receiveAllConfirm.title,プレゼント一括受け取り,一次性领取礼物
 present.receiveAllConfirm.text,プレゼントを新しいものから100件まで受け取ります。よろしいですか？,从最新的礼物开始至多领取100件。确认吗？
 present.receiveAll.title,プレゼント一括受け取り,一次性领取礼物
