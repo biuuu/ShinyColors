@@ -364,7 +364,7 @@ gasha.gashaTicketSubtitle,通常ガシャ提供割合,通常抽卡提供比例
 gasha.gashaTicketSubtitleIdol,通常ガシャの提供アイドル一覧,通常抽卡所含偶像一览
 gasha.step1Subtitle,通常ガシャ提供割合,通常抽卡提供比例
 gasha.step1SubtitleIdol,通常ガシャの提供アイドル一覧,通常抽卡所含偶像一览
-gasha.loadingWarning,読み込みに時間が掛かることがありますので、\nリロードはお控えください。,需要一段时间进行读取\n请勿重载游戏。
+gasha.loadingWarning,読み込みに時間が掛かることがありますので、\nリロードはお控えください。,                   需要一段时间进行读取\n请勿重载游戏。
 gasha.noExpire,期限なし,无期限
 gasha.expireAt,使用期限：%{datetimeText},使用期限：%{datetimeText}
 gasha.stamp.nextPickUp,あと%{stampNumForNextPickUp}回で%{pickUpName}獲得！,还有%{stampNumForNextPickUp}回可获得%{pickUpName}！
