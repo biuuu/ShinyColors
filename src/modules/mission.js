@@ -1,30 +1,35 @@
-import replaceText from '../utils/replaceText'
+import getMission from '../store/mission'
 import tagText from '../utils/tagText'
 import { log } from '../utils/index'
 
-let list = []
-const pushTo = (text) => {
-  if (text && !list.includes(text)) {
-    list.push(text.replace(/\r/g, '').replace(/\n/g, '\\n'))
+let missionMap = null
+const replaceText = (data, key) => {
+  if (data[key] && missionMap.has(data[key])) {
+    data[key] = tagText(missionMap.get(data[key]))
   }
 }
-const saveMission = (arr) => {
-  arr.forEach(item => {
-    pushTo(item.mission.title)
-    pushTo(item.mission.comment)
+
+const processMission = (list) => {
+  list.forEach(item => {
+    replaceText(item.mission, 'title')
+    replaceText(item.mission, 'comment')
     if (item.mission.missionReward.content) {
-      pushTo(item.mission.missionReward.content.name)
-      pushTo(item.mission.missionReward.content.comment)
+      replaceText(item.mission.missionReward.content, 'name')
+      replaceText(item.mission.missionReward.content, 'comment')
     }
   })
 }
 const transMission = async (res) => {
-  // saveMission(res.body.dailyUserMissions)
-  // saveMission(res.body.weeklyUserMissions)
-  // saveMission(res.body.eventUserMissions[0].userMissions)
-  // saveMission(res.body.normalUserMissions)
-  // saveMission(res.body.specialUserMissions)
-  // log(list.join(',\n'))
+  missionMap = await getMission()
+  processMission(res.body.dailyUserMissions)
+  processMission(res.body.weeklyUserMissions)
+  res.body.eventUserMissions.forEach(item => {
+    if (item && item.userMissions) {
+      processMission(item.userMissions)
+    }
+  })
+  processMission(res.body.normalUserMissions)
+  processMission(res.body.specialUserMissions)
 }
 
 export default transMission
