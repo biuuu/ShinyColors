@@ -881,3 +881,7 @@ individualRanking.accumulatedPresentGetPopup.title,累計ファン数達成報�
 individualRanking.accumulatedPresentGetPopup.text,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
 individualRanking.characterRankingOutOfTermPop.title,集計期間外,统计时段外
 individualRanking.characterRankingOutOfTermPop.text,現在は\n「%{name}」\nのランキング集計期間外です\n\n集計期間外にプロデュースや営業を達成しても\nイベントランキングのファン数には加算されません,现在处于\n「%{name}」\n的排行榜统计时段外\n\n统计时段外即使达成Produce或营业\n活动排行榜的粉丝数也不会增加
+trust.rewardPop.innerLabel,信頼度はすべてのプロデュースアイドルで共通となります。,
+trust.rewardPop.level,信頼度\nLv.%{level},
+trust.rewardPop.rewardName,%{name}×%{num},
+trust.rewardPop.title,信頼度Lv.報酬（%{characterName}）,信赖度Lv.报酬（%{characterName}）

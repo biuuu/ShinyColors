@@ -6,9 +6,9 @@ import { log } from '../utils/index'
 const replaceFont = (style) => {
   if (style && style.fontFamily) {
     if (style.fontFamily === FONT.HEITI_JA) {
-      style.fontFamily = FONT.HEITI_TRANS
+      Reflect.set(style, 'fontFamily', FONT.HEITI_TRANS)
     } else if (style.fontFamily === FONT.YUAN_JA) {
-      style.fontFamily = FONT.YUAN_TRANS
+      Reflect.set(style, 'fontFamily', FONT.YUAN_TRANS)
     }
   }
 }
@@ -16,9 +16,9 @@ const replaceFont = (style) => {
 const restoreFont = (style) => {
   if (style && style.fontFamily) {
     if (style.fontFamily === FONT.HEITI_TRANS) {
-      style.fontFamily = FONT.HEITI_JA
+      Reflect.set(style, 'fontFamily', FONT.HEITI_JA)
     } else if (style.fontFamily === FONT.YUAN_TRANS) {
-      style.fontFamily = FONT.YUAN_JA
+      Reflect.set(style, 'fontFamily', FONT.YUAN_JA)
     }
   }
 }
@@ -51,20 +51,7 @@ export default async function watchText () {
       const option = args[1]
       log('new text', ...args)
       args[0] = fontCheck(text, option, commMap)
-      const result = Reflect.construct(target, args, newTarget)
-      return new Proxy(result, {
-        set (_target, _name, _value) {
-          if (_name === 'text') {
-            if (isString(_value) && _value.trim()) {
-              log('set text', _value, _value.startsWith('\u200b'))
-              if (_value.startsWith('\u200b')) {
-                replaceFont(_target.style)
-              }
-            }
-          }
-          return Reflect.set(_target, _name, _value)
-        }
-      })
+      return Reflect.construct(target, args, newTarget)
     }
   })
 
@@ -78,18 +65,27 @@ export default async function watchText () {
   }
 
   // watch drawLetterSpacing
-  const originDrawLetter = aoba.Text.prototype.drawLetterSpacing
-  aoba.Text.prototype.drawLetterSpacing = function (...args) {
-    log('draw letter', ...args)
-    const text = args[0]
-    if (isString(text) && text.trim()) {
-      if (text.startsWith('\u200b\u200b')) {
-        replaceFont(this.style)
-      } else if (!text.startsWith('\u200b')) {
-        restoreFont(this.style)
-      }
+  // const originDrawLetter = aoba.Text.prototype.drawLetterSpacing
+  // aoba.Text.prototype.drawLetterSpacing = function (...args) {
+  //   log('draw letter', ...args)
+  //   const text = args[0]
+  //   if (isString(text) && text.trim()) {
+  //     if (text.startsWith('\u200b\u200b')) {
+  //       replaceFont(this.style)
+  //     } else if (!text.startsWith('\u200b')) {
+  //       restoreFont(this.style)
+  //     }
+  //   }
+  //   return originDrawLetter.apply(this, args)
+  // }
+  const originUpdateText = aoba.Text.prototype.updateText
+  aoba.Text.prototype.updateText = function (t) {
+    if (this.localStyleID !== this._style.styleID && (this.dirty = !0,e.styleID),this.dirty || !t) {
+      // log('update text', this._text)
+      const value = fontCheck(this._text, this._style, commMap)
+      Reflect.set(this, '_text', value)
+      return originUpdateText.call(this, t)
     }
-    return originDrawLetter.apply(this, args)
   }
 
   GLOBAL.aoba = new Proxy(aoba, {
