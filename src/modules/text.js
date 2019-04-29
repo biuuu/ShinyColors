@@ -51,7 +51,20 @@ export default async function watchText () {
       const option = args[1]
       log('new text', ...args)
       args[0] = fontCheck(text, option, commMap)
-      return Reflect.construct(target, args, newTarget)
+      const result = Reflect.construct(target, args, newTarget)
+      return new Proxy(result, {
+        set (_target, _name, _value) {
+          if (_name === 'text') {
+            if (isString(_value) && _value.trim()) {
+              log('set text', _value, _value.startsWith('\u200b'))
+              if (_value.startsWith('\u200b')) {
+                replaceFont(_target.style)
+              }
+            }
+          }
+          return Reflect.set(_target, _name, _value)
+        }
+      })
     }
   })
 
@@ -67,11 +80,13 @@ export default async function watchText () {
   // watch drawLetterSpacing
   const originDrawLetter = aoba.Text.prototype.drawLetterSpacing
   aoba.Text.prototype.drawLetterSpacing = function (...args) {
-    // log('draw letter', ...args)
+    log('draw letter', ...args)
     const text = args[0]
-    if (isString(text)) {
+    if (isString(text) && text.trim()) {
       if (text.startsWith('\u200b\u200b')) {
         replaceFont(this.style)
+      } else if (!text.startsWith('\u200b')) {
+        restoreFont(this.style)
       }
     }
     return originDrawLetter.apply(this, args)

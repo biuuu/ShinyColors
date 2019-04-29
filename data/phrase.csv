@@ -144,7 +144,7 @@ ending.fesIdolRewardPop.title,プロデュースクリア報酬,Produce完成报
 ending.fesIdolRewardPop.comment,下記アイテムを入手しました,获得了以下道具
 ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼントボックスに送られました,超过所持数上限的已送入礼物盒中
 ending.fesIdolRewardPop.itemNameNum,%{type} ×%{num},
-ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！很期待你的表现
+ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！\n很期待你的表现
 ending.totalFan.idolName,【%{name}】累計ファン人数,【%{name}】累计粉丝人数
 ending.reward.multipleNum,×%{num},×%{num}
 ending.possessionCountOverExSkillRewardPop.title,所持上限に達しています,达到所持上限
