@@ -1,7 +1,7 @@
 name,ja,zh
 availableInform.title,アイテム有効期限のお知らせ,道具有效日期通知
 availableInform.description,アイテムの有効期限が                 となっております\n有効期限が過ぎますと\n%{contentName}の\n使用ができなくなります,道具的有效日期为                 \n超过有效日期之后\n%{contentName}の\n将不可使用
-availableInform.remainTime,あと%{remainTime},剩余%{remainTime}
+availableInform.remainTime,あと%{remainTime},还有%{remainTime}
 achievementRewardDialog.message,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
 achievementRewardDialog.rewardNameNum,%{name} x %{num},%{name} x %{num}
 beginnerMission.headerTitle,初心者ミッション,新手任务
@@ -66,7 +66,7 @@ common.pIdol,プロデュースアイドル,Produce偶像
 common.sIdol,サポートアイドル,Support偶像
 common.quantityMessage,x%{quantity},x%{quantity}
 common.quantityMessageWithName,%{name} x%{quantity},%{name} x%{quantity}
-common.remainingTimeMessage,あと %{min}:%{sec},剩余 %{min}:%{sec}
+common.remainingTimeMessage,あと %{min}:%{sec},还需 %{min}:%{sec}
 common.lv,Lv.%{level},Lv.%{level}
 common.staff,はづき,叶月
 common.horizontalEllipsis,...,...
@@ -209,7 +209,7 @@ evolution.skillListTitle,解放されるスキル,解锁的技能
 evolution.confirm.title,特訓確認,特训确认
 evolution.confirm.comment,選択した対象を消費して、特訓をします。\nよろしいですか？,确认消耗选择的对象进行特训吗？
 evolution.complete.title,特訓結果,特训结果
-evolution.complete.comment,特訓が完了しました！,特训已结束！
+evolution.complete.comment,特訓が完了しました！,特训已完成！
 evolution.costumeRelease.first,最大まで特訓したことによって\n,由于已特训至最大阶段\n
 evolution.costumeRelease.second,の衣装に\n変更可能になりました！,的服装！\n已经可以变更为该服装
 fes.top.title,フェス,Fes
@@ -222,7 +222,7 @@ fes.top.gradeTotalUserNum,%{value}人中,%{value}人中
 fes.top.gradeEvaluationLimit,グレード判定期間  %{mounth}/%{date} %{hour}:%{minute}まで,等级判定时段%{mounth}/%{date} %{hour}:%{minute}截止
 fes.top.gradeProcessing,グレード集計期間  %{mounth}/%{date} %{hour}:%{minute}まで,等级统计时段%{mounth}/%{date} %{hour}:%{minute}截止
 fes.difficultySelect.rehearsalMessage,フェスリハーサルの難易度を選択してください,请选择Fes排练的难易度
-fes.difficultySelect.gradeMatchMessage,グレードフェスの難易度を選択してください,请选择等级Fes的难易度
+fes.difficultySelect.gradeMatchMessage,グレードフェスの難易度を選択してください,请选择排位Fes的难易度
 fes.deck.memoryBonus,x%{value},
 fes.ready.title,参加ユニット,参加队伍
 fes.ready.description,テンション決定後は前の画面には戻れません\nフェス参加権を%{consumedFesTicket}消費します,Tension决定后将无法回到之前的界面\n将消耗Fes参加权%{consumedFesTicket}
@@ -250,8 +250,8 @@ fes.pauseSkillTitle.visual,ビジュアル担当,Visual担当
 fes.pauseSkillTitle.leader,リーダー,Leader
 fes.pauseSkillTitle.center,センター,Center
 fes.orderText,%{order}位,%{order}位
-fes.result.changedSeasonMessage,グレードフェスのシーズンが切り替わったため、\n今回のスコアはグレードに反映されません。,由于等级Fes的赛季已更换\n本次的分数将不会反映在等级中
-fes.result.match.title,LV%{level} グレードフェス,LV%{level} 等级Fes
+fes.result.changedSeasonMessage,グレードフェスのシーズンが切り替わったため、\n今回のスコアはグレードに反映されません。,由于排位Fes的赛季已变更\n本次的分数将不会反映在等级中
+fes.result.match.title,LV%{level} グレードフェス,LV%{level} 排位Fes
 fes.result.match.bonusTitle,ボーナス,加成
 fes.result.rehearsal.title,フェスリハーサル,Fes排练
 fes.result.rehearsal.bonusTitle,難易度,难易度
@@ -296,7 +296,7 @@ gameEvent.schedule,開催期限 %{closeAt}まで,举办期限 %{closeAt}截止
 gameEvent.rewardReceivableSchedule,受取期限 %{closeAt}まで,领取期限 %{closeAt}截止
 gameEvent.gashaSchedule,ガシャ期限 %{closeAt}まで,抽卡期限 %{closeAt}截止
 gameEvent.communicationsDialog.title,イベントコミュ,活动剧情
-gameEvent.communicationsDialog.noticeMessage,コミュはイベントショップから解放可能です,剧情可由活动商店解锁
+gameEvent.communicationsDialog.noticeMessage,コミュはイベントショップから解放可能です,剧情可在活动商店处解锁
 gameEvent.specialCommunicationsDialog.title,スペシャルコミュ,特殊剧情
 gameEvent.specialCommunicationsDialog.unreleasedTitle,？？？？,？？？？
 gameEvent.resumeSpecialCommunicationsDialog.title,シナリオ再生確認,剧本播放确认
@@ -321,9 +321,9 @@ gameEvent.boxGasha.tabBoxName,ボックス,BOX
 unitBonusBanner.schedule,%{closeAt}まで,%{closeAt}截止
 idolList.filterTitle,絞り込み,筛选
 idolList.sortTitle,並び替え,排序
-idolList.emptyMessage,所持しているアイドルがいません。,所持偶像不存在
-idolList.evolutionEmptyMessage,特訓可能なアイドルがいません。,可特训偶像不存在
-idolList.memorialPieceStatus.pieceNum,‘＋%{num},’＋%{num}
+idolList.emptyMessage,所持しているアイドルがいません。,没有所持的偶像
+idolList.evolutionEmptyMessage,特訓可能なアイドルがいません。,没有可特训的偶像
+idolList.memorialPieceStatus.pieceNum,＋%{num},＋%{num}
 idolList.leaveEditModeDialog.title,確認,确认
 idolList.leaveEditModeDialog.text,まだ%{editType}は確定していません選択状態を解除して移動しますか？,%{editType}还未确定要解除选择状态并移动吗？
 idolList.leaveEditModeDialog.tradeMoney,移籍,移籍
@@ -350,7 +350,7 @@ gasha.confirmDialog.jewelNoticeNeedsCharge,フェザージュエルが不足し�
 gasha.rateDescription,%{rarity}%{idolType}アイドル（%{count}種）,%{rarity}%{idolType}偶像（%{count}种）
 gasha.detailPercentage,%{rate}%,%{rate}%
 gasha.checkPopHeader,使用確認,使用确认
-gasha.detailPopHeader,提供割合,出现比例
+gasha.detailPopHeader,提供割合,提供比例
 gasha.gashaSelectHeader,ガシャ選択,抽卡选择
 gasha.produce,プロデュース,Produce型
 gasha.support,サポート,Support型
@@ -450,7 +450,7 @@ ideaNote.forceSelectPop.description,「%{selected}」を使用しますか？,�
 ideaNote.forceSelectPop.notice,新たなアイデアノートに切り替える際使用中のアイデアノートは消滅します,在替换新的创想笔记时使用中的创想笔记将会消失
 ideaNote.extraEffectsPop.title,アイデアノートの付加効果,创想笔记的附加效果
 ideaNote.extraEffectDetailPop.title,付加効果詳細,附加效果详情
-ideaNote.detail.difficulty.title,難易度,难易度
+ideaNote.detail.difficulty.title,難易度,难度
 ideaNote.detail.tab.stage,必要なアイデア,需要的创想
 ideaNote.detail.tab.extraEffect,付加効果,附加效果
 ideaNote.detail.tab.completeBonus,コンプリートボーナス,达成奖励
@@ -503,9 +503,9 @@ mission.popReceive.comment,以下の報酬を受け取りました,领取了以�
 mission.noLimit,期限なし,无期限
 mission.noMissionMessage,挑戦できるミッションはありません,没有可以挑战的任务
 mission.expiredMission,ミッション挑戦期限を過ぎています,任务挑战期限已过
-mission.remainingMinutes,あと%{minutes}分,剩余{minutes}分
-mission.remainingHours,あと%{hours}時間%{minutes}分,剩余%{hours}小时%{minutes}分
-mission.remainingDays,あと%{days}日%{hours}時間,剩余%{days}天%{hours}小时
+mission.remainingMinutes,あと%{minutes}分,还有{minutes}分
+mission.remainingHours,あと%{hours}時間%{minutes}分,还有%{hours}小时%{minutes}分
+mission.remainingDays,あと%{days}日%{hours}時間,还有%{days}天%{hours}小时
 mission.receiveAllConfirm.text,ミッション報酬を新しいものから100件まで受け取ります。よろしいですか？,从最新的任务报酬开始至多领取100件。确认吗？
 mission.receiveAll.title,ミッション報酬一括受け取り,一次性领取任务报酬
 mission.receiveAll.message,以下の報酬を受け取りました,领取了以下报酬
@@ -744,7 +744,7 @@ shop.salesItemText.2106,お一人様1つ限定！\n「1st Anniversary 10連ガ�
 shop.salesItemText.2107,お一人様1つ限定！\n「ユニット別10連ガシャチケット×3」や「SSR特訓はづきさん（プロデュース）×1」「SSR特訓はづきさん（サポート）×1」などが入った特別なパッケージです！,每人限定1个！\n「组别10连抽卡券×3」与「SSR特训叶月（Produce）×1」「SSR特训叶月（Support）×1」等包含在内的特别礼包
 shop.salesItemText.2108,お一人様1つ限定！\n「10連ガシャチケット×1」に、好きなSSRアイドルを１人選べる「セレクションチケット」がついた、特別なパッケージです！,每人限定1个！\n「10连抽卡券×1」附赠可选择你喜欢的偶像的「超得券」的特别礼包
 shop.salesItemText.2109,お一人様1つ限定！\n「10連ガシャチケット×1」に、選択した好きなユニットからSSRアイドルを確率で獲得できる「ユニット別SSR確定ガシャチケット×1」がついた、特別なパッケージです！,每人限定1个！\n「10连抽卡券×1」附赠可选择你喜欢的组合的「组别SSR必得抽卡券×1」的特别礼包
-shop.salesItemDialog.remainingText1,あと,截至
+shop.salesItemDialog.remainingText1,あと,还需
 shop.salesItemDialog.remainingText2,で販売終了,贩卖结束
 shop.purchaseConfirmation.title,購入確認,购入确认
 shop.purchaseConfirmation.message,%{currencyName}を消費して\n以下のアイテムを購入しますか？,要使用%{currencyName}\n购入以下道具吗？
@@ -800,7 +800,7 @@ spine.cbSub,ちびサブキャラ,小型配角
 spine.stand,等身キャラ,等身主角
 spine.standSub,等身サブキャラ,等身配角
 titleSelect.result.message,称号を設定しました,称号已设定
-supportIdol.remaining,あと %{remaining},剩余 %{remaining}
+supportIdol.remaining,あと %{remaining},还需 %{remaining}
 training.gainExpLabel,獲得Exp,获得Exp
 training.skillListTitle,習得するサポートスキル,习得Support技能
 training.startConfirm,トレーニング確認,训练确认
@@ -881,7 +881,7 @@ individualRanking.accumulatedPresentGetPopup.title,累計ファン数達成報�
 individualRanking.accumulatedPresentGetPopup.text,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
 individualRanking.characterRankingOutOfTermPop.title,集計期間外,统计时段外
 individualRanking.characterRankingOutOfTermPop.text,現在は\n「%{name}」\nのランキング集計期間外です\n\n集計期間外にプロデュースや営業を達成しても\nイベントランキングのファン数には加算されません,现在处于\n「%{name}」\n的排行榜统计时段外\n\n统计时段外即使达成Produce或营业\n活动排行榜的粉丝数也不会增加
-trust.rewardPop.innerLabel,信頼度はすべてのプロデュースアイドルで共通となります。,
-trust.rewardPop.level,信頼度\nLv.%{level},
+trust.rewardPop.innerLabel,信頼度はすべてのプロデュースアイドルで共通となります。,信赖度对于所有Produce偶像是共通的
+trust.rewardPop.level,信頼度\nLv.%{level},信赖度\nLv.%{level}
 trust.rewardPop.rewardName,%{name}×%{num},
 trust.rewardPop.title,信頼度Lv.報酬（%{characterName}）,信赖度Lv.报酬（%{characterName}）
