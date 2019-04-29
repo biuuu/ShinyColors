@@ -14,7 +14,7 @@ const isDomain = (str) => {
 
 const trim = (str) => {
   if (!str) return ''
-  return str.trim()
+  return str.trimEnd()
 }
 
 if (ENVIRONMENT === 'development') {

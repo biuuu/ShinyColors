@@ -11,9 +11,9 @@ const MODULE_ID = {
 
 const FONT = {
   HEITI_JA: 'UDKakugo_SmallPr6-B',
-  HEITI_TRANS: 'HYQiHei 70S',
+  HEITI_TRANS: 'HYQH70SUP',
   YUAN_JA: 'HummingStd-E',
-  YUAN_TRANS: 'Tensentype QinYuanJ W5'
+  YUAN_TRANS: 'QYW5UP'
 }
 
 const config = {
@@ -21,7 +21,7 @@ const config = {
   hash: '',
   localHash: '',
   version: version,
-  timeout: 20
+  timeout: 30
 }
 
 const getLocalConfig = () => {
