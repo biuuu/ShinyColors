@@ -61,7 +61,7 @@ common.exSkill,Exスキル,Ex技能
 common.people,%{num}人,%{num}人
 common.sheet,%{num}枚,%{num}张
 common.expireDatetimeString,mm/dd HH:MM为止,mm/dd HH:MM为止
-common.plusMessage,+%{name},+%{name}
+common.plusMessage,+%{name},
 common.pIdol,プロデュースアイドル,Produce偶像
 common.sIdol,サポートアイドル,Support偶像
 common.quantityMessage,x%{quantity},x%{quantity}
@@ -108,7 +108,7 @@ concert.statusEffect.leftTurn,残り%{leftTurn}ターン,剩余%{leftTurn}回合
 concert.statusEffect.remainTimes,残り%{remainTimes}回,剩余%{remainTimes}回
 concert.statusEffect.noStatusEffectMessage,効果情報はありません,无状态效果信息
 concertResult.entryNumber,エントリーNo.%{number},进入No.%{number}
-concertResult.statusUp.message,+%{upPoint},+%{upPoint}
+concertResult.statusUp.message,+%{upPoint},
 copyright.title,コピーライト,CopyRight
 copyright.holders.bne.title,権利表記,版权所有
 copyright.holders.bne.message,© 2018 BANDAI NAMCO Entertainment Inc.,© 2018 BANDAI NAMCO Entertainment Inc.
@@ -552,8 +552,8 @@ idolDetail.trueEndDialog.title,True End詳細,True End详情
 idolDetail.trueEndDialog.condition,・アイドルランクA達成・W.I.N.G.優勝,•偶像等级A达成•W.I.N.G.优胜
 idolDetail.tradeMemorialPieceDialog.title,メモリアルピース変換確認,回忆碎片变换确认
 idolDetail.tradeMemorialPieceDialog.comment,このアイドルとはお別れすることになります。変換を確定してよろしいですか？,即将与该偶像分别。确定进行变换吗？
-idolDetail.tradeMemorialPieceDialog.afterPieceCount,%{afterPieceCount}(+%{addPieceCount}),%{afterPieceCount}(+%{addPieceCount})
-idolDetail.tradeMemorialPieceDialog.addPieceCount,(+%{addPieceCount}),(+%{addPieceCount})
+idolDetail.tradeMemorialPieceDialog.afterPieceCount,%{afterPieceCount}(+%{addPieceCount}),
+idolDetail.tradeMemorialPieceDialog.addPieceCount,(+%{addPieceCount}),
 idolDetail.tradeMemorialPieceDialog.srOrSsrNotice,SR以上の%{idolType}が選択されています,SR以上的%{idolType}已选择
 idolDetail.tradeMemorialPieceDialog.maxNotice,最大所持量を超えるため変換できません,由于超过最大所持量，无法变换
 idolDetail.receiveMemorialPieceDialog.title,メモリアルピース変換結果,回忆碎片变换结果
