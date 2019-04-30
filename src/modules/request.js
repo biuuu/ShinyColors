@@ -16,7 +16,7 @@ const getRequest = () => {
 
 export default async function requestHook () {
   const request = getRequest()
-  if (!request.get) return
+  if (!request || !request.get) return
   const originGet = request.get
   request.get = async function (...args) {
     const type = args[0]

@@ -3,6 +3,7 @@ import getImage from '../store/image'
 import config from '../config'
 
 export default async function resourceHook () {
+  if (!GLOBAL.aoba) return
   const imageMap = await getImage()
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
   aoba.loaders.Resource.prototype._loadElement = function (type) {
