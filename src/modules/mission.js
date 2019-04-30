@@ -19,7 +19,32 @@ const processMission = (list) => {
     }
   })
 }
+
+const unknownMissions = []
+const saveUnknownMissions = (data, key) => {
+  const text = data[key].replace(/\r?\n|\r/g, '\\n')
+  if (!missionMap.has(text) && !unknownMissions.includes(text)) {
+    unknownMissions.push(text)
+  }
+}
+const collectMissions = (res) => {
+  const list = res.body.eventUserMissions[0].userMissions
+  list.forEach(item => {
+    saveUnknownMissions(item.mission, 'title')
+    saveUnknownMissions(item.mission, 'comment')
+    if (item.mission.missionReward.content) {
+      saveUnknownMissions(item.mission.missionReward.content, 'name')
+      saveUnknownMissions(item.mission.missionReward.content, 'comment')
+    }
+  })
+}
+
 const transMission = async (res) => {
+  // if (ENVIRONMENT === 'development') {
+  //   missionMap = await getMission(true)
+  //   collectMissions(res)
+  //   log(unknownMissions.join(',\n'))
+  // }
   missionMap = await getMission()
   processMission(res.body.dailyUserMissions)
   processMission(res.body.weeklyUserMissions)
