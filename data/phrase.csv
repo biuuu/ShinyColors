@@ -25,7 +25,7 @@ comic.notFound,条件に合うものが見つかりません,未找到符合条�
 comic.paginationLabel,%{currentPage} / %{maxPage},%{currentPage} / %{maxPage}
 comic.openAt,%{openAt}更新,%{openAt}更新
 comic.charactersDialogTitle,登場人物一覧,登场人物一览
-splash.message,■ご注意■\nこのゲームは無料で遊ぶことができますが、\n一部有料のコンテンツがあります。\n\n■未成年の方へ■\n未成年の方が有料コンテンツを購入する場合は、 \n必ず法定代理人（ご両親等）の同意を得てから\n購入してください。\n※ないようがわからないときは\nおうちのひとにがめんをみせてください\n,■注意■\n本游戏可以免费游玩，\n但有一部分收费的内容。\n\n■对于未成年人■\n未成年人购买收费内容时，\n必须得到法定代理人（父母等）的同意后\n才能购买。\n※不知道会不会收费的时候，请让家里人过目\n
+splash.message,■ご注意■\nこのゲームは無料で遊ぶことができますが、\n一部有料のコンテンツがあります。\n\n■未成年の方へ■\n未成年の方が有料コンテンツを購入する場合は、 \n必ず法定代理人（ご両親等）の同意を得てから\n購入してください。\n※ないようがわからないときは\nおうちのひとにがめんをみせてください\n,■注意■\n本游戏可以免费游玩，\n但有一部分收费的内容。\n\n■对于未成年人■\n未成年人购买收费内容时，\n必须得到法定代理人（父母等）的同意后\n才能购买。\n※不清楚的时候，请让家里人过目\n
 temp.supportEvent,サポートイベント,Support事件
 announce.event,イベント,活动
 announce.campaign,キャンペーン,大型活动
@@ -85,7 +85,7 @@ commonMenu.bannerListTitle,キャンペーン一覧,活动一览
 commonMenu.fesIdolLimit.title,フェスアイドル所属上限,Fes偶像所属上限
 commonMenu.fesIdolLimit.text,これ以上フェスアイドルを所属させられません\nフェスアイドル詳細画面から移籍を行ってください,无法拥有更多的fes偶像\n请在fes偶像详情中进行移籍
 commonMenu.produceRetire.title,プロデュース終了,Produce结束
-commonMenu.produceRetire.comment1,プロデュース中のデータは失われます\n消費したスタミナと\nプロデュースアイテムは返却されません,正在Produce中的数据将会消失\n已消耗的耐劳度和\nProduce道具将不会返还
+commonMenu.produceRetire.comment1,プロデュース中のデータは失われます\n消費したスタミナと\nプロデュースアイテムは返却されません,正在Produce中的数据将会消失\n已消耗的精力值和\nProduce道具将不会返还
 commonMenu.produceRetire.comment2,進行中のプロデュースを終了して\n新たなアイドルをプロデュースします,结束进行中的Produce\n开始Produce新的偶像
 commonMenu.produceResume.title,プロデュース再開,Produce继续
 commonMenu.menuPop.title,メニュー,菜单
@@ -130,7 +130,7 @@ deck.swapCharacterWarning,ユニット内の同一のアイドルが外れてし
 deck.title.confirm,確認,确认
 deck.title.deckModify,ユニット名編集,队伍名设定
 deck.title.orderSelectPop,並べ替え変更,排序变更
-deck.title.staminaRecoverPop,スタミナ回復,耐劳度恢复
+deck.title.staminaRecoverPop,スタミナ回復,精力值恢复
 deck.title.startProducePop,使用確認,使用确认
 deck.title.useCoinPop,使用確認,使用确认
 deck.title.supportSkillListPop,サポートスキルボーナス一覧,Support偶像技能加成一览
@@ -144,7 +144,7 @@ ending.fesIdolRewardPop.title,プロデュースクリア報酬,Produce完成报
 ending.fesIdolRewardPop.comment,下記アイテムを入手しました,获得了以下道具
 ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼントボックスに送られました,超过所持数上限的已送入礼物盒中
 ending.fesIdolRewardPop.itemNameNum,%{type} ×%{num},
-ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！\n很期待你的表现
+ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！\n我可是很看好你的
 ending.totalFan.idolName,【%{name}】累計ファン人数,【%{name}】累计粉丝人数
 ending.reward.multipleNum,×%{num},×%{num}
 ending.possessionCountOverExSkillRewardPop.title,所持上限に達しています,达到所持上限
@@ -161,15 +161,15 @@ errorDialog.updateVersion,バージョンが更新されました。,
 errorDialog.updateNativeAppVersion,アプリのバージョンアップが必要です。\nストアから最新バージョンを\nダウンロードしてください。,
 errorDialog.invalidSession,セッション更新の必要があります。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
 errorDialog.produceDuplicate,進行中のプロデュースがあるので\n開始できませんでした。\n一度プロデュースを終了してから始めてください。,
-errorDialog.fesSeason,フェスのシーズンが切り替わりました。,
-errorDialog.fesMatchRivalsError,進行していたフェスはすでに終了しました。\n再開することができませんでした。,
+errorDialog.fesSeason,フェスのシーズンが切り替わりました。,Fes赛季已变更
+errorDialog.fesMatchRivalsError,進行していたフェスはすでに終了しました。\n再開することができませんでした。,正在进行的Fes已经结束。\n无法恢复进度
 errorDialog.forbidden,アクセスは許可されていません。,
 errorDialog.fullDownloadErrorForNative,リソースの読み込みに失敗しました。\nネットワーク環境をご確認ください。,
 errorDialog.simpleOther,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。,
 errorDialog.other,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
 errorDialog.timeout,通信中にエラーが発生しました。\n時間をおいてもう一度お試しください。,
 errorDialog.resourceDownloadError,通信中にエラーが発生しました。\nネットワーク環境をご確認の上\nもう一度お試しください。,
-errorDialog.unavailableGasha,ガシャのラインナップが更新されました。,
+errorDialog.unavailableGasha,ガシャのラインナップが更新されました。,卡池已更新
 errorDialog.resourceLoadFailed,リソースの読み込みに失敗しました。\nページの再読み込みをお試しください。,
 errorDialog.sdkLoginLoadFailed,認証に失敗しました。\n通信環境をご確認の上、ページの再読み込みをお試しください。\n何度も発生する場合はブラウザキャッシュクリアをお試しください。\n\nゲストメンバーの方はデータ消失の恐れがあります。\nenza にメンバー登録する事で中断データの復帰が可能になります。\nenza メンバー登録の上、キャッシュクリアをお試しください。\n,
 errorDialog.sdkLoginLoadFailedApp,認証に失敗しました。\n通信環境をご確認の上、再読み込みをお試しください。\n何度も発生する場合は時間をおいてお試しください。\n,
@@ -179,8 +179,8 @@ errorDialog.accountFreezeShort,調査の為、一時的にご利用を制限し�
 errorDialog.earthPaymentFailure,プラットフォームの決済処理が\n正常に行われませんでした。\n再度時間をおいてお試しください。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
 errorDialog.earthPaymentFailureFatal,プラットフォームの決済処理が\n正常に行われませんでした。ゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
 errorDialog.sceneMaintenance,本機能は、一時的にご利用を制限しております。\n対応が完了次第制限解除いたしますので\nしばらくお待ち下さい。\nお客様にはご迷惑をお掛けいたしますが\nご協力をお願いいたします。,
-errorDialog.playMovie,動画再生に失敗しました。,
-errorDialog.businessIsNotFinished,営業が完了していません。\n少し時間を置いてから再度完了してください。,
+errorDialog.playMovie,動画再生に失敗しました。,动画播放失败
+errorDialog.businessIsNotFinished,営業が完了していません。\n少し時間を置いてから再度完了してください。,营业尚未完成。\n请等待一段时间后再确认完成
 errorDialog.purchaseErrorTitle,購入エラー,
 errorDialog.purchaseError,ご購入の処理中に\nエラーが発生したため、ご購入が\n正しく終了されませんでした。,
 errorDialog.purchaseDeferredTitle,制限,
@@ -225,7 +225,7 @@ fes.difficultySelect.rehearsalMessage,フェスリハーサルの難易度を選
 fes.difficultySelect.gradeMatchMessage,グレードフェスの難易度を選択してください,请选择排位Fes的难易度
 fes.deck.memoryBonus,x%{value},
 fes.ready.title,参加ユニット,参加队伍
-fes.ready.description,テンション決定後は前の画面には戻れません\nフェス参加権を%{consumedFesTicket}消費します,Tension决定后将无法回到之前的界面\n将消耗Fes参加权%{consumedFesTicket}
+fes.ready.description,テンション決定後は前の画面には戻れません\nフェス参加権を%{consumedFesTicket}消費します,Tension确定之后将无法回到之前的界面\n将消耗Fes参加权%{consumedFesTicket}
 fes.resumeDialog.title,フェス再開,Fes继续
 fes.resumeDialog.text,進行中のフェスがあります。\nフェスを再開しますか？,有进行中的Fes。\n要继续该Fes吗？
 fes.terminateDialog.title,フェス終了,Fes结束
@@ -577,10 +577,10 @@ item.itemConfirm.warningMessage,%{itemName}の所持数が足りません,%{item
 item.itemResult.title,アイテム使用結果,道具使用结果
 item.itemResult.effect,%{itemName}を使用して%{valueName}を%{gainValue}回復しました,%{itemName}使用后%{valueName}已恢复%{gainValue}
 item.fesTicketRecoverPop.title,フェス参加権回復,Fes参加权恢复
-item.maxStamina,スタミナがMAXのため、これ以上回復できません。,耐劳度已满，无法继续恢复
+item.maxStamina,スタミナがMAXのため、これ以上回復できません。,精力值已满，无法继续恢复
 item.maxFesTicket,参加権がMAXのため、これ以上回復できません。,参加权已满，无法继续恢复
 item.expiredItem,期限を過ぎたため、使用できません。,期限已过，无法使用
-item.recoveryItem.type.produce.valueName,スタミナ,耐劳度
+item.recoveryItem.type.produce.valueName,スタミナ,精力值
 item.recoveryItem.type.fes.valueName,参加権,参加权
 jewel,フェザージュエル,羽石
 musicSelect.recommendTitle,おまかせ,任意
@@ -744,7 +744,7 @@ shop.salesItemText.2106,お一人様1つ限定！\n「1st Anniversary 10連ガ�
 shop.salesItemText.2107,お一人様1つ限定！\n「ユニット別10連ガシャチケット×3」や「SSR特訓はづきさん（プロデュース）×1」「SSR特訓はづきさん（サポート）×1」などが入った特別なパッケージです！,每人限定1个！\n「组别10连抽卡券×3」与「SSR特训叶月（Produce）×1」「SSR特训叶月（Support）×1」等包含在内的特别礼包
 shop.salesItemText.2108,お一人様1つ限定！\n「10連ガシャチケット×1」に、好きなSSRアイドルを１人選べる「セレクションチケット」がついた、特別なパッケージです！,每人限定1个！\n「10连抽卡券×1」附赠可选择你喜欢的偶像的「超得券」的特别礼包
 shop.salesItemText.2109,お一人様1つ限定！\n「10連ガシャチケット×1」に、選択した好きなユニットからSSRアイドルを確率で獲得できる「ユニット別SSR確定ガシャチケット×1」がついた、特別なパッケージです！,每人限定1个！\n「10连抽卡券×1」附赠可选择你喜欢的组合的「组别SSR必得抽卡券×1」的特别礼包
-shop.salesItemDialog.remainingText1,あと,还需
+shop.salesItemDialog.remainingText1,あと,还有
 shop.salesItemDialog.remainingText2,で販売終了,贩卖结束
 shop.purchaseConfirmation.title,購入確認,购入确认
 shop.purchaseConfirmation.message,%{currencyName}を消費して\n以下のアイテムを購入しますか？,要使用%{currencyName}\n购入以下道具吗？
@@ -775,7 +775,7 @@ recycleShop.purchaseResult.title,交換結果,兑换结果
 recycleShop.purchaseResult.message,%{title}を交換しました,%{title}已兑换
 recycleShop.purchaseResult.twoLinesMessage,%{title}を交換しました,%{title}已兑换
 skillBord.header,振り返り,回顾
-skillBord.acquireConfirmationTitle,スキル習得確認,已习得技能确认
+skillBord.acquireConfirmationTitle,スキル習得確認,习得技能确认
 skillBord.acquireConfirmationMessage,SPを%{skillPoint}消費してスキルを習得しますか？,要使用SP%{skillPoint}学习技能吗？
 skillBord.deleteSkillConfirmationTitle,スキル入れ替え確認,技能替换确认
 skillBord.acquiredMessage,既に習得済みのスキルです。\n\nスキルポイントを消費せず、\nパネルの解放のみを行います。,已习得的技能。\n\n不消耗技能点，\n仅解锁技能盘。
@@ -794,9 +794,9 @@ specialCommunication.achievementRewardDialogTitle,スペシャルコミュ再生
 speaker.producer,プロデューサー,制作人
 speaker.ceo,社長,社长
 speaker.judge,審査員,审查员
-spine.cb,ちびキャラ,小型主角
-spine.cbCostume,ちびキャラ(ライブ),小型主角(Live)
-spine.cbSub,ちびサブキャラ,小型配角
+spine.cb,ちびキャラ,Q版主角
+spine.cbCostume,ちびキャラ(ライブ),Q版主角(Live)
+spine.cbSub,ちびサブキャラ,Q版配角
 spine.stand,等身キャラ,等身主角
 spine.standSub,等身サブキャラ,等身配角
 titleSelect.result.message,称号を設定しました,称号已设定
@@ -817,12 +817,12 @@ tutorial.openingMessage.mes6,そんなサバイバルな世界に,
 tutorial.openingMessage.mes7,今19人の女の子と,
 tutorial.openingMessage.mes8,１人のプロデューサーが,
 tutorial.openingMessage.mes9,足を踏み入れる！,
-tutorial.skipPop.message,次のチュートリアルまでスキップします\nよろしいですか？,
+tutorial.skipPop.message,次のチュートリアルまでスキップします\nよろしいですか？,将跳过下一个教程\n确认吗？
 tutorial.skipPop.title,確認,确认
 tutorial.skipPop.warning1,各機能の説明はチュートリアル終了後も,各功能在教程结束后在
 tutorial.skipPop.warning3,から確認可能です。,之中可以确认
-tv.appearance,テレビ出演を果たした。\n,实现了TV出演。\n
-tv.appearanceAfter,アイドル達の魅力が引き出されたように感じる。,感觉为偶像们的魅力所吸引了
+tv.appearance,テレビ出演を果たした。\n,TV出演大获成功。\n
+tv.appearanceAfter,アイドル達の魅力が引き出されたように感じる。,大家也感受到了偶像们所散发的魅力。
 tv.performanceComment,今話題のアイドルが登場！圧巻のパフォーマンスを披露！,目前大热的偶像登场！带来精彩的演出！
 twitter.PINCodeDialog.title,Twitter連携,Twitter连携
 twitter.PINCodeDialog.description,Twitterに投稿するには、PINコードを取得して\nTwitterとの連携を認証する必要があります,
