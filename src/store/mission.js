@@ -6,7 +6,7 @@ import { trim } from '../utils/index'
 const missionMap = new Map()
 let loaded = false
 
-const getMission = async () => {
+const getMission = async (full = false) => {
   if (!loaded) {
     let csv = await getLocalData('mission')
     if (!csv) {
@@ -18,7 +18,7 @@ const getMission = async () => {
       if (item && item.ja) {
         const ja = trim(item.ja)
         const zh = trim(item.zh)
-        if (ja && zh) {
+        if (ja && (zh || full)) {
           missionMap.set(ja, zh)
         }
       }
