@@ -10,5 +10,6 @@ const main = async () => {
     console.log(e)
   }
 }
-
-window.addEventListener('load', main)
+setTimeout(() => {
+  window.addEventListener('load', main)
+})
