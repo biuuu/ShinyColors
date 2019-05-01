@@ -157,20 +157,20 @@ errorDialog.errorTitle,エラー,错误
 errorDialog.confirmTitle,確認,确认
 errorDialog.updateNativeAppVersionTitle,最新バージョン確認,最新版本确认
 errorDialog.fesResumeTitle,フェス再開,Fes继续
-errorDialog.updateVersion,バージョンが更新されました。,
-errorDialog.updateNativeAppVersion,アプリのバージョンアップが必要です。\nストアから最新バージョンを\nダウンロードしてください。,
-errorDialog.invalidSession,セッション更新の必要があります。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
-errorDialog.produceDuplicate,進行中のプロデュースがあるので\n開始できませんでした。\n一度プロデュースを終了してから始めてください。,
+errorDialog.updateVersion,バージョンが更新されました。,版本已更新
+errorDialog.updateNativeAppVersion,アプリのバージョンアップが必要です。\nストアから最新バージョンを\nダウンロードしてください。,应用需要升级。\n请前往商店下载\n最新版本。
+errorDialog.invalidSession,セッション更新の必要があります。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},ErrorCode:%{errorCode}
+errorDialog.produceDuplicate,進行中のプロデュースがあるので\n開始できませんでした。\n一度プロデュースを終了してから始めてください。,由于存在进行中的Produce\n当前无法开始。\n请将现有Produce结束之后再重新开始。
 errorDialog.fesSeason,フェスのシーズンが切り替わりました。,Fes赛季已变更
 errorDialog.fesMatchRivalsError,進行していたフェスはすでに終了しました。\n再開することができませんでした。,正在进行的Fes已经结束。\n无法恢复进度
 errorDialog.forbidden,アクセスは許可されていません。,
 errorDialog.fullDownloadErrorForNative,リソースの読み込みに失敗しました。\nネットワーク環境をご確認ください。,
 errorDialog.simpleOther,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。,
 errorDialog.other,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
-errorDialog.timeout,通信中にエラーが発生しました。\n時間をおいてもう一度お試しください。,
-errorDialog.resourceDownloadError,通信中にエラーが発生しました。\nネットワーク環境をご確認の上\nもう一度お試しください。,
+errorDialog.timeout,通信中にエラーが発生しました。\n時間をおいてもう一度お試しください。,发生通信故障。\n请一段时间后再尝试。
+errorDialog.resourceDownloadError,通信中にエラーが発生しました。\nネットワーク環境をご確認の上\nもう一度お試しください。,发生通信故障。\n确认您的网络环境后\n请再次尝试。
 errorDialog.unavailableGasha,ガシャのラインナップが更新されました。,卡池已更新
-errorDialog.resourceLoadFailed,リソースの読み込みに失敗しました。\nページの再読み込みをお試しください。,
+errorDialog.resourceLoadFailed,リソースの読み込みに失敗しました。\nページの再読み込みをお試しください。,资源读取失败。\n请尝试刷新网页。
 errorDialog.sdkLoginLoadFailed,認証に失敗しました。\n通信環境をご確認の上、ページの再読み込みをお試しください。\n何度も発生する場合はブラウザキャッシュクリアをお試しください。\n\nゲストメンバーの方はデータ消失の恐れがあります。\nenza にメンバー登録する事で中断データの復帰が可能になります。\nenza メンバー登録の上、キャッシュクリアをお試しください。\n,
 errorDialog.sdkLoginLoadFailedApp,認証に失敗しました。\n通信環境をご確認の上、再読み込みをお試しください。\n何度も発生する場合は時間をおいてお試しください。\n,
 errorDialog.unsubscribedApp,退会済みのアカウントが検出されました。\nアプリケーションの再インストールをお試しください。,
@@ -181,15 +181,15 @@ errorDialog.earthPaymentFailureFatal,プラットフォームの決済処理が\
 errorDialog.sceneMaintenance,本機能は、一時的にご利用を制限しております。\n対応が完了次第制限解除いたしますので\nしばらくお待ち下さい。\nお客様にはご迷惑をお掛けいたしますが\nご協力をお願いいたします。,
 errorDialog.playMovie,動画再生に失敗しました。,动画播放失败
 errorDialog.businessIsNotFinished,営業が完了していません。\n少し時間を置いてから再度完了してください。,营业尚未完成。\n请等待一段时间后再确认完成
-errorDialog.purchaseErrorTitle,購入エラー,
-errorDialog.purchaseError,ご購入の処理中に\nエラーが発生したため、ご購入が\n正しく終了されませんでした。,
-errorDialog.purchaseDeferredTitle,制限,
-errorDialog.purchaseDeferred,ご購入が制限されております。\n制限が解除されるまでご購入はできません。,
-errorDialog.purchaseRestoreTitle,購入エラー,
-errorDialog.purchaseRestore,購入処理を完了できませんでした。\nしばらくしてからもう一度お試しください。\n購入のリトライをしますか？,
+errorDialog.purchaseErrorTitle,購入エラー,购入错误
+errorDialog.purchaseError,ご購入の処理中に\nエラーが発生したため、ご購入が\n正しく終了されませんでした。,由于购入过程发生错误\n本次购入\n未能正确完成
+errorDialog.purchaseDeferredTitle,制限,限制
+errorDialog.purchaseDeferred,ご購入が制限されております。\n制限が解除されるまでご購入はできません。,购入被限制。\n在限制解除前将无法购入。
+errorDialog.purchaseRestoreTitle,購入エラー,购入错误
+errorDialog.purchaseRestore,購入処理を完了できませんでした。\nしばらくしてからもう一度お試しください。\n購入のリトライをしますか？,购入处理无法完成。\n请一段时间后再尝试。\要尝试再次购入吗？
 errorDialog.note.noSettlementProcess,※再読み込みしてもバナコイン、フェザージュエル\n決済処理が多重に行われることはありません。,
-errorDialog.contextLost.appText,画像の読み込みに失敗しました。\n再読み込みボタンを押して再読み込みしてください。\n改善されない場合には\nアプリの再起動をお試しください。,
-errorDialog.contextLost.browserText,画像の読み込みに失敗しました。\n再読み込みボタンを押して再読み込みしてください。\n改善されない場合には\nブラウザの再起動をお試しください。,
+errorDialog.contextLost.appText,画像の読み込みに失敗しました。\n再読み込みボタンを押して再読み込みしてください。\n改善されない場合には\nアプリの再起動をお試しください。,画面读取失败。\n请点击重新读取按钮进行再次读取。\n未有改善的情况下\n请尝试重新启动应用。
+errorDialog.contextLost.browserText,画像の読み込みに失敗しました。\n再読み込みボタンを押して再読み込みしてください。\n改善されない場合には\nブラウザの再起動をお試しください。,画面读取失败。\n请点击重新读取按钮进行再次读取。\n未有改善的情况下\n请尝试刷新网页。
 errorDialog.contextLost.buttonText,再読み込み,重新读取
 evolutionItem,特訓はづきさん,特训叶月
 exchangeItem.costumeTicket.original,衣装交換チケット,服装兑换券
@@ -380,7 +380,7 @@ gasha.scoutGasha.useConfirmation.title,使用確認,使用确认
 gasha.scoutGasha.useConfirmation.description,セレクションチケットを消費して\n%{name}\nを獲得します\nよろしいですか？,确认使用选择券获得\n%{name}吗？
 gasha.scoutGasha.noExpire,期限なし,无期限
 gasha.scoutGasha.expireAt,%{expireAt}まで,%{expireAt}截止
-guestUser,ゲスト,客人
+guestUser,ゲスト,Guest
 jewelPurchase.limitation.message,%{minAge}歳〜%{maxAge}歳：%{limitation}円,%{minAge}岁〜%{maxAge}岁：%{limitation}日元
 jewelPurchase.limitation.detailTitle,購入限度額確認,购入限制额度确认
 jewelPurchase.limitation.detailMessage,１ヶ月の購入限度額は下記となります,1个月的购入限制额度如下
@@ -434,7 +434,7 @@ header.fesMatchRanking,ランキング,排行榜
 header.fesDeckView,ユニット確認,队伍确认
 header.memorialShop,メモリアルピースショップ,回忆碎片商店
 header.titleSetting,称号設定,称号商店
-header.ideaNote,アイデアノート,创意笔记
+header.ideaNote,アイデアノート,创想笔记
 header.workActivity,営業,营业
 header.workActivitySelectIdol,営業アイドル選択,营业偶像选择
 header.workActivitySelectItem,お手製差し入れ持ち込み,携带手工慰劳点心
@@ -468,8 +468,8 @@ landscapeDialog.text,このゲームは画面を横向きにしてお楽しみ�
 loginBonus.clerkComment.greeting,プロデューサーさん、こちらは今日のログインボーナスですよ,制作人先生，这是今天的登录奖励
 loginBonus.clerkComment.nextBonus,明日はこちらがもらえますから、頑張っていきましょ〜,明天的奖励是这个，加油吧
 loginBonus.clerkComment.totalBonus,今日はプロデューサー就任%{totalLoginDays}日記念ですね！これはみんなからのお祝いです！受け取ってください！,今天是制作人就任%{totalLoginDays}天纪念日！这是大家的祝福！请收下吧！
-loginBonus.accumulatedTotal.comment1,プロデューサー就任から,制作人就任以来
-loginBonus.accumulatedTotal.comment2,日経過,日已有
+loginBonus.accumulatedTotal.comment1,プロデューサー就任から,制作人就任以来已有
+loginBonus.accumulatedTotal.comment2,日経過,日
 loginBonus.accumulatedTotal.comment3,日記念まであと,日纪念还有
 loginBonus.accumulatedTotal.comment4,日,日
 loginBonus.receive.title,報酬受け取り,领取报酬
@@ -562,7 +562,7 @@ idolDetail.fesIdolMarkSelectDialog.title,フェスアイドルマーク,Fes偶�
 idolDetail.idol,プロデュースアイドル,Produce偶像
 idolDetail.supportIdol,サポートアイドル,Support偶像
 idolDetail.fesIdol,フェスアイドル,Fes偶像
-idolDetail.guest,ゲスト,客人
+idolDetail.guest,ゲスト,Guest
 idolPiece,メモリアルピース,回忆碎片
 idolRank.txtFan,%{count}人,%{count}人
 idolRank.txtNextFan,あと  %{count}人,还需 %{count}人
@@ -614,12 +614,12 @@ present.present.expireTime,%{expire}まで,%{expire}截止
 present.main.count.title.received,受取済プレゼント,已领取的礼物
 present.main.count.title.unReceive,未受取プレゼント,未领取的礼物
 present.main.count.unit,件,件
-present.main.notice,期限が切れたプレゼントは自動的に削除されます。また、一度に受け取れるプレゼントは100件までです。,到期的礼物将被自动削除。此外，一次可领取100件礼物
+present.main.notice,期限が切れたプレゼントは自動的に削除されます。また、一度に受け取れるプレゼントは100件までです。,到期的礼物将被自动删除。此外，一次最多可领取100件礼物
 present.receive.title,プレゼント受け取り,领取礼物
 present.receive.message,以下のプレゼントを受け取りました,已领取以下礼物
 present.receive.itemNameNum,%{Name} ×%{Num},
 present.receiveAllConfirm.title,プレゼント一括受け取り,一次性领取礼物
-present.receiveAllConfirm.text,プレゼントを新しいものから100件まで受け取ります。よろしいですか？,从最新的礼物开始至多领取100件。确认吗？
+present.receiveAllConfirm.text,プレゼントを新しいものから100件まで受け取ります。よろしいですか？,从最新的礼物开始最多领取100件。确认吗？
 present.receiveAll.title,プレゼント一括受け取り,一次性领取礼物
 present.receiveAll.message,以下のプレゼントを受け取りました,已领取以下礼物
 present.receiveAll.maxMessage,最大所持数を超えているため受け取れません,由于超过最大所持数，无法领取
@@ -662,11 +662,11 @@ produceTop.deadline.season,シーズン%{seasonNum},季度%{seasonNum}
 produceTop.homeConfirmPop.title,ホームに戻る,回到主界面
 produceTop.homeConfirmPop.message,現在のプロデュース内容を保存して、ホームに戻りますか？,要保存当前的Produce内容，并回到主界面吗？
 produceTop.restConfirmPop.title,確認画面,确认界面
-produceTop.restConfirmPop.message,アイドルを休ませますか？,让偶像休息一下？
+produceTop.restConfirmPop.message,アイドルを休ませますか？,要让偶像休息一下吗？
 produceTop.releasedCommentsPop.title,ボイス解放,语音解锁
 produceTop.releasedCommentsPop.message,を解放しましたホームにて聞くことができます,已解锁并可在主界面听取
 produceTop.concertConfirmPop.title,確認画面,确认界面
-produceTop.concertConfirmPop.message,ライブを開始しますか？,开始Live？
+produceTop.concertConfirmPop.message,ライブを開始しますか？,要开始Live吗？
 produceTop.ideaNoteAlertPop.title,アイデアノート確認,创想笔记确认
 produceTop.ideaNoteAlertPop.message.default,アイデアノートが設定されていません。新たなアイデアノートを設定しますか？,创想笔记未设定。要设定新的创想笔记吗？
 produceTop.ideaNoteAlertPop.message.complete,アイデアノートをコンプリートしました。新たなアイデアノートを設定しますか？,创想笔记已完成。要设定新的创想笔记吗？
