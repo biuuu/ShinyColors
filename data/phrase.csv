@@ -221,11 +221,11 @@ fes.top.rankingInCalculation,集計中,统计中
 fes.top.gradeTotalUserNum,%{value}人中,%{value}人中
 fes.top.gradeEvaluationLimit,グレード判定期間  %{mounth}/%{date} %{hour}:%{minute}まで,等级判定时段%{mounth}/%{date} %{hour}:%{minute}截止
 fes.top.gradeProcessing,グレード集計期間  %{mounth}/%{date} %{hour}:%{minute}まで,等级统计时段%{mounth}/%{date} %{hour}:%{minute}截止
-fes.difficultySelect.rehearsalMessage,フェスリハーサルの難易度を選択してください,请选择Fes排练的难易度
+fes.difficultySelect.rehearsalMessage,フェスリハーサルの難易度を選択してください,请选择Fes彩排的难易度
 fes.difficultySelect.gradeMatchMessage,グレードフェスの難易度を選択してください,请选择排位Fes的难易度
 fes.deck.memoryBonus,x%{value},
 fes.ready.title,参加ユニット,参加队伍
-fes.ready.description,テンション決定後は前の画面には戻れません\nフェス参加権を%{consumedFesTicket}消費します,Tension确定之后将无法回到之前的界面\n将消耗Fes参加权%{consumedFesTicket}
+fes.ready.description,テンション決定後は前の画面には戻れません\nフェス参加権を%{consumedFesTicket}消費します,心情确定之后将无法回到之前的界面\n将消耗Fes参加权%{consumedFesTicket}
 fes.resumeDialog.title,フェス再開,Fes继续
 fes.resumeDialog.text,進行中のフェスがあります。\nフェスを再開しますか？,有进行中的Fes。\n要继续该Fes吗？
 fes.terminateDialog.title,フェス終了,Fes结束
@@ -253,7 +253,7 @@ fes.orderText,%{order}位,%{order}位
 fes.result.changedSeasonMessage,グレードフェスのシーズンが切り替わったため、\n今回のスコアはグレードに反映されません。,由于排位Fes的赛季已变更\n本次的分数将不会反映在等级中
 fes.result.match.title,LV%{level} グレードフェス,LV%{level} 排位Fes
 fes.result.match.bonusTitle,ボーナス,加成
-fes.result.rehearsal.title,フェスリハーサル,Fes排练
+fes.result.rehearsal.title,フェスリハーサル,Fes彩排
 fes.result.rehearsal.bonusTitle,難易度,难易度
 fes.result.ranking,%{value}位,%{value}位
 fes.result.outOfRanking,ランキング範囲外,排行榜范围外
@@ -433,7 +433,7 @@ header.notice,お知らせ,通知
 header.fesMatchRanking,ランキング,排行榜
 header.fesDeckView,ユニット確認,队伍确认
 header.memorialShop,メモリアルピースショップ,回忆碎片商店
-header.titleSetting,称号設定,称号商店
+header.titleSetting,称号設定,称号设定
 header.ideaNote,アイデアノート,创想笔记
 header.workActivity,営業,营业
 header.workActivitySelectIdol,営業アイドル選択,营业偶像选择
@@ -628,7 +628,7 @@ present.receiveAll.noPresentMessage,受け取れるプレゼントはありま�
 filterPop.filterTitle,絞り込み,筛选
 filterPop.filter.friendship,絆,绊
 filterPop.filter.recoveryStamina,体力,体力
-filterPop.filter.recoveryTension,テンション,Tension
+filterPop.filter.recoveryTension,テンション,心情
 filterPop.filter.avoidTrouble,トラブル,Trouble
 filterPop.filter.changeTrend,流行,流行
 filterPop.filter.navigation,ナビゲート,指导
