@@ -26,7 +26,6 @@ comic.paginationLabel,%{currentPage} / %{maxPage},
 comic.openAt,%{openAt}更新,%{openAt}更新
 comic.charactersDialogTitle,登場人物一覧,登场人物一览
 splash.message,■ご注意■\nこのゲームは無料で遊ぶことができますが、\n一部有料のコンテンツがあります。\n\n■未成年の方へ■\n未成年の方が有料コンテンツを購入する場合は、 \n必ず法定代理人（ご両親等）の同意を得てから\n購入してください。\n※ないようがわからないときは\nおうちのひとにがめんをみせてください\n,■注意■\n本游戏可以免费游玩，\n但有一部分收费的内容。\n\n■对于未成年人■\n未成年人购买收费内容时，\n必须得到法定代理人（父母等）的同意后\n才能购买。\n※不清楚的时候，请让家里人过目\n
-temp.supportEvent,サポートイベント,Support事件
 announce.event,イベント,活动
 announce.campaign,キャンペーン,大型活动
 announce.gasha,ガシャ,抽卡
@@ -298,7 +297,7 @@ gameEvent.gashaSchedule,ガシャ期限 %{closeAt}まで,抽卡期限 %{closeAt}
 gameEvent.communicationsDialog.title,イベントコミュ,活动剧情
 gameEvent.communicationsDialog.noticeMessage,コミュはイベントショップから解放可能です,剧情可在活动商店处解锁
 gameEvent.specialCommunicationsDialog.title,スペシャルコミュ,特殊剧情
-gameEvent.specialCommunicationsDialog.unreleasedTitle,？？？？,？？？？
+gameEvent.specialCommunicationsDialog.unreleasedTitle,？？？？,
 gameEvent.resumeSpecialCommunicationsDialog.title,シナリオ再生確認,剧本播放确认
 gameEvent.resumeSpecialCommunicationsDialog.message,進行中のシナリオがあります再開しますか？,要继续正在进行的剧本吗？
 gameEvent.boxGasha.acquiredItemRatio,%{acquiredItemCount}/%{originItemCount},
