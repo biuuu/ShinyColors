@@ -18,7 +18,7 @@ const trim = (str) => {
 }
 
 const trimWrap = (str) => {
-  return trim(str).replace(/\\n/, '\n')
+  return trim(str).replace(/\\n/g, '\n')
 }
 
 if (ENVIRONMENT === 'development') {
