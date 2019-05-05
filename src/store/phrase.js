@@ -6,7 +6,7 @@ import { trim } from '../utils/index'
 const phraseMap = new Map()
 let loaded = false
 
-const getPhrase = async () => {
+const getPhrase = async (full = false) => {
   if (!loaded) {
     let csv = await getLocalData('phrase')
     if (!csv) {
@@ -18,8 +18,7 @@ const getPhrase = async () => {
       if (item && item.name) {
         const _name = trim(item.name)
         const _zh = trim(item.zh)
-        // const _ja = trim(item.ja)
-        if (_name && _zh) {
+        if (_name && (_zh || full)) {
           phraseMap.set(_name, _zh)
         }
       }

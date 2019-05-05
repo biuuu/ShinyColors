@@ -8,7 +8,8 @@ const banner = `// ==UserScript==
 // @name         偶像大师ShinyColors汉化
 // @namespace    https://github.com/biuuu/ShinyColors
 // @version      ${version}
-// @description  none
+// @description  提交翻译或问题请到 https://github.com/biuuu/ShinyColors
+// @icon         https://shinycolors.enza.fun/icon_192x192.png
 // @author       biuuu
 // @match        https://shinycolors.enza.fun/*
 // @run-at       document-end
