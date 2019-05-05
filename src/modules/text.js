@@ -49,7 +49,7 @@ export default async function watchText () {
     construct (target, args, newTarget) {
       const text = args[0]
       const option = args[1]
-      // log('new text', ...args)
+      log('new text', ...args)
       args[0] = fontCheck(text, option, commMap)
       return Reflect.construct(target, args, newTarget)
     }

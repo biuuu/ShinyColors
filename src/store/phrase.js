@@ -1,7 +1,7 @@
 import fetchData from '../utils/fetch'
 import parseCsv from '../utils/parseCsv'
 import { getLocalData, setLocalData } from './index'
-import { trim } from '../utils/index'
+import { trim, trimWrap } from '../utils/index'
 
 const phraseMap = new Map()
 let loaded = false
@@ -17,7 +17,7 @@ const getPhrase = async (full = false) => {
     list.forEach(item => {
       if (item && item.name) {
         const _name = trim(item.name)
-        const _zh = trim(item.zh)
+        const _zh = trimWrap(item.zh)
         if (_name && (_zh || full)) {
           phraseMap.set(_name, _zh)
         }

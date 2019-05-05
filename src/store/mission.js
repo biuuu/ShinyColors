@@ -1,7 +1,7 @@
 import fetchData from '../utils/fetch'
 import parseCsv from '../utils/parseCsv'
 import { getLocalData, setLocalData } from './index'
-import { trim } from '../utils/index'
+import { trimWrap } from '../utils/index'
 
 const missionMap = new Map()
 let loaded = false
@@ -16,8 +16,8 @@ const getMission = async (full = false) => {
     const list = parseCsv(csv)
     list.forEach(item => {
       if (item && item.ja) {
-        const ja = trim(item.ja)
-        const zh = trim(item.zh)
+        const ja = trimWrap(item.ja)
+        const zh = trimWrap(item.zh)
         if (ja && (zh || full)) {
           missionMap.set(ja, zh)
         }

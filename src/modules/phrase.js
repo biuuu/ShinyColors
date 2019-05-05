@@ -34,7 +34,6 @@ export default async function transPhrase () {
   // }
   phraseMap = await getPhrase()
   for (let [key, value] of phraseMap) {
-    let _value = value.replace(/\\[rn]/g, '\n')
-    obj[key] = tagText(_value)
+    obj[key] = tagText(value)
   }
 }

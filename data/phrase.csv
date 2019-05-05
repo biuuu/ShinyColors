@@ -9,7 +9,7 @@ beginnerMission.detailPopTitle,初心者ミッション詳細,新手任务详情
 beginnerMission.receivePopTitle,初心者ミッション達成,新手任务达成
 downLoad.confirmTitle,データダウンロード,数据下载
 downLoad.confirmComment,ゲームデータを一括でダウンロードし、端末に保存しますゲーム中の読み込み時間が減るため、より快適にプレイすることができます最大約 %{gb} GB のデバイスの空き容量が必要となります,游戏数据一次性下载后，游戏中保存到终端的的读取时间减少，以便于游玩更加流畅，至少需要%{gb} GB的空余容量
-downLoad.persistMessageMobile,データダウンロードを開始するためには\rアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\rホーム画面に追加、またはブックマークする必要があります,为了开始下载数据，必须将\r偶像大师闪耀色彩的URL(shinycolors.enza.fun)\r添加到主页屏幕上或书签中
+downLoad.persistMessageMobile,データダウンロードを開始するためには\nアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\nホーム画面に追加、またはブックマークする必要があります,为了开始下载数据，必须将\n偶像大师闪耀色彩的URL(shinycolors.enza.fun)\n添加到主页屏幕上或书签中
 downLoad.persistMessagePc,データダウンロードを開始するためには\nアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\nブックマークする必要があります,为了开始下载数据，必须将\n偶像大师闪耀色彩的URL(shinycolors.enza.fun)\n添加到书签中
 downLoad.deleteTitle,ダウンロードデータ削除,下载数据清除
 downLoad.deletingComment,データを削除中です\n,数据清除中

@@ -17,6 +17,10 @@ const trim = (str) => {
   return str.trimEnd()
 }
 
+const trimWrap = (str) => {
+  return trim(str).replace(/\\n/, '\n')
+}
+
 if (ENVIRONMENT === 'development') {
   GLOBAL && (GLOBAL.console = restoreConsole())
 }
@@ -28,6 +32,7 @@ const log = (...args) => {
 
 export {
   trim,
+  trimWrap,
   restoreConsole,
   isDomain,
   log
