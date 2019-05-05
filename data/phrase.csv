@@ -3,7 +3,7 @@ availableInform.title,アイテム有効期限のお知らせ,道具有效日期
 availableInform.description,アイテムの有効期限が                 となっております\n有効期限が過ぎますと\n%{contentName}の\n使用ができなくなります,道具的有效日期为                 \n超过有效日期之后\n%{contentName}の\n将不可使用
 availableInform.remainTime,あと%{remainTime},还有%{remainTime}
 achievementRewardDialog.message,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
-achievementRewardDialog.rewardNameNum,%{name} x %{num},%{name} x %{num}
+achievementRewardDialog.rewardNameNum,%{name} x %{num},
 beginnerMission.headerTitle,初心者ミッション,新手任务
 beginnerMission.detailPopTitle,初心者ミッション詳細,新手任务详情
 beginnerMission.receivePopTitle,初心者ミッション達成,新手任务达成
@@ -22,7 +22,7 @@ comic.otherUnitName,[その他],[其他]
 comic.storyNumberText,第%{chapter}話,第%{chapter}话
 comic.filterTitle,４コマ漫画検索,4格漫画检索
 comic.notFound,条件に合うものが見つかりません,未找到符合条件的
-comic.paginationLabel,%{currentPage} / %{maxPage},%{currentPage} / %{maxPage}
+comic.paginationLabel,%{currentPage} / %{maxPage},
 comic.openAt,%{openAt}更新,%{openAt}更新
 comic.charactersDialogTitle,登場人物一覧,登场人物一览
 splash.message,■ご注意■\nこのゲームは無料で遊ぶことができますが、\n一部有料のコンテンツがあります。\n\n■未成年の方へ■\n未成年の方が有料コンテンツを購入する場合は、 \n必ず法定代理人（ご両親等）の同意を得てから\n購入してください。\n※ないようがわからないときは\nおうちのひとにがめんをみせてください\n,■注意■\n本游戏可以免费游玩，\n但有一部分收费的内容。\n\n■对于未成年人■\n未成年人购买收费内容时，\n必须得到法定代理人（父母等）的同意后\n才能购买。\n※不清楚的时候，请让家里人过目\n
@@ -58,24 +58,24 @@ common.title,称号,称号
 common.login,ログイン,登录
 common.item,アイテム,道具
 common.exSkill,Exスキル,Ex技能
-common.people,%{num}人,%{num}人
+common.people,%{num}人,
 common.sheet,%{num}枚,%{num}张
-common.expireDatetimeString,mm/dd HH:MM为止,mm/dd HH:MM为止
+common.expireDatetimeString,mm/dd HH:MM为止,
 common.plusMessage,+%{name},
 common.pIdol,プロデュースアイドル,Produce偶像
 common.sIdol,サポートアイドル,Support偶像
-common.quantityMessage,x%{quantity},x%{quantity}
-common.quantityMessageWithName,%{name} x%{quantity},%{name} x%{quantity}
+common.quantityMessage,x%{quantity},
+common.quantityMessageWithName,%{name} x%{quantity},
 common.remainingTimeMessage,あと %{min}:%{sec},还需 %{min}:%{sec}
-common.lv,Lv.%{level},Lv.%{level}
+common.lv,Lv.%{level},
 common.staff,はづき,叶月
-common.horizontalEllipsis,...,...
+common.horizontalEllipsis,...,
 common.selectPaymentMethodTitle,決済方法選択,付款方式选择
 common.exchangeItemForAlbum,アルバムの鍵,相册钥匙
-common.gaugeNumberMessage,%{progress}/%{progressMax},%{progress}/%{progressMax}
-common.leftBracket,【,【
-common.rightBracket,】,】
-common.bulletPoint,・,•
+common.gaugeNumberMessage,%{progress}/%{progressMax},
+common.leftBracket,【,
+common.rightBracket,】,
+common.bulletPoint,・,
 common.useItemToReleaseSomething,%{itemName}を使用して%{releasedThingName}を解放しました,%{itemName}使用后%{releasedThingName}解锁了
 common.commu,コミュ,剧情
 common.voice,ボイス,语音
@@ -91,14 +91,14 @@ commonMenu.produceResume.title,プロデュース再開,Produce继续
 commonMenu.menuPop.title,メニュー,菜单
 commonMenu.backToTitleConfirm.title,タイトルへ戻る,回到标题
 commonMenu.backToTitleConfirm.text,タイトルへ戻ります。\nよろしいですか？,将回到标题。\n确认吗？
-commonMenu.dataLinkPop.title,機種変更・データ連携,机种变更•数据连携
+commonMenu.dataLinkPop.title,機種変更・データ連携,机种变更・数据连携
 commonMenu.dataLinkConfirmPop.title,データ連携確認,数据连携确认
 commonMenu.loginPop.title,ログイン,登录
 commonMenu.loginConfirm.title,ログイン確認,登录确认
 concert.judgeDetailDialog.titles.judge,%{attribute}審査員,%{attribute}审查员
 concert.judgeDetailDialog.titles.instructor,%{attribute}コーチ,%{attribute}教练
 concert.judgeDetailDialog.titles.fan,%{attribute}重視の観客,%{attribute}重视的观客
-concert.playerIdol.retire,Retire,Retire
+concert.playerIdol.retire,Retire,
 concert.produceIdolComment,私の歌、届け！,传递出去吧，我的歌声！
 concert.pauseDialog.produceSkill,プロデュースアイドル所持スキル,Produce偶像所持技能
 concert.pauseDialog.supportSkill,サポートアイドル所持スキル,Support偶像所持技能
@@ -107,7 +107,7 @@ concert.passiveSkillDetailListDialog.emptyMessage,効果情報はありません
 concert.statusEffect.leftTurn,残り%{leftTurn}ターン,剩余%{leftTurn}回合
 concert.statusEffect.remainTimes,残り%{remainTimes}回,剩余%{remainTimes}回
 concert.statusEffect.noStatusEffectMessage,効果情報はありません,无状态效果信息
-concertResult.entryNumber,エントリーNo.%{number},进入No.%{number}
+concertResult.entryNumber,エントリーNo.%{number},
 concertResult.statusUp.message,+%{upPoint},
 copyright.title,コピーライト,CopyRight
 copyright.holders.bne.title,権利表記,版权所有
@@ -146,7 +146,7 @@ ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼ
 ending.fesIdolRewardPop.itemNameNum,%{type} ×%{num},
 ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！\n我可是很看好你的
 ending.totalFan.idolName,【%{name}】累計ファン人数,【%{name}】累计粉丝人数
-ending.reward.multipleNum,×%{num},×%{num}
+ending.reward.multipleNum,×%{num},
 ending.possessionCountOverExSkillRewardPop.title,所持上限に達しています,达到所持上限
 ending.possessionCountOverExSkillRewardPop.exSkillName,%{idolType}【%{idolName}専用】\n%{skillName},%{idolType}【%{idolName}专用】\n%{skillName}
 ending.possessionCountOverExSkillRewardPop.idolType.produce,プロデュース,Produce
@@ -289,7 +289,7 @@ fes.fesGradeRewardPop.missionReward.colTitle1,昇格グレード,升格等级
 fes.fesGradeRewardPop.missionReward.colTitle2,報酬内容,报酬内容
 gameEvent.achievementRewardDialog.title,ミッション達成累積報酬,任务达成累计报酬
 gameEvent.achievementRewardDialog.message,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
-gameEvent.achievementRewardDialog.rewardNameNum,%{name} x %{num},%{name} x %{num}
+gameEvent.achievementRewardDialog.rewardNameNum,%{name} x %{num},
 gameEvent.achievementRewardDetailDialog.title,ミッション達成累積報酬詳細,任务达成累计报酬详细
 gameEvent.achievementRewardDetailDialog.missionDetailTitle,ミッション%{progressMax}個達成報酬,任务%{progressMax}个达成报酬
 gameEvent.schedule,開催期限 %{closeAt}まで,举办期限 %{closeAt}截止
@@ -301,7 +301,7 @@ gameEvent.specialCommunicationsDialog.title,スペシャルコミュ,特殊剧�
 gameEvent.specialCommunicationsDialog.unreleasedTitle,？？？？,？？？？
 gameEvent.resumeSpecialCommunicationsDialog.title,シナリオ再生確認,剧本播放确认
 gameEvent.resumeSpecialCommunicationsDialog.message,進行中のシナリオがあります再開しますか？,要继续正在进行的剧本吗？
-gameEvent.boxGasha.acquiredItemRatio,%{acquiredItemCount}/%{originItemCount},%{acquiredItemCount}/%{originItemCount}
+gameEvent.boxGasha.acquiredItemRatio,%{acquiredItemCount}/%{originItemCount},
 gameEvent.boxGasha.noCheckItem,チェック中のアイテムはありません,未选定道具
 gameEvent.boxGasha.lastBox,最後のボックスです,最后的BOX
 gameEvent.boxGasha.completedComment,%{boxName}のアイテムはすべて引き終わりました次のボックスへ移動してください,%{boxName}内的道具已全部抽取完毕请移动至下一个BOX
@@ -323,7 +323,7 @@ idolList.filterTitle,絞り込み,筛选
 idolList.sortTitle,並び替え,排序
 idolList.emptyMessage,所持しているアイドルがいません。,没有所持的偶像
 idolList.evolutionEmptyMessage,特訓可能なアイドルがいません。,没有可特训的偶像
-idolList.memorialPieceStatus.pieceNum,＋%{num},＋%{num}
+idolList.memorialPieceStatus.pieceNum,＋%{num},
 idolList.leaveEditModeDialog.title,確認,确认
 idolList.leaveEditModeDialog.text,まだ%{editType}は確定していません選択状態を解除して移動しますか？,%{editType}还未确定要解除选择状态并移动吗？
 idolList.leaveEditModeDialog.tradeMoney,移籍,移籍
@@ -348,7 +348,7 @@ gasha.confirmDialog.jewelNotice,無償フェザージュエルから先に消費
 gasha.confirmDialog.jewelNoticeBilledOnly,有償フェザージュエルが消費されます,将使用有偿羽石
 gasha.confirmDialog.jewelNoticeNeedsCharge,フェザージュエルが不足しています,羽石不足
 gasha.rateDescription,%{rarity}%{idolType}アイドル（%{count}種）,%{rarity}%{idolType}偶像（%{count}种）
-gasha.detailPercentage,%{rate}%,%{rate}%
+gasha.detailPercentage,%{rate}%,
 gasha.checkPopHeader,使用確認,使用确认
 gasha.detailPopHeader,提供割合,提供比例
 gasha.gashaSelectHeader,ガシャ選択,抽卡选择
@@ -366,7 +366,7 @@ gasha.step1Subtitle,通常ガシャ提供割合,通常抽卡提供比例
 gasha.step1SubtitleIdol,通常ガシャの提供アイドル一覧,通常抽卡所含偶像一览
 gasha.loadingWarning,読み込みに時間が掛かることがありますので、\nリロードはお控えください。,           需要一段时间进行读取\n           请勿重载游戏。
 gasha.noExpire,期限なし,无期限
-gasha.expireAt,使用期限：%{datetimeText},使用期限：%{datetimeText}
+gasha.expireAt,使用期限：%{datetimeText},
 gasha.stamp.nextPickUp,あと%{stampNumForNextPickUp}回で%{pickUpName}獲得！,还有%{stampNumForNextPickUp}回可获得%{pickUpName}！
 gasha.stamp.popReward.title,スタンプカード報酬,集章卡报酬
 gasha.stamp.popReward.text,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
@@ -462,7 +462,7 @@ homeDeckBackgroundImage,ホームユニット背景,主界面队伍背景
 homeDeck.displayType.illustration,イラストモード,插画模式
 homeDeck.displayType.animation,アニメモード,动画模式
 homeDeck.selectedBg,選択中の背景,选择中的背景
-judgeTrend.bonusValue,★%{value}倍,★%{value}倍
+judgeTrend.bonusValue,★%{value}倍,
 landscapeDialog.title,画面の向きについて,关于画面的方向
 landscapeDialog.text,このゲームは画面を横向きにしてお楽しみください。,本游戏适宜采用横向画面游玩
 loginBonus.clerkComment.greeting,プロデューサーさん、こちらは今日のログインボーナスですよ,制作人先生，这是今天的登录奖励
@@ -477,7 +477,7 @@ loginBonus.receive.message,以下の報酬を受け取りました,领取了以�
 maintenance.title,メンテナンス,维护
 maintenance.defaultMessage,ただいま、メンテナンスを実施しております。\nご迷惑をおかけし、大変申し訳ございません。,目前，正在实施维护中。\n对您造成的不便，非常抱歉。
 exSkill.none,未設定,未设定
-exSkill.possessionLabel,所持数 %{num},所持数 %{num}
+exSkill.possessionLabel,所持数 %{num},
 exSkill.notConditionPop.title,Exスキル確認,Ex技能确认
 exSkill.notConditionPop.text,Exスキル枠が解放されていないため\nExスキルを設定できません,Ex技能栏尚未解锁\n无法设定Ex技能
 exSkill.exSkillConfirmation.changeTitle,Exスキル変更確認,Ex技能变更确认
@@ -517,7 +517,7 @@ option.saveMessage, \n \n設定を保存しました。, \n \n您的设置已保
 option.volumeTitle.voice,ボイス,语音
 option.produceContentTitle.touch,アイドルへのタップ判定,偶像的触摸判定
 option.produceContentTitle.hint,はづきさんのヒント表示,叶月的提示显示
-option.produceContentTitle.newEventSpeed,未読イベント開始時に早送り解除\n（アイドル・サポートイベント）,未读过的事件开始时取消快进\n（偶像•Support事件）
+option.produceContentTitle.newEventSpeed,未読イベント開始時に早送り解除\n（アイドル・サポートイベント）,未读过的事件开始时取消快进\n（偶像・Support事件）
 option.produceContentTitle.restConfirm,休む選択時に確認画面を表示,选择休息时显示确认画面
 option.produceContentTitle.concertConfirm,ライブ選択時に確認画面を表示,选择Live时显示确认画面
 option.twitterProfileDescription,設定したイラストをTwitterでシェアできます\n投稿にはTwitter連携が必要です,设定的插画可分享至Twitter\n投稿须绑定Twitter
@@ -549,7 +549,7 @@ idolDetail.tradeResultDialog.money,%{money}マニー,%{money}金币
 idolDetail.tradeResultDialog.comment3,を獲得しました,已获得
 idolDetail.tradeResultDialog.comment4,フェスアイドルの移籍により,从Fes偶像的移籍中
 idolDetail.trueEndDialog.title,True End詳細,True End详情
-idolDetail.trueEndDialog.condition,・アイドルランクA達成・W.I.N.G.優勝,•偶像等级A达成•W.I.N.G.优胜
+idolDetail.trueEndDialog.condition,・アイドルランクA達成・W.I.N.G.優勝,・偶像等级A达成・W.I.N.G.优胜
 idolDetail.tradeMemorialPieceDialog.title,メモリアルピース変換確認,回忆碎片变换确认
 idolDetail.tradeMemorialPieceDialog.comment,このアイドルとはお別れすることになります。変換を確定してよろしいですか？,即将与该偶像分别。确定进行变换吗？
 idolDetail.tradeMemorialPieceDialog.afterPieceCount,%{afterPieceCount}(+%{addPieceCount}),
@@ -640,7 +640,7 @@ filterPop.filter.vocal,Vocal,Vocal
 filterPop.filter.visual,Visual,Visual
 filterPop.filter.mental,メンタル,Mental
 filterPop.filter.limitStaminaUp,体力,体力
-filterPop.filter.placeAppearRate,レッスン・\nお仕事,训练•\n工作
+filterPop.filter.placeAppearRate,レッスン・\nお仕事,训练・\n工作
 filterPop.filter.commu,コミュ,剧情
 produce.header.ideaNote.emptyNotice,使用していません,未使用
 produce.resumePop.progress,シーズン %{season} / 残り %{restOfSeasonWeek}週,季度 %{season} /剩余 %{restOfSeasonWeek}周
@@ -682,7 +682,7 @@ produceCostume.changePopTitle,衣装変更確認,服装变更确认
 produceSeasonResult.ideaNote.season,シーズン%{seasonNum},季度%{seasonNum}
 produceSeasonResult.ideaNote.emptyNotice,獲得できるアイデアノートがありません,没有可获得的创想笔记
 produceAreaSelect.openTime,%{years}年%{months}月%{days}日%{hours}:%{minutes}以降に,%{years}年%{months}月%{days}日%{hours}:%{minutes}以后
-fanMeeting.live.evaluation.fanMeeting.good_performance,MVP,MVP
+fanMeeting.live.evaluation.fanMeeting.good_performance,MVP,
 fanMeeting.live.evaluation.fanMeeting.good_vocal,ベストボーカリスト,Best Vocalist
 fanMeeting.live.evaluation.fanMeeting.good_dance,ベストダンサー,Best Dancer
 fanMeeting.live.evaluation.fanMeeting.good_visual,ベストモデル,Best Model
@@ -706,7 +706,7 @@ profile.error.ngWord,\n禁止ワードが含まれています,\n含有含有禁
 profile.error.wordLength,\n入力文字数が不正です,\n输入字数不正确
 profile.commentEditDialog.title,自己紹介編集,自我介绍编辑
 profile.commentEditDialog.commentDefault,よろしくお願いします,请多指教
-profile.commentEditDialog.textLengthCount,%{count}/20,%{count}/20
+profile.commentEditDialog.textLengthCount,%{count}/20,
 profile.options.showUserName,プロデューサーネーム,制作人姓名
 profile.options.showUserTitle,称号,称号
 profile.options.showProfileComment,自己紹介,自我介绍
@@ -731,15 +731,15 @@ shop.shopDescriptions.gameEvent,イベントで入手したポイントとアイ
 shop.shopDescriptions.premium,いろいろなお買い得アイテムを購入できます,可购买各种实惠商品
 shop.shopDescriptions.staffItemPoint,はづきさんシールを使用してアイテムと交換できます,可使用叶月贴纸兑换道具
 shop.shopDescriptions.memorialPiece,メモリアルピースを使用してアイテムと交換できます,可使用回忆碎片兑换道具
-shop.shopDescriptions.exchangeItem,特別な衣装の交換・確認ができます,特别服装兑换•确认
+shop.shopDescriptions.exchangeItem,特別な衣装の交換・確認ができます,特别服装兑换・确认
 shop.shopDescriptions.trade,複数のアイテムを別のアイテムに変換できます,可使用复数道具兑换其他道具
-shop.possessionLabel,所持%{currencyName},所持%{currencyName}
+shop.possessionLabel,所持%{currencyName},
 shop.shopItem.jewel,ジュエル,羽石
 shop.shopItem.billedJewel,有償ジュエル,有偿羽石
 shop.shopItem.freeJewel,無償ジュエル,无偿羽石
 shop.shopItem.piece,ピース,碎片
 shop.shopItem.priceLabel,必要%{currencyName},需要%{currencyName}
-shop.shopItem.disableText.lack,%{currencyName}不足,%{currencyName}不足
+shop.shopItem.disableText.lack,%{currencyName}不足,
 shop.salesItemText.2106,お一人様1つ限定！\n「1st Anniversary 10連ガシャチケット×1」に「SR特訓はづきさん（プロデュース）×1」と「ゴールドトレーニングチケット×20」がついてくる特別なパッケージです！,每人限定1个！\n「1st Anniversary 10连抽卡券×1」附赠「SR特训叶月（Produce）×1」与「黄金训练券×20」的特别礼包
 shop.salesItemText.2107,お一人様1つ限定！\n「ユニット別10連ガシャチケット×3」や「SSR特訓はづきさん（プロデュース）×1」「SSR特訓はづきさん（サポート）×1」などが入った特別なパッケージです！,每人限定1个！\n「组别10连抽卡券×3」与「SSR特训叶月（Produce）×1」「SSR特训叶月（Support）×1」等包含在内的特别礼包
 shop.salesItemText.2108,お一人様1つ限定！\n「10連ガシャチケット×1」に、好きなSSRアイドルを１人選べる「セレクションチケット」がついた、特別なパッケージです！,每人限定1个！\n「10连抽卡券×1」附赠可选择你喜欢的偶像的「超得券」的特别礼包
@@ -872,8 +872,8 @@ individualRanking.rewardAt,%{time}から,%{time}开始
 individualRanking.outOfRanking,圏外,圈外
 individualRanking.popup.title,ランキング報酬,排行榜报酬
 individualRanking.popup.headingBorder,順位,排名
-individualRanking.popup.rewardBorder,%{start}位,%{start}位
-individualRanking.popup.rewardBorderRange,%{start}位〜%{end}位,%{start}位〜%{end}位
+individualRanking.popup.rewardBorder,%{start}位,
+individualRanking.popup.rewardBorderRange,%{start}位〜%{end}位,
 individualRanking.popup.itemNameNum,%{type} ×%{num},
 individualRanking.accumulatedPresentListPop.title,累計ファン数達成報酬一覧,累计粉丝数达成报酬一览
 individualRanking.accumulatedPresentListPop.needFan,%{fan} 人,%{fan} 人
