@@ -1,5 +1,5 @@
 const babel = require('rollup-plugin-babel')
-const { version } = require('./package.json')
+const { version } = require('../package.json')
 const json = require('rollup-plugin-json')
 const resolve = require('rollup-plugin-node-resolve')
 const cmjs = require('rollup-plugin-commonjs')
@@ -35,6 +35,6 @@ module.exports = {
     format: 'iife',
     name: 'shinycolors_zh',
     banner: banner,
-    intro: `const ENVIRONMENT = "${process.env.BUILD === 'development' ? 'development' : ''}";`
+    intro: `const ENVIRONMENT = "${process.env.BUILD === 'development' ? 'development' : ''}";const DEV = ${process.env.DEV ? true : false};`
   }
 };

@@ -40,6 +40,9 @@ const getLocalConfig = () => {
       config[key] = value
     }
   })
+  if (DEV) {
+    config.origin = 'http://localhost:15944'
+  }
 }
 
 const getLocalHash = () => {

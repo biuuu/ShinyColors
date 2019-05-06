@@ -4,6 +4,7 @@ import { getHash } from '../utils/fetch'
 let data = null
 
 const getLocalData = async (type) => {
+  if (DEV) return false
   if (data) return data[type]
   const hash = await getHash
   try {
@@ -24,6 +25,7 @@ const getLocalData = async (type) => {
 }
 
 const setLocalData = (type, value) => {
+  if (DEV) return false
   if (!data) data = { hash: config.hash }
   data[type] = value
   const str = JSON.stringify(data)
