@@ -111,7 +111,7 @@ concertResult.statusUp.message,+%{upPoint},
 copyright.title,コピーライト,CopyRight
 copyright.holders.bne.title,権利表記,版权所有
 copyright.holders.bne.message,© 2018 BANDAI NAMCO Entertainment Inc.,© 2018 BANDAI NAMCO Entertainment Inc.
-countdown.season,シーズン%{seasonNum}終了まで,第%{seasonNum}结束剩余
+countdown.season,シーズン%{seasonNum}終了まで,第%{seasonNum}季度结束剩余
 deck.autoSelectDialog.title,おまかせ編成,自动编成
 deck.autoSelectDialog.noUserIdol,おまかせ編成を使用するには\nプロデュースアイドルを設定してください,要使用自动编成请先设定Produce偶像。
 deck.autoSelectDialog.description,設定中のプロデュースアイドルによって編成内容を判別します\n編成の方針を選択してください,根据设定的Produce偶像判定编成内容\n请选择一个编成方针
@@ -143,7 +143,7 @@ ending.fesIdolRewardPop.title,プロデュースクリア報酬,Produce完成报
 ending.fesIdolRewardPop.comment,下記アイテムを入手しました,获得了以下道具
 ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼントボックスに送られました,超过所持数上限的已送入礼物盒中
 ending.fesIdolRewardPop.itemNameNum,%{type} ×%{num},
-ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！\n我可是很看好你的
+ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！\n毕竟我可是很看好你的呐
 ending.totalFan.idolName,【%{name}】累計ファン人数,【%{name}】累计粉丝人数
 ending.reward.multipleNum,×%{num},
 ending.possessionCountOverExSkillRewardPop.title,所持上限に達しています,达到所持上限
@@ -820,9 +820,9 @@ tutorial.skipPop.message,次のチュートリアルまでスキップします\
 tutorial.skipPop.title,確認,确认
 tutorial.skipPop.warning1,各機能の説明はチュートリアル終了後も,各功能在教程结束后在
 tutorial.skipPop.warning3,から確認可能です。,之中可以确认
-tv.appearance,テレビ出演を果たした。\n,TV出演大获成功。\n
+tv.appearance,テレビ出演を果たした。\n,TV出演最终大获成功。\n
 tv.appearanceAfter,アイドル達の魅力が引き出されたように感じる。,大家也感受到了偶像们所散发的魅力。
-tv.performanceComment,今話題のアイドルが登場！圧巻のパフォーマンスを披露！,目前大热的偶像登场！带来精彩的演出！
+tv.performanceComment,今話題のアイドルが登場！圧巻のパフォーマンスを披露！,目前大热的偶像登场！带来精彩绝伦的演出！
 twitter.PINCodeDialog.title,Twitter連携,Twitter连携
 twitter.PINCodeDialog.description,Twitterに投稿するには、PINコードを取得して\nTwitterとの連携を認証する必要があります,
 twitter.PINCodeDialog.PINCodeComment,取得したPINコードを入力してください,
@@ -884,17 +884,17 @@ trust.rewardPop.innerLabel,信頼度はすべてのプロデュースアイド�
 trust.rewardPop.level,信頼度\nLv.%{level},信赖度\nLv.%{level}
 trust.rewardPop.rewardName,%{name}×%{num},
 trust.rewardPop.title,信頼度Lv.報酬（%{characterName}）,信赖度Lv.报酬（%{characterName}）
-temp.produceEvent,プロデュースイベント,
-eventPoint.genericName,ポイント,
-eventPoint.game,イベントP,
-eventPoint.scenario,シナリオP,
-eventPoint.fes,フェスP,
-eventPoint.box,ボックスP,
-eventPoint.ranking,ランキングP,
-eventShop.noShopNotice,期間内のショップがありません。,
-eventShop.noExchangeMerchandiseNotice,交換できるアイテムがありません。,
-exchangeItem.petitSelectionTicket.original,プチセレクションチケット,
-exchangeItem.petitSelectionTicket.simple,チケット,
+temp.produceEvent,プロデュースイベント,Produce活动
+eventPoint.genericName,ポイント,点数
+eventPoint.game,イベントP,活动P
+eventPoint.scenario,シナリオP,剧情P
+eventPoint.fes,フェスP,FesP
+eventPoint.box,ボックスP,BoxP
+eventPoint.ranking,ランキングP,排名P
+eventShop.noShopNotice,期間内のショップがありません。,没有限时中的商店
+eventShop.noExchangeMerchandiseNotice,交換できるアイテムがありません。,没有可兑换的道具
+exchangeItem.petitSelectionTicket.original,プチセレクションチケット,小型选择券
+exchangeItem.petitSelectionTicket.simple,チケット,券
 fes.result.score,%{value}pt,
 fes.result.scoreDetail.appeal,%{appeal}×%{num},
 gasha.ticketGashaCount,x%{count},
@@ -904,7 +904,7 @@ gasha.ssrText,SSR,
 gasha.srText,SR,
 gasha.rText,R,
 gasha.scoutGasha.ticketCount,x%{count},
-header.eventShop,イベントショップ,
+header.eventShop,イベントショップ,活动商店
 mission.missionCountMessage,%{clearedMissionLen}/%{missionLen},
 mission.gaugeNumberMessage,%{progress}/%{progressMax},
 option.volumeTitle.bgm,BGM,
