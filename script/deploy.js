@@ -11,9 +11,10 @@ fse.emptyDir('./dist/data/').then(() => {
   console.log('move data files...')
   return fse.copy('./data/', './dist/data/')
 }).then(() => {
-  console.log('move html files...')
-  return fse.copy('./src/proxy.html', './dist/proxy.html')
-}).then(() => {
+  if (process.env.PUBLISH === 'skip') {
+    console.log('data prepared')
+    return
+  }
   console.log('start publish...')
   ghpages.publish('dist', {
     add: false

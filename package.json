@@ -1,13 +1,15 @@
 {
   "name": "shinycolors-zh",
-  "version": "0.0.17",
+  "version": "0.1.0",
   "main": "main.js",
   "repository": "git@github.com:biuuu/ShinyColors.git",
   "author": "biuuu",
   "license": "MIT",
   "scripts": {
-    "build": "rollup --config build.js --environment BUILD:development",
-    "deploy": "rollup --config build.js && node ./deploy.js"
+    "build": "rollup --config ./script/build.js --environment BUILD:development",
+    "dev": "node ./script/cleanDist.js && cross-env PUBLISH=skip node ./script/deploy.js && rollup --config ./script/build.js --environment BUILD:development,DEV && yarn server",
+    "server": "http-server ./dist/ -c-1 -s --cors -o http://localhost:15944/ShinyColors.user.js -p 15944",
+    "deploy": "node ./script/cleanDist.js && rollup --config ./script/build.js && node ./script/deploy.js"
   },
   "dependencies": {
     "core-js": "3",
@@ -21,6 +23,7 @@
     "cross-env": "^5.2.0",
     "fs-extra": "^7.0.1",
     "gh-pages": "^2.0.1",
+    "http-server": "^0.11.1",
     "md5-dir": "^0.2.0",
     "rollup": "^1.7.4",
     "rollup-plugin-babel": "^4.3.2",
