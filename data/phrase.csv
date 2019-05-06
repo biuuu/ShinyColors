@@ -502,7 +502,7 @@ mission.popReceive.comment,以下の報酬を受け取りました,领取了以�
 mission.noLimit,期限なし,无期限
 mission.noMissionMessage,挑戦できるミッションはありません,没有可以挑战的任务
 mission.expiredMission,ミッション挑戦期限を過ぎています,任务挑战期限已过
-mission.remainingMinutes,あと%{minutes}分,还有{minutes}分
+mission.remainingMinutes,あと%{minutes}分,还有%{minutes}分
 mission.remainingHours,あと%{hours}時間%{minutes}分,还有%{hours}小时%{minutes}分
 mission.remainingDays,あと%{days}日%{hours}時間,还有%{days}天%{hours}小时
 mission.receiveAllConfirm.text,ミッション報酬を新しいものから100件まで受け取ります。よろしいですか？,从最新的任务报酬开始至多领取100件。确认吗？
