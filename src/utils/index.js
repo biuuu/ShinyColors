@@ -21,12 +21,13 @@ const trimWrap = (str) => {
   return trim(str).replace(/\\r/g, '\r').replace(/\\n/g, '\n')
 }
 
+let _console
 if (ENVIRONMENT === 'development') {
-  GLOBAL && (GLOBAL.console = restoreConsole())
+  _console = restoreConsole()
 }
 const log = (...args) => {
   if (ENVIRONMENT === 'development') {
-    GLOBAL.console.log(...args)
+    _console.log(...args)
   }
 }
 
