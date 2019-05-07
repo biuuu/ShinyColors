@@ -724,14 +724,14 @@ shop.headerTitles.staffItemPoint,はづきさんショップ,叶月商店
 shop.headerTitles.memorialPiece,メモリアルピースショップ,回忆碎片商店
 shop.headerTitles.exchangeItem,衣装ショップ,服装商店
 shop.headerTitles.trade,リサイクルショップ,回收商店
-shop.shopDescriptions.money,マニーを使用してアイテムと交換できます,可使用金币兑换道具
+shop.shopDescriptions.money,マニーを使用してアイテムと交換できます,　　　 可使用金币兑换道具
 shop.shopDescriptions.jewel,フェザージュエルを使用してアイテムと交換できます,可使用羽石兑换道具
-shop.shopDescriptions.gameEvent,イベントで入手したポイントとアイテムを交換できます,可使用活动中获得的点数兑换道具
-shop.shopDescriptions.premium,いろいろなお買い得アイテムを購入できます,可购买各种实惠商品
-shop.shopDescriptions.staffItemPoint,はづきさんシールを使用してアイテムと交換できます,可使用叶月贴纸兑换道具
-shop.shopDescriptions.memorialPiece,メモリアルピースを使用してアイテムと交換できます,可使用回忆碎片兑换道具
-shop.shopDescriptions.exchangeItem,特別な衣装の交換・確認ができます,特别服装兑换・确认
-shop.shopDescriptions.trade,複数のアイテムを別のアイテムに変換できます,可使用复数道具兑换其他道具
+shop.shopDescriptions.gameEvent,イベントで入手したポイントとアイテムを交換できます,　　　 可使用活动中获得的点数兑换道具
+shop.shopDescriptions.premium,いろいろなお買い得アイテムを購入できます,    　　 可购买各种实惠商品
+shop.shopDescriptions.staffItemPoint,はづきさんシールを使用してアイテムと交換できます,　　　 可使用叶月贴纸兑换道具
+shop.shopDescriptions.memorialPiece,メモリアルピースを使用してアイテムと交換できます,　　　 可使用回忆碎片兑换道具
+shop.shopDescriptions.exchangeItem,特別な衣装の交換・確認ができます,　　　 特别服装兑换・确认
+shop.shopDescriptions.trade,複数のアイテムを別のアイテムに変換できます,　　　 可使用复数道具兑换其他道具
 shop.possessionLabel,所持%{currencyName},
 shop.shopItem.jewel,ジュエル,羽石
 shop.shopItem.billedJewel,有償ジュエル,有偿羽石
