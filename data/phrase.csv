@@ -567,7 +567,7 @@ idolRank.txtFan,%{count}人,%{count}人
 idolRank.txtNextFan,あと  %{count}人,还需 %{count}人
 item.limitNum,最大所持数: %{num},最大所持数: %{num}
 item.headerTitle,アイテム一覧,道具一览
-item.noItem,アイテムがありません。,无道具
+item.noItem,アイテムがありません。,　　　  无道具
 item.itemConfirm.title,使用確認,使用确认
 item.itemConfirm.effect,以下のアイテムを使用して%{valueName}を回復しますか？,要使用以下道具%{valueName}进行恢复吗？
 item.itemConfirm.commentBlack,アイテムを使用すると,使用道具后
