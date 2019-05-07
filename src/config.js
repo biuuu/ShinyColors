@@ -11,9 +11,9 @@ const MODULE_ID = {
 
 const FONT = {
   HEITI_JA: 'UDKakugo_SmallPr6-B',
-  HEITI_TRANS: 'HYQH70SUP,UDKakugo_SmallPr6-B',
+  HEITI_TRANS: 'sczh-heiti,UDKakugo_SmallPr6-B',
   YUAN_JA: 'HummingStd-E',
-  YUAN_TRANS: 'QYW5UP,HummingStd-E'
+  YUAN_TRANS: 'sczh-yuanti,HummingStd-E'
 }
 
 const config = {

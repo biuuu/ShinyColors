@@ -1,5 +1,6 @@
 .vscode/
 node_modules/
 dist/
+localfont/
 yarn-error.log
 npm-debug.log
