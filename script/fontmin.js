@@ -28,6 +28,28 @@ const appendText = (str) => {
   }
 }
 
+const start = (src, txt, removeJa = false) => {
+  if (removeJa) {
+    txt = txt.replace(/[\u3040-\u30ff\uff66-\uff9f]/g, '')
+  }
+  const fontmin = new Fontmin()
+  .src(src)
+  .use(Fontmin.glyph({
+      text: txt,
+      hinting: false
+  }))
+  .use(ttf2woff2({ clone: false }))
+  .dest(destPath)
+
+  fontmin.run(function (err, files, stream) {
+    if (err) {
+      console.error(err)
+    }
+
+    console.log('done')
+  })
+}
+
 glob('data/**/*.csv', function (err, files) {
   if (err) {
     console.error(err)
@@ -39,21 +61,7 @@ glob('data/**/*.csv', function (err, files) {
   Promise.all(prims).then(txts => {
     txts.forEach(appendText)
     console.log(text.length)
-    const fontmin = new Fontmin()
-    .src(srcPath)
-    .use(Fontmin.glyph({
-        text: text,
-        hinting: false
-    }))
-    .use(ttf2woff2({ clone: false }))
-    .dest(destPath)
-
-    fontmin.run(function (err, files, stream) {
-      if (err) {
-        console.error(err)
-      }
-
-      console.log('done')
-    })
+    start(srcPath[0], text)
+    start(srcPath[1], text, true)
   })
 })
