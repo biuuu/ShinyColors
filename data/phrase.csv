@@ -732,7 +732,7 @@ shop.shopDescriptions.staffItemPoint,はづきさんシールを使用してア�
 shop.shopDescriptions.memorialPiece,メモリアルピースを使用してアイテムと交換できます,　　　 可使用回忆碎片兑换道具
 shop.shopDescriptions.exchangeItem,特別な衣装の交換・確認ができます,　　　 特别服装兑换・确认
 shop.shopDescriptions.trade,複数のアイテムを別のアイテムに変換できます,　　　 可使用复数道具兑换其他道具
-shop.possessionLabel,所持%{currencyName},
+shop.possessionLabel,所持%{currencyName},所持%{currencyName}
 shop.shopItem.jewel,ジュエル,羽石
 shop.shopItem.billedJewel,有償ジュエル,有偿羽石
 shop.shopItem.freeJewel,無償ジュエル,无偿羽石
