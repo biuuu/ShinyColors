@@ -2,6 +2,10 @@ import isString from 'lodash/isString'
 import getCommMap from '../store/commText'
 import { FONT } from '../config'
 import { log } from '../utils/index'
+import getTypeTextMap from '../store/typeText'
+
+let commMap = new Map()
+let typeTextMap = new Map()
 
 const replaceFont = (style) => {
   if (style && style.fontFamily) {
@@ -23,7 +27,18 @@ const restoreFont = (style) => {
   }
 }
 
-const fontCheck = (text, style, textMap) => {
+const textInMap = (text, map, style) => {
+  let _text = text
+  if (map.has(text)) {
+    _text = '\u200b' + map.get(text)
+    replaceFont(style)
+  } else if (!text.startsWith('\u200b')) {
+    restoreFont(style)
+  }
+  return _text
+}
+
+const fontCheck = (text, style, isType = false) => {
   if (!isString(text)) return text
   let _text = text
   if (text.startsWith('\u200b\u200b')) {
@@ -31,11 +46,10 @@ const fontCheck = (text, style, textMap) => {
     _text = text.slice(1)
     replaceFont(style)
   } else if (text.trim()) {
-    if (textMap.has(text)) {
-      _text = '\u200b' + textMap.get(text)
-      replaceFont(style)
-    } else if (!text.startsWith('\u200b')) {
-      restoreFont(style)
+    if (isType) {
+      _text = textInMap(text, typeTextMap, style)
+    } else {
+      _text = textInMap(text, commMap, style)
     }
   }
   return _text
@@ -43,14 +57,15 @@ const fontCheck = (text, style, textMap) => {
 
 export default async function watchText () {
   if (!GLOBAL.aoba) return
-  const commMap = await getCommMap()
+  commMap = await getCommMap()
+  typeTextMap = await getTypeTextMap()
 
   const Text = new Proxy(aoba.Text, {
     construct (target, args, newTarget) {
       const text = args[0]
       const option = args[1]
       log('new text', ...args)
-      args[0] = fontCheck(text, option, commMap)
+      args[0] = fontCheck(text, option)
       return Reflect.construct(target, args, newTarget)
     }
   })
@@ -60,7 +75,7 @@ export default async function watchText () {
   aoba.Text.prototype.typeText = function (...args) {
     const text = args[0]
     log('type text', ...args)
-    args[0] = fontCheck(text, this.style, commMap)
+    args[0] = fontCheck(text, this.style, true)
     return originTypeText.apply(this, args)
   }
 
@@ -68,7 +83,7 @@ export default async function watchText () {
   aoba.Text.prototype.updateText = function (t) {
     if (this.localStyleID !== this._style.styleID && (this.dirty = !0,this._style.styleID),this.dirty || !t) {
       if (DEV) log('update text', this._text)
-      const value = fontCheck(this._text, this._style, commMap)
+      const value = fontCheck(this._text, this._style)
       Reflect.set(this, '_text', value)
       return originUpdateText.call(this, t)
     }
