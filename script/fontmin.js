@@ -3,7 +3,7 @@ const ttf2woff2 = require('gulp-ttf2woff2')
 const glob = require('glob')
 const fs = require('fs')
 
-const srcPath = ['localfont/heiti.ttf', 'localfont/yuanti.ttf']
+const srcPath = ['localfont/heiti.ttf', 'localfont/yuanti.ttf', 'localfont/yuanti2.ttf']
 const destPath = 'data/font'
 let text = ''
 for (let i = 33; i < 127; i++) {
@@ -45,8 +45,6 @@ const start = (src, txt, removeJa = false) => {
     if (err) {
       console.error(err)
     }
-
-    console.log('done')
   })
 }
 
@@ -60,8 +58,9 @@ glob('data/**/*.csv', function (err, files) {
 
   Promise.all(prims).then(txts => {
     txts.forEach(appendText)
-    console.log(text.length)
+    console.log(text.length + '个字符')
     start(srcPath[0], text)
     start(srcPath[1], text, true)
+    start(srcPath[2], text, true)
   })
 })
