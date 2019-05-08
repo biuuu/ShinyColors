@@ -6,7 +6,8 @@ import { version } from '../package.json'
 
 const MODULE_ID = {
   REQUEST: 2,
-  PHRASE: 4
+  PHRASE: 4,
+  SCENARIO: 119
 }
 
 const config = {
