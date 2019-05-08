@@ -23,9 +23,19 @@ const addFont = async () => {
     font-family: "sczh-yuanti";
     src: url("${config.origin}/data/font/yuanti.woff2?v=${hash}");
   }
+  @font-face {
+    font-family: "sczh-yuanti2";
+    src: url("${config.origin}/data/font/yuanti2.woff2?v=${hash}");
+  }
   `
-  preload(`${config.origin}/data/font/heiti.woff2?v=${hash}`)
-  preload(`${config.origin}/data/font/yuanti.woff2?v=${hash}`)
+  if (config.font1 === 'yuanti') {
+    preload(`${config.origin}/data/font/yuanti.woff2?v=${hash}`)
+  } else if (config.font1 === 'yuanti2') {
+    preload(`${config.origin}/data/font/yuanti2.woff2?v=${hash}`)
+  }
+  if (config.font2 === 'heiti') {
+    preload(`${config.origin}/data/font/heiti.woff2?v=${hash}`)
+  }
 
   document.head.appendChild(tag)
 }
