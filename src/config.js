@@ -15,6 +15,7 @@ const config = {
   hash: '',
   localHash: '',
   version: version,
+  story: 'normal',
   timeout: 30,
   font1: 'yuanti',
   font2: 'heiti'
@@ -31,7 +32,8 @@ const FONT = {
   YUAN_TRANS: `sczh-yuanti,HummingStd-E`
 }
 
-const keys = DEV ? ['font1', 'font2', 'timeout'] : ['origin', 'font1', 'font2', 'timeout']
+const _keys = ['origin', 'font1', 'font2', 'timeout', 'story']
+const keys = DEV ? _keys.slice(1, _keys.length) : _keys
 
 const setFont = () => {
   FONT.HEITI_TRANS = `${fontList.includes(config.font2) ? 'sczh-' : ''}${config.font2},${FONT.HEITI_JA}`

@@ -5,7 +5,7 @@ const fs = require('fs')
 
 const srcPath = ['localfont/heiti.ttf', 'localfont/yuanti.ttf', 'localfont/yuanti2.ttf']
 const destPath = 'data/font'
-let text = ''
+let text = '剧情预览下载'
 for (let i = 33; i < 127; i++) {
   text += String.fromCharCode(i)
 }
