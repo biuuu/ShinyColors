@@ -1,3 +1,4 @@
+import isString from 'lodash/isString'
 
 const restoreConsole = () => {
   const iframe = document.createElement('iframe')
@@ -12,9 +13,9 @@ const isDomain = (str) => {
   return true
 }
 
-const trim = (str) => {
+const trim = (str, full = false) => {
   if (!str) return ''
-  return str.trimEnd()
+  return full ? str.trim() : str.trimEnd()
 }
 
 const trimWrap = (str) => {
@@ -31,10 +32,38 @@ const log = (...args) => {
   }
 }
 
+const tryDownload = (content, filename) => {
+  const eleLink = document.createElement('a')
+  eleLink.download = filename
+  eleLink.style.display = 'none'
+  const blob = new Blob([content], { type: 'text/csv' })
+  eleLink.href = URL.createObjectURL(blob)
+  document.body.appendChild(eleLink)
+  eleLink.click()
+  document.body.removeChild(eleLink)
+}
+
+const replaceWrap = (text) => {
+  if (isString(text)) {
+    return text.replace(/\r?\n|\r/g, '\\n')
+  }
+  return text
+}
+
+const removeWrap = (text) => {
+  if (isString(text)) {
+    return text.replace(/\r?\n|\r/g, '')
+  }
+  return text
+}
+
 export {
   trim,
   trimWrap,
   restoreConsole,
   isDomain,
-  log
+  log,
+  tryDownload,
+  replaceWrap,
+  removeWrap
 }

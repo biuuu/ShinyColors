@@ -1,8 +1,6 @@
-import EventEmitter  from 'events'
 import config from '../config'
 
 const { origin } = config
-let ee = new EventEmitter()
 
 let fetchInfo = {
   status: 'init',
@@ -33,7 +31,7 @@ const request = async (pathname) => {
       .then(res => {
         clearTimeout(timer)
         const type = res.headers.get('content-type')
-        if (type.includes('json')) {
+        if (type && type.includes('json')) {
           return res.json()
         }
         return res.text()

@@ -1,13 +1,14 @@
 {
   "name": "shinycolors-zh",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "main": "main.js",
   "repository": "git@github.com:biuuu/ShinyColors.git",
   "author": "biuuu",
   "license": "MIT",
   "scripts": {
     "build": "rollup --config ./script/build.js --environment BUILD:development",
-    "dev": "node ./script/cleanDist.js && cross-env PUBLISH=skip node ./script/deploy.js && rollup --config ./script/build.js --environment BUILD:development,DEV && yarn server",
+    "data": "node ./script/cleanDist.js && cross-env PUBLISH=skip node ./script/deploy.js",
+    "dev": "yarn data && rollup --config ./script/build.js --environment BUILD:development,DEV && yarn server",
     "server": "http-server ./dist/ -c-1 -s --cors -o http://localhost:15944/ShinyColors.user.js -p 15944",
     "deploy": "node ./script/cleanDist.js && rollup --config ./script/build.js && node ./script/deploy.js",
     "font": "node script/fontmin.js",
@@ -15,7 +16,6 @@
   },
   "dependencies": {
     "core-js": "3",
-    "events": "^3.0.0",
     "lodash": "^4.17.11",
     "papaparse": "^4.6.3"
   },
