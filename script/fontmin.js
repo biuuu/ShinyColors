@@ -52,6 +52,7 @@ glob('data/**/*.csv', function (err, files) {
   if (err) {
     console.error(err)
   }
+  console.log(files)
   const prims = files.map(file => {
     return readString(file)
   })

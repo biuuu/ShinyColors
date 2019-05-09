@@ -1,7 +1,9 @@
 import { MODULE_ID } from '../config'
-import { log, replaceWrap } from '../utils/index'
+import { log, replaceWrap, removeWrap, trim } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
+import getStory from '../store/story'
+import getName from '../store/name'
 
 const getModule = () => {
   let scnModule
@@ -27,13 +29,13 @@ const storyCache = {
   list: ''
 }
 const saveData = (data, name) => {
-  const filename = name.replace(/\//g, '-')
+  const filename = name.replace(/\//g, '_')
   const list = []
   data.forEach(item => {
-    let text = replaceWrap(item.text)
+    let text = trim(replaceWrap(item.text))
     if (text && text.trim()) {
       list.push({
-        id: item.id || '0',
+        id: item.id || '0000000000000',
         name: item.speaker || '',
         text,
         trans: ''
@@ -42,7 +44,7 @@ const saveData = (data, name) => {
       list.push({
         id: 'select',
         name: '',
-        text: replaceWrap(item.select),
+        text: trim(replaceWrap(item.select)),
         trans: ''
       })
     }
@@ -55,13 +57,44 @@ const saveData = (data, name) => {
   storyCache.list = list
 }
 
+const transStory = (data, storyMap, nameMap) => {
+  if (!Array.isArray(data)) return
+  data.forEach(item => {
+    if (item.text) {
+      const text = removeWrap(item.text)
+      if (item.id) {
+        const id = item.id + ''
+        if (storyMap.has(id)) {
+          item.text = storyMap.get(id)
+        }
+      } else {
+        if (storyMap.has(text)) {
+          item.text = storyMap.get(text)
+        }
+      }
+    }
+    if (item.select) {
+      const select = removeWrap(item.select)
+      if (storyMap.has(select)) {
+        item.select = storyMap.get(select)
+      }
+    }
+    if (item.speaker) {
+      const speaker = trim(item.speaker)
+      if (nameMap.has(speaker)) {
+        item.speaker = nameMap.get(speaker)
+      }
+    }
+  })
+}
+
 const transScenario = async () => {
   const scnModule = getModule()
   if (!scnModule) return
   const originLoad = scnModule.load
   scnModule.load = async function (...args) {
     const res = await originLoad.apply(this, args)
-    log('scenario', ...args, res)
+    // log('scenario', ...args, res)
     const type = args[0]
     if (!type) return res
     if (type.includes('/produce_events/') ||
@@ -72,10 +105,19 @@ const transScenario = async () => {
       type.includes('/special_communications/')
 
     ) {
-      const name = type.replace(/^\/assets\/json\//, '')
-      if (config.story === 'edit') {
-        saveData(res, name)
-        showStoryTool(storyCache)
+      try {
+        const name = type.replace(/^\/assets\/json\//, '')
+        if (config.story === 'edit') {
+          saveData(res, name)
+          showStoryTool(storyCache)
+        }
+        const storyMap = await getStory(name)
+        const nameMap = await getName()
+        if (storyMap) {
+          transStory(res, storyMap, nameMap)
+        }
+      } catch (e) {
+        log(e)
       }
     }
     return res

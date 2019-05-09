@@ -13,9 +13,9 @@ const isDomain = (str) => {
   return true
 }
 
-const trim = (str) => {
+const trim = (str, full = false) => {
   if (!str) return ''
-  return str.trimEnd()
+  return full ? str.trim() : str.trimEnd()
 }
 
 const trimWrap = (str) => {
@@ -50,6 +50,13 @@ const replaceWrap = (text) => {
   return text
 }
 
+const removeWrap = (text) => {
+  if (isString(text)) {
+    return text.replace(/\r?\n|\r/g, '')
+  }
+  return text
+}
+
 export {
   trim,
   trimWrap,
@@ -57,5 +64,6 @@ export {
   isDomain,
   log,
   tryDownload,
-  replaceWrap
+  replaceWrap,
+  removeWrap
 }

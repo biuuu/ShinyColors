@@ -17,6 +17,7 @@ const html = `
     color: #409591;
     text-shadow: 0 0 7px #fff;
     cursor: pointer;
+    user-select: none;
   }
   .story-tool-btns {
     position: absolute;
