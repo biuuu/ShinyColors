@@ -72,7 +72,7 @@ const saveConfig = () => {
 
 const getConfigFromHash = () => {
   let str = location.hash
-  str = str.slice(1)
+  str = str.slice(1).replace(/\?tdsourcetag=s_pc(tim|qq)_aiomsg/, '')
   let arr = str.split(';')
   arr.forEach(_str => {
     let _arr = _str.split('=')
