@@ -97,7 +97,7 @@ const transScenario = async () => {
   const originLoad = scnModule.load
   scnModule.load = async function (...args) {
     const res = await originLoad.apply(this, args)
-    // log('scenario', ...args, res)
+    log('scenario', ...args, res)
     const type = args[0]
     if (!type) return res
     if (type.includes('/produce_events/') ||
@@ -105,7 +105,9 @@ const transScenario = async () => {
       type.includes('/produce_communications_promises/') ||
       type.includes('/produce_communication_promise_results/') ||
       type.includes('/game_event_communications/') ||
-      type.includes('/special_communications/')
+      type.includes('/special_communications/') ||
+      type.includes('/produce_communication_cheers/') ||
+      type.includes('/produce_communication_auditions/')
     ) {
       try {
         const name = type.replace(/^\/assets\/json\//, '')
