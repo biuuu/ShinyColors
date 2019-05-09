@@ -52,6 +52,9 @@ const saveData = (data, name) => {
   list.push({
     id: 'info', name, text: '', trans: ''
   })
+  list.push({
+    id: '译者', name: '', text: '', trans: ''
+  })
   storyCache.name = name
   storyCache.filename = `${filename}.csv`
   storyCache.list = list
@@ -103,7 +106,6 @@ const transScenario = async () => {
       type.includes('/produce_communication_promise_results/') ||
       type.includes('/game_event_communications/') ||
       type.includes('/special_communications/')
-
     ) {
       try {
         const name = type.replace(/^\/assets\/json\//, '')
