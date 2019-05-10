@@ -1,12 +1,13 @@
-import { MODULE_ID } from '../config'
+import { getHash } from '../utils/fetch'
 import transSkill from './skill'
 import transMission from './mission'
 import { log } from '../utils/index'
 
-const getRequest = () => {
+const getRequest = async () => {
   let request
   try {
-    const moduleRequest = primJsp([],[],[MODULE_ID.REQUEST])
+    const { moduleId } = await getHash
+    const moduleRequest = primJsp([],[],[moduleId.REQUEST])
     request = moduleRequest.default
   } catch (e) {
     log(e)
@@ -15,7 +16,7 @@ const getRequest = () => {
 }
 
 export default async function requestHook () {
-  const request = getRequest()
+  const request = await getRequest()
   if (!request || !request.get) return
   const originGet = request.get
   request.get = async function (...args) {

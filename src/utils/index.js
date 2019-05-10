@@ -57,6 +57,17 @@ const removeWrap = (text) => {
   return text
 }
 
+const replaceWords = (str, map) => {
+  if (!str) return str
+  let _str = str
+  for (let [key, val] of map) {
+    if (!key || key.length < 2) continue
+    const expr = key.replace(/\?/g, '\\?').replace(/\./g, '\\.').replace(/\*/g, '\\*').replace(/\+/g, '\\+')
+    _str = _str.replace(new RegExp(expr, 'g'), val)
+  }
+  return _str
+}
+
 export {
   trim,
   trimWrap,
@@ -65,5 +76,6 @@ export {
   log,
   tryDownload,
   replaceWrap,
-  removeWrap
+  removeWrap,
+  replaceWords
 }

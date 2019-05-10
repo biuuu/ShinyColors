@@ -5,9 +5,9 @@ import isPlainObject from 'lodash/isPlainObject'
 import { version } from '../package.json'
 
 const MODULE_ID = {
-  REQUEST: 2,
+  REQUEST: 3,
   PHRASE: 4,
-  SCENARIO: 119
+  SCENARIO: 118
 }
 
 const config = {
@@ -18,7 +18,8 @@ const config = {
   story: 'normal',
   timeout: 30,
   font1: 'yuanti',
-  font2: 'heiti'
+  font2: 'heiti',
+  auto: 'on'
 }
 
 const defaultConfig = Object.assign({}, config)
@@ -32,7 +33,7 @@ const FONT = {
   YUAN_TRANS: `sczh-yuanti,HummingStd-E`
 }
 
-const _keys = ['origin', 'font1', 'font2', 'timeout', 'story']
+const _keys = ['origin', 'font1', 'font2', 'timeout', 'story', 'auto']
 const keys = DEV ? _keys.slice(1, _keys.length) : _keys
 
 const setFont = () => {
@@ -105,5 +106,5 @@ getConfigFromHash()
 
 window.addEventListener('hashchange', getConfigFromHash)
 
-export { MODULE_ID, FONT }
+export { MODULE_ID, FONT, saveConfig }
 export default config

@@ -4,6 +4,7 @@ const md5Dir = require('md5-dir/promise')
 const { version } = require('../package.json')
 const glob = require('glob')
 const CSV = require('papaparse')
+const moduleId = require('./gameModule.json')
 
 const Glob = glob.Glob
 glob.promise = function (pattern, options) {
@@ -35,7 +36,7 @@ const start = async () => {
   await fse.emptyDir('./dist/data/')
   const hash = await md5Dir('./data/')
   console.log(hash)
-  await fse.writeJSON('./dist/manifest.json', { hash, version })
+  await fse.writeJSON('./dist/manifest.json', { hash, version, moduleId })
   console.log('story...')
   const files = await glob.promise('./data/story/**/*.csv')
   const prims = files.map(file => {

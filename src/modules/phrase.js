@@ -1,13 +1,14 @@
 import getPhrase from '../store/phrase'
-import { MODULE_ID } from '../config'
+import { getHash } from '../utils/fetch'
 import tagText from '../utils/tagText'
 import { log } from '../utils/index'
 
 let phraseMap = null
-const getPhraseObj = () => {
+const getPhraseObj = async () => {
   let phrases
   try {
-    const modulePhrases = primJsp([],[],[MODULE_ID.PHRASE])
+    const { moduleId } = await getHash
+    const modulePhrases = primJsp([],[],[moduleId.PHRASE])
     phrases = modulePhrases.default._polyglot.phrases
   } catch (e) {
     log(e)
@@ -26,7 +27,7 @@ const collectPhrases = (obj) => {
 }
 
 export default async function transPhrase () {
-  const obj = getPhraseObj()
+  const obj = await getPhraseObj()
   if (!obj) return
   // if (ENVIRONMENT === 'development') {
   //   phraseMap = await getPhrase(true)
