@@ -61,6 +61,6 @@ glob('data/**/*.csv', function (err, files) {
     console.log(text.length + '个字符')
     start(srcPath[0], text)
     start(srcPath[1], text, true)
-    start(srcPath[2], text, true)
+    if (srcPath[2]) start(srcPath[2], text, true)
   })
 })
