@@ -33,10 +33,10 @@ let cyfLoaded = false
 
 const getCaiyunPrefix = async () => {
   if (!cyfLoaded) {
-    let csv = await getLocalData('noun-fix')
+    let csv = await getLocalData('caiyun-prefix')
     if (!csv) {
-      csv = await fetchData('/data/etc/noun-fix.csv')
-      setLocalData('noun-fix', csv)
+      csv = await fetchData('/data/etc/caiyun-prefix.csv')
+      setLocalData('caiyun-prefix', csv)
     }
     const list = parseCsv(csv)
     sortWords(list, 'text').forEach(item => {

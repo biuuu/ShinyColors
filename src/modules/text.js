@@ -30,7 +30,7 @@ const restoreFont = (style) => {
 const textInMap = (text, map, style) => {
   let _text = text
   if (map.has(text)) {
-    _text = '\u200b' + map.get(text)
+    _text = '\u200b\u200b' + map.get(text)
     replaceFont(style)
   } else if (!text.startsWith('\u200b')) {
     restoreFont(style)
@@ -43,7 +43,7 @@ const fontCheck = (text, style, isType = false) => {
   let _text = text
   if (text.startsWith('\u200b\u200b')) {
     // 是被替换过的文本
-    _text = text.slice(1)
+    // _text = text.slice(1)
     replaceFont(style)
   } else if (text.trim()) {
     if (isType) {

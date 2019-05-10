@@ -1,5 +1,5 @@
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, trim } from '../utils/index'
+import { replaceWords, trim, log } from '../utils/index'
 
 const request = (url, option) => {
   const { method = 'GET', headers, data } = option
@@ -70,7 +70,7 @@ const preFix = async (list) => {
 const nounFix = async (list) => {
   const nounFixMap = await getNounFix()
   return list.map(text => {
-    return replaceWords(nounFixMap, nounFixMap)
+    return replaceWords(text, nounFixMap)
   })
 }
 
@@ -83,12 +83,12 @@ const autoTrans = async (data, nameMap, name) => {
   if (autoTransCache.has(name)) {
     fixedTransList = autoTransCache.get(name)
   } else {
-    const fixedTextList = await preFix(fixedTextList)
-    const transList = await caiyunTrans(textList)
+    const fixedTextList = await preFix(textList)
+    const transList = await caiyunTrans(fixedTextList)
     fixedTransList = await nounFix(transList)
     autoTransCache.set(name, fixedTransList)
   }
-
+  log(fixedTransList)
   fixedTransList.forEach((trans, idx) => {
     const { key, index } = textInfo[idx]
     data[index][key] = trans

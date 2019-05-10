@@ -5,9 +5,9 @@ import isPlainObject from 'lodash/isPlainObject'
 import { version } from '../package.json'
 
 const MODULE_ID = {
-  REQUEST: 2,
+  REQUEST: 3,
   PHRASE: 4,
-  SCENARIO: 119
+  SCENARIO: 118
 }
 
 const config = {
