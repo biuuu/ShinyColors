@@ -54,15 +54,15 @@ const html = `
     border-right: 1px solid rgba(0, 0, 0, 0.1);
   }
   #sczh-story-tool .btn-close-sczh {
-    width: 45%;
-    height: 25%;
+    width: 65%;
+    height: 35%;
     background: rgba(0, 0, 0, 0.58);
     color: #fff;
     position: absolute;
-    right: -20%;
-    top: -21%;
-    border-radius: 20%;
-    display: flex;
+    right: -28%;
+    top: -27%;
+    border-radius: 10%;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 1;
@@ -70,6 +70,9 @@ const html = `
     font-size: 0.4em;
   }
   #sczh-story-tool:hover .story-tool-btns {
+    display: flex;
+  }
+  #sczh-story-tool:hover .btn-close-sczh {
     display: flex;
   }
   #sczh-story-tool:hover > .text-sczh {

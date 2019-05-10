@@ -82,7 +82,7 @@ export default async function watchText () {
   const originUpdateText = aoba.Text.prototype.updateText
   aoba.Text.prototype.updateText = function (t) {
     if (this.localStyleID !== this._style.styleID && (this.dirty = !0,this._style.styleID),this.dirty || !t) {
-      //if (DEV) log('update text', this._text)
+      if (DEV) log('update text', this._text)
       const value = fontCheck(this._text, this._style)
       Reflect.set(this, '_text', value)
       return originUpdateText.call(this, t)

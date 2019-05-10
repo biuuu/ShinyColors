@@ -22,6 +22,7 @@ const processMission = (list) => {
 
 const unknownMissions = []
 const saveUnknownMissions = (data, key) => {
+  if (!data[key]) return
   const text = data[key].replace(/\r?\n|\r/g, '\\n')
   if (!missionMap.has(text) && !unknownMissions.includes(text)) {
     unknownMissions.push(text)
@@ -44,6 +45,7 @@ const transMission = async (res) => {
   //   missionMap = await getMission(true)
   //   collectMissions(res)
   //   log(unknownMissions.join(',\n'))
+  //   return
   // }
   missionMap = await getMission()
   processMission(res.body.dailyUserMissions)

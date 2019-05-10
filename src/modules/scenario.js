@@ -99,7 +99,7 @@ const transScenario = async () => {
   const originLoad = scnModule.load
   scnModule.load = async function (...args) {
     const res = await originLoad.apply(this, args)
-    // log('scenario', ...args, res)
+    if (DEV) log('scenario', ...args, res)
     const type = args[0]
     if (!type) return res
     if (type.includes('/produce_events/') ||
@@ -109,9 +109,9 @@ const transScenario = async () => {
       type.includes('/game_event_communications/') ||
       type.includes('/special_communications/') ||
       type.includes('/produce_communication_cheers/') ||
-      type.includes('/produce_communication_auditions/')
+      type.includes('/produce_communication_auditions/') ||
+      type.includes('/produce_communication_televisions/')
     ) {
-      log('scenario', ...args, res)
       try {
         const name = type.replace(/^\/assets\/json\//, '')
         if (config.story === 'edit') {
