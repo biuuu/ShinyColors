@@ -6,7 +6,7 @@ let data = null
 const getLocalData = async (type) => {
   if (DEV) return false
   if (data) return data[type]
-  const hash = await getHash
+  const { hash } = await getHash
   try {
     const str = sessionStorage.getItem('sczh:data')
     if (!str) return false

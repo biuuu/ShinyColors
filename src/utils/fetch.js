@@ -51,7 +51,7 @@ const getHash = new Promise((rev, rej) => {
       }
       if (fetchInfo.result) {
         beforeStart(fetchInfo.data)
-        rev(fetchInfo.data.hash)
+        rev(fetchInfo.data)
       } else {
         rej('网络错误')
       }
@@ -62,7 +62,7 @@ const getHash = new Promise((rev, rej) => {
 })
 
 const fetchWithHash = async (pathname) => {
-  const hash = await getHash
+  const { hash } = await getHash
   const data = await request(`${pathname}?v=${hash}`)
   return data
 }

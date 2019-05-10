@@ -13,7 +13,7 @@ const preload = (src) => {
 
 const addFont = async () => {
   const tag = document.createElement('style')
-  const hash = await getHash
+  const { hash } = await getHash
   tag.innerHTML = `
   @font-face {
     font-family: "sczh-heiti";

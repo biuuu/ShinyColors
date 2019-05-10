@@ -1,4 +1,4 @@
-import { MODULE_ID } from '../config'
+import { getHash } from '../utils/fetch'
 import { log, replaceWrap, removeWrap, trim } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
@@ -6,10 +6,11 @@ import getStory from '../store/story'
 import getName from '../store/name'
 import autoTrans from '../utils/translation'
 
-const getModule = () => {
+const getModule = async () => {
   let scnModule
   try {
-    const moduleLoadScenario = primJsp([],[],[MODULE_ID.SCENARIO])
+    const { moduleId } = await getHash
+    const moduleLoadScenario = primJsp([],[],[moduleId.SCENARIO])
     scnModule = moduleLoadScenario.default
     if (
       !moduleLoadScenario.default || !moduleLoadScenario.default['load']
@@ -93,12 +94,12 @@ const transStory = (data, storyMap, nameMap) => {
 }
 
 const transScenario = async () => {
-  const scnModule = getModule()
+  const scnModule = await getModule()
   if (!scnModule) return
   const originLoad = scnModule.load
   scnModule.load = async function (...args) {
     const res = await originLoad.apply(this, args)
-    log('scenario', ...args, res)
+    // log('scenario', ...args, res)
     const type = args[0]
     if (!type) return res
     if (type.includes('/produce_events/') ||
@@ -110,6 +111,7 @@ const transScenario = async () => {
       type.includes('/produce_communication_cheers/') ||
       type.includes('/produce_communication_auditions/')
     ) {
+      log('scenario', ...args, res)
       try {
         const name = type.replace(/^\/assets\/json\//, '')
         if (config.story === 'edit') {
