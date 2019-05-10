@@ -12,7 +12,7 @@ const getModule = () => {
     const moduleLoadScenario = primJsp([],[],[MODULE_ID.SCENARIO])
     scnModule = moduleLoadScenario.default
     if (
-      !moduleLoadScenario.default['load']
+      !moduleLoadScenario.default || !moduleLoadScenario.default['load']
       || !moduleLoadScenario.default['_errorEvent']
       || !moduleLoadScenario.default['_handleError']
     ) {
