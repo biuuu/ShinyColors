@@ -9,6 +9,12 @@
 翻译数据在 data 目录下，欢迎提交或修改。
 
 有兴趣一起完善翻译内容的话可以加下 QQ 群：1018154722 。
+
+关于机翻：v0.4.2 新增了剧情自动机翻功能，不过当剧情还没人提交翻译时才会出现。
+
+开启方法是在游戏 URL 后面加上 #auto=on ，关闭则是 #auto=off 。
+
+也可以直接点这两个链接来开启或关闭，[开启机翻](https://shinycolors.enza.fun#auto=on)/[关闭机翻](https://shinycolors.enza.fun#auto=off)
 ## Devlopment
 
 ```bash
