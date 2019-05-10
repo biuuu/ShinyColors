@@ -2,5 +2,6 @@
 node_modules/
 dist/
 localfont/
+localtext/
 yarn-error.log
 npm-debug.log

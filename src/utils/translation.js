@@ -1,5 +1,6 @@
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
 import { replaceWords, trim, log } from '../utils/index'
+import tagText from './tagText'
 
 const request = (url, option) => {
   const { method = 'GET', headers, data } = option
@@ -88,10 +89,10 @@ const autoTrans = async (data, nameMap, name) => {
     fixedTransList = await nounFix(transList)
     autoTransCache.set(name, fixedTransList)
   }
-  log(fixedTransList)
+  log(fixedTransList.join('\n'))
   fixedTransList.forEach((trans, idx) => {
     const { key, index } = textInfo[idx]
-    data[index][key] = trans
+    data[index][key] = tagText(trans)
   })
   data.forEach(item => {
     if (item.speaker) {
