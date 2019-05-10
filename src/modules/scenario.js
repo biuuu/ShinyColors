@@ -4,6 +4,7 @@ import config from '../config'
 import showStoryTool from '../utils/story-tool'
 import getStory from '../store/story'
 import getName from '../store/name'
+import autoTrans from '../utils/translation'
 
 const getModule = () => {
   let scnModule
@@ -83,7 +84,7 @@ const transStory = (data, storyMap, nameMap) => {
       }
     }
     if (item.speaker) {
-      const speaker = trim(item.speaker)
+      const speaker = trim(item.speaker, true)
       if (nameMap.has(speaker)) {
         item.speaker = nameMap.get(speaker)
       }
@@ -116,9 +117,12 @@ const transScenario = async () => {
           showStoryTool(storyCache)
         }
         const storyMap = await getStory(name)
-        const nameMap = await getName()
         if (storyMap) {
+          const nameMap = await getName()
           transStory(res, storyMap, nameMap)
+        } else if (config.auto === 'on') {
+          const nameMap = await getName()
+          await autoTrans(res, nameMap, name)
         }
       } catch (e) {
         log(e)

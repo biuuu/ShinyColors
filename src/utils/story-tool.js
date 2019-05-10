@@ -1,4 +1,5 @@
 import debounce from 'lodash/debounce'
+import config, { saveConfig } from '../config'
 import { tryDownload } from './index'
 import CSV from 'papaparse'
 
@@ -52,14 +53,31 @@ const html = `
     border: 2px solid rgba(250, 43, 101, 0.52);
     border-right: 1px solid rgba(0, 0, 0, 0.1);
   }
+  #sczh-story-tool .btn-close-sczh {
+    width: 45%;
+    height: 25%;
+    background: rgba(0, 0, 0, 0.58);
+    color: #fff;
+    position: absolute;
+    right: -20%;
+    top: -21%;
+    border-radius: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    font-family: sczh-heiti;
+    font-size: 0.4em;
+  }
   #sczh-story-tool:hover .story-tool-btns {
     display: flex;
   }
-  #sczh-story-tool:hover > span {
+  #sczh-story-tool:hover > .text-sczh {
     display: none;
   }
   </style>
-  <div id="sczh-story-tool"><span>剧情</span>
+  <div id="sczh-story-tool"><span class="text-sczh">剧情</span>
+    <span id="btn-close-sczh" class="btn-close-sczh">关闭</span>
     <input type="file" style="display:none" id="ipt-preview-sczh" accept=".csv">
     <div class="story-tool-btns">
       <label for="ipt-preview-sczh">预览</label>
@@ -111,6 +129,12 @@ const showStoryTool = (storyCache) => {
       const str = CSV.unparse(storyCache.list)
       tryDownload(str, storyCache.filename)
     }
+  })
+  const btnClose = document.getElementById('btn-close-sczh')
+  btnClose.addEventListener('click', function () {
+    cont.style.display = 'none'
+    config.story = 'normal'
+    saveConfig()
   })
 }
 

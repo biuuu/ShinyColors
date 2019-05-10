@@ -57,6 +57,26 @@ const removeWrap = (text) => {
   return text
 }
 
+const replaceWords = (str, map, lang = 'ja') => {
+  if (!str) return str
+  let _str = str
+  for (let [key, val] of map) {
+    if (!key || key.length < 2) continue
+    const expr = key.replace(/\?/g, '\\?').replace(/\./g, '\\.').replace(/\*/g, '\\*').replace(/\+/g, '\\+')
+    const reStr = lang === 'en' ? `\\b${expr}\\b` : `${expr}`
+    if (typeof val === 'string') {
+      _str = _str.replace(new RegExp(reStr, 'g'), val)
+    } else if (val && val.trans && !val.noun) {
+      if (val.ignoreCase) {
+        _str = _str.replace(new RegExp(reStr, 'gi'), val.trans)
+      } else {
+        _str = _str.replace(new RegExp(reStr, 'g'), val.trans)
+      }
+    }
+  }
+  return _str
+}
+
 export {
   trim,
   trimWrap,
@@ -65,5 +85,6 @@ export {
   log,
   tryDownload,
   replaceWrap,
-  removeWrap
+  removeWrap,
+  replaceWords
 }

@@ -114,4 +114,4 @@ id,name,text,trans
 4001012010810,千雪,ふふっ\n席、三角にしちゃう？,
 4001012010820,甘奈,あはは、それだと先生の方向けないよー！,
 0000000000000,テロップ,※この後、席は厳正なるくじ引きで決定しました,
-info,game_event_communications/400101201.json,,
+#info,game_event_communications/400101201.json,,
