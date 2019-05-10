@@ -68,6 +68,10 @@ const replaceWords = (str, map) => {
   return _str
 }
 
+const replaceQuote = (str) => {
+  return str.replace(/"([^"]*)"/g, '“$1”').replace(/'([^']*)'/g, '‘$1’')
+}
+
 export {
   trim,
   trimWrap,
@@ -77,5 +81,6 @@ export {
   tryDownload,
   replaceWrap,
   removeWrap,
-  replaceWords
+  replaceWords,
+  replaceQuote
 }

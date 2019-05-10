@@ -1,5 +1,5 @@
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, trim, log } from '../utils/index'
+import { replaceWords, trim, log, replaceQuote } from '../utils/index'
 import tagText from './tagText'
 
 const request = (url, option) => {
@@ -91,8 +91,16 @@ const autoTrans = async (data, nameMap, name) => {
   }
   log(fixedTransList.join('\n'))
   fixedTransList.forEach((trans, idx) => {
+    let _trans = trans
     const { key, index } = textInfo[idx]
-    data[index][key] = tagText(trans)
+    if (key === 'select') {
+      if (trans.length > 8 && !trans.includes('\n')) {
+        const len = Math.floor(trans.length / 2) + 1
+        _trans = trans.slice(0, len) + '\n' + trans.slice(len, trans.length)
+      }
+    }
+    _trans = replaceQuote(_trans)
+    data[index][key] = tagText(_trans)
   })
   data.forEach(item => {
     if (item.speaker) {
