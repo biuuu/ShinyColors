@@ -441,7 +441,7 @@ header.idolRanking,%{name}のランキング,%{name}的排行榜
 header.characterAlbum,%{firstName}のアルバム,%{firstName}的相册
 header.recycleShop,リサイクルショップ,回收商店
 ideaNote.confirmReplacementPop.title,使用確認,使用确认
-ideaNote.confirmReplacementPop.description,「%{current}」を使用中です。「%{selected}」を使用しますか？,「%{current}」正在使用中。要使用「%{selected}」吗？
+ideaNote.confirmReplacementPop.description,「%{current}」を使用中です。「%{selected}」を使用しますか？,正在使用「%{current}」，\n要用「%{selected}」替换吗？
 ideaNote.confirmReplacementPop.notice1,使用中のアイデアノートは消滅します,使用中的创想笔记将消失
 ideaNote.confirmReplacementPop.notice2,新たに使用するアイデアノートの付加効果は次の週から反映されます,新使用的创想笔记的附加效果将在下周反映出来
 ideaNote.forceSelectPop.title,使用確認,使用确认
