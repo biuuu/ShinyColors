@@ -89,7 +89,13 @@ const autoTrans = async (data, nameMap, name) => {
     fixedTransList = await nounFix(transList)
     autoTransCache.set(name, fixedTransList)
   }
-  log(fixedTransList.join('\n'))
+  if (DEV) {
+    let mergedList = []
+    textList.forEach((text, index) => {
+      mergedList.push(text, fixedTransList[index])
+    })
+    log(mergedList.join('\n'))
+  }
   fixedTransList.forEach((trans, idx) => {
     let _trans = trans
     const { key, index } = textInfo[idx]
