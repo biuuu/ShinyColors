@@ -35,6 +35,8 @@ module.exports = {
     format: 'iife',
     name: 'shinycolors_zh',
     banner: banner,
-    intro: `const ENVIRONMENT = "${process.env.BUILD === 'development' ? 'development' : ''}";const DEV = ${process.env.DEV ? true : false};`
+    intro: `const ENVIRONMENT = "${process.env.BUILD === 'development' ? 'development' : ''}";
+    const DEV = ${process.env.DEV ? true : false};
+    const SHOW_UPDATE_TEXT = ${process.env.TEXT ? true : false};`
   }
 };

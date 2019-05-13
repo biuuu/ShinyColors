@@ -99,9 +99,9 @@ const transScenario = async () => {
   const originLoad = scnModule.load
   scnModule.load = async function (...args) {
     const res = await originLoad.apply(this, args)
-    if (DEV) log('scenario', ...args, res)
     const type = args[0]
     if (!type) return res
+    if (DEV && type.includes('/assets/json/')) log('scenario', ...args, res)
     if (type.includes('/produce_events/') ||
       type.includes('/produce_communications/') ||
       type.includes('/produce_communications_promises/') ||

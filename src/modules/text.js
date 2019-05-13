@@ -64,7 +64,7 @@ export default async function watchText () {
     construct (target, args, newTarget) {
       const text = args[0]
       const option = args[1]
-      log('new text', ...args)
+      if (SHOW_UPDATE_TEXT) log('new text', ...args)
       args[0] = fontCheck(text, option)
       return Reflect.construct(target, args, newTarget)
     }
@@ -74,7 +74,7 @@ export default async function watchText () {
   const originTypeText = aoba.Text.prototype.typeText
   aoba.Text.prototype.typeText = function (...args) {
     const text = args[0]
-    log('type text', ...args)
+    if (SHOW_UPDATE_TEXT) log('type text', ...args)
     args[0] = fontCheck(text, this.style, true)
     return originTypeText.apply(this, args)
   }
@@ -82,7 +82,7 @@ export default async function watchText () {
   const originUpdateText = aoba.Text.prototype.updateText
   aoba.Text.prototype.updateText = function (t) {
     if (this.localStyleID !== this._style.styleID && (this.dirty = !0,this._style.styleID),this.dirty || !t) {
-      if (DEV) log('update text', this._text)
+      if (DEV && SHOW_UPDATE_TEXT) log('update text', this._text)
       const value = fontCheck(this._text, this._style)
       Reflect.set(this, '_text', value)
       return originUpdateText.call(this, t)

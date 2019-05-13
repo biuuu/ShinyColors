@@ -9,6 +9,7 @@
     "build": "rollup --config ./script/build.js --environment BUILD:development",
     "data": "node ./script/cleanDist.js && cross-env PUBLISH=skip node ./script/deploy.js",
     "dev": "yarn data && rollup --config ./script/build.js --environment BUILD:development,DEV && yarn server",
+    "dev-text": "yarn data && rollup --config ./script/build.js --environment BUILD:development,DEV,TEXT && yarn server",
     "server": "http-server ./dist/ -c-1 -s --cors -o http://localhost:15944/ShinyColors.user.js -p 15944",
     "deploy": "node ./script/cleanDist.js && rollup --config ./script/build.js && node ./script/deploy.js",
     "font": "node script/fontmin.js",

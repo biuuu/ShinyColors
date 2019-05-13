@@ -42,4 +42,20 @@ export default async function requestHook () {
     }
     return res
   }
+  const originPost = request.post
+  request.post = async function (...args) {
+    const type = args[0]
+    const res = await originPost.apply(this, args)
+    if (!type) return res
+    log('post', ...args, res.body)
+    return res
+  }
+  const originPut = request.put
+  request.put = async function (...args) {
+    const type = args[0]
+    const res = await originPut.apply(this, args)
+    if (!type) return res
+    log('put', ...args, res.body)
+    return res
+  }
 }
