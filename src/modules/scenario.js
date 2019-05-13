@@ -80,8 +80,9 @@ const transStory = (data, storyMap, nameMap) => {
     }
     if (item.select) {
       const select = removeWrap(item.select)
-      if (storyMap.has(select)) {
-        item.select = storyMap.get(select)
+      const sKey = `${select}-select`
+      if (storyMap.has(sKey)) {
+        item.select = storyMap.get(sKey)
       }
     }
     if (item.speaker) {

@@ -18,7 +18,11 @@ const getStoryMap = (csv) => {
       if (id && !/^0+$/.test(id) && id !== 'select') {
         storyMap.set(id, tagText(trans))
       } else {
-        storyMap.set(text, tagText(trans))
+        if (id === 'select') {
+          storyMap.set(`${text}-select`, tagText(trans))
+        } else {
+          storyMap.set(text, tagText(trans))
+        }
       }
     }
   })
