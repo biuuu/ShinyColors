@@ -1,7 +1,8 @@
 import debounce from 'lodash/debounce'
-import config, { saveConfig } from '../config'
+import config, { saveConfig, PREVIEW_COUNT } from '../config'
 import { tryDownload } from './index'
 import CSV from 'papaparse'
+import { getStoryMap } from '../store/story'
 
 const html = `
   <style>
@@ -81,13 +82,21 @@ const html = `
   </style>
   <div id="sczh-story-tool"><span class="text-sczh">剧情</span>
     <span id="btn-close-sczh" class="btn-close-sczh">关闭</span>
-    <input type="file" style="display:none" id="ipt-preview-sczh" accept=".csv">
+    <input type="file" style="display:none" id="ipt-preview-sczh" multiple accept=".csv">
     <div class="story-tool-btns">
       <label for="ipt-preview-sczh">预览</label>
       <div id="btn-download-sczh" class="btn-download-sczh">下载</div>
     </div>
   </div>
   `
+const savePreview = (map) => {
+  const arr = [...map].slice(-PREVIEW_COUNT)
+  const newArr = arr.map(item => {
+    item[1] = [...item[1]]
+    return item
+  })
+  sessionStorage.setItem('sczh:preview', JSON.stringify(newArr))
+}
 
 let showToolFlag = false
 const showStoryTool = (storyCache) => {
@@ -138,6 +147,25 @@ const showStoryTool = (storyCache) => {
     cont.style.display = 'none'
     config.story = 'normal'
     saveConfig()
+  })
+  const iptPreview = document.getElementById('ipt-preview-sczh')
+  iptPreview.addEventListener('change', function () {
+    const files = this.files
+    if (!files.length) return
+    files.forEach(file => {
+      const reader = new FileReader()
+      reader.onload = e => {
+        const text = e.target.result
+        const storyMap = getStoryMap(text)
+        if (storyMap.has('name')) {
+          const _name = storyMap.get('name')
+          storyCache.preview.set(_name, storyMap)
+          savePreview(storyCache.preview)
+          alert(`导入${_name}成功`)
+        }
+      }
+      reader.readAsText(file)
+    })
   })
 }
 

@@ -10,6 +10,8 @@ const MODULE_ID = {
   SCENARIO: 118
 }
 
+const PREVIEW_COUNT = 5
+
 const config = {
   origin: 'https://biuuu.github.io/ShinyColors',
   hash: '',
@@ -106,5 +108,5 @@ getConfigFromHash()
 
 window.addEventListener('hashchange', getConfigFromHash)
 
-export { MODULE_ID, FONT, saveConfig }
+export { MODULE_ID, FONT, PREVIEW_COUNT, saveConfig }
 export default config

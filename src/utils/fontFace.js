@@ -27,6 +27,9 @@ const addFont = async () => {
     font-family: "sczh-yuanti2";
     src: url("${config.origin}/data/font/yuanti2.woff2?v=${hash}");
   }
+  ::-webkit-scrollbar {
+    display: none;
+  }
   `
   if (config.font1 === 'yuanti') {
     preload(`${config.origin}/data/font/yuanti.woff2?v=${hash}`)

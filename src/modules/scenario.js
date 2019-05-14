@@ -28,8 +28,28 @@ const getModule = async () => {
 const storyCache = {
   name: '',
   filename: '',
-  list: ''
+  list: '',
+  preview: new Map()
 }
+
+let previewLoaded = false
+const getPreview = () => {
+  if (previewLoaded) return
+  previewLoaded = true
+  const str = sessionStorage.getItem('sczh:preview')
+  if (!str) return
+  try {
+    const arr = JSON.parse(str)
+    const map = new Map(arr)
+    for (let [key, value] of map) {
+      map.set(key, new Map(value))
+    }
+    storyCache.preview = map
+  } catch (e) {
+    log(e)
+  }
+}
+
 const saveData = (data, name) => {
   const filename = name.replace(/\//g, '_')
   const list = []
@@ -115,11 +135,17 @@ const transScenario = async () => {
     ) {
       try {
         const name = type.replace(/^\/assets\/json\//, '')
+        let storyMap
         if (config.story === 'edit') {
           saveData(res, name)
           showStoryTool(storyCache)
         }
-        const storyMap = await getStory(name)
+        getPreview()
+        if (storyCache.preview.has(name)) {
+          storyMap = storyCache.preview.get(name)
+        } else {
+          storyMap = await getStory(name)
+        }
         if (storyMap) {
           const nameMap = await getName()
           transStory(res, storyMap, nameMap)

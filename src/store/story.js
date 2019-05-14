@@ -14,6 +14,7 @@ const getStoryMap = (csv) => {
     const id = trim(item.id, true)
     const text = removeWrap(trimWrap(item.text))
     const trans = trimWrap(item.trans)
+    const name = trim(item.name, true)
     if (text && trans) {
       if (id && !/^0+$/.test(id) && id !== 'select') {
         storyMap.set(id, tagText(trans))
@@ -24,6 +25,9 @@ const getStoryMap = (csv) => {
           storyMap.set(text, tagText(trans))
         }
       }
+    }
+    if (id && name && id === 'info') {
+      storyMap.set('name', name)
     }
   })
   return storyMap
@@ -55,4 +59,5 @@ const getStory = async (name) => {
   return false
 }
 
+export { getStoryMap }
 export default getStory
