@@ -1,8 +1,8 @@
 # 偶像大师ShinyColors汉化
 ## 简介
-使用：https://github.com/biuuu/ShinyColors/blob/master/src/README.md
+插件使用：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
 
-加入翻译：https://github.com/ShinyGroup/ShinyColors/tree/master/data
+提交翻译：[说明](https://github.com/ShinyGroup/ShinyColors/tree/master/data)
 
 ## Devlopment
 
