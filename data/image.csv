@@ -1,4 +1,4 @@
-name,url
-images/ui/common/parts_buttons.json_image,common.parts_buttons.png
-images/ui/start_and_common/parts.json_image,start_and_common.parts.png
-#images/ui/my_page/parts.json_image,my_page.parts.png
+name,url,version
+images/ui/common/parts_buttons.json_image,common.parts_buttons.png,26
+images/ui/start_and_common/parts.json_image,start_and_common.parts.png,8
+#images/ui/my_page/parts.json_image,my_page.parts.png,18
