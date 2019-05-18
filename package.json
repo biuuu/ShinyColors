@@ -13,7 +13,9 @@
     "server": "http-server ./dist/ -c-1 -s --cors -o http://localhost:15944/ShinyColors.user.js -p 15944",
     "deploy": "node ./script/cleanDist.js && rollup --config ./script/build.js && node ./script/deploy.js",
     "font": "node script/fontmin.js",
-    "fd": "yarn font && yarn deploy"
+    "fd": "yarn font && yarn deploy",
+    "fontg": "node script/fontminWithGroup.js",
+    "deployg": "node script/deployWithGroup.js"
   },
   "dependencies": {
     "core-js": "3",
@@ -35,6 +37,7 @@
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^4.2.3"
+    "rollup-plugin-node-resolve": "^4.2.3",
+    "shelljs": "^0.8.3"
   }
 }
