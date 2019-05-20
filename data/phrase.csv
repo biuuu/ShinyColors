@@ -961,4 +961,4 @@ lotteryResult.comment,以下の景品を獲得しました,
 lotteryResult.notice,景品はプレゼントからお受け取りください,
 lotteryResult.rankCount,本当選！,
 lotteryResult.rankRewardCount,×%{rankRewardCount},
-mission.receiveDateLimit,【受取期限】%{closeAt}まで
+mission.receiveDateLimit,【受取期限】%{closeAt}まで,
