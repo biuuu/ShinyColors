@@ -59,4 +59,10 @@ const transMission = async (res) => {
   processMission(res.body.specialUserMissions)
 }
 
+const reportMission = async (res) => {
+  missionMap = await getMission()
+  processMission(res.body.reportUserMissions)
+}
+
+export { reportMission }
 export default transMission

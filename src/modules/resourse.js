@@ -6,7 +6,7 @@ export default async function resourceHook () {
   if (!GLOBAL.aoba) return
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
   aoba.loaders.Resource.prototype._loadElement = async function (type) {
-    if (DEV && type === 'image' && this.url.includes('f0fa3e4bf9feac6c1c8b5cec74d2946bb638')) {
+    if (DEV && type === 'image' && this.url.includes('bc86b91f4f40a00be6c149478bb5f370')) {
       log(this.url, this.name)
     }
     try {

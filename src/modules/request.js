@@ -1,6 +1,6 @@
 import { getHash } from '../utils/fetch'
 import transSkill from './skill'
-import transMission from './mission'
+import transMission, { reportMission } from './mission'
 import { log } from '../utils/index'
 
 const getRequest = async () => {
@@ -48,6 +48,9 @@ export default async function requestHook () {
     const res = await originPost.apply(this, args)
     if (!type) return res
     log('post', ...args, res.body)
+    if (type === 'myPage') {
+      await reportMission(res)
+    }
     return res
   }
   const originPut = request.put
