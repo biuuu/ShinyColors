@@ -2,7 +2,7 @@ import { log } from '../utils/index'
 import getImage from '../store/image'
 import config from '../config'
 
-export default async function resourceHook () {
+export default function resourceHook () {
   if (!GLOBAL.aoba) return
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
   aoba.loaders.Resource.prototype._loadElement = async function (type) {
