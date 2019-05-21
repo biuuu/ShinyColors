@@ -28,8 +28,8 @@ const saveUnknownMissions = (data, key) => {
     unknownMissions.push(text)
   }
 }
-const collectMissions = (res) => {
-  const list = res.body.eventUserMissions[0].userMissions
+const collectMissions = (data) => {
+  const list = data.eventUserMissions[0].userMissions
   list.forEach(item => {
     saveUnknownMissions(item.mission, 'title')
     saveUnknownMissions(item.mission, 'comment')
@@ -40,28 +40,28 @@ const collectMissions = (res) => {
   })
 }
 
-const transMission = async (res) => {
+const transMission = async (data) => {
   // if (ENVIRONMENT === 'development') {
   //   missionMap = await getMission(true)
-  //   collectMissions(res)
+  //   collectMissions(data)
   //   log(unknownMissions.join(',\n'))
   //   return
   // }
   missionMap = await getMission()
-  processMission(res.body.dailyUserMissions)
-  processMission(res.body.weeklyUserMissions)
-  res.body.eventUserMissions.forEach(item => {
+  processMission(data.dailyUserMissions)
+  processMission(data.weeklyUserMissions)
+  data.eventUserMissions.forEach(item => {
     if (item && item.userMissions) {
       processMission(item.userMissions)
     }
   })
-  processMission(res.body.normalUserMissions)
-  processMission(res.body.specialUserMissions)
+  processMission(data.normalUserMissions)
+  processMission(data.specialUserMissions)
 }
 
-const reportMission = async (res) => {
+const reportMission = async (data) => {
   missionMap = await getMission()
-  processMission(res.body.reportUserMissions)
+  processMission(data.reportUserMissions)
 }
 
 export { reportMission }

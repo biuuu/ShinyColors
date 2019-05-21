@@ -2,7 +2,7 @@ import { getHash } from '../utils/fetch'
 import { log, replaceWrap, removeWrap, trim } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
-import getStory from '../store/story'
+import getStory, { storyTitle } from '../store/story'
 import getName from '../store/name'
 import autoTrans from '../utils/translation'
 
@@ -50,8 +50,15 @@ const getPreview = () => {
   }
 }
 
+const getCid = (name) => {
+  const res = name.match(/\/(\d+)$/)
+  if (res && res[1]) return res[1]
+  return ''
+}
 const saveData = (data, name) => {
-  const filename = name.replace(/\//g, '_')
+  const _name = name.replace('.json', '')
+  const _cid = getCid(_name)
+  const filename = storyTitle.get(_cid) || _name.replace(/\//g, '_')
   const list = []
   data.forEach(item => {
     let text = trim(replaceWrap(item.text))

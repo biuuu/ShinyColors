@@ -1,6 +1,7 @@
 import { getHash } from '../utils/fetch'
 import transSkill from './skill'
 import transMission, { reportMission } from './mission'
+import { collectStoryTitle } from '../store/story'
 import { log } from '../utils/index'
 
 const getRequest = async () => {
@@ -27,8 +28,13 @@ export default async function requestHook () {
     try {
       if (/^userSupportIdols\/\d+$/.test(type) || type === 'userSupportIdols/statusMax') {
         await transSkill(res.body)
+        collectStoryTitle(res.body)
+      } else if (/^userIdols\/\d+$/.test(type)) {
+        collectStoryTitle(res.body)
       } else if (type === 'userMissions') {
-        await transMission(res)
+        await transMission(res.body)
+      } else if (type === 'characterAlbums') {
+        collectStoryTitle(res.body)
       }
     } catch (e) {
       log(e)
@@ -58,7 +64,7 @@ export default async function requestHook () {
     log('post', ...args, res.body)
     try {
       if (type === 'myPage') {
-        await reportMission(res)
+        await reportMission(res.body)
       }
     } catch (e) {
       log(e)
