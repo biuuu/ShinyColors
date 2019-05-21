@@ -24,10 +24,14 @@ export default async function requestHook () {
     const res = await originGet.apply(this, args)
     if (!type) return res
     log('get', ...args, res.body)
-    if (/^userSupportIdols\/\d+$/.test(type) || type === 'userSupportIdols/statusMax') {
-      await transSkill(res.body)
-    } else if (type === 'userMissions') {
-      await transMission(res)
+    try {
+      if (/^userSupportIdols\/\d+$/.test(type) || type === 'userSupportIdols/statusMax') {
+        await transSkill(res.body)
+      } else if (type === 'userMissions') {
+        await transMission(res)
+      }
+    } catch (e) {
+      log(e)
     }
     return res
   }
@@ -37,8 +41,12 @@ export default async function requestHook () {
     const res = await originPatch.apply(this, args)
     if (!type) return res
     log('patch', ...args, res.body)
-    if (/^userSupportIdols\/\d+$/.test(type)) {
-      await transSkill(res.body.userSupportIdol)
+    try {
+      if (/^userSupportIdols\/\d+$/.test(type)) {
+        await transSkill(res.body.userSupportIdol)
+      }
+    } catch (e) {
+      log(e)
     }
     return res
   }
@@ -48,9 +56,14 @@ export default async function requestHook () {
     const res = await originPost.apply(this, args)
     if (!type) return res
     log('post', ...args, res.body)
-    if (type === 'myPage') {
-      await reportMission(res)
+    try {
+      if (type === 'myPage') {
+        await reportMission(res)
+      }
+    } catch (e) {
+      log(e)
     }
+
     return res
   }
   const originPut = request.put
