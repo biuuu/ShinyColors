@@ -4,6 +4,8 @@
 
 提交翻译：[说明](https://github.com/ShinyGroup/ShinyColors/tree/master/data)
 
+检查更新：[链接](https://biuuu.github.io/ShinyColors/ShinyColors.user.js)
+
 ## Devlopment
 
 ```bash
