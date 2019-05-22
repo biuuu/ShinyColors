@@ -369,8 +369,8 @@ gasha.expireAt,使用期限：%{datetimeText},
 gasha.stamp.nextPickUp,あと%{stampNumForNextPickUp}回で%{pickUpName}獲得！,还有%{stampNumForNextPickUp}回可获得%{pickUpName}！
 gasha.stamp.popReward.title,スタンプカード報酬,集章卡报酬
 gasha.stamp.popReward.text,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
-gasha.stamp.notice,スタンプカードが最後まで埋まった後は1枚目～%{boardNum}枚目の内容を繰り返します,集章卡报酬
-gasha.freeGift.popReward.title,おまけ,集章卡填满之后将重复第1张~第%{boardNum}张的内容
+gasha.stamp.notice,スタンプカードが最後まで埋まった後は1枚目～%{boardNum}枚目の内容を繰り返します,集章卡填满之后将重复第1张～第%{boardNum}张的内容
+gasha.freeGift.popReward.title,おまけ,集章卡报酬
 gasha.stepupRemainingHours,残り%{hours}時間,剩余%{hours}小时
 gasha.stepupRemainingMinutes,残り%{minutes}分,剩余%{minutes}分钟
 gasha.scoutGasha.idolList.title,対象アイドル一覧,对象偶像一览
@@ -961,4 +961,4 @@ lotteryResult.comment,以下の景品を獲得しました,
 lotteryResult.notice,景品はプレゼントからお受け取りください,
 lotteryResult.rankCount,本当選！,
 lotteryResult.rankRewardCount,×%{rankRewardCount},
-mission.receiveDateLimit,【受取期限】%{closeAt}まで
+mission.receiveDateLimit,【受取期限】%{closeAt}まで,
