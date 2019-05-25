@@ -17,3 +17,5 @@ const main = async () => {
 setTimeout(() => {
   window.addEventListener('load', main)
 })
+
+resourceHook()

@@ -2,8 +2,9 @@ import { log } from '../utils/index'
 import getImage from '../store/image'
 import config from '../config'
 
+let replaced = false
 export default function resourceHook () {
-  if (!GLOBAL.aoba) return
+  if (!aoba || replaced) return
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
   aoba.loaders.Resource.prototype._loadElement = async function (type) {
     if (DEV && type === 'image' && this.url.includes('bc86b91f4f40a00be6c149478bb5f370')) {
@@ -26,4 +27,5 @@ export default function resourceHook () {
     }
     return originLoadElement.call(this, type)
   }
+  replaced = true
 }
