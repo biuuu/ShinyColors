@@ -2,7 +2,7 @@ import { getHash } from '../utils/fetch'
 import transSkill from './skill'
 import transMission, { reportMission } from './mission'
 import { collectStoryTitle } from '../store/story'
-import { userItemTypes, transShopItem, transUserItem } from './item'
+import { userItemTypes, transShopItem, transUserItem, transShopPurchase } from './item'
 import { log } from '../utils/index'
 
 const getRequest = async () => {
@@ -36,7 +36,7 @@ export default async function requestHook () {
         await transMission(res.body)
       } else if (type === 'characterAlbums') {
         collectStoryTitle(res.body)
-      } else if (type === 'userShops') {
+      } else if (type === 'userShops' || type === 'userIdolPieceShops') {
         await transShopItem(res.body)
       } else if (userItemTypes.includes(type)) {
         await transUserItem(res.body)
@@ -70,6 +70,10 @@ export default async function requestHook () {
     try {
       if (type === 'myPage') {
         await reportMission(res.body)
+      } else if (type === 'userShops/actions/purchase') {
+        await transShopPurchase(res.body)
+      } else if (/produces\/\d+\/actions\/ready/.test(type)) {
+        await transUserItem(res.body.userProduceItems)
       }
     } catch (e) {
       log(e)

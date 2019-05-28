@@ -1,7 +1,7 @@
 import fetchData from '../utils/fetch'
 import parseCsv from '../utils/parseCsv'
 import { getLocalData, setLocalData } from './index'
-import { trimWrap } from '../utils/index'
+import { trimWrap, trim } from '../utils/index'
 
 const itemMap = new Map()
 const itemLimitMap = new Map()

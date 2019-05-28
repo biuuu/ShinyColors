@@ -64,13 +64,26 @@ const transUserItem = async (data) => {
   const maps = await getItem()
   if (Array.isArray(data)) {
     data.forEach(obj => {
-      itemTypes.forEach(key => {
-        const item = obj[key]
-        transItem(item, 'name', maps)
-        transItem(item, 'comment', maps)
-      })
+      const item = obj[itemTypes[0]]
+      || obj[itemTypes[1]]
+      || obj[itemTypes[2]]
+      || obj[itemTypes[3]]
+      || obj[itemTypes[4]]
+      || obj[itemTypes[5]]
+      || obj[itemTypes[6]]
+      || obj[itemTypes[7]];
+      transItem(item, 'name', maps)
+      transItem(item, 'comment', maps)
     })
   }
 }
 
-export { transShopItem, transUserItem, userItemTypes }
+const transShopPurchase = async (data) => {
+  const maps = await getItem()
+  if (data && data.shopMerchandise) {
+    transItem(data.shopMerchandise, 'title', maps)
+    transItem(data.shopMerchandise, 'comment', maps)
+  }
+}
+
+export { transShopItem, transUserItem, userItemTypes, transShopPurchase }
