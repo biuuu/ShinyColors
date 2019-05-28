@@ -1,4 +1,4 @@
-<img src="data/image/banner.jpg" alt="偶像大师闪耀色彩汉化">
+<img src="https://biuuu.github.io/ShinyColors/data/image/banner.jpg" alt="偶像大师闪耀色彩汉化">
 <p align="center">
 <a href="https://biuuu.github.io/ShinyColors/ShinyColors.user.js">
 <b>检查更新</b>
