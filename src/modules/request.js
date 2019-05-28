@@ -2,6 +2,7 @@ import { getHash } from '../utils/fetch'
 import transSkill from './skill'
 import transMission, { reportMission } from './mission'
 import { collectStoryTitle } from '../store/story'
+import { userItemTypes, transShopItem, transUserItem } from './item'
 import { log } from '../utils/index'
 
 const getRequest = async () => {
@@ -35,6 +36,10 @@ export default async function requestHook () {
         await transMission(res.body)
       } else if (type === 'characterAlbums') {
         collectStoryTitle(res.body)
+      } else if (type === 'userShops') {
+        await transShopItem(res.body)
+      } else if (userItemTypes.includes(type)) {
+        await transUserItem(res.body)
       }
     } catch (e) {
       log(e)
