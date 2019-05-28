@@ -3,6 +3,8 @@
 2. 扩展安装完成后，点击脚本的地址 https://biuuu.github.io/ShinyColors/ShinyColors.user.js ，根据扩展的提示安装脚本
 3. 回到游戏页面刷新
 
+游戏地址：[直接打开](https://shinycolors.enza.fun/home) 或帮忙点下我的 [招待链接](https://go.enza.fun/YLZXbw) 来开始游戏。
+
 如果是用手机，可以安装支持用户脚本的浏览器，使用下面的代码。
 ```javascript
 (function(){
