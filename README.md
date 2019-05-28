@@ -1,4 +1,15 @@
-# 偶像大师ShinyColors汉化
+<h1 align="center">
+  <a style="" href="https://biuuu.github.io/ShinyColors/ShinyColors.user.js" target="new">
+	<img src="data/image/banner.jpg" alt="偶像大师ShinyColors汉化">
+  <span text-decoration: none;
+    position: relative;
+    top: -20px;
+    mix-blend-mode: exclusion;
+    color: #c6c6c6;
+    font-size: 50px;>偶像大师ShinyColors汉化</span>
+  </a>
+</h1>
+
 ## 简介
 插件使用：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
 
