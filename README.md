@@ -6,7 +6,7 @@
 </a>
 </p>
 
-<hr>
+<h1></h1>
 
 ## 简介
 安装插件：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
