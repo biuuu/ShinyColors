@@ -1,12 +1,11 @@
-![偶像大师ShinyColors汉化](data/image/banner.jpg)
-
-<p align="center" >
+<h2 align="center" >
+  <img src="data/image/banner.jpg" alt="偶像大师闪耀色彩汉化">
+<sub>
 <a href="https://biuuu.github.io/ShinyColors/ShinyColors.user.js">
 检查更新
 </a>
-</p>
-
-<h1></h1>
+</sub>
+</h2>
 
 ## 简介
 安装插件：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
