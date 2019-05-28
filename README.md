@@ -1,4 +1,4 @@
-<h3> align="center">
+<h3 align="center">
   <a href="https://biuuu.github.io/ShinyColors/ShinyColors.user.js">
     <img src="data/image/banner.jpg" alt="偶像大师ShinyColors汉化">
   </a>
