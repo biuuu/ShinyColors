@@ -2,8 +2,9 @@ import fetchData from '../utils/fetch'
 import parseCsv from '../utils/parseCsv'
 import { getLocalData, setLocalData } from './index'
 import { trimWrap } from '../utils/index'
+import getItem from './item'
 
-const commonMap = new Map()
+let commonMap = new Map()
 let loaded = false
 
 const getCommMap = async () => {
@@ -23,6 +24,8 @@ const getCommMap = async () => {
         }
       }
     })
+    const { itemMap } = await getItem()
+    commonMap = new Map([...itemMap, ...commonMap])
     loaded = true
   }
 

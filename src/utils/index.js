@@ -18,8 +18,8 @@ const trim = (str, full = false) => {
   return full ? str.trim() : str.trimEnd()
 }
 
-const trimWrap = (str) => {
-  return trim(str).replace(/\\r/g, '\r').replace(/\\n/g, '\n')
+const trimWrap = (str, full) => {
+  return trim(str, full).replace(/\\r/g, '\r').replace(/\\n/g, '\n')
 }
 
 let _console

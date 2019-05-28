@@ -14,6 +14,7 @@ const main = async () => {
     log(e)
   }
 }
+
 setTimeout(() => {
   window.addEventListener('load', main)
 })
