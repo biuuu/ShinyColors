@@ -1,12 +1,12 @@
 <h1 align="center">
   <a style="" href="https://biuuu.github.io/ShinyColors/ShinyColors.user.js" target="new">
 	<img src="data/image/banner.jpg" alt="偶像大师ShinyColors汉化">
-  <span text-decoration: none;
+  <span style="text-decoration: none;
     position: relative;
     top: -20px;
     mix-blend-mode: exclusion;
     color: #c6c6c6;
-    font-size: 50px;>偶像大师ShinyColors汉化</span>
+    font-size: 50px;">偶像大师ShinyColors汉化</span>
   </a>
 </h1>
 
