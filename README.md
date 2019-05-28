@@ -1,10 +1,16 @@
-# 偶像大师ShinyColors汉化
+<img src="data/image/banner.jpg" alt="偶像大师闪耀色彩汉化">
+<p align="center">
+<a href="https://biuuu.github.io/ShinyColors/ShinyColors.user.js">
+<b>检查更新</b>
+</a>
+</p>
+
+---
+
 ## 简介
-插件使用：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
+安装插件：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
 
 提交翻译：[说明](https://github.com/ShinyGroup/ShinyColors/tree/master/data)
-
-检查更新：[链接](https://biuuu.github.io/ShinyColors/ShinyColors.user.js)
 
 ## Devlopment
 
