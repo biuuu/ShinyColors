@@ -1,6 +1,6 @@
 <img src="data/image/banner.jpg" alt="偶像大师闪耀色彩汉化">
 <p align="center">
-<a href="https://biuuu.github.io/ShinyColors/ShinyColors.user.js">
+<a href="https://www.shiny.fun/ShinyColors.user.js">
 <b>检查更新</b>
 </a>
 </p>

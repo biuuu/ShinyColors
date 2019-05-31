@@ -1,6 +1,6 @@
 ## 使用
 1. 建议使用 Chrome，首先安装 [Tampermonkey](https://tampermonkey.net/) 扩展
-2. 扩展安装完成后，点击脚本的地址 https://biuuu.github.io/ShinyColors/ShinyColors.user.js ，根据扩展的提示安装脚本
+2. 扩展安装完成后，点击脚本的地址 https://www.shiny.fun/ShinyColors.user.js ，根据扩展的提示安装脚本
 3. 回到游戏页面刷新
 
 游戏地址：[直接打开](https://shinycolors.enza.fun/home) 或帮忙点下我的 [招待链接](https://go.enza.fun/YLZXbw) 来开始游戏。
@@ -9,7 +9,7 @@
 ```javascript
 (function(){
   const script = document.createElement('script');
-  script.src = 'https://biuuu.github.io/ShinyColors/ShinyColors.user.js';
+  script.src = 'https://www.shiny.fun/ShinyColors.user.js';
   document.head.appendChild(script);
 }())
 ```
