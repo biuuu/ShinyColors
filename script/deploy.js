@@ -73,6 +73,9 @@ const start = async () => {
     console.log('data prepared')
     return
   }
+  if (process.env.GROUP) {
+    await fse.outputFile('./dist/CNAME', 'www.shiny.fun')
+  }
   console.log('start publish...')
   ghpages.publish('dist', {
     add: false

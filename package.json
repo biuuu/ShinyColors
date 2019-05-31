@@ -15,7 +15,7 @@
     "font": "node script/fontmin.js",
     "fd": "yarn font && yarn deploy",
     "fontg": "node script/fontminWithGroup.js",
-    "deployg": "node script/deployWithGroup.js"
+    "deployg": "cross-env GROUP=true node script/deployWithGroup.js"
   },
   "dependencies": {
     "core-js": "3",
