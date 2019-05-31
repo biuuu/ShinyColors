@@ -13,7 +13,7 @@ const MODULE_ID = {
 const PREVIEW_COUNT = 5
 
 const config = {
-  origin: 'https://biuuu.github.io/ShinyColors',
+  origin: 'https://www.shiny.fun',
   hash: '',
   localHash: '',
   version: version,
