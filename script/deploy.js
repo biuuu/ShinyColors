@@ -32,7 +32,7 @@ const readCsv = async (csvPath, silence) => {
   }
 }
 
-const etcFiles = ['image', 'item', 'mission', 'support-skill']
+const etcFiles = ['image', 'item', 'mission', 'support-skill', 'mission-re']
 
 const start = async () => {
   await fse.emptyDir('./dist/data/')
