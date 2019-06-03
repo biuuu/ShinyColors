@@ -43,10 +43,17 @@ const setFont = () => {
   FONT.YUAN_TRANS = `${fontList.includes(config.font1) ? 'sczh-' : ''}${config.font1},${FONT.YUAN_JA}`
 }
 
+const fixDefault = (data) => {
+  if (data.origin === 'https://biuuu.github.io/ShinyColors') {
+    data.origin = defaultConfig.origin
+  }
+}
+
 const getLocalConfig = () => {
   const str = localStorage.getItem('sczh:setting')
   let setting = JSON.parse(str)
   if (!isPlainObject(setting)) setting = {}
+  fixDefault(setting)
   const { origin } = setting
   if (isDomain(origin)) {
     config.origin = origin.trim()
@@ -67,7 +74,9 @@ const getLocalConfig = () => {
 const saveConfig = () => {
   const data = {}
   keys.forEach(key => {
-    data[key] = config[key]
+    if (config[key] !== defaultConfig[key]) {
+      data[key] = config[key]
+    }
   })
   setFont()
   localStorage.setItem('sczh:setting', JSON.stringify(data))
