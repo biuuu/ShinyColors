@@ -3,6 +3,7 @@ const percentRE = '(\\d{1,10}\\.?\\d{0,4}?[%％])'
 
 const parseRegExp = (str, nounRE) => {
   return str.replace(/\(/g, '\\(')
+    .replace(/\)/g, '\\)')
     .replace(/\$num/g, numRE)
     .replace(/\$percent/g, percentRE)
     .replace(/\$noun/g, nounRE)
