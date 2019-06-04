@@ -3,14 +3,14 @@ import { getSupportSkill } from '../store/skill'
 import tagText from '../utils/tagText'
 
 const transSkill = async (data) => {
-  const supportSkillData = await getSupportSkill()
+  const { expMap, wordMaps } = await getSupportSkill()
   const sskill = data.supportSkills
   const asskill = data.acquiredSupportSkills
   sskill.forEach(item => {
-    item.description = tagText(replaceText(item.description, supportSkillData))
+    item.description = tagText(replaceText(item.description, expMap, wordMaps))
   })
   asskill && asskill.forEach(item => {
-    item.description = tagText(replaceText(item.description, supportSkillData))
+    item.description = tagText(replaceText(item.description, expMap, wordMaps))
   })
 }
 

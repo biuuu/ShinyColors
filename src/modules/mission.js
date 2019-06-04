@@ -1,21 +1,31 @@
 import getMission from '../store/mission'
 import tagText from '../utils/tagText'
+import replaceText from '../utils/replaceText'
 import { log } from '../utils/index'
 
-let missionMap = null
-const replaceText = (data, key) => {
-  if (data[key] && missionMap.has(data[key])) {
-    data[key] = tagText(missionMap.get(data[key]))
+let missionData = null
+const replaceMission = (data, key) => {
+  const { expMap, wordMaps, textMap } = missionData
+  const text = data[key]
+  let _text = text
+  if (!text) return
+  if (textMap.has(text)) {
+    data[key] = tagText(textMap.get(text))
+  } else {
+    _text = replaceText(text, expMap, wordMaps)
+    if (text !== _text) {
+      data[key] = tagText(_text)
+    }
   }
 }
 
 const processMission = (list) => {
   list.forEach(item => {
-    replaceText(item.mission, 'title')
-    replaceText(item.mission, 'comment')
+    replaceMission(item.mission, 'title')
+    replaceMission(item.mission, 'comment')
     if (item.mission.missionReward.content) {
-      replaceText(item.mission.missionReward.content, 'name')
-      replaceText(item.mission.missionReward.content, 'comment')
+      replaceMission(item.mission.missionReward.content, 'name')
+      replaceMission(item.mission.missionReward.content, 'comment')
     }
   })
 }
@@ -41,13 +51,7 @@ const collectMissions = (data) => {
 }
 
 const transMission = async (data) => {
-  // if (ENVIRONMENT === 'development') {
-  //   missionMap = await getMission(true)
-  //   collectMissions(data)
-  //   log(unknownMissions.join(',\n'))
-  //   return
-  // }
-  missionMap = await getMission()
+  missionData = await getMission()
   processMission(data.dailyUserMissions)
   processMission(data.weeklyUserMissions)
   data.eventUserMissions.forEach(item => {
@@ -60,7 +64,7 @@ const transMission = async (data) => {
 }
 
 const reportMission = async (data) => {
-  missionMap = await getMission()
+  missionData = await getMission()
   processMission(data.reportUserMissions)
 }
 

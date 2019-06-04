@@ -22,6 +22,13 @@ const trimWrap = (str, full) => {
   return trim(str, full).replace(/\\r/g, '\r').replace(/\\n/g, '\n')
 }
 
+const pureRE = str => {
+  return str.replace(/\?/g, '\\?')
+  .replace(/\./g, '\\.').replace(/\*/g, '\\*')
+  .replace(/\+/g, '\\+').replace(/\(/g, '\\(')
+  .replace(/\)/g, '\\)')
+}
+
 let _console
 if (ENVIRONMENT === 'development') {
   _console = restoreConsole()
@@ -85,5 +92,6 @@ export {
   replaceWrap,
   removeWrap,
   replaceWords,
-  replaceQuote
+  replaceQuote,
+  pureRE
 }
