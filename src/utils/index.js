@@ -23,7 +23,10 @@ const trimWrap = (str, full) => {
 }
 
 const pureRE = str => {
-  return str.replace(/\?/g, '\\?').replace(/\./g, '\\.').replace(/\*/g, '\\*').replace(/\+/g, '\\+')
+  return str.replace(/\?/g, '\\?')
+  .replace(/\./g, '\\.').replace(/\*/g, '\\*')
+  .replace(/\+/g, '\\+').replace(/\(/g, '\\(')
+  .replace(/\)/g, '\\)')
 }
 
 let _console
