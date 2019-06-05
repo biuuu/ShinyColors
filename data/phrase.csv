@@ -160,24 +160,24 @@ errorDialog.updateVersion,バージョンが更新されました。,版本已�
 errorDialog.updateNativeAppVersion,アプリのバージョンアップが必要です。\nストアから最新バージョンを\nダウンロードしてください。,应用需要升级。\n请前往商店下载\n最新版本。
 errorDialog.invalidSession,セッション更新の必要があります。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},ErrorCode:%{errorCode}
 errorDialog.produceDuplicate,進行中のプロデュースがあるので\n開始できませんでした。\n一度プロデュースを終了してから始めてください。,由于存在进行中的Produce\n当前无法开始。\n请将现有Produce结束之后再重新开始。
-errorDialog.fesSeason,フェスのシーズンが切り替わりました。,Fes赛季已变更
-errorDialog.fesMatchRivalsError,進行していたフェスはすでに終了しました。\n再開することができませんでした。,正在进行的Fes已经结束。\n无法恢复进度
-errorDialog.forbidden,アクセスは許可されていません。,
-errorDialog.fullDownloadErrorForNative,リソースの読み込みに失敗しました。\nネットワーク環境をご確認ください。,
-errorDialog.simpleOther,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。,
-errorDialog.other,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
-errorDialog.timeout,通信中にエラーが発生しました。\n時間をおいてもう一度お試しください。,发生通信故障。\n请一段时间后再尝试。
-errorDialog.resourceDownloadError,通信中にエラーが発生しました。\nネットワーク環境をご確認の上\nもう一度お試しください。,发生通信故障。\n确认您的网络环境后\n请再次尝试。
+errorDialog.fesSeason,フェスのシーズンが切り替わりました。,Fes赛季已变更。
+errorDialog.fesMatchRivalsError,進行していたフェスはすでに終了しました。\n再開することができませんでした。,正在进行的Fes已经结束。\n无法恢复进度。
+errorDialog.forbidden,アクセスは許可されていません。,访问未得到许可。
+errorDialog.fullDownloadErrorForNative,リソースの読み込みに失敗しました。\nネットワーク環境をご確認ください。,资源读取失败。\n请确认网络环境。
+errorDialog.simpleOther,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。,发生错误。\n\n多次发生的情况下\n请从游戏内「お知らせ」→「お問い合わせ」\n确认您的问题。
+errorDialog.other,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},发生错误。n\n多次发生的情况下\n请从游戏内「お知らせ」→「お問い合わせ」\n确认您的问题。\n\n问题ID：%{requestId}\n错误代码：%{errorCode}
+errorDialog.timeout,通信中にエラーが発生しました。\n時間をおいてもう一度お試しください。,通信时发生故障。\n请一段时间后再尝试。
+errorDialog.resourceDownloadError,通信中にエラーが発生しました。\nネットワーク環境をご確認の上\nもう一度お試しください。,通信时发生故障。\n确认您的网络环境后\n请再次尝试。
 errorDialog.unavailableGasha,ガシャのラインナップが更新されました。,卡池已更新
-errorDialog.resourceLoadFailed,リソースの読み込みに失敗しました。\nページの再読み込みをお試しください。,资源读取失败。\n请尝试刷新网页。
-errorDialog.sdkLoginLoadFailed,認証に失敗しました。\n通信環境をご確認の上、ページの再読み込みをお試しください。\n何度も発生する場合はブラウザキャッシュクリアをお試しください。\n\nゲストメンバーの方はデータ消失の恐れがあります。\nenza にメンバー登録する事で中断データの復帰が可能になります。\nenza メンバー登録の上、キャッシュクリアをお試しください。\n,
-errorDialog.sdkLoginLoadFailedApp,認証に失敗しました。\n通信環境をご確認の上、再読み込みをお試しください。\n何度も発生する場合は時間をおいてお試しください。\n,
-errorDialog.unsubscribedApp,退会済みのアカウントが検出されました。\nアプリケーションの再インストールをお試しください。,
-errorDialog.unsubscribed,退会済みのアカウントが検出されました。\nタイトルへ戻ります。\n何度も発生する場合は\nクッキーの削除をお試しください。,
-errorDialog.accountFreezeShort,調査の為、一時的にご利用を制限しております。\n対応が完了次第制限解除いたしますので\nしばらくお待ち下さい。\nお客様にはご迷惑をお掛けいたしますが\nご協力をお願いいたします。,
-errorDialog.earthPaymentFailure,プラットフォームの決済処理が\n正常に行われませんでした。\n再度時間をおいてお試しください。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
-errorDialog.earthPaymentFailureFatal,プラットフォームの決済処理が\n正常に行われませんでした。ゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},
-errorDialog.sceneMaintenance,本機能は、一時的にご利用を制限しております。\n対応が完了次第制限解除いたしますので\nしばらくお待ち下さい。\nお客様にはご迷惑をお掛けいたしますが\nご協力をお願いいたします。,
+errorDialog.resourceLoadFailed,リソースの読み込みに失敗しました。\nページの再読み込みをお試しください。,资源读取失败。\n请尝试再次读取网页。
+errorDialog.sdkLoginLoadFailed,認証に失敗しました。\n通信環境をご確認の上、ページの再読み込みをお試しください。\n何度も発生する場合はブラウザキャッシュクリアをお試しください。\n\nゲストメンバーの方はデータ消失の恐れがあります。\nenza にメンバー登録する事で中断データの復帰が可能になります。\nenza メンバー登録の上、キャッシュクリアをお試しください。\n,认证失败。\n请确认通信环境后，尝试再次读取网页。\n多次发生的情况下请清除浏览器缓存后再尝试。\n游客成员的数据有可能丢失\n注册为enza成员后中断数据有可能恢复。\n注册enza成员后，请尝试清除缓存。\n
+errorDialog.sdkLoginLoadFailedApp,認証に失敗しました。\n通信環境をご確認の上、再読み込みをお試しください。\n何度も発生する場合は時間をおいてお試しください。\n,认证失败。\n请确认通信环境后，再次尝试读取。\n多次发生的情况下请一段时间后再尝试。\n
+errorDialog.unsubscribedApp,退会済みのアカウントが検出されました。\nアプリケーションの再インストールをお試しください。,检测到已退会的账户。\n请尝试重装应用。
+errorDialog.unsubscribed,退会済みのアカウントが検出されました。\nタイトルへ戻ります。\n何度も発生する場合は\nクッキーの削除をお試しください。,检测到已退会的账户。\n将回到标题。\n多次发生的情况下\n请清除Cookie后再尝试。
+errorDialog.accountFreezeShort,調査の為、一時的にご利用を制限しております。\n対応が完了次第制限解除いたしますので\nしばらくお待ち下さい。\nお客様にはご迷惑をお掛けいたしますが\nご協力をお願いいたします。,为了调查，目前暂时限制使用。\n对应措施结束后将立即解除限制\n请您稍等一段时间。\n对您造成了不便\希望您能配合。
+errorDialog.earthPaymentFailure,プラットフォームの決済処理が\n正常に行われませんでした。\n再度時間をおいてお試しください。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},平台的结算处理\n没有正常进行。\n请一段时间后再尝试。\n\n多次发生的情况下\n请从游戏内「お知らせ」→「お問い合わせ」\n确认您的问题。\n\n问题ID：%{requestId}\n错误代码：%{errorCode}
+errorDialog.earthPaymentFailureFatal,プラットフォームの決済処理が\n正常に行われませんでした。ゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},平台的结算处理\n没有正常进行。请从游戏内「お知らせ」→「お問い合わせ」\n确认您的问题。\n\n问题ID：%{requestId}\n错误代码：%{errorCode}
+errorDialog.sceneMaintenance,本機能は、一時的にご利用を制限しております。\n対応が完了次第制限解除いたしますので\nしばらくお待ち下さい。\nお客様にはご迷惑をお掛けいたしますが\nご協力をお願いいたします。,本功能目前暂时限制使用。\n对应措施结束后将立即解除限制\n请您稍等一段时间。\n对您造成了不便\希望您能配合。
 errorDialog.playMovie,動画再生に失敗しました。,动画播放失败
 errorDialog.businessIsNotFinished,営業が完了していません。\n少し時間を置いてから再度完了してください。,营业尚未完成。\n请等待一段时间后再确认完成
 errorDialog.purchaseErrorTitle,購入エラー,购入错误
@@ -201,7 +201,7 @@ idolPortal.staffComment1,あ、プロデューサーさん、アイドル達に�
 idolPortal.staffComment2,みんながプロデューサーさんを待っていますよ～,大家都在等制作人先生哦～
 idolPortal.staffComment3,アイドルの育成はプロデューサーさんの大切なお仕事ですからね～,培育偶像是制作人先生最重要的工作
 idolPortal.staffComment4,トレーニングでアイドルを成長させましょう,藉由训练使偶像得到成长吧
-idolPortal.staffComment5,特訓でアイドル達の力をさらに引き出してあげましょう,特训则可以让偶像们的能力得到更出色的发挥
+idolPortal.staffComment5,特訓でアイドル達の力をさらに引き出してあげましょう,特训可以让偶像们的能力得到更出色的发挥
 idolPortal.staffComment6,プロデューサーさんの現在の担当アイドルはこちらで確認できます,制作人先生目前担当的偶像可在这里确认
 jewelDetailDialog.title,所持フェザージュエル確認,所持羽石确认
 evolution.skillListTitle,解放されるスキル,解锁的技能
@@ -210,7 +210,7 @@ evolution.confirm.comment,選択した対象を消費して、特訓をします
 evolution.complete.title,特訓結果,特训结果
 evolution.complete.comment,特訓が完了しました！,特训已完成！
 evolution.costumeRelease.first,最大まで特訓したことによって\n,由于已特训至最大阶段\n
-evolution.costumeRelease.second,の衣装に\n変更可能になりました！,的服装！\n已经可以变更为该服装
+evolution.costumeRelease.second,の衣装に\n変更可能になりました！,服装解锁！\n已经可以变更为该服装
 fes.top.title,フェス,Fes
 fes.top.scoreTitle,現在のスコア,当前分数
 fes.top.rankingTitle,グレード内順位/,当前等级内排名/
@@ -232,7 +232,7 @@ fes.terminateDialog.text,進行中のフェスを終了します。,结束进行
 fes.terminateDialog.textWarning,フェス参加権は返却されません,Fes参加权不退还
 fes.fesDeck.title,フェスユニット編成,Fes队伍编成
 fes.fesDeck.invalidFesDeckNotice.title,確認,确认
-fes.fesDeck.invalidFesDeckNotice.message,フェスユニットに空きがあるため\n編成を終了できません,Fes队伍中任有空位\n无法结束编成
+fes.fesDeck.invalidFesDeckNotice.message,フェスユニットに空きがあるため\n編成を終了できません,Fes队伍中仍有空位\n无法结束编成
 fes.fesDeckView.title,確認,确认
 fes.fesDeckView.message,このアイドルは既に移籍済みのため\n詳細を確認できませんでした,由于该偶像已移籍\n无法确认详细情况
 fes.fesIdolSelect.title,%{positionName}選択,%{positionName}选择
@@ -277,9 +277,9 @@ fes.fesGradeEvaluationReward.comment.gradeDown,今回はLv%{gradeId}のグレー
 fes.ranking.score,%{score}pt,%{score}pt
 fes.ranking.emptyNotice,現在ランキング集計中です,目前排行榜统计中
 fes.ranking.updateIntervalWarning,※最新のランキング反映までに時間がかかる場合があります,※最新的排行榜反映还需要一段时间
-fes.fesGradeRewardPop.title,グレードフェス報酬,等级FES报酬
+fes.fesGradeRewardPop.title,グレードフェス報酬,等级Fes报酬
 fes.fesGradeRewardPop.gradeReward.title,所属グレード報酬について,关于所属等级的报酬
-fes.fesGradeRewardPop.gradeReward.description,所属グレードは基本的に「フェス流行の更新」と同じタイミングで更新されます。グレード更新後、フェス画面にて所属グレード報酬がプレゼントに送られます。最新の所属グレード以外の報酬は受け取ることができませんので、ご注意ください。,所属等级基本上在「FES流行的更新」的同时更新。等级更新后，在FES界面依所属等级将报酬送入礼物盒。请注意，最新所属等级以外的报酬无法获得。
+fes.fesGradeRewardPop.gradeReward.description,所属グレードは基本的に「フェス流行の更新」と同じタイミングで更新されます。グレード更新後、フェス画面にて所属グレード報酬がプレゼントに送られます。最新の所属グレード以外の報酬は受け取ることができませんので、ご注意ください。,所属等级基本上在「Fes流行的更新」的同时更新。等级更新后，在Fes界面依所属等级将报酬送入礼物盒。请注意，最新所属等级以外的报酬无法获得。
 fes.fesGradeRewardPop.gradeReward.colTitle1,所属グレード,所属等级
 fes.fesGradeRewardPop.gradeReward.colTitle2,報酬内容,报酬内容
 fes.fesGradeRewardPop.missionReward.title,初回昇格報酬について,关于首次升格的报酬
@@ -701,7 +701,7 @@ produceReady.fanMeetingIdolRestrictionPop.text.produceIdol,上記アイドルは
 produceReady.fanMeetingIdolRestrictionPop.text.supportIdol,上記アイドルは\nまだ「283プロファン感謝祭」で\nサポートアイドルに選択できません,上述偶像尚未可\n在「283Pro粉丝感谢祭」中\n选择作为Support偶像
 profile.cardEditDialogTitle,名刺編集,名片编辑
 profile.pfRecommend,名前を変更するには、データ連携が必要です,要变更名字，需要进行数据连携
-profile.error.ngWord,\n禁止ワードが含まれています,\n含有含有禁止字词
+profile.error.ngWord,\n禁止ワードが含まれています,\n含有禁止字词
 profile.error.wordLength,\n入力文字数が不正です,\n输入字数不正确
 profile.commentEditDialog.title,自己紹介編集,自我介绍编辑
 profile.commentEditDialog.commentDefault,よろしくお願いします,请多指教
@@ -773,7 +773,7 @@ recycleShop.tradeConfirmation.message,以下のアイテムを交換しますか
 recycleShop.purchaseResult.title,交換結果,兑换结果
 recycleShop.purchaseResult.message,%{title}を交換しました,%{title}已兑换
 recycleShop.purchaseResult.twoLinesMessage,%{title}を交換しました,%{title}已兑换
-skillBord.header,振り返り,回顾
+skillBord.header,振り返り,技能回顾
 skillBord.acquireConfirmationTitle,スキル習得確認,习得技能确认
 skillBord.acquireConfirmationMessage,SPを%{skillPoint}消費してスキルを習得しますか？,要使用SP%{skillPoint}学习技能吗？
 skillBord.deleteSkillConfirmationTitle,スキル入れ替え確認,技能替换确认
@@ -807,7 +807,7 @@ training.resultTitle,トレーニング成功,训练成功
 training.resultTitleGreat,トレーニング大成功,训练大成功
 trend.historyText,先週%{rank}位,上周%{rank}位
 trend.txtNextFan,あと  %{count}人,还需  %{count}人
-tutorial.openingMessage.mes0,「アイドル」,「偶像」
+tutorial.openingMessage.mes0,「アイドル」,
 tutorial.openingMessage.mes1,それは,
 tutorial.openingMessage.mes2,女の子達の永遠の憧れ,
 tutorial.openingMessage.mes3,だがアイドルの頂点に立てるのは,
@@ -954,13 +954,13 @@ tutorial.skipPop.warning2,TIPS,
 twitter.postDialog.staticURL,https://go.enza.fun/IddpjY,
 workActivityResult.totalFan.count,%{count}人,
 individualRanking.aggregateAt,%{openTime} 〜 %{closeTime},
-errorDialog.movieSkipNotice,スキップした場合、動画は閲覧済み状態となります,
-gasha.billedText,【有償】,
+errorDialog.movieSkipNotice,スキップした場合、動画は閲覧済み状態となります,跳过的话，动画将变为已阅览状态
+gasha.billedText,【有償】,【有偿】
 lotteryResult.title,当選結果,
 lotteryResult.comment,以下の景品を獲得しました,
 lotteryResult.notice,景品はプレゼントからお受け取りください,
 lotteryResult.rankCount,本当選！,
 lotteryResult.rankRewardCount,×%{rankRewardCount},
-mission.receiveDateLimit,【受取期限】%{closeAt}まで,
-errorDialog.offline,通信中にオフラインになりました。\nネットワーク環境をご確認の上、\nページの再読み込みをお試しください。,
-gameEvent.eventEnded,イベント開催期間は終了しました,
+mission.receiveDateLimit,【受取期限】%{closeAt}まで,【领取期限】%{closeAt}截止
+errorDialog.offline,通信中にオフラインになりました。\nネットワーク環境をご確認の上、\nページの再読み込みをお試しください。,通信时发生网络断线。\n请确认网络环境后，\n尝试再次读取网页
+gameEvent.eventEnded,イベント開催期間は終了しました,活动举办时段已结束
