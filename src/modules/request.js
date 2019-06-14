@@ -2,7 +2,7 @@ import { getHash } from '../utils/fetch'
 import transSkill from './skill'
 import transMission, { reportMission } from './mission'
 import { collectStoryTitle } from '../store/story'
-import { userItemTypes, transShopItem, transUserItem, transShopPurchase } from './item'
+import { userItemTypes, transShopItem, transUserItem, transShopPurchase, transPresentItem, transReceivePresent } from './item'
 import { log } from '../utils/index'
 
 const getRequest = async () => {
@@ -40,6 +40,8 @@ export default async function requestHook () {
         await transShopItem(res.body)
       } else if (userItemTypes.includes(type)) {
         await transUserItem(res.body)
+      } else if (type.includes('userPresents?limit=') || type.includes('userPresentHistories?limit=')) {
+        await transPresentItem(res.body)
       }
     } catch (e) {
       log(e)
@@ -74,6 +76,8 @@ export default async function requestHook () {
         await transShopPurchase(res.body)
       } else if (/produces\/\d+\/actions\/ready/.test(type)) {
         await transUserItem(res.body.userProduceItems)
+      } else if (/userPresents\/\d+\/actions\/receive/.test(type)) {
+        await transReceivePresent(res.body)
       }
     } catch (e) {
       log(e)

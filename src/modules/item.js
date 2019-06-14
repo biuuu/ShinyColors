@@ -24,6 +24,7 @@ const itemTypes = [
 ]
 
 const transItem = (item, key, { itemMap, itemLimitMap }) => {
+  if (!item) return
   let text = item[key]
   let limit = ''
   if (/[\r\n]{1,2}\[[^\]]+\]$/.test(text)) {
@@ -86,4 +87,25 @@ const transShopPurchase = async (data) => {
   }
 }
 
-export { transShopItem, transUserItem, userItemTypes, transShopPurchase }
+const transPresentItem = async (data) => {
+  const maps = await getItem()
+  if (Array.isArray(data)) {
+    data.forEach(obj => {
+      transItem(obj.content, 'name', maps)
+    })
+  }
+}
+
+const transReceivePresent = async (data) => {
+  const maps = await getItem()
+  transItem(data.receivedPresent, 'Name', maps)
+}
+
+export {
+  transShopItem,
+  transUserItem,
+  userItemTypes,
+  transShopPurchase,
+  transPresentItem,
+  transReceivePresent
+}
