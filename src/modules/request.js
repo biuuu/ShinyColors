@@ -4,6 +4,7 @@ import transMission, { reportMission } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem, transUserItem, transShopPurchase, transPresentItem, transReceivePresent } from './item'
 import { log } from '../utils/index'
+import cloneDeep from 'lodash/cloneDeep'
 
 const getRequest = async () => {
   let request
@@ -17,6 +18,22 @@ const getRequest = async () => {
   return request
 }
 
+const logStyles = color => ([
+  `background-color:${color};color:#fff;padding:0 0.3em`,
+  '',
+  `color:${color};text-decoration:underline`
+])
+
+const requestLog = (method, color, args, data) => {
+  if (DEV) {
+    let _data = data
+    if (data) {
+      _data = cloneDeep(data)
+    }
+    log(`%c${method}%c %c${args[0]}`, ...logStyles(color), args[1] || '', '\n=>', _data)
+  }
+}
+
 export default async function requestHook () {
   const request = await getRequest()
   if (!request || !request.get) return
@@ -25,7 +42,7 @@ export default async function requestHook () {
     const type = args[0]
     const res = await originGet.apply(this, args)
     if (!type) return res
-    log('get', ...args, res.body)
+    requestLog('GET', '#009688', args, res.body)
     try {
       if (/^userSupportIdols\/\d+$/.test(type) || type === 'userSupportIdols/statusMax') {
         await transSkill(res.body)
@@ -53,7 +70,7 @@ export default async function requestHook () {
     const type = args[0]
     const res = await originPatch.apply(this, args)
     if (!type) return res
-    log('patch', ...args, res.body)
+    requestLog('PATCH', '#8BC34A', args, res.body)
     try {
       if (/^userSupportIdols\/\d+$/.test(type)) {
         await transSkill(res.body.userSupportIdol)
@@ -68,7 +85,7 @@ export default async function requestHook () {
     const type = args[0]
     const res = await originPost.apply(this, args)
     if (!type) return res
-    log('post', ...args, res.body)
+    requestLog('POST', '#3F51B5', args, res.body)
     try {
       if (type === 'myPage') {
         await reportMission(res.body)
@@ -90,7 +107,7 @@ export default async function requestHook () {
     const type = args[0]
     const res = await originPut.apply(this, args)
     if (!type) return res
-    log('put', ...args, res.body)
+    requestLog('PUT', '#9C27B0', args, res.body)
     return res
   }
 }
