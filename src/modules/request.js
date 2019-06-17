@@ -113,3 +113,5 @@ export default async function requestHook () {
     return res
   }
 }
+
+export { requestLog }

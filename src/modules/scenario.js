@@ -5,6 +5,7 @@ import showStoryTool from '../utils/story-tool'
 import getStory, { storyTitle } from '../store/story'
 import getName from '../store/name'
 import autoTrans from '../utils/translation'
+import { requestLog } from './request'
 
 const getModule = async () => {
   let scnModule
@@ -129,7 +130,7 @@ const transScenario = async () => {
     const res = await originLoad.apply(this, args)
     const type = args[0]
     if (!type) return res
-    if (DEV && type.includes('/assets/json/')) log('scenario', ...args, res)
+    if (DEV && type.includes('/assets/json/')) requestLog('STORY', '#ad37c2', args, res)
     if (type.includes('/produce_events/') ||
       type.includes('/produce_communications/') ||
       type.includes('/produce_communications_promises/') ||
