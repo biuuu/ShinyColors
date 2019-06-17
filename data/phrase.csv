@@ -165,7 +165,7 @@ errorDialog.fesMatchRivalsError,進行していたフェスはすでに終了し
 errorDialog.forbidden,アクセスは許可されていません。,访问未得到许可。
 errorDialog.fullDownloadErrorForNative,リソースの読み込みに失敗しました。\nネットワーク環境をご確認ください。,资源读取失败。\n请确认网络环境。
 errorDialog.simpleOther,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。,发生错误。\n\n多次发生的情况下\n请从游戏内「お知らせ」→「お問い合わせ」\n确认您的问题。
-errorDialog.other,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},发生错误。n\n多次发生的情况下\n请从游戏内「お知らせ」→「お問い合わせ」\n确认您的问题。\n\n问题ID：%{requestId}\n错误代码：%{errorCode}
+errorDialog.other,エラーが発生しました。\n\n何度も発生する場合は\nゲーム内の「お知らせ」→「お問い合わせ」より\nお問い合わせください。\n\nお問い合わせID: %{requestId}\nエラーコード: %{errorCode},发生错误。\n\n多次发生的情况下\n请从游戏内「お知らせ」→「お問い合わせ」\n确认您的问题。\n\n问题ID：%{requestId}\n错误代码：%{errorCode}
 errorDialog.timeout,通信中にエラーが発生しました。\n時間をおいてもう一度お試しください。,通信时发生故障。\n请一段时间后再尝试。
 errorDialog.resourceDownloadError,通信中にエラーが発生しました。\nネットワーク環境をご確認の上\nもう一度お試しください。,通信时发生故障。\n确认您的网络环境后\n请再次尝试。
 errorDialog.unavailableGasha,ガシャのラインナップが更新されました。,卡池已更新
