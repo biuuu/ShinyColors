@@ -101,11 +101,17 @@ const transReceivePresent = async (data) => {
   transItem(data.receivedPresent, 'Name', maps)
 }
 
+const transReceiveMission = async (data) => {
+  const maps = await getItem()
+  transItem(data.userMission.mission.missionReward.content, 'name', maps)
+}
+
 export {
   transShopItem,
   transUserItem,
   userItemTypes,
   transShopPurchase,
   transPresentItem,
-  transReceivePresent
+  transReceivePresent,
+  transReceiveMission
 }
