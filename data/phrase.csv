@@ -141,7 +141,7 @@ ending.fesIdolCheckPop.comment,フェスアイドルの誕生を行います。�
 ending.fesIdolCheckPop.warning,残りの所持SPは失われます。,残余所持的SP将会丢失
 ending.fesIdolRewardPop.title,プロデュースクリア報酬,Produce完成报酬
 ending.fesIdolRewardPop.comment,下記アイテムを入手しました,获得了以下道具
-ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼントボックスに送られました,超过所持数上限的已送入礼物盒中
+ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼントボックスに送られました,      超过所持数上限的已送入礼物盒中
 ending.fesIdolRewardPop.itemNameNum,%{type} ×%{num},
 ending.presidentComment,ご苦労だったな次回も頑張ってもらうぞ！期待しているからな,辛苦了，下回也请加油！\n毕竟我可是很看好你的呐
 ending.totalFan.idolName,【%{name}】累計ファン人数,【%{name}】累计粉丝人数
@@ -329,7 +329,7 @@ idolList.leaveEditModeDialog.tradeMoney,移籍,移籍
 idolList.leaveEditModeDialog.tradeMemorialPiece,変換,变换
 gasha.closeAt,%{closeAt}まで,%{closeAt}截止
 gasha.redrawGashaNotice,確定するまで何度でも\n引き直すことができます,在确定之前可无限次\n重新抽取
-gasha.resultMessage,既に加入済みのアイドルは控室に送られます。,已有的偶像已送入休息室
+gasha.resultMessage,既に加入済みのアイドルは控室に送られます。,已有的偶像会被送到休息室。
 gasha.tweetLayerMessage,ツイートしたいアイドルを選択してください,选择要发送推特展示的偶像
 gasha.gashaText,%{quantity}回引く,%{quantity}回抽卡
 gasha.popTicketDesc,%{ticketName}を消費してガシャを%{quantity}回引きます。よろしいですか？,确认使用%{ticketName}进行%{quantity}回抽卡吗？
