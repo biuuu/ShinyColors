@@ -106,6 +106,22 @@ const transReceiveMission = async (data) => {
   transItem(data.userMission.mission.missionReward.content, 'name', maps)
 }
 
+const transLoginBonus = async (data) => {
+  const maps = await getItem()
+  data.userLoginBonuses.forEach(item => {
+    item.loginBonus.sheets.forEach(sheet => {
+      sheet.rewards.forEach(reward => {
+        transItem(reward.content, 'name', maps)
+      })
+    })
+  })
+  data.userTotalBonuses.forEach(item => {
+    item.rewards.forEach(reward => {
+      transItem(reward.content, 'name', maps)
+    })
+  })
+}
+
 export {
   transShopItem,
   transUserItem,
@@ -113,5 +129,6 @@ export {
   transShopPurchase,
   transPresentItem,
   transReceivePresent,
-  transReceiveMission
+  transReceiveMission,
+  transLoginBonus
 }
