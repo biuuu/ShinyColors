@@ -329,7 +329,7 @@ idolList.leaveEditModeDialog.tradeMoney,移籍,移籍
 idolList.leaveEditModeDialog.tradeMemorialPiece,変換,变换
 gasha.closeAt,%{closeAt}まで,%{closeAt}截止
 gasha.redrawGashaNotice,確定するまで何度でも\n引き直すことができます,在确定之前可无限次\n重新抽取
-gasha.resultMessage,既に加入済みのアイドルは控室に送られます。,已有的偶像会被送到休息室。
+gasha.resultMessage,既に加入済みのアイドルは控室に送られます。,已加入的偶像将移至等候室。
 gasha.tweetLayerMessage,ツイートしたいアイドルを選択してください,选择要发送推特展示的偶像
 gasha.gashaText,%{quantity}回引く,%{quantity}回抽卡
 gasha.popTicketDesc,%{ticketName}を消費してガシャを%{quantity}回引きます。よろしいですか？,确认使用%{ticketName}进行%{quantity}回抽卡吗？
