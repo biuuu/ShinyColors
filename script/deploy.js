@@ -73,7 +73,7 @@ const start = async () => {
     console.log('data prepared')
     return
   }
-  if (process.env.GROUP) {
+  if (process.env.CUSTOM_DOMAIN) {
     await fse.outputFile('./dist/CNAME', 'www.shiny.fun')
   }
   console.log('start publish...')
