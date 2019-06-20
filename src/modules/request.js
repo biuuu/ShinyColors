@@ -4,6 +4,7 @@ import transMission, { reportMission } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem, transUserItem, transShopPurchase, transFesReward, transPresentItem, transLoginBonus, transReceivePresent, transReceiveMission } from './item'
 import { log } from '../utils/index'
+import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
 
 const getRequest = async () => {
@@ -59,6 +60,10 @@ export default async function requestHook () {
         await transUserItem(res.body)
       } else if (type.includes('userPresents?limit=') || type.includes('userPresentHistories?limit=')) {
         await transPresentItem(res.body)
+      } else if (type === 'gashaGroups/1673/rates') {
+        if (DEV) {
+          collectCardName(res.body)
+        }
       }
     } catch (e) {
       log(e)
