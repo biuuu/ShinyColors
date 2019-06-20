@@ -2,7 +2,7 @@ import { getHash } from '../utils/fetch'
 import transSkill from './skill'
 import transMission, { reportMission } from './mission'
 import { collectStoryTitle } from '../store/story'
-import { userItemTypes, transShopItem, transUserItem, transShopPurchase, transPresentItem, transLoginBonus, transReceivePresent, transReceiveMission } from './item'
+import { userItemTypes, transShopItem, transUserItem, transShopPurchase, transFesReward, transPresentItem, transLoginBonus, transReceivePresent, transReceiveMission } from './item'
 import { log } from '../utils/index'
 import cloneDeep from 'lodash/cloneDeep'
 
@@ -99,6 +99,8 @@ export default async function requestHook () {
         await transReceiveMission(res.body)
       } else if (type === 'userLoginBonuses') {
         await transLoginBonus(res.body)
+      } else if (type === 'fesTop') {
+        await transFesReward(res.body)
       }
     } catch (e) {
       log(e)

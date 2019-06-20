@@ -122,6 +122,17 @@ const transLoginBonus = async (data) => {
   })
 }
 
+const transFesReward = async (data) => {
+  const maps = await getItem()
+  if (data.lastRankingResult) {
+    if (Array.isArray(data.lastRankingResult.fesMatchGradeRewards)) {
+      data.lastRankingResult.fesMatchGradeRewards.forEach(item => {
+        transItem(item.content, 'name', maps)
+      })
+    }
+  }
+}
+
 export {
   transShopItem,
   transUserItem,
@@ -130,5 +141,6 @@ export {
   transPresentItem,
   transReceivePresent,
   transReceiveMission,
-  transLoginBonus
+  transLoginBonus,
+  transFesReward
 }
