@@ -286,10 +286,10 @@ fes.fesGradeRewardPop.missionReward.title,初回昇格報酬について,关于�
 fes.fesGradeRewardPop.missionReward.description,初めてLv.2以上の各グレードに昇格した際、特別な報酬を入手できます。報酬は「ミッション」からお受け取りください。,初次Lv.2以上各等级升格时，能够获得特殊报酬。请从「任务」处领取报酬。
 fes.fesGradeRewardPop.missionReward.colTitle1,昇格グレード,升格等级
 fes.fesGradeRewardPop.missionReward.colTitle2,報酬内容,报酬内容
-gameEvent.achievementRewardDialog.title,ミッション達成累積報酬,任务达成累计报酬
+gameEvent.achievementRewardDialog.title,ミッション達成累積報酬,完成任务的累计奖励
 gameEvent.achievementRewardDialog.message,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
 gameEvent.achievementRewardDialog.rewardNameNum,%{name} x %{num},
-gameEvent.achievementRewardDetailDialog.title,ミッション達成累積報酬詳細,任务达成累计报酬详细
+gameEvent.achievementRewardDetailDialog.title,ミッション達成累積報酬詳細,完成任务可获得的累计奖励
 gameEvent.achievementRewardDetailDialog.missionDetailTitle,ミッション%{progressMax}個達成報酬,任务%{progressMax}个达成报酬
 gameEvent.schedule,開催期限 %{closeAt}まで,举办期限 %{closeAt}截止
 gameEvent.rewardReceivableSchedule,受取期限 %{closeAt}まで,领取期限 %{closeAt}截止
