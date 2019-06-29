@@ -5,6 +5,7 @@ import { log } from '../utils/index'
 
 let missionData = null
 const replaceMission = (data, key) => {
+  if (!data) return
   const { expMap, wordMaps, textMap } = missionData
   const text = data[key]
   let _text = text
@@ -68,5 +69,21 @@ const reportMission = async (data) => {
   processMission(data.reportUserMissions)
 }
 
-export { reportMission }
+const accumulatedPresent = (item, key) => {
+  if (item && item[key] && /イベントミッションを\d+個達成しよう/.test(item[key])) {
+    item[key] = tagText(item[key].replace(/イベントミッションを(\d+)個達成しよう/, '完成$1个活动任务'))
+  }
+}
+
+const fesRecomMission = async (data) => {
+  missionData = await getMission()
+  replaceMission(data.userRecommendedMission.mission, 'comment')
+  replaceMission(data.userRecommendedMission.mission, 'title')
+  data.accumulatedPresent.userGameEventAccumulatedPresents.forEach(item => {
+    accumulatedPresent(item.gameEventAccumulatedPresent, 'comment')
+    accumulatedPresent(item.gameEventAccumulatedPresent, 'title')
+  })
+}
+
+export { reportMission, fesRecomMission }
 export default transMission

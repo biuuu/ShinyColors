@@ -133,6 +133,15 @@ const transFesReward = async (data) => {
   }
 }
 
+const transAccumulatedPresent = async (data) => {
+  const maps = await getItem()
+  data.accumulatedPresent.userGameEventAccumulatedPresents.forEach(item => {
+    item.gameEventAccumulatedPresent.rewards.forEach(reward => {
+      transItem(reward.content, 'name', maps)
+    })
+  })
+}
+
 export {
   transShopItem,
   transUserItem,
@@ -142,5 +151,6 @@ export {
   transReceivePresent,
   transReceiveMission,
   transLoginBonus,
-  transFesReward
+  transFesReward,
+  transAccumulatedPresent
 }
