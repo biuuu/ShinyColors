@@ -97,7 +97,7 @@ export default async function requestHook () {
     try {
       if (type === 'myPage') {
         await reportMission(res.body)
-      } else if (/^fesMarathons\/\d+\/top$/.test(type)) {
+      } else if (/^(produceMarathons|fesMarathons)\/\d+\/top$/.test(type)) {
         await fesRecomMission(res.body)
         await transAccumulatedPresent(res.body)
       } else if (type === 'userShops/actions/purchase') {
