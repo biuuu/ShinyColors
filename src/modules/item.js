@@ -24,13 +24,13 @@ const itemTypes = [
 ]
 
 const transItem = (item, key, { itemMap, itemLimitMap }) => {
-  if (!item) return
-  let text = item[key]
+  if (!item || typeof item[key] !== 'string') return
+  let text = item[key].trim()
   let limit = ''
   if (/[\r\n]{1,2}\[[^\]]+\]$/.test(text)) {
     let rgs = text.match(/([\s\S]+)[\r\n]{1,2}(\[[^\]]+\])$/)
     if (rgs && rgs[1]) {
-      text = rgs[1]
+      text = rgs[1].trim()
       if (itemLimitMap.has(rgs[2])) {
         limit = itemLimitMap.get(rgs[2])
       } else {
@@ -38,6 +38,7 @@ const transItem = (item, key, { itemMap, itemLimitMap }) => {
       }
     }
   }
+
   let trans = text
   text = text.replace(/\r?\n|\r/g, '\\n')
   if (itemMap.has(text)) {
@@ -49,17 +50,28 @@ const transItem = (item, key, { itemMap, itemLimitMap }) => {
   }
 }
 
+const switchShop = (shop, maps) => {
+  if (shop && shop.shopMerchandises) {
+    shop.shopMerchandises.forEach(item => {
+      transItem(item, 'title', maps)
+      transItem(item, 'comment', maps)
+    })
+  }
+}
+
 const transShopItem = async (data) => {
   const maps = await getItem()
-  if (data && Array.isArray(data.userShops)) {
-    data.userShops.forEach(shop => {
-      if (shop && shop.shopMerchandises) {
-        shop.shopMerchandises.forEach(item => {
-          transItem(item, 'title', maps)
-          transItem(item, 'comment', maps)
-        })
-      }
-    })
+  if (data) {
+    if (Array.isArray(data.userShops)) {
+      data.userShops.forEach(shop => {
+        switchShop(shop, maps)
+      })
+    }
+    if (Array.isArray(data.userEventShops)) {
+      data.userEventShops.forEach(item => {
+        switchShop(item.userShop, maps)
+      })
+    }
   }
 }
 
