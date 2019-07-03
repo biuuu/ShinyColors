@@ -33,6 +33,8 @@ const transItem = (item, key, { itemMap, itemLimitMap }) => {
       text = rgs[1]
       if (itemLimitMap.has(rgs[2])) {
         limit = itemLimitMap.get(rgs[2])
+      } else {
+        limit = rgs[2]
       }
     }
   }
