@@ -115,12 +115,4 @@ curl -s -X POST \
   -H "Travis-API-Version: 3" \
   -H "Authorization: token ${TOKEN}" \
   -d "$body" \
-  https://api.${TRAVIS_URL}/repo/${USER}%2F${REPO}/requests \
- | tee /tmp/travis-request-output.$$.txt
-
-if grep -q '"@type": "error"' /tmp/travis-request-output.$$.txt; then
-    exit 1
-fi
-if grep -q 'access denied' /tmp/travis-request-output.$$.txt; then
-    exit 1
-fi
+  https://api.travis-ci.com/repo/${USER}%2F${REPO}/requests
