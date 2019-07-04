@@ -23,7 +23,7 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local_dir: dist
-  name: "Tenka"
+  committer_from_gh: true
   on:
     branch: master
     repo: biuuu/ShinyColors
