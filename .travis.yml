@@ -26,3 +26,4 @@ deploy:
   name: "Tenka"
   on:
     branch: master
+    repo: biuuu/ShinyColors
