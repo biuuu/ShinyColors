@@ -137,8 +137,8 @@ emSpace,　,
 ending.headerTitle.endingCEOReport,社長からの評価,来自社长的评价
 ending.headerTitle.fesIdolBirth,フェスアイドル誕生,Fes偶像诞生
 ending.fesIdolCheckPop.title,フェスアイドル確認,Fes偶像确认
-ending.fesIdolCheckPop.comment,フェスアイドルの誕生を行います。よろしいですか？,确认要进行Fes偶像诞生吗？
-ending.fesIdolCheckPop.warning,残りの所持SPは失われます。,残余所持的SP将会丢失
+ending.fesIdolCheckPop.comment,フェスアイドルの誕生を行います。よろしいですか？,　确认要进行Fes偶像诞生吗？
+ending.fesIdolCheckPop.warning,残りの所持SPは失われます。,剩余的SP将会丢失
 ending.fesIdolRewardPop.title,プロデュースクリア報酬,Produce完成报酬
 ending.fesIdolRewardPop.comment,下記アイテムを入手しました,获得了以下道具
 ending.fesIdolRewardPop.maxMessage,所持枠を超えているものはプレゼントボックスに送られました,      超过所持数上限的已送入礼物盒中
@@ -270,13 +270,13 @@ fes.result.scoreDetail.finalScore,総合スコア,综合分数
 fes.fesGradeEvaluationReward.title,報酬内容,报酬内容
 fes.fesGradeEvaluationReward.message,以下のアイテムがプレゼントに送られました,以下道具已经送入礼物盒中
 fes.fesGradeEvaluationReward.itemNameNum,%{type} ×%{num},
-fes.fesGradeEvaluationReward.comment.newRecord,初めてのグレードLv%{gradeId}到達、おめでとうございますミッション報酬も忘れずに受け取ってくださいね♪,恭喜您，首次到达等级Lv%{gradeId}请不要忘了拿取任务奖励
-fes.fesGradeEvaluationReward.comment.gradeUp,グレードアップですプロデューサーさん、良い調子ですね♪,等级升格成功制作人先生，状态很不错呢♪
+fes.fesGradeEvaluationReward.comment.newRecord,初めてのグレードLv%{gradeId}到達、おめでとうございますミッション報酬も忘れずに受け取ってくださいね♪,恭喜您，首次到达等级Lv%{gradeId}。请不要忘了拿取任务奖励
+fes.fesGradeEvaluationReward.comment.gradeUp,グレードアップですプロデューサーさん、良い調子ですね♪,等级升格成功，制作人先生！状态很不错呢♪
 fes.fesGradeEvaluationReward.comment.gradeKeep,グレードキープです、今回も頑張りましょう私も応援していますね♪,等级维持，这次也请加油我也会为你应援的♪
 fes.fesGradeEvaluationReward.comment.gradeDown,今回はLv%{gradeId}のグレードになります引き続き、グレードアップを目指していきましょうね,本次以Lv%{gradeId}的等级继续，请以等级升格为目标努力吧
 fes.ranking.score,%{score}pt,%{score}pt
-fes.ranking.emptyNotice,現在ランキング集計中です,目前排行榜统计中
-fes.ranking.updateIntervalWarning,※最新のランキング反映までに時間がかかる場合があります,※最新的排行榜反映还需要一段时间
+fes.ranking.emptyNotice,現在ランキング集計中です,排行榜正在统计中
+fes.ranking.updateIntervalWarning,※最新のランキング反映までに時間がかかる場合があります,※排行榜的更新需要等待一定时间
 fes.fesGradeRewardPop.title,グレードフェス報酬,等级Fes报酬
 fes.fesGradeRewardPop.gradeReward.title,所属グレード報酬について,关于所属等级的报酬
 fes.fesGradeRewardPop.gradeReward.description,所属グレードは基本的に「フェス流行の更新」と同じタイミングで更新されます。グレード更新後、フェス画面にて所属グレード報酬がプレゼントに送られます。最新の所属グレード以外の報酬は受け取ることができませんので、ご注意ください。,所属等级基本上在「Fes流行的更新」的同时更新。等级更新后，在Fes界面依所属等级将报酬送入礼物盒。请注意，最新所属等级以外的报酬无法获得。
