@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - "12"
+cache: yarn
+before_install:
+  - git pull https://$GITHUB_TOKEN@github.com/ShinyGroup/ShinyColors.git master
+jobs:
+  include:
+    - stage: trigger downstream
+      if: repo = ShinyGroup/ShinyColors
+      script: |
+        echo "TRAVIS_BRANCH=$TRAVIS_BRANCH TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST"
+        if [[ ($TRAVIS_BRANCH == master) &&
+              ($TRAVIS_PULL_REQUEST == false) ]] ; then
+          sh ./script/trigger-travis.sh biuuu ShinyColors $TRAVIS_ACCESS_TOKEN
+        fi
+    - stage: deploy
+      if: repo = biuuu/ShinyColors
+      script:
+        - yarn travis_deploy
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist
+  name: "Tenka"
+  on:
+    branch: master

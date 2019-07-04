@@ -13,10 +13,8 @@
     "server": "http-server ./dist/ -c-1 -s --cors -o http://localhost:15944/ShinyColors.user.js -p 15944",
     "deploy": "node ./script/cleanDist.js && rollup --config ./script/build.js && node ./script/deploy.js",
     "font": "node script/fontmin.js",
-    "fd": "yarn font && yarn deploy",
-    "fontg": "node script/fontminWithGroup.js",
-    "deployg": "node script/deployWithGroup.js",
-    "deployc": "cross-env CUSTOM_DOMAIN=true node script/deployWithGroup.js"
+    "deployc": "cross-env CUSTOM_DOMAIN=true node script/deployWithGroup.js",
+    "travis_deploy": "cross-env CUSTOM_DOMAIN=true TRAVIS=true yarn deploy"
   },
   "dependencies": {
     "core-js": "3",

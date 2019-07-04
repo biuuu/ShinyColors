@@ -76,6 +76,10 @@ const start = async () => {
   if (process.env.CUSTOM_DOMAIN) {
     await fse.outputFile('./dist/CNAME', 'www.shiny.fun')
   }
+  if (process.env.TRAVIS) {
+    console.log('travis')
+    return
+  }
   console.log('start publish...')
   ghpages.publish('dist', {
     add: false
