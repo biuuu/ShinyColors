@@ -1,4 +1,4 @@
-if: commit_message =~ /(upgrade|Trigger)/i
+if: commit_message =~ /(Upgrade|Trigger|Update|Add|format)/
 language: node_js
 node_js:
   - "12"
