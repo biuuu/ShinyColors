@@ -4,7 +4,7 @@ node_js:
   - "12"
 cache: yarn
 before_install:
-  - git pull https://$GITHUB_TOKEN@github.com/ShinyGroup/ShinyColors.git master
+  - git pull https://github.com/ShinyGroup/ShinyColors.git master
 jobs:
   include:
     - stage: trigger downstream
