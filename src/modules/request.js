@@ -2,9 +2,9 @@ import { getHash } from '../utils/fetch'
 import transSkill from './skill'
 import transMission, { reportMission, fesRecomMission } from './mission'
 import { collectStoryTitle } from '../store/story'
-import { userItemTypes, transShopItem, 
+import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
-  transPresentItem, transLoginBonus, transReceivePresent, 
+  transPresentItem, transLoginBonus, transReceivePresent,
   transReceiveMission } from './item'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
@@ -97,7 +97,7 @@ export default async function requestHook () {
     try {
       if (type === 'myPage') {
         await reportMission(res.body)
-      } else if (/^(produceMarathons|fesMarathons)\/\d+\/top$/.test(type)) {
+      } else if (/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/.test(type)) {
         await fesRecomMission(res.body)
         await transAccumulatedPresent(res.body)
       } else if (type === 'userShops/actions/purchase') {
