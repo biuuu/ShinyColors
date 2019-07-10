@@ -79,7 +79,7 @@ common.useItemToReleaseSomething,%{itemName}を使用して%{releasedThingName}�
 common.commu,コミュ,剧情
 common.voice,ボイス,语音
 common.nicknameChangedForRanking.title,ご案内,指南
-common.nicknameChangedForRanking.message,ランキング上の表示は次回集計時に反映されます,排行榜上的表示将在下次统计时反映出来
+common.nicknameChangedForRanking.message,ランキング上の表示は次回集計時に反映されます,排行榜上的显示将在下次统计时反映出来
 commonMenu.bannerListTitle,キャンペーン一覧,活动一览
 commonMenu.fesIdolLimit.title,フェスアイドル所属上限,Fes偶像所属上限
 commonMenu.fesIdolLimit.text,これ以上フェスアイドルを所属させられません\nフェスアイドル詳細画面から移籍を行ってください,无法拥有更多的fes偶像\n请在fes偶像详情中进行移籍
@@ -202,13 +202,13 @@ idolPortal.staffComment2,みんながプロデューサーさんを待ってい�
 idolPortal.staffComment3,アイドルの育成はプロデューサーさんの大切なお仕事ですからね～,培育偶像是制作人先生最重要的工作
 idolPortal.staffComment4,トレーニングでアイドルを成長させましょう,藉由训练使偶像得到成长吧
 idolPortal.staffComment5,特訓でアイドル達の力をさらに引き出してあげましょう,特训可以让偶像们的能力得到更出色的发挥
-idolPortal.staffComment6,プロデューサーさんの現在の担当アイドルはこちらで確認できます,制作人先生目前担当的偶像可在这里确认
+idolPortal.staffComment6,プロデューサーさんの現在の担当アイドルはこちらで確認できます,制作人先生可在这里确认目前担当的偶像
 jewelDetailDialog.title,所持フェザージュエル確認,所持羽石确认
 evolution.skillListTitle,解放されるスキル,解锁的技能
 evolution.confirm.title,特訓確認,特训确认
 evolution.confirm.comment,選択した対象を消費して、特訓をします。\nよろしいですか？,确认消耗选择的对象进行特训吗？
 evolution.complete.title,特訓結果,特训结果
-evolution.complete.comment,特訓が完了しました！,特训已完成！
+evolution.complete.comment,特訓が完了しました！,特训完成！
 evolution.costumeRelease.first,最大まで特訓したことによって\n,由于已特训至最大阶段\n
 evolution.costumeRelease.second,の衣装に\n変更可能になりました！,服装解锁！\n已经可以变更为该服装
 fes.top.title,フェス,Fes
@@ -308,7 +308,7 @@ gameEvent.boxGasha.checkItemDialog.title.change,ボックス詳細,BOX详细
 gameEvent.boxGasha.checkItemDialog.title.confirm,チェック中のアイテム確認,选定的道具确认
 gameEvent.boxGasha.checkItemDialog.text.change,チェック中のアイテムはイベントTOPで残り状況を確認できます,可于活动首页确认选定道具的剩余状况
 gameEvent.boxGasha.checkItemDialog.text.lastChange,最後のボックスです。アイテム数は無制限となります,最后的BOX。道具数不设限制
-gameEvent.boxGasha.checkItemDialog.text.confirm,チェック中のアイテムが残っています。ボックス移動しますか？,选定的道具还有剩余。要移动到吗BOX？
+gameEvent.boxGasha.checkItemDialog.text.confirm,チェック中のアイテムが残っています。ボックス移動しますか？,选定的道具还有剩余。要移动BOX吗？
 gameEvent.boxGasha.checkItemDialog.text.notAcquired,未獲得,未获得
 gameEvent.boxGasha.nextBoxDialog.title,ボックス移動確認,BOX移动确认
 gameEvent.boxGasha.nextBoxDialog.hasNoRemainingItemsText,次のボックスに移動します,移动至下一个BOX
@@ -326,7 +326,7 @@ idolList.memorialPieceStatus.pieceNum,＋%{num},
 idolList.leaveEditModeDialog.title,確認,确认
 idolList.leaveEditModeDialog.text,まだ%{editType}は確定していません選択状態を解除して移動しますか？,%{editType}还未确定要解除选择状态并移动吗？
 idolList.leaveEditModeDialog.tradeMoney,移籍,移籍
-idolList.leaveEditModeDialog.tradeMemorialPiece,変換,变换
+idolList.leaveEditModeDialog.tradeMemorialPiece,変換,兑换
 gasha.closeAt,%{closeAt}まで,%{closeAt}截止
 gasha.redrawGashaNotice,確定するまで何度でも\n引き直すことができます,在确定之前可无限次\n重新抽取
 gasha.resultMessage,既に加入済みのアイドルは控室に送られます。,已加入的偶像将移至等候室。
@@ -418,7 +418,7 @@ header.supportIdolSelect,サポートアイドル編成,Support偶像编成
 header.profile,プロフィール,资料
 header.produceTop,プロデュース,Produce
 header.produceDeckInformation,プロデュースユニット確認,Produce队伍确认
-header.produceActivity,スケジュール選択,日程选择
+header.produceActivity,スケジュール選択,日程安排选择
 header.gasha,ガシャ,抽卡
 header.help,ヘルプ,帮助
 header.homeDeck,ホームユニット,主界面队伍
@@ -436,7 +436,7 @@ header.titleSetting,称号設定,称号设定
 header.ideaNote,アイデアノート,创想笔记
 header.workActivity,営業,营业
 header.workActivitySelectIdol,営業アイドル選択,营业偶像选择
-header.workActivitySelectItem,お手製差し入れ持ち込み,携带手工慰劳点心
+header.workActivitySelectItem,お手製差し入れ持ち込み,携带手工慰劳品
 header.idolRanking,%{name}のランキング,%{name}的排行榜
 header.characterAlbum,%{firstName}のアルバム,%{firstName}的相册
 header.recycleShop,リサイクルショップ,回收商店
@@ -550,13 +550,13 @@ idolDetail.tradeResultDialog.comment4,フェスアイドルの移籍により,�
 idolDetail.trueEndDialog.title,True End詳細,True End详情
 idolDetail.trueEndDialog.condition,・アイドルランクA達成・W.I.N.G.優勝,・偶像等级A达成・W.I.N.G.优胜
 idolDetail.tradeMemorialPieceDialog.title,メモリアルピース変換確認,回忆碎片变换确认
-idolDetail.tradeMemorialPieceDialog.comment,このアイドルとはお別れすることになります。変換を確定してよろしいですか？,即将与该偶像分别。确定进行变换吗？
+idolDetail.tradeMemorialPieceDialog.comment,このアイドルとはお別れすることになります。変換を確定してよろしいですか？,即将与该偶像分别。确定进行兑换吗？
 idolDetail.tradeMemorialPieceDialog.afterPieceCount,%{afterPieceCount}(+%{addPieceCount}),
 idolDetail.tradeMemorialPieceDialog.addPieceCount,(+%{addPieceCount}),
 idolDetail.tradeMemorialPieceDialog.srOrSsrNotice,SR以上の%{idolType}が選択されています,SR以上的%{idolType}已选择
-idolDetail.tradeMemorialPieceDialog.maxNotice,最大所持量を超えるため変換できません,由于超过最大所持量，无法变换
-idolDetail.receiveMemorialPieceDialog.title,メモリアルピース変換結果,回忆碎片变换结果
-idolDetail.receiveMemorialPieceDialog.comment,%{idolType}%{idolName}を変換して%{pieceName}を受け取りました,%{idolType}%{idolName}变换后%{pieceName}已获得
+idolDetail.tradeMemorialPieceDialog.maxNotice,最大所持量を超えるため変換できません,由于超过最大所持量，无法兑换
+idolDetail.receiveMemorialPieceDialog.title,メモリアルピース変換結果,回忆碎片兑换结果
+idolDetail.receiveMemorialPieceDialog.comment,%{idolType}%{idolName}を変換して%{pieceName}を受け取りました,%{idolType}%{idolName}兑换后获得了%{pieceName}
 idolDetail.fesIdolMarkSelectDialog.title,フェスアイドルマーク,Fes偶像标记
 idolDetail.idol,プロデュースアイドル,Produce偶像
 idolDetail.supportIdol,サポートアイドル,Support偶像
@@ -628,7 +628,7 @@ filterPop.filterTitle,絞り込み,筛选
 filterPop.filter.friendship,絆,绊
 filterPop.filter.recoveryStamina,体力,体力
 filterPop.filter.recoveryTension,テンション,心情
-filterPop.filter.avoidTrouble,トラブル,Trouble
+filterPop.filter.avoidTrouble,トラブル,挫折
 filterPop.filter.changeTrend,流行,流行
 filterPop.filter.navigation,ナビゲート,指导
 filterPop.filter.supportIdolsLottery,サポート,Support
@@ -652,7 +652,7 @@ produceItemPreparation.filterTitle,絞り込み,筛选
 produceItemPreparation.sortTitle,並び替え,排序
 produceItemPreparation.description.unselected,アイテムを選択していません,未选择道具
 produceItemPreparation.itemList.empty,プロデュースアイテムを所持していません,未持有Produce道具
-produceItemPreparation.itemList.tips,プロデュースアイテムは、2つまで持っていくことができますよ〜,Produce道具最多可以持有两个
+produceItemPreparation.itemList.tips,プロデュースアイテムは、2つまで持っていくことができますよ〜,Produce道具最多可以携带两个
 produceItemPreparation.isNotRestricted,なし,无
 produceItemPreparation.isAreaRestricted,このアイテムは選択したプロデュースに\n持ち込むことができません,该道具不可在所选Produce中携带
 produceItemPreparation.sameEffectType,同じ効果のプロデュースアイテムを複数持ち込むことはできません,无法携带复数同效果的Produce道具
@@ -663,7 +663,7 @@ produceTop.homeConfirmPop.message,現在のプロデュース内容を保存し�
 produceTop.restConfirmPop.title,確認画面,确认界面
 produceTop.restConfirmPop.message,アイドルを休ませますか？,要让偶像休息一下吗？
 produceTop.releasedCommentsPop.title,ボイス解放,语音解锁
-produceTop.releasedCommentsPop.message,を解放しましたホームにて聞くことができます,已解锁并可在主界面听取
+produceTop.releasedCommentsPop.message,を解放しましたホームにて聞くことができます,已解锁并可在主界面欣赏
 produceTop.concertConfirmPop.title,確認画面,确认界面
 produceTop.concertConfirmPop.message,ライブを開始しますか？,要开始Live吗？
 produceTop.ideaNoteAlertPop.title,アイデアノート確認,创想笔记确认
@@ -748,7 +748,7 @@ shop.salesItemDialog.remainingText2,で販売終了,贩卖结束
 shop.purchaseConfirmation.title,購入確認,购入确认
 shop.purchaseConfirmation.message,%{currencyName}を消費して\n以下のアイテムを購入しますか？,要使用%{currencyName}\n购入以下道具吗？
 shop.purchaseConfirmation.messageSimple,以下のアイテムを購入しますか？,要购入以下道具吗？
-shop.purchaseConfirmation.notice.convertMerchandise,解放済みのコミュはアルバムの鍵に変換されます,已解锁的剧情变换为相册钥匙
+shop.purchaseConfirmation.notice.convertMerchandise,解放済みのコミュはアルバムの鍵に変換されます,已解锁的剧情将变换为相册钥匙
 shop.purchaseConfirmation.notice.jewelMerchandise,無償フェザージュエルから先に消費されます,无偿羽石
 shop.exchangeConfirmation.title,交換確認,优先使用无偿羽石
 shop.exchangeConfirmation.message,%{exchangeItemName}を消費して\n以下のアイテムと交換しますか？,要使用%{exchangeItemName}\n兑换以下道具吗？
@@ -854,7 +854,7 @@ twitter.tweetFailedLimitRateDialog.description,ゲーム全体でのツイート
 useBanaCoinPop.title,使用確認,使用确认
 useBanaCoinPop.checkDescription,enzaポイントをバナコインに変換する,将enza点数兑换为万代币
 workActivityTop.motivationLevel,モチベーションボーナス %{motivationLevel},营业积极性加成 %{motivationLevel}
-workActivityTop.createItemTitle,お手製差し入れ作成,手工慰劳点心制作
+workActivityTop.createItemTitle,お手製差し入れ作成,制作手工慰劳品
 workActivityTop.createItemResultTitle,作成結果,制作结果
 workActivityTop.purchaseSlotDescription,営業枠を１つ解放します\nよろしいですか？,解锁1个营业栏\n确认吗？
 workActivityTop.purchaseBilledOnlyNotice,有償フェザージュエルでのみ購入可能,仅能使用有偿羽石购买
