@@ -1,5 +1,5 @@
 const Fontmin = require('fontmin')
-const ttf2woff2 = require('gulp-ttf2woff2')
+const ttf2woff2 = require('./fontmin-ttf2woff2')
 const glob = require('glob')
 const fs = require('fs')
 
