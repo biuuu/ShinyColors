@@ -964,3 +964,12 @@ lotteryResult.rankRewardCount,×%{rankRewardCount},
 mission.receiveDateLimit,【受取期限】%{closeAt}まで,【领取期限】%{closeAt}截止
 errorDialog.offline,通信中にオフラインになりました。\nネットワーク環境をご確認の上、\nページの再読み込みをお試しください。,通信时发生网络断线。\n请确认网络环境后，\n尝试再次读取网页
 gameEvent.eventEnded,イベント開催期間は終了しました,活动举办时段已结束
+tutorial.openingMessage.mes0,「アイドル」,
+tutorial.openingMessage.mes1,それは,
+tutorial.openingMessage.mes2,女の子達の永遠の憧れ,
+tutorial.openingMessage.mes3,だがアイドルの頂点に立てるのは,
+tutorial.openingMessage.mes4,ただ、1組……,
+tutorial.openingMessage.mes6,そんなサバイバルな世界に,
+tutorial.openingMessage.mes7,今19人の女の子と,
+tutorial.openingMessage.mes8,１人のプロデューサーが,
+tutorial.openingMessage.mes9,足を踏み入れる！,
