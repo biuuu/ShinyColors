@@ -113,12 +113,12 @@ const transStory = (data, storyMap, nameMap) => {
         item.select = storyMap.get(sKey)
       }
     }
-    if (item.speaker) {
-      const speaker = trim(item.speaker, true)
-      if (nameMap.has(speaker)) {
-        item.speaker = nameMap.get(speaker)
-      }
-    }
+    // if (item.speaker) {
+    //   const speaker = trim(item.speaker, true)
+    //   if (nameMap.has(speaker)) {
+    //     item.speaker = nameMap.get(speaker)
+    //   }
+    // }
   })
 }
 

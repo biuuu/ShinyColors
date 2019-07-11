@@ -20,7 +20,7 @@ const getCommMap = async () => {
       if (item && item.ja) {
         const _ja = trimWrap(item.ja)
         const _zh = trimWrap(item.zh)
-        if (_ja && _zh) {
+        if (_ja && _zh && _ja !== _zh) {
           commonMap.set(_ja, _zh)
         }
       }

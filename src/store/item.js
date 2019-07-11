@@ -20,7 +20,7 @@ const getItem = async () => {
         const text = trim(item.text, true)
         const trans = trimWrap(item.trans, true)
         const type = trim(item.type, true) || 'normal'
-        if (text && trans) {
+        if (text && trans && text !== trans) {
           if (type === 'limit') {
             itemLimitMap.set(text, trans)
           } else {

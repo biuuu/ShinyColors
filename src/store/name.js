@@ -18,7 +18,7 @@ const getName = async () => {
     list.forEach(item => {
       const name = trim(item.name, true)
       const trans = trim(item.trans, true)
-      if (name && trans) {
+      if (name && trans && name !== trans) {
         nameMap.set(name, tagText(trans))
       }
     })

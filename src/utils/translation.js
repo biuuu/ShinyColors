@@ -108,14 +108,14 @@ const autoTrans = async (data, nameMap, name) => {
     _trans = replaceQuote(_trans)
     data[index][key] = tagText(_trans)
   })
-  data.forEach(item => {
-    if (item.speaker) {
-      const speaker = trim(item.speaker, true)
-      if (nameMap.has(speaker)) {
-        item.speaker = nameMap.get(speaker)
-      }
-    }
-  })
+  // data.forEach(item => {
+  //   if (item.speaker) {
+  //     const speaker = trim(item.speaker, true)
+  //     if (nameMap.has(speaker)) {
+  //       item.speaker = nameMap.get(speaker)
+  //     }
+  //   }
+  // })
 }
 
 export default autoTrans
