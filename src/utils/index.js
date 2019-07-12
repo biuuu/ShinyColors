@@ -1,4 +1,5 @@
 import isString from 'lodash/isString'
+import tagText from './tagText'
 
 const restoreConsole = () => {
   const iframe = document.createElement('iframe')
@@ -82,6 +83,16 @@ const replaceQuote = (str) => {
 
 }
 
+const speakerList = ['プロデューサー', '審査員']
+const transSpeaker = (item, nameMap) => {
+  if (item.speaker) {
+    const speaker = trim(item.speaker, true)
+    if (speakerList.includes(speaker) && nameMap.has(speaker)) {
+      item.speaker = tagText(nameMap.get(speaker))
+    }
+  }
+}
+
 export {
   trim,
   trimWrap,
@@ -93,5 +104,6 @@ export {
   removeWrap,
   replaceWords,
   replaceQuote,
-  pureRE
+  pureRE,
+  transSpeaker
 }

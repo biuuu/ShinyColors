@@ -1,11 +1,12 @@
 import { getHash } from '../utils/fetch'
-import { log, replaceWrap, removeWrap, trim } from '../utils/index'
+import { log, replaceWrap, removeWrap, trim, transSpeaker } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
-import getStory, { storyTitle } from '../store/story'
+import getStory, { storyTitle, getCommStory } from '../store/story'
 import getName from '../store/name'
 import autoTrans from '../utils/translation'
 import { requestLog } from './request'
+import tagText from '../utils/tagText'
 
 const getModule = async () => {
   let scnModule
@@ -90,19 +91,22 @@ const saveData = (data, name) => {
   storyCache.list = list
 }
 
-const transStory = (data, storyMap, nameMap) => {
+const transStory = (data, storyMap, commMap, nameMap) => {
   if (!Array.isArray(data)) return
   data.forEach(item => {
+    transSpeaker(item, nameMap)
     if (item.text) {
-      const text = removeWrap(item.text)
       if (item.id) {
         const id = item.id + ''
         if (storyMap.has(id)) {
           item.text = storyMap.get(id)
         }
       } else {
+        const text = removeWrap(item.text)
         if (storyMap.has(text)) {
           item.text = storyMap.get(text)
+        } else if (commMap.has(item.text)) {
+          item.text = tagText(commMap.get(item.text))
         }
       }
     }
@@ -111,14 +115,10 @@ const transStory = (data, storyMap, nameMap) => {
       const sKey = `${select}-select`
       if (storyMap.has(sKey)) {
         item.select = storyMap.get(sKey)
+      } else if (commMap.has(item.select)) {
+        item.select = tagText(commMap.get(item.select))
       }
     }
-    // if (item.speaker) {
-    //   const speaker = trim(item.speaker, true)
-    //   if (nameMap.has(speaker)) {
-    //     item.speaker = nameMap.get(speaker)
-    //   }
-    // }
   })
 }
 
@@ -155,11 +155,12 @@ const transScenario = async () => {
           storyMap = await getStory(name)
         }
         if (storyMap) {
+          const commMap = await getCommStory()
           const nameMap = await getName()
-          transStory(res, storyMap, nameMap)
+          transStory(res, storyMap, commMap, nameMap)
         } else if (config.auto === 'on') {
-          const nameMap = await getName()
-          await autoTrans(res, nameMap, name)
+          const commMap = await getCommStory()
+          await autoTrans(res, commMap, name)
         }
       } catch (e) {
         log(e)

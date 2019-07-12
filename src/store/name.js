@@ -2,7 +2,6 @@ import fetchData from '../utils/fetch'
 import parseCsv from '../utils/parseCsv'
 import { getLocalData, setLocalData } from './index'
 import { trim } from '../utils/index'
-import tagText from '../utils/tagText'
 
 const nameMap = new Map()
 let loaded = false
@@ -19,7 +18,7 @@ const getName = async () => {
       const name = trim(item.name, true)
       const trans = trim(item.trans, true)
       if (name && trans && name !== trans) {
-        nameMap.set(name, tagText(trans))
+        nameMap.set(name, trans)
       }
     })
     loaded = true

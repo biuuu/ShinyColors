@@ -1,6 +1,5 @@
 import getPhrase from '../store/phrase'
 import { getHash } from '../utils/fetch'
-import tagText from '../utils/tagText'
 import { log } from '../utils/index'
 
 let phraseMap = null
@@ -35,6 +34,6 @@ export default async function transPhrase () {
   // }
   phraseMap = await getPhrase()
   for (let [key, value] of phraseMap) {
-    obj[key] = tagText(value)
+    obj[key] = value
   }
 }

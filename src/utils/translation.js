@@ -1,5 +1,6 @@
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, trim, log, replaceQuote } from '../utils/index'
+import { replaceWords, log, replaceQuote, trimWrap, replaceWrap, transSpeaker } from '../utils/index'
+import getName from '../store/name'
 import tagText from './tagText'
 
 const request = (url, option) => {
@@ -77,7 +78,7 @@ const nounFix = async (list) => {
 
 const autoTransCache = new Map()
 
-const autoTrans = async (data, nameMap, name) => {
+const autoTrans = async (data, commMap, name) => {
   let fixedTransList
   const { textInfo, textList } = collectText(data)
 
@@ -99,23 +100,26 @@ const autoTrans = async (data, nameMap, name) => {
   fixedTransList.forEach((trans, idx) => {
     let _trans = trans
     const { key, index } = textInfo[idx]
-    if (key === 'select') {
-      if (trans.length > 8 && !trans.includes('\n')) {
-        const len = Math.floor(trans.length / 2) + 1
-        _trans = trans.slice(0, len) + '\n' + trans.slice(len, trans.length)
+    const text = trimWrap(replaceWrap(data[index][key]))
+
+    if (commMap.has(text)) {
+      _trans = commMap.get(text)
+    } else {
+      if (key === 'select') {
+        if (trans.length > 8 && !trans.includes('\n')) {
+          const len = Math.floor(trans.length / 2) + 1
+          _trans = trans.slice(0, len) + '\n' + trans.slice(len, trans.length)
+        }
       }
+      _trans = replaceQuote(_trans)
     }
-    _trans = replaceQuote(_trans)
+    if (idx === 0) _trans = `＊${_trans}`
     data[index][key] = tagText(_trans)
   })
-  // data.forEach(item => {
-  //   if (item.speaker) {
-  //     const speaker = trim(item.speaker, true)
-  //     if (nameMap.has(speaker)) {
-  //       item.speaker = nameMap.get(speaker)
-  //     }
-  //   }
-  // })
+  const nameMap = await getName()
+  data.forEach(item => {
+    transSpeaker(item, nameMap)
+  })
 }
 
 export default autoTrans

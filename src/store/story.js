@@ -6,6 +6,8 @@ import tagText from '../utils/tagText'
 
 const storyTemp = new Map()
 const storyTitle = new Map()
+const commStoryMap = new Map()
+let commStoryLoaded = false
 let storyIndex = null
 
 const collectStoryTitle = (data) => {
@@ -80,5 +82,28 @@ const getStory = async (name) => {
   return false
 }
 
-export { getStoryMap, storyTitle, collectStoryTitle }
+const getCommStory = async () => {
+  if (!commStoryLoaded) {
+    let csv = await getLocalData('comm-story')
+    if (!csv) {
+      csv = await fetchData('/data/comm-story.csv')
+      setLocalData('comm-story', csv)
+    }
+    const list = parseCsv(csv)
+    list.forEach(item => {
+      if (item && item.ja) {
+        const _ja = trimWrap(item.ja)
+        const _zh = trimWrap(item.zh)
+        if (_ja && _zh && _ja !== _zh) {
+          commStoryMap.set(_ja, _zh)
+        }
+      }
+    })
+    commStoryLoaded = true
+  }
+
+  return commStoryMap
+}
+
+export { getStoryMap, storyTitle, collectStoryTitle, getCommStory }
 export default getStory
