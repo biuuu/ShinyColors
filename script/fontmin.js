@@ -48,7 +48,7 @@ const start = (src, txt, removeJa = false) => {
   })
 }
 
-glob('{data/**/*.csv,script/text.txt}', function (err, files) {
+glob('data/**/*.csv', function (err, files) {
   if (err) {
     console.error(err)
   }
@@ -58,24 +58,6 @@ glob('{data/**/*.csv,script/text.txt}', function (err, files) {
 
   Promise.all(prims).then(txts => {
     txts.forEach(appendText)
-    glob('localtext/*.csv', function (err, files) {
-      let _text = text
-      let _txt = ''
-      Promise.all(files.map(file => {
-        return readString(file).then(txt => {
-          if (txt) {
-            for (let i = 0; i < txt.length; i++) {
-              if (!_text.includes(txt[i])) {
-                _text += txt[i]
-                _txt += txt[i]
-              }
-            }
-          }
-        })
-      })).then(() => {
-        console.log(_txt)
-      })
-    })
     console.log(text.length + '个字符')
     start(srcPath[0], text)
     start(srcPath[1], text, true)
