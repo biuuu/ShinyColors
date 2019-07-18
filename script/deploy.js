@@ -4,7 +4,7 @@ const md5Dir = require('md5-dir/promise')
 const { version } = require('../package.json')
 const glob = require('glob')
 const CSV = require('papaparse')
-const moduleId = require('./gameModule.json')
+const moduleId = require('./MODULE_ID.json')
 
 const Glob = glob.Glob
 glob.promise = function (pattern, options) {
