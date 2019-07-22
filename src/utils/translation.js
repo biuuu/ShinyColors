@@ -113,7 +113,7 @@ const autoTrans = async (data, commMap, name) => {
       }
       _trans = replaceQuote(_trans)
     }
-    if (idx === 0) _trans = `＊${_trans}`
+    if (idx === 0) _trans = `${_trans}＊`
     data[index][key] = tagText(_trans)
   })
   const nameMap = await getName()
