@@ -38,7 +38,7 @@ const start = async () => {
   await fse.emptyDir('./dist/data/')
   const hash = await md5Dir('./data/')
   console.log(hash)
-  await fse.writeJSON('./dist/manifest.json', { hash, version, moduleId })
+  await fse.writeJSON('./dist/manifest.json', { hash, version, moduleId, date: new Date().toLocaleString() })
   console.log('story...')
   const files = await glob.promise('./data/story/**/*.csv')
   const prims = files.map(file => {
