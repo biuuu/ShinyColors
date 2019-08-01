@@ -63,8 +63,8 @@ export default async function requestHook () {
         await transUserItem(res.body)
       } else if (type.includes('userPresents?limit=') || type.includes('userPresentHistories?limit=')) {
         await transPresentItem(res.body)
-      } else if (type === 'gashaGroups/1673/rates') {
-        if (DEV) {
+      } else if (/gashaGroups\/\d+\/rates/.test(type)) {
+        if (DEV && COLLECT_CARD_RATE) {
           collectCardName(res.body)
         }
       }
