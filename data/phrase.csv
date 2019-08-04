@@ -805,6 +805,7 @@ training.skillListTitle,習得するサポートスキル,习得Support技能
 training.startConfirm,トレーニング確認,训练确认
 training.resultTitle,トレーニング成功,训练成功
 training.resultTitleGreat,トレーニング大成功,训练大成功
+training.resultTitleSuper,トレーニング超成功,训练超成功
 trend.historyText,先週%{rank}位,上周%{rank}位
 trend.txtNextFan,あと  %{count}人,还需  %{count}人
 tutorial.openingMessage.mes0,「アイドル」,
