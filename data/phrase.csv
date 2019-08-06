@@ -332,7 +332,7 @@ gasha.redrawGashaNotice,確定するまで何度でも\n引き直すことがで
 gasha.resultMessage,既に加入済みのアイドルは控室に送られます。,已加入的偶像将移至等候室。
 gasha.tweetLayerMessage,ツイートしたいアイドルを選択してください,选择要发送推特展示的偶像
 gasha.gashaText,%{quantity}回引く,%{quantity}回抽卡
-gasha.popTicketDesc,%{ticketName}を消費してガシャを%{quantity}回引きます。よろしいですか？,确认使用%{ticketName}进行%{quantity}回抽卡吗？
+gasha.popTicketDesc,%{ticketName}を消費してガシャを%{quantity}回引きます。よろしいですか？,确认使用\n%{ticketName}\n进行%{quantity}回抽卡吗？
 gasha.popJewelDesc,フェザージュエルを%{price}個消費してガシャを%{quantity}回引きます。よろしいですか？,确认使用%{price}个羽石进行%{quantity}回抽卡吗？
 gasha.popBanaCoinDesc,バナコインでガシャを%{quantity}回引きますか？,要使用万代币进行%{quantity}回抽卡吗？
 gasha.popFreeDesc,無料で1回ガシャを引きますか？,要进行一次免费抽卡吗？
@@ -982,9 +982,9 @@ errorDialog.shopClosedTitle,購入期間外,不在购入时段内
 errorDialog.closedText,期間は終了しました,时段已结束
 extraCampaign.application.receivedNotice,受け取り済,已领取
 extraCampaign.application.receivTimeOverNotice,受け取り期間終了,领取时段结束
-extraCampaign.application.receiveTimeLimit,yyyy/mm/dd HH:MMまで,yyyy/mm/dd HH:MM之前
+extraCampaign.application.receiveTimeLimit,yyyy/mm/dd HH:MMまで,yyyy/mm/dd HH:MM截止
 extraCampaign.application.receiveTimeLimitLabel,受取期間,领取时段
-extraCampaign.application.applyTimeLimit,yyyy/mm/dd HH:MMまで,yyyy/mm/dd HH:MM之前
+extraCampaign.application.applyTimeLimit,yyyy/mm/dd HH:MMまで,yyyy/mm/dd HH:MM截止
 extraCampaign.application.applyTimeLimitLabel,応募期間,应募时段
 extraCampaign.application.announceTime,yyyy/mm/dd HH:MM,
 extraCampaign.application.announceTimeLabel,当選発表,当选发表
