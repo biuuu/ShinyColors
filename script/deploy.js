@@ -32,13 +32,25 @@ const readCsv = async (csvPath, silence) => {
   }
 }
 
+const getDate = (offset = 0) => {
+  const dt = new Date(Date.now() + (offset * 60 * 60 * 1000))
+  const year = dt.getUTCFullYear()
+  const month = dt.getUTCMonth() + 1
+  const date = dt.getUTCDate()
+  const h = dt.getUTCHours()
+  const m = dt.getUTCMinutes()
+  const sec = dt.getUTCSeconds()
+  const msec = dt.getUTCMilliseconds()
+  return `${year}/${month}/${date} ${h}:${m}:${sec}.${msec}`
+}
+
 const etcFiles = ['image', 'item', 'mission', 'support-skill', 'mission-re']
 
 const start = async () => {
   await fse.emptyDir('./dist/data/')
   const hash = await md5Dir('./data/')
   console.log(hash)
-  await fse.writeJSON('./dist/manifest.json', { hash, version, moduleId, date: new Date().toLocaleString() })
+  await fse.writeJSON('./dist/manifest.json', { hash, version, moduleId, date: getDate(8) })
   console.log('story...')
   const files = await glob.promise('./data/story/**/*.csv')
   const prims = files.map(file => {
