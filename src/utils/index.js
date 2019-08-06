@@ -80,7 +80,7 @@ const replaceQuote = (str) => {
   return str
     .replace(/"([^"]*)"/g, '“$1”')
     .replace(/'([^']*)'/g, '“$1”')
-
+    .replace(/‘([^']+)'/g, '“$1”')
 }
 
 const speakerList = ['プロデューサー', '審査員']
