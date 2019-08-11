@@ -303,7 +303,7 @@ gameEvent.resumeSpecialCommunicationsDialog.message,進行中のシナリオが�
 gameEvent.boxGasha.acquiredItemRatio,%{acquiredItemCount}/%{originItemCount},
 gameEvent.boxGasha.noCheckItem,チェック中のアイテムはありません,未选定道具
 gameEvent.boxGasha.lastBox,最後のボックスです,最后的BOX
-gameEvent.boxGasha.completedComment,%{boxName}のアイテムはすべて引き終わりました次のボックスへ移動してください,%{boxName}内的道具已全部抽取完毕请移动至下一个BOX
+gameEvent.boxGasha.completedComment,%{boxName}のアイテムはすべて引き終わりました次のボックスへ移動してください,%{boxName}内的道具已全部抽取完毕\n请移动至下一个BOX
 gameEvent.boxGasha.checkItemDialog.title.change,ボックス詳細,BOX详细
 gameEvent.boxGasha.checkItemDialog.title.confirm,チェック中のアイテム確認,选定的道具确认
 gameEvent.boxGasha.checkItemDialog.text.change,チェック中のアイテムはイベントTOPで残り状況を確認できます,可于活动首页确认选定道具的剩余状况
@@ -314,7 +314,7 @@ gameEvent.boxGasha.nextBoxDialog.title,ボックス移動確認,BOX移动确认
 gameEvent.boxGasha.nextBoxDialog.hasNoRemainingItemsText,次のボックスに移動します,移动至下一个BOX
 gameEvent.boxGasha.nextBoxDialog.hasRemainingItemsText,チェックしたアイテムを獲得していません次のボックスに移動しますか？,选定的道具无法获得要移动到下一个BOX吗？
 gameEvent.boxGasha.nextBoxDialog.caution,移動した場合、ボックスの中身を戻すことはできません,移动后，将无法回到当前BOX
-gameEvent.boxGasha.nextBoxDialog.check,移動を有効にする,移动有效
+gameEvent.boxGasha.nextBoxDialog.check,移動を有効にする,确认移动
 gameEvent.boxGasha.rewardDialogTitle,結果,结果
 gameEvent.boxGasha.tabBoxName,ボックス,BOX
 unitBonusBanner.schedule,%{closeAt}まで,%{closeAt}截止
@@ -762,8 +762,8 @@ shop.purchaseResult.message,%{title}を購入しました,%{title}已购入
 shop.purchaseResult.twoLinesMessage,%{title}を購入しました,%{title}已购入
 shop.purchasableText.noLimitText,なし,无
 shop.exchangeResult.title,交換結果,兑换结果
-shop.exchangeResult.message,%{title}と交換しました,已与%{title}兑换
-shop.exchangeResult.twoLinesMessage,%{title}と交換しました,已与%{title}兑换
+shop.exchangeResult.message,%{title}と交換しました,%{title}兑换完成
+shop.exchangeResult.twoLinesMessage,%{title}と交換しました,%{title}兑换完成
 shop.currencyLabel.jewelType.billedJewel,有償,有偿
 shop.currencyLabel.jewelType.freeJewel,無償,无偿
 shop.expireDate,【交換期限】%{closeAt}まで,【兑换期限】%{closeAt}截止
