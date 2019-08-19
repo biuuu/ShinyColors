@@ -15,6 +15,8 @@ const main = async () => {
   }
 }
 
-setTimeout(() => {
+if (window.unsafeWindow) {
+  unsafeWindow.addEventListener('load', main)
+} else {
   window.addEventListener('load', main)
-})
+}
