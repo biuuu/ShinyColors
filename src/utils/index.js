@@ -16,7 +16,8 @@ const isDomain = (str) => {
 
 const trim = (str, full = false) => {
   if (!str) return ''
-  return full ? str.trim() : str.trimEnd()
+  let _str = str.replace(/[ ]+$/g, '')
+  return full ? _str.replace(/^[ ]+/g, '') : _str
 }
 
 const trimWrap = (str, full) => {
