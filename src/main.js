@@ -8,8 +8,7 @@ import { log } from './utils/index'
 
 const main = async () => {
   try {
-    resourceHook()
-    await Promise.all([addFont(), transPhrase(), watchText(), requestHook(), transScenario()])
+    await Promise.all([resourceHook(), addFont(), transPhrase(), watchText(), requestHook(), transScenario()])
   } catch (e) {
     log(e)
   }
