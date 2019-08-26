@@ -22,9 +22,21 @@ const collectStoryTitle = (data) => {
     data.idol.produceAfterEvents.forEach(item => {
       storyTitle.set(item.id, item.title)
     })
-  } else if (data.supportIdol.produceSupportIdolEvents) {
+  } else if (data.supportIdol && data.supportIdol.produceSupportIdolEvents) {
     data.supportIdol.produceSupportIdolEvents.forEach(item => {
       storyTitle.set(item.id, item.title)
+    })
+  } else if (data.gameEvents) {
+    data.gameEvents.forEach(events => {
+      events.communications.forEach(item => {
+        storyTitle.set(item.id, `${item.name} ${item.title}`)
+      })
+    })
+  } else if (data.specialEvents) {
+    data.specialEvents.forEach(events => {
+      events.communications.forEach(item => {
+        storyTitle.set(item.id, `${item.name} ${item.title}`)
+      })
     })
   }
   return storyTitle

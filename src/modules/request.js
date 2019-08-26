@@ -55,7 +55,7 @@ export default async function requestHook () {
         collectStoryTitle(res.body)
       } else if (type === 'userMissions') {
         await transMission(res.body)
-      } else if (type === 'characterAlbums') {
+      } else if (type === 'characterAlbums' || type === 'album/top') {
         collectStoryTitle(res.body)
       } else if (type === 'userShops' || type === 'userIdolPieceShops') {
         await transShopItem(res.body)
