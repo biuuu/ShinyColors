@@ -23,6 +23,7 @@ const getModule = async () => {
     }
   } catch (e) {
     log(e)
+    return false
   }
   return scnModule
 }
