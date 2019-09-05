@@ -75,9 +75,11 @@ const transShopItem = async (data) => {
 }
 
 const transUserItem = async (data) => {
+  let list = data
+  if (data.userProduceItems) list = data.userProduceItems
   const maps = await getItem()
-  if (Array.isArray(data)) {
-    data.forEach(obj => {
+  if (Array.isArray(list)) {
+    list.forEach(obj => {
       const item = obj[itemTypes[0]]
       || obj[itemTypes[1]]
       || obj[itemTypes[2]]

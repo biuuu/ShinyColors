@@ -1,4 +1,5 @@
 export default function (data) {
+  if (!DEV || !COLLECT_CARD_RATE) return
   const normal = []
   const sr = []
   data.forEach(item => {

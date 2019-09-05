@@ -9,6 +9,8 @@ import { userItemTypes, transShopItem,
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
+import isString from 'lodash/isString'
+import isRegExp from 'lodash/isRegExp'
 
 const getRequest = async () => {
   let request
@@ -38,9 +40,66 @@ const requestLog = (method, color, args, data) => {
   }
 }
 
+const requestRouter = async (data, type, list) => {
+  try {
+    for (let [paths, handles] of list) {
+      if (!Array.isArray(paths)) paths = [paths]
+      let pass = false
+      for (let path of paths) {
+        if (isString(path) && path === type) {
+          pass = true
+        } else if (isRegExp(path) && path.test(type)) {
+          pass = true
+        }
+      }
+      if (pass) {
+        if (!Array.isArray(handles)) handles = [handles]
+        for (let handle of handles) {
+          if (isString(handle)) {
+            if (handle === 'storyTitle') collectStoryTitle(data)
+            else if (handle === 'cardName') collectCardName(data)
+          } else {
+            await handle(data)
+          }
+        }
+      }
+    }
+  } catch (e) {
+    log(e)
+  }
+}
+
+const requestOfGet = [
+  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/], [transSkill, 'storyTitle']],
+  [/^userIdols\/\d+$/, 'storyTitle'],
+  ['userMissions', transMission],
+  [['characterAlbums', 'album/top'], 'storyTitle'],
+  [['userShops', 'userIdolPieceShops'], transShopItem],
+  [userItemTypes, transUserItem],
+  [[/^userPresents\?limit=/, /^userPresentHistories\?limit=/], transPresentItem],
+  [/gashaGroups\/\d+\/rates/, 'cardName']
+]
+
+const requestOfPost = [
+  ['myPage', reportMission],
+  [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
+  ['userShops/actions/purchase', transShopPurchase],
+  [/produces\/\d+\/actions\/ready/, transUserItem],
+  [/userPresents\/\d+\/actions\/receive/, transReceivePresent],
+  [/userMissions\/\d+\/actions\/receive/, transReceiveMission],
+  ['userLoginBonuses', transLoginBonus],
+  ['fesTop', transFesReward]
+]
+
+const requestOfPatch = [
+  [/^userSupportIdols\/\d+$/, transSkill]
+]
+
 export default async function requestHook () {
   const request = await getRequest()
   if (!request || !request.get) return
+
+  // GET
   const originGet = request.get
   request.get = async function (...args) {
     const type = args[0]
@@ -48,32 +107,11 @@ export default async function requestHook () {
     if (!type) return res
     let data = res.body
     requestLog('GET', '#009688', args, data)
-    try {
-      if (/^userSupportIdols\/\d+$/.test(type) || type === 'userSupportIdols/statusMax') {
-        await transSkill(data)
-        collectStoryTitle(data)
-      } else if (/^userIdols\/\d+$/.test(type)) {
-        collectStoryTitle(data)
-      } else if (type === 'userMissions') {
-        await transMission(data)
-      } else if (type === 'characterAlbums' || type === 'album/top') {
-        collectStoryTitle(data)
-      } else if (type === 'userShops' || type === 'userIdolPieceShops') {
-        await transShopItem(data)
-      } else if (userItemTypes.includes(type)) {
-        await transUserItem(data)
-      } else if (type.includes('userPresents?limit=') || type.includes('userPresentHistories?limit=')) {
-        await transPresentItem(data)
-      } else if (/gashaGroups\/\d+\/rates/.test(type)) {
-        if (DEV && COLLECT_CARD_RATE) {
-          collectCardName(data)
-        }
-      }
-    } catch (e) {
-      log(e)
-    }
+    await requestRouter(data, type, requestOfGet)
     return res
   }
+
+  // PATCH
   const originPatch = request.patch
   request.patch = async function (...args) {
     const type = args[0]
@@ -81,15 +119,11 @@ export default async function requestHook () {
     if (!type) return res
     let data = res.body
     requestLog('PATCH', '#8BC34A', args, data)
-    try {
-      if (/^userSupportIdols\/\d+$/.test(type)) {
-        await transSkill(data.userSupportIdol)
-      }
-    } catch (e) {
-      log(e)
-    }
+    await requestRouter(data, type, requestOfPatch)
     return res
   }
+
+  // POST
   const originPost = request.post
   request.post = async function (...args) {
     const type = args[0]
@@ -97,31 +131,11 @@ export default async function requestHook () {
     if (!type) return res
     let data = res.body
     requestLog('POST', '#3F51B5', args, data)
-    try {
-      if (type === 'myPage') {
-        await reportMission(data)
-      } else if (/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/.test(type)) {
-        await fesRecomMission(data)
-        await transAccumulatedPresent(data)
-      } else if (type === 'userShops/actions/purchase') {
-        await transShopPurchase(data)
-      } else if (/produces\/\d+\/actions\/ready/.test(type)) {
-        await transUserItem(data.userProduceItems)
-      } else if (/userPresents\/\d+\/actions\/receive/.test(type)) {
-        await transReceivePresent(data)
-      } else if (/userMissions\/\d+\/actions\/receive/.test(type)) {
-        await transReceiveMission(data)
-      } else if (type === 'userLoginBonuses') {
-        await transLoginBonus(data)
-      } else if (type === 'fesTop') {
-        await transFesReward(data)
-      }
-    } catch (e) {
-      log(e)
-    }
-
+    await requestRouter(data, type, requestOfPost)
     return res
   }
+
+  // PUT
   const originPut = request.put
   request.put = async function (...args) {
     const type = args[0]
