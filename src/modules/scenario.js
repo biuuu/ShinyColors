@@ -1,5 +1,5 @@
 import { getHash } from '../utils/fetch'
-import { log, replaceWrap, removeWrap, trim, transSpeaker } from '../utils/index'
+import { log, replaceWrap, fixWrap, trim, transSpeaker } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
 import getStory, { storyTitle, getCommStory } from '../store/story'
@@ -103,7 +103,7 @@ const transStory = (data, storyMap, commMap, nameMap) => {
           item.text = storyMap.get(id)
         }
       } else {
-        const text = removeWrap(item.text)
+        const text = fixWrap(item.text)
         if (storyMap.has(text)) {
           item.text = storyMap.get(text)
         } else if (commMap.has(item.text)) {
@@ -112,11 +112,11 @@ const transStory = (data, storyMap, commMap, nameMap) => {
       }
     }
     if (item.select) {
-      const select = removeWrap(item.select)
+      const select = fixWrap(item.select)
       const sKey = `${select}-select`
       if (storyMap.has(sKey)) {
         item.select = storyMap.get(sKey)
-      } else if (commMap.has(item.select)) {
+      } else if (commMap.has(select)) {
         item.select = tagText(commMap.get(item.select))
       }
     }
@@ -160,8 +160,7 @@ const transScenario = async () => {
           const nameMap = await getName()
           transStory(res, storyMap, commMap, nameMap)
         } else if (config.auto === 'on') {
-          const commMap = await getCommStory()
-          await autoTrans(res, commMap, name)
+          await autoTrans(res, name)
         }
       } catch (e) {
         log(e)

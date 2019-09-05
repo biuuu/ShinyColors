@@ -1,7 +1,7 @@
 import isString from 'lodash/isString'
 import getCommMap from '../store/commText'
 import { FONT } from '../config'
-import { log } from '../utils/index'
+import { log, fixWrap } from '../utils/index'
 import getTypeTextMap from '../store/typeText'
 
 let commMap = new Map()
@@ -29,8 +29,9 @@ const restoreFont = (style) => {
 
 const textInMap = (text, map, style) => {
   let _text = text
-  if (map.has(text)) {
-    _text = '\u200b' + map.get(text)
+  let key = fixWrap(text)
+  if (map.has(key)) {
+    _text = '\u200b' + map.get(key)
     replaceFont(style)
   } else if (!text.startsWith('\u200b')) {
     restoreFont(style)

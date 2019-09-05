@@ -16,8 +16,8 @@ const getNounFix = async () => {
     }
     const list = parseCsv(csv)
     sortWords(list, 'text').forEach(item => {
-      const text = trim(item.text, true)
-      const fixed = trim(item.fixed, true)
+      const text = trim(item.text)
+      const fixed = trim(item.fixed)
       if (text) {
         nounFixMap.set(text, fixed)
       }
@@ -40,8 +40,8 @@ const getCaiyunPrefix = async () => {
     }
     const list = parseCsv(csv)
     sortWords(list, 'text').forEach(item => {
-      const text = trim(item.text, true)
-      const fixed = trim(item.fixed, true)
+      const text = trim(item.text)
+      const fixed = trim(item.fixed)
       if (text) {
         cyPrefixMap.set(text, fixed)
       }

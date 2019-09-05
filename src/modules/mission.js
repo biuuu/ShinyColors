@@ -1,13 +1,13 @@
 import getMission from '../store/mission'
 import tagText from '../utils/tagText'
 import replaceText from '../utils/replaceText'
-import { log } from '../utils/index'
+import { fixWrap, replaceWrap, log } from '../utils/index'
 
 let missionData = null
 const replaceMission = (data, key) => {
   if (!data) return
   const { expMap, wordMaps, textMap } = missionData
-  const text = data[key]
+  const text = fixWrap(data[key])
   let _text = text
   if (!text) return
   if (textMap.has(text)) {
@@ -34,7 +34,7 @@ const processMission = (list) => {
 const unknownMissions = []
 const saveUnknownMissions = (data, key) => {
   if (!data[key]) return
-  const text = data[key].replace(/\r?\n|\r/g, '\\n')
+  const text = replaceWrap(data[key])
   if (!missionMap.has(text) && !unknownMissions.includes(text)) {
     unknownMissions.push(text)
   }

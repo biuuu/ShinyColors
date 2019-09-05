@@ -14,14 +14,18 @@ const isDomain = (str) => {
   return true
 }
 
-const trim = (str, full = false) => {
+const trim = (str) => {
   if (!str) return ''
-  let _str = str.replace(/[ ]+$/g, '')
-  return full ? _str.replace(/^[ ]+/g, '') : _str
+  let _str = str.replace(/[\u0020]+$/g, '')
+  return _str.replace(/^[\u0020]+/g, '')
 }
 
-const trimWrap = (str, full) => {
-  return trim(str, full).replace(/\\r/g, '\r').replace(/\\n/g, '\n')
+const trimWrap = (str) => {
+  return trim(str).replace(/\\r/g, '\n').replace(/\\n/g, '\n').replace(/\n{2,}/g, '\n')
+}
+
+const fixWrap = (str) => {
+  return trim(str).replace(/\r/g, '\n').replace(/\n{2,}/g, '\n')
 }
 
 const pureRE = str => {
@@ -87,7 +91,7 @@ const replaceQuote = (str) => {
 const speakerList = ['プロデューサー', '審査員']
 const transSpeaker = (item, nameMap) => {
   if (item.speaker) {
-    const speaker = trim(item.speaker, true)
+    const speaker = trim(item.speaker)
     if (speakerList.includes(speaker) && nameMap.has(speaker)) {
       item.speaker = tagText(nameMap.get(speaker))
     }
@@ -97,6 +101,7 @@ const transSpeaker = (item, nameMap) => {
 export {
   trim,
   trimWrap,
+  fixWrap,
   restoreConsole,
   isDomain,
   log,

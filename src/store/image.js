@@ -16,9 +16,9 @@ const getImage = async () => {
     const list = parseCsv(csv)
     list.forEach(item => {
       if (item && item.name) {
-        const name = trim(item.name, true)
-        const url = trim(item.url, true)
-        const version = trim(item.version, true) || '1'
+        const name = trim(item.name)
+        const url = trim(item.url)
+        const version = trim(item.version) || '1'
         if (name && url) {
           imageMap.set(name, { url, version })
         }

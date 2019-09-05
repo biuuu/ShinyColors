@@ -21,9 +21,9 @@ const getSupportSkill = async () => {
     const reMap = new Map()
     sortWords(list, 'text').forEach(item => {
       if (item && item.text) {
-        const text = trim(item.text, true)
+        const text = trimWrap(item.text)
         const trans = trimWrap(item.trans)
-        const type = trim(item.type, true)
+        const type = trim(item.type)
         if (text && trans) {
           if (type === 'noun') {
             nounArr.push(pureRE(text))

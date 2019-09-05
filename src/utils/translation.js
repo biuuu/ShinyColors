@@ -1,7 +1,9 @@
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, log, replaceQuote, trimWrap, replaceWrap, transSpeaker } from '../utils/index'
+import { replaceWords, log, replaceQuote, fixWrap, transSpeaker } from '../utils/index'
 import getName from '../store/name'
 import tagText from './tagText'
+import { getCommStory } from '../store/story'
+import getTypeTextMap from '../store/typeText'
 
 const request = (url, option) => {
   const { method = 'GET', headers, data } = option
@@ -40,24 +42,18 @@ const caiyunTrans = async (source, lang = 'ja') => {
   }
 }
 
-const collectText = (data) => {
+const textKeys = ['text', 'select', 'comment']
+const collectText = (data, commMap, typeTextMap) => {
   const textInfo = []
   const textList = []
   data.forEach((item, index) => {
-    if (item.text) {
-      textInfo.push({
-        key: 'text',
-        index
-      })
-      textList.push(item.text)
-    }
-    if (item.select) {
-      textInfo.push({
-        key: 'select',
-        index
-      })
-      textList.push(item.select)
-    }
+    textKeys.forEach(key => {
+      let text = fixWrap(item[key])
+      if (item[key] && !commMap.has(text) && !typeTextMap.has(text)) {
+        textInfo.push({ key, index })
+        textList.push(text)
+      }
+    })
   })
   return { textInfo, textList }
 }
@@ -78,17 +74,19 @@ const nounFix = async (list) => {
 
 const autoTransCache = new Map()
 
-const autoTrans = async (data, commMap, name) => {
+const autoTrans = async (data, name) => {
   let fixedTransList
-  const { textInfo, textList } = collectText(data)
-
-  if (autoTransCache.has(name)) {
-    fixedTransList = autoTransCache.get(name)
+  const commMap = await getCommStory()
+  const typeTextMap = await getTypeTextMap()
+  const { textInfo, textList } = collectText(data, commMap, typeTextMap)
+  const storyKey = name || data
+  if (autoTransCache.has(storyKey)) {
+    fixedTransList = autoTransCache.get(storyKey)
   } else {
     const fixedTextList = await preFix(textList)
     const transList = await caiyunTrans(fixedTextList)
     fixedTransList = await nounFix(transList)
-    autoTransCache.set(name, fixedTransList)
+    autoTransCache.set(storyKey, fixedTransList)
   }
   if (DEV) {
     let mergedList = []
@@ -100,7 +98,7 @@ const autoTrans = async (data, commMap, name) => {
   fixedTransList.forEach((trans, idx) => {
     let _trans = trans
     const { key, index } = textInfo[idx]
-    const text = trimWrap(replaceWrap(data[index][key]))
+    const text = fixWrap(data[index][key])
 
     if (commMap.has(text)) {
       _trans = commMap.get(text)
@@ -113,7 +111,7 @@ const autoTrans = async (data, commMap, name) => {
       }
       _trans = replaceQuote(_trans)
     }
-    if (idx === 0) _trans = `${_trans}＊`
+    if (idx === 0) _trans = `${_trans}☁️`
     data[index][key] = tagText(_trans)
   })
   const nameMap = await getName()

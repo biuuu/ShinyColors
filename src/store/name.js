@@ -15,8 +15,8 @@ const getName = async () => {
     }
     const list = parseCsv(csv)
     list.forEach(item => {
-      const name = trim(item.name, true)
-      const trans = trim(item.trans, true)
+      const name = trim(item.name)
+      const trans = trim(item.trans)
       if (name && trans && name !== trans) {
         nameMap.set(name, trans)
       }

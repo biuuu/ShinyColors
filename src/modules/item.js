@@ -1,5 +1,6 @@
 import getItem from '../store/item'
 import tagText from '../utils/tagText'
+import { fixWrap } from '../utils/'
 
 const userItemTypes = [
   'userRecoveryItems',
@@ -25,7 +26,7 @@ const itemTypes = [
 
 const transItem = (item, key, { itemMap, itemLimitMap }) => {
   if (!item || typeof item[key] !== 'string') return
-  let text = item[key].trim()
+  let text = fixWrap(item[key])
   let limit = ''
   if (/[\r\n]{1,2}\[[^\]]+\]$/.test(text)) {
     let rgs = text.match(/([\s\S]+)[\r\n]{1,2}(\[[^\]]+\])$/)
@@ -39,10 +40,8 @@ const transItem = (item, key, { itemMap, itemLimitMap }) => {
     }
   }
 
-  let trans = text
-  text = text.replace(/\r?\n|\r/g, '\\n')
   if (itemMap.has(text)) {
-    trans = itemMap.get(text)
+    let trans = itemMap.get(text)
     if (limit) {
       trans += `\n${limit}`
     }

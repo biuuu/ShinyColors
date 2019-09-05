@@ -1,6 +1,6 @@
 import getPhrase from '../store/phrase'
 import { getHash } from '../utils/fetch'
-import { log } from '../utils/index'
+import { replaceWrap, log } from '../utils/index'
 
 let phraseMap = null
 const getPhraseObj = async () => {
@@ -19,7 +19,7 @@ const collectPhrases = (obj) => {
   let list = []
   for (let key in obj) {
     if (!phraseMap.has(key) && !key.includes('license')) {
-      list.push(`${key},${obj[key].replace(/\r?\n|\r/g, '\\n')}`)
+      list.push(`${key},${replaceWrap(obj[key])}`)
     }
   }
   log(list.join(',\n'))
