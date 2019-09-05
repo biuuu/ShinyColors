@@ -88,7 +88,8 @@ const requestOfPost = [
   [/userPresents\/\d+\/actions\/receive/, transReceivePresent],
   [/userMissions\/\d+\/actions\/receive/, transReceiveMission],
   ['userLoginBonuses', transLoginBonus],
-  ['fesTop', transFesReward]
+  ['fesTop', transFesReward],
+  [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, transSkill]
 ]
 
 const requestOfPatch = [
