@@ -7,7 +7,7 @@ import { userItemTypes, transShopItem,
   transPresentItem, transLoginBonus, transReceivePresent,
   transReceiveMission } from './item'
 import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata,
-  produceHints, idolMemoryAppealComments, topCharacterReaction,
+  produceHints, idolMemoryAppealComments, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
@@ -95,12 +95,13 @@ const requestOfPost = [
   ['userLoginBonuses', transLoginBonus],
   ['fesTop', [transFesReward, fesDeckReactions]],
   [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, transSkill],
-  [/^produces\/actions\/(resume|next)$/, [produceHints, idolMemoryAppealComments, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition]],
+  [/^produces\/actions\/(resume|next)$/, [topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition]],
   ['produces/actions/endWeek', produceEndWeek],
   ['produces/actions/act', lessonResult],
   [/^fes(Match)?Concert\/actions\/start$/, fesMatchConcert],
   [/^fes(Match)?Concert\/actions\/resume$/, resumeGamedata],
-  [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment]]
+  [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment]],
+  ['userProduceHelperSupportIdols', helperSupportIdols]
 ]
 
 const requestOfPatch = [

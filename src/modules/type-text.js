@@ -84,7 +84,7 @@ const lessonResult = async (data) => {
   try {
     let list = []
     if (lr.produceActCutinComment) list = list.concat(lr.produceActCutinComment)
-    if (lr.produceActIdolComment) list = list.concat(lr.produceActIdolComment)
+    // if (lr.produceActIdolComment) list = list.concat(lr.produceActIdolComment)
     // if (lr.produceActSupportIdolComments) list = list.concat(lr.produceActSupportIdolComments)
     if (lr.produceRestBoostIdolComment) list = list.concat(lr.produceRestBoostIdolComment)
     if (lr.produceRestBoostSupportIdolComment) list = list.concat(lr.produceRestBoostSupportIdolComment)
@@ -124,6 +124,13 @@ const characterComment = async (data) => {
   await autoTransText(list)
 }
 
+const helperSupportIdols = async (data) => {
+  try {
+    let name = data.characterComment + data.producerComment
+    await autoTrans([data], name, true)
+  } catch (e) {}
+}
+
 export {
   mypageComments,
   fesDeckReactions,
@@ -135,5 +142,6 @@ export {
   produceEndWeek,
   resumeGamedata,
   characterComment,
-  fesMatchConcert
+  fesMatchConcert,
+  helperSupportIdols
 }

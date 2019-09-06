@@ -46,7 +46,8 @@ const caiyunTrans = async (source, lang = 'ja') => {
 const textKeys = [
   'text', 'select', 'comment', 'title',
   'actionComment', 'actionComment2', 'reactionComment',
-  'resultLoseComment', 'resultStartComment', 'resultWinComment'
+  'resultLoseComment', 'resultStartComment', 'resultWinComment',
+  'characterComment', 'producerComment'
 ]
 const collectText = (data, commMap, typeTextMap) => {
   const textInfo = []
