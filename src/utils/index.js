@@ -35,14 +35,18 @@ const pureRE = str => {
   .replace(/\)/g, '\\)')
 }
 
-let _console
-if (ENVIRONMENT === 'development') {
-  _console = restoreConsole()
-}
+let _console = restoreConsole()
+// if (ENVIRONMENT === 'development') {
+//   _console = restoreConsole()
+// }
 const log = (...args) => {
   if (ENVIRONMENT === 'development') {
     _console.log(...args)
   }
+}
+
+const log2 = (...args) => {
+  _console.log(...args)
 }
 
 const tryDownload = (content, filename) => {
@@ -104,7 +108,7 @@ export {
   fixWrap,
   restoreConsole,
   isDomain,
-  log,
+  log, log2,
   tryDownload,
   replaceWrap,
   removeWrap,

@@ -1,9 +1,10 @@
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, log, replaceQuote, fixWrap, transSpeaker } from '../utils/index'
+import { replaceWords, log, log2, replaceQuote, fixWrap, transSpeaker, replaceWrap } from '../utils/index'
 import getName from '../store/name'
 import tagText from './tagText'
 import { getCommStory } from '../store/story'
 import getTypeTextMap from '../store/typeText'
+import config from '../config'
 
 const request = (url, option) => {
   const { method = 'GET', headers, data } = option
@@ -42,7 +43,11 @@ const caiyunTrans = async (source, lang = 'ja') => {
   }
 }
 
-const textKeys = ['text', 'select', 'comment']
+const textKeys = [
+  'text', 'select', 'comment', 'title',
+  'actionComment', 'actionComment2', 'reactionComment',
+  'resultLoseComment', 'resultStartComment', 'resultWinComment'
+]
 const collectText = (data, commMap, typeTextMap) => {
   const textInfo = []
   const textList = []
@@ -88,13 +93,18 @@ const autoWrap = (text, count) => {
 
 const autoTransCache = new Map()
 
-const autoTrans = async (data, name) => {
+const autoTrans = async (data, name, printText) => {
+  if (config.auto !== 'on' || !data.length) return
   let fixedTransList
   const commMap = await getCommStory()
   const typeTextMap = await getTypeTextMap()
   const { textInfo, textList } = collectText(data, commMap, typeTextMap)
+  if (!textInfo.length) return
+
   const storyKey = name || data
+  let hasCache = false
   if (autoTransCache.has(storyKey)) {
+    hasCache = true
     fixedTransList = autoTransCache.get(storyKey)
   } else {
     const fixedTextList = await preFix(textList)
@@ -102,12 +112,14 @@ const autoTrans = async (data, name) => {
     fixedTransList = await nounFix(transList)
     autoTransCache.set(storyKey, fixedTransList)
   }
-  if (DEV) {
+  if (!hasCache && (DEV || !name || printText)) {
     let mergedList = []
     textList.forEach((text, index) => {
-      mergedList.push(text, fixedTransList[index])
+      mergedList.push(replaceWrap(text), fixedTransList[index])
     })
-    log(mergedList.join('\n'))
+    let _log = log
+    if (!name || printText) _log = log2
+    _log(mergedList.join('\n'))
   }
   fixedTransList.forEach((trans, idx) => {
     let _trans = trans
@@ -118,7 +130,7 @@ const autoTrans = async (data, name) => {
     }
     _trans = replaceQuote(_trans)
     
-    if (idx === 0 && name) _trans = `${_trans} ☁️`
+    if (idx === 0 && !printText) _trans = `${_trans} ☁️`
     data[index][key] = tagText(_trans)
   })
   const nameMap = await getName()

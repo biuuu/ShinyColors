@@ -6,6 +6,9 @@ import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
   transPresentItem, transLoginBonus, transReceivePresent,
   transReceiveMission } from './item'
+import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata,
+  produceHints, idolMemoryAppealComments, topCharacterReaction,
+  produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
@@ -77,19 +80,27 @@ const requestOfGet = [
   [['userShops', 'userIdolPieceShops'], transShopItem],
   [userItemTypes, transUserItem],
   [[/^userPresents\?limit=/, /^userPresentHistories\?limit=/], transPresentItem],
-  [/gashaGroups\/\d+\/rates/, 'cardName']
+  [/gashaGroups\/\d+\/rates/, 'cardName'],
+  ['userProduces', [topCharacterReaction]],
+  [/^fes(Match)?Concert\/actions\/resume$/, resumeGamedata],
 ]
 
 const requestOfPost = [
-  ['myPage', reportMission],
+  ['myPage', [reportMission, mypageComments]],
   [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
   ['userShops/actions/purchase', transShopPurchase],
   [/produces\/\d+\/actions\/ready/, transUserItem],
   [/userPresents\/\d+\/actions\/receive/, transReceivePresent],
   [/userMissions\/\d+\/actions\/receive/, transReceiveMission],
   ['userLoginBonuses', transLoginBonus],
-  ['fesTop', transFesReward],
-  [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, transSkill]
+  ['fesTop', [transFesReward, fesDeckReactions]],
+  [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, transSkill],
+  [/^produces\/actions\/(resume|next)$/, [produceHints, idolMemoryAppealComments, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition]],
+  ['produces/actions/endWeek', produceEndWeek],
+  ['produces/actions/act', lessonResult],
+  [/^fes(Match)?Concert\/actions\/start$/, fesMatchConcert],
+  [/^fes(Match)?Concert\/actions\/resume$/, resumeGamedata],
+  [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment]]
 ]
 
 const requestOfPatch = [
