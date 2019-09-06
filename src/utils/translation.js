@@ -49,9 +49,15 @@ const collectText = (data, commMap, typeTextMap) => {
   data.forEach((item, index) => {
     textKeys.forEach(key => {
       let text = fixWrap(item[key])
-      if (item[key] && !commMap.has(text) && !typeTextMap.has(text)) {
-        textInfo.push({ key, index })
-        textList.push(text)
+      if (item[key]) {
+        if (commMap.has(text)) {
+          item[key] = tagText(commMap.get(text))
+        } else if (typeTextMap.has(text)) {
+          item[key] = tagText(typeTextMap.get(text))
+        } else {
+          textInfo.push({ key, index })
+          textList.push(text)
+        }
       }
     })
   })
@@ -70,6 +76,14 @@ const nounFix = async (list) => {
   return list.map(text => {
     return replaceWords(text, nounFixMap)
   })
+}
+
+const autoWrap = (text, count) => {
+  if (text.length > count && !text.includes('\n')) {
+    const len = Math.floor(text.length / 2) + 1
+    return text.slice(0, len) + '\n' + text.slice(len, text.length)
+  }
+  return text
 }
 
 const autoTransCache = new Map()
@@ -98,20 +112,13 @@ const autoTrans = async (data, name) => {
   fixedTransList.forEach((trans, idx) => {
     let _trans = trans
     const { key, index } = textInfo[idx]
-    const text = fixWrap(data[index][key])
 
-    if (commMap.has(text)) {
-      _trans = commMap.get(text)
-    } else {
-      if (key === 'select') {
-        if (trans.length > 8 && !trans.includes('\n')) {
-          const len = Math.floor(trans.length / 2) + 1
-          _trans = trans.slice(0, len) + '\n' + trans.slice(len, trans.length)
-        }
-      }
-      _trans = replaceQuote(_trans)
+    if (key === 'select') {
+      _trans = autoWrap(_trans, 8)
     }
-    if (idx === 0) _trans = `${_trans}☁️`
+    _trans = replaceQuote(_trans)
+    
+    if (idx === 0 && name) _trans = `${_trans} ☁️`
     data[index][key] = tagText(_trans)
   })
   const nameMap = await getName()
