@@ -10,7 +10,7 @@
 
 剧情提取功能的开启方法是在游戏 URL 后面加上 #story=edit ，关闭则是 #story=normal 。
 
-也可以直接点这两个链接来开启或关闭，[开启剧情提取](https://shinycolors.enza.fun#story=edit)  /  [关闭剧情提取](https://shinycolors.enza.fun#story=normal)
+也可以直接点这两个链接来开启或关闭，[开启剧情提取](https://shinycolors.enza.fun/home#story=edit)  /  [关闭剧情提取](https://shinycolors.enza.fun/home#story=normal)
 
 开启剧情提取功能后查看剧情时，可以看到右边出现了“剧情”按钮，鼠标移上去可以选择“下载”或“预览”。
 

@@ -23,4 +23,12 @@
 
 开启方法是在游戏 URL 后面加上 #auto=on ，关闭则是 #auto=off 。
 
-也可以直接点这两个链接来开启或关闭，[开启机翻](https://shinycolors.enza.fun#auto=on)  /  [关闭机翻](https://shinycolors.enza.fun#auto=off)
+也可以直接点这两个链接来开启或关闭，[开启机翻](https://shinycolors.enza.fun/home#auto=on)  /  [关闭机翻](https://shinycolors.enza.fun/home#auto=off)
+
+**失去焦点后保持游戏声音**
+
+游戏默认会在失去窗口焦点后停止声音的播放，而插件可以让声音持续播放。
+
+开启方法是在游戏 URL 后面加上 #bgm=on ，关闭则是 #bgm=off 。
+
+也可以直接点这两个链接来开启或关闭，[保持BGM持续播放](https://shinycolors.enza.fun/home#bgm=on)  /  [取消保持BGM播放](https://shinycolors.enza.fun/home#bgm=off)

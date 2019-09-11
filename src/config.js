@@ -21,7 +21,8 @@ const config = {
   timeout: 30,
   font1: 'yuanti',
   font2: 'heiti',
-  auto: 'off'
+  auto: 'off',
+  bgm: 'off'
 }
 
 const defaultConfig = Object.assign({}, config)
@@ -35,7 +36,7 @@ const FONT = {
   YUAN_TRANS: `sczh-yuanti,HummingStd-E`
 }
 
-const _keys = ['origin', 'font1', 'font2', 'timeout', 'story', 'auto']
+const _keys = ['origin', 'font1', 'font2', 'timeout', 'story', 'auto', 'bgm']
 const keys = DEV ? _keys.slice(1, _keys.length) : _keys
 
 const setFont = () => {

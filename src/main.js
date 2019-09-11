@@ -4,6 +4,7 @@ import requestHook from './modules/request'
 import resourceHook from './modules/resourse'
 import transScenario from './modules/scenario'
 import addFont from './utils/fontFace'
+import './utils/keepBgm'
 import { log } from './utils/index'
 
 const main = async () => {
