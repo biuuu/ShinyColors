@@ -59,7 +59,7 @@ common.item,アイテム,道具
 common.exSkill,Exスキル,Ex技能
 common.people,%{num}人,
 common.sheet,%{num}枚,%{num}张
-common.expireDatetimeString,mm/dd HH:MM为止,
+common.expireDatetimeString,mm/dd HH:MMまで,mm/dd HH:MM为止
 common.plusMessage,+%{name},
 common.pIdol,プロデュースアイドル,Produce偶像
 common.sIdol,サポートアイドル,Support偶像
@@ -68,7 +68,13 @@ common.quantityMessageWithName,%{name} x%{quantity},
 common.remainingTimeMessage,あと %{min}:%{sec},还需 %{min}:%{sec}
 common.lv,Lv.%{level},
 common.staff,はづき,叶月
-common.horizontalEllipsis,...,
+common.produceItem,プロデュースアイテム,Produce道具
+common.recoveryItem,回復アイテム,恢复道具
+common.scoutTicket,セレクションチケット,选择券
+common.staffItemPoint,はづきさんシール,叶月贴纸
+common.enhancementItem,トレーニングチケット,训练券
+common.gashaTicket,ガシャチケット,抽卡券
+common.lotteryTicket,283くじ,
 common.selectPaymentMethodTitle,決済方法選択,付款方式选择
 common.exchangeItemForAlbum,アルバムの鍵,相册钥匙
 common.gaugeNumberMessage,%{progress}/%{progressMax},
