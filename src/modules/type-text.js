@@ -131,6 +131,20 @@ const helperSupportIdols = async (data) => {
   } catch (e) {}
 }
 
+const produceReporterAnswer = async (data) => {
+  try {
+    let list = data.produceReporterEvent.produceReporterEventAnswers
+    await autoTransText(list, 'comment2')
+  } catch (e) {}
+}
+
+const trustLevelUp = async (data) => {
+  try {
+    let list = data.characterTrustLevelUpComments
+    await autoTransText(list)
+  } catch (e) {}
+}
+
 export {
   mypageComments,
   fesDeckReactions,
@@ -143,5 +157,7 @@ export {
   resumeGamedata,
   characterComment,
   fesMatchConcert,
-  helperSupportIdols
+  helperSupportIdols,
+  produceReporterAnswer,
+  trustLevelUp
 }
