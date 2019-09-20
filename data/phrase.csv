@@ -326,7 +326,7 @@ unitBonusBanner.schedule,%{closeAt}まで,%{closeAt}截止
 idolList.filterTitle,絞り込み,筛选
 idolList.sortTitle,並び替え,排序
 idolList.emptyMessage,所持しているアイドルがいません。,没有所持的偶像
-idolList.evolutionEmptyMessage,特訓可能なアイドルがいません。,没有可特训的偶像
+idolList.evolutionEmptyMessage,特訓可能なアイドルがいません。,　　　没有可以特训的偶像　　　
 idolList.memorialPieceStatus.pieceNum,＋%{num},
 idolList.leaveEditModeDialog.title,確認,确认
 idolList.leaveEditModeDialog.text,まだ%{editType}は確定していません選択状態を解除して移動しますか？,%{editType}还未确定要解除选择状态并移动吗？
@@ -505,7 +505,7 @@ mission.popMissionDetail,ミッション詳細,任务详情
 mission.popReceive.title,報酬受け取り,领取报酬
 mission.popReceive.comment,以下の報酬を受け取りました,领取了以下报酬
 mission.noLimit,期限なし,无期限
-mission.noMissionMessage,挑戦できるミッションはありません,没有可以挑战的任务
+mission.noMissionMessage,挑戦できるミッションはありません,　　　 没有可以挑战的任务 　　　
 mission.expiredMission,ミッション挑戦期限を過ぎています,任务挑战期限已过
 mission.remainingMinutes,あと%{minutes}分,还有%{minutes}分
 mission.remainingHours,あと%{hours}時間%{minutes}分,还有%{hours}小时%{minutes}分
@@ -515,7 +515,7 @@ mission.receiveAll.title,ミッション報酬一括受け取り,一次性领取
 mission.receiveAll.message,以下の報酬を受け取りました,领取了以下报酬
 mission.receiveAll.maxMessageFooter,一部の報酬は最大所持数を超えているため\n受け取れませんでした,由于部分报酬超过了最大所持数\n无法领取
 mission.receiveAll.maxMessage,最大所持数を超えるため受け取れません,由于超过最大所持数，无法领取
-mission.receiveAll.noPresentMessage,受け取れる報酬はありませんでした,没有可以领取的报酬
+mission.receiveAll.noPresentMessage,受け取れる報酬はありませんでした,　　　 没有可以领取的报酬 　　　
 mission.receiveAll.itemNameNum,%{type} ×%{num},
 option.saveMessage, \n \n設定を保存しました。, \n \n您的设置已保存。
 option.volumeTitle.voice,ボイス,语音
@@ -1143,8 +1143,8 @@ shop.smallTabTitles.gameEvent.ticket,チケット交換,券兑换
 shop.smallTabTitles.idolPiece.rainbow,虹,虹
 shop.smallTabTitles.idolPiece.gold,金,金
 shop.smallTabTitles.idolPiece.silver,銀,银
-shop.emptyNotice.purchase,購入できる商品がありません,没有可购入的商品
-shop.emptyNotice.exchange,交換できる商品がありません,没有可兑换的商品
+shop.emptyNotice.purchase,購入できる商品がありません,　　没有可以购买的商品　　
+shop.emptyNotice.exchange,交換できる商品がありません,　　没有可以兑换的商品　　
 shop.trade.tradeConfirmation.title,交換確認,兑换确认
 shop.trade.tradeConfirmation.message,以下のアイテムと\n「%{title}」を交換しますか？,要使用以下道具\n兑换「%{title}」吗？
 shop.trade.tradeConfirmation.shortageMessage,「%{title}」の\n交換に必要なアイテムが不足しています,兑换「%{title}」\n所需的道具不足
