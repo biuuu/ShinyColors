@@ -89,8 +89,8 @@ commonMenu.bannerListTitle,キャンペーン一覧,活动一览
 commonMenu.fesIdolLimit.title,フェスアイドル所属上限,Fes偶像所属上限
 commonMenu.fesIdolLimit.text,これ以上フェスアイドルを所属させられません\nフェスアイドル詳細画面から移籍を行ってください,无法拥有更多的fes偶像\n请在fes偶像详情中进行移籍
 commonMenu.produceRetire.title,プロデュース終了,Produce结束
-commonMenu.produceRetire.comment1,プロデュース中のデータは失われます\n消費したスタミナと\nプロデュースアイテムは返却されません,正在Produce中的数据将会消失\n已消耗的精力值和\nProduce道具将不会返还
-commonMenu.produceRetire.comment2,進行中のプロデュースを終了して\n新たなアイドルをプロデュースします,结束进行中的Produce\n开始Produce新的偶像
+commonMenu.produceRetire.comment1,プロデュース中のデータは失われます\n消費したスタミナと\nプロデュースアイテムは返却されません,　 正在Produce中的数据将会消失 　\n 已消耗的精力值和 \n　　　 Produce道具将不会返还 　　　
+commonMenu.produceRetire.comment2,進行中のプロデュースを終了して\n新たなアイドルをプロデュースします,　　 结束进行中的Produce 　　\n　　　 开始Produce新的偶像 　　　
 commonMenu.produceResume.title,プロデュース再開,Produce继续
 commonMenu.menuPop.title,メニュー,菜单
 commonMenu.backToTitleConfirm.title,タイトルへ戻る,回到标题
