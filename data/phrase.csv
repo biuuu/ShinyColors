@@ -574,7 +574,7 @@ item.limitNum,最大所持数: %{num},最大所持数: %{num}
 item.headerTitle,アイテム一覧,道具一览
 item.noItem,アイテムがありません。,　　　  无道具
 item.itemConfirm.title,使用確認,使用确认
-item.itemConfirm.effect,以下のアイテムを使用して%{valueName}を回復しますか？,要使用以下道具%{valueName}进行恢复吗？
+item.itemConfirm.effect,以下のアイテムを使用して%{valueName}を回復しますか？,要使用以下道具恢复%{valueName}吗？
 item.itemConfirm.commentBlack,アイテムを使用すると,使用道具后
 item.itemConfirm.commentRed,自然回復の上限を超えて回復できます,可以超出自然恢复上限而恢复
 item.itemConfirm.warningMessage,%{itemName}の所持数が足りません,%{itemName}所持数不足
@@ -973,7 +973,7 @@ characterBirthday.characterBirthdayListPop.title,誕生日確認,生日确认
 characterBirthday.characterBirthdayListPop.birthday,%{month}/%{day},
 characterBirthday.characterBirthdayListPop.month,月,
 characterBirthday.specialCommunicationDialog.txtNotice,「あとで再生」を選んだ場合、\n期間中誕生日特設ページで再度この確認が表示されます。,若选择「稍后再看」，\n该时段内在生日特设页面可再次确认播放
-characterBirthday.givePresentDialog.text,自然回復の上限を超えて回復でき、\n誕生日ミニコミュが解放されます,超出自然恢复上限而恢复，\n并解锁了生日迷你剧情
+characterBirthday.givePresentDialog.text,自然回復の上限を超えて回復でき、\n誕生日ミニコミュが解放されます,可超出自然恢复上限而恢复，\n并解锁生日迷你剧情
 temp.supportEvent,サポートイベント,Support活动
 announce.eventNotice,イベント予告,活动预告
 announce.songInfo,楽曲情報,乐曲信息
