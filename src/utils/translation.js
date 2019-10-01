@@ -110,7 +110,10 @@ const autoTrans = async (data, name, printText) => {
     fixedTransList = autoTransCache.get(storyKey)
   } else {
     const fixedTextList = await preFix(textList)
-    const transList = await caiyunTrans(fixedTextList)
+    let transList = []
+    if (/\.json$/.test(name)) {
+      transList = await caiyunTrans(fixedTextList)
+    }
     fixedTransList = await nounFix(transList)
     autoTransCache.set(storyKey, fixedTransList)
   }
