@@ -11,16 +11,17 @@ const request = (url, option) => {
   return fetch(url, {
     body: data,
     headers, method,
-    mode: 'cors',
-    referrer: 'no-referrer'
+    mode: 'cors'
   }).then(res => res.json())
 }
 
 const caiyunTrans = async (source, lang = 'ja') => {
   const from = lang === 'en' ? 'en' : 'ja'
   const data = {
-    detect: true,
+    cached: true,
+    dict: true,
     media: 'text',
+    os_type: 'web',
     request_id: 'web_fanyi',
     trans_type: `${from}2zh`,
     source
