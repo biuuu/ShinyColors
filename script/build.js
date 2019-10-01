@@ -13,6 +13,8 @@ const banner = `// ==UserScript==
 // @author       biuuu
 // @match        https://shinycolors.enza.fun/*
 // @run-at       document-end
+// @grant        GM_xmlhttpRequest
+// @connect      api.interpreter.caiyunai.com
 // @updateURL    https://www.shiny.fun/ShinyColors.user.js
 // @supportURL   https://github.com/biuuu/ShinyColors/issues
 // ==/UserScript==`

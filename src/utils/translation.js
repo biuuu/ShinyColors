@@ -5,15 +5,16 @@ import tagText from './tagText'
 import { getCommStory } from '../store/story'
 import getTypeTextMap from '../store/typeText'
 import config from '../config'
+import request from './request'
 
-const request = (url, option) => {
-  const { method = 'GET', headers, data } = option
-  return fetch(url, {
-    body: data,
-    headers, method,
-    mode: 'cors'
-  }).then(res => res.json())
-}
+// const request = (url, option) => {
+//   const { method = 'GET', headers, data } = option
+//   return fetch(url, {
+//     body: data,
+//     headers, method,
+//     mode: 'cors'
+//   }).then(res => res.json())
+// }
 
 const caiyunTrans = async (source, lang = 'ja') => {
   const from = lang === 'en' ? 'en' : 'ja'
