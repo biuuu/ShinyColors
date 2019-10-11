@@ -59,7 +59,7 @@ common.item,アイテム,道具
 common.exSkill,Exスキル,Ex技能
 common.people,%{num}人,
 common.sheet,%{num}枚,%{num}张
-common.expireDatetimeString,mm/dd HH:MM为止,
+common.expireDatetimeString,mm/dd HH:MMまで,mm/dd HH:MM为止
 common.plusMessage,+%{name},
 common.pIdol,プロデュースアイドル,Produce偶像
 common.sIdol,サポートアイドル,Support偶像
@@ -68,7 +68,12 @@ common.quantityMessageWithName,%{name} x%{quantity},
 common.remainingTimeMessage,あと %{min}:%{sec},还需 %{min}:%{sec}
 common.lv,Lv.%{level},
 common.staff,はづき,叶月
-common.horizontalEllipsis,...,
+common.produceItem,プロデュースアイテム,Produce道具
+common.recoveryItem,回復アイテム,恢复道具
+common.scoutTicket,セレクションチケット,选择券
+common.staffItemPoint,はづきさんシール,叶月贴纸
+common.enhancementItem,トレーニングチケット,训练券
+common.gashaTicket,ガシャチケット,抽卡券
 common.selectPaymentMethodTitle,決済方法選択,付款方式选择
 common.exchangeItemForAlbum,アルバムの鍵,相册钥匙
 common.gaugeNumberMessage,%{progress}/%{progressMax},
@@ -84,8 +89,8 @@ commonMenu.bannerListTitle,キャンペーン一覧,活动一览
 commonMenu.fesIdolLimit.title,フェスアイドル所属上限,Fes偶像所属上限
 commonMenu.fesIdolLimit.text,これ以上フェスアイドルを所属させられません\nフェスアイドル詳細画面から移籍を行ってください,无法拥有更多的fes偶像\n请在fes偶像详情中进行移籍
 commonMenu.produceRetire.title,プロデュース終了,Produce结束
-commonMenu.produceRetire.comment1,プロデュース中のデータは失われます\n消費したスタミナと\nプロデュースアイテムは返却されません,正在Produce中的数据将会消失\n已消耗的精力值和\nProduce道具将不会返还
-commonMenu.produceRetire.comment2,進行中のプロデュースを終了して\n新たなアイドルをプロデュースします,结束进行中的Produce\n开始Produce新的偶像
+commonMenu.produceRetire.comment1,プロデュース中のデータは失われます\n消費したスタミナと\nプロデュースアイテムは返却されません,　 正在Produce中的数据将会消失 　\n 已消耗的精力值和 \n　　　 Produce道具将不会返还 　　　
+commonMenu.produceRetire.comment2,進行中のプロデュースを終了して\n新たなアイドルをプロデュースします,　　 结束进行中的Produce 　　\n　　　 开始Produce新的偶像 　　　
 commonMenu.produceResume.title,プロデュース再開,Produce继续
 commonMenu.menuPop.title,メニュー,菜单
 commonMenu.backToTitleConfirm.title,タイトルへ戻る,回到标题
@@ -321,7 +326,7 @@ unitBonusBanner.schedule,%{closeAt}まで,%{closeAt}截止
 idolList.filterTitle,絞り込み,筛选
 idolList.sortTitle,並び替え,排序
 idolList.emptyMessage,所持しているアイドルがいません。,没有所持的偶像
-idolList.evolutionEmptyMessage,特訓可能なアイドルがいません。,没有可特训的偶像
+idolList.evolutionEmptyMessage,特訓可能なアイドルがいません。,　　　没有可以特训的偶像　　　
 idolList.memorialPieceStatus.pieceNum,＋%{num},
 idolList.leaveEditModeDialog.title,確認,确认
 idolList.leaveEditModeDialog.text,まだ%{editType}は確定していません選択状態を解除して移動しますか？,%{editType}还未确定要解除选择状态并移动吗？
@@ -500,7 +505,7 @@ mission.popMissionDetail,ミッション詳細,任务详情
 mission.popReceive.title,報酬受け取り,领取报酬
 mission.popReceive.comment,以下の報酬を受け取りました,领取了以下报酬
 mission.noLimit,期限なし,无期限
-mission.noMissionMessage,挑戦できるミッションはありません,没有可以挑战的任务
+mission.noMissionMessage,挑戦できるミッションはありません,　　　 没有可以挑战的任务 　　　
 mission.expiredMission,ミッション挑戦期限を過ぎています,任务挑战期限已过
 mission.remainingMinutes,あと%{minutes}分,还有%{minutes}分
 mission.remainingHours,あと%{hours}時間%{minutes}分,还有%{hours}小时%{minutes}分
@@ -510,7 +515,7 @@ mission.receiveAll.title,ミッション報酬一括受け取り,一次性领取
 mission.receiveAll.message,以下の報酬を受け取りました,领取了以下报酬
 mission.receiveAll.maxMessageFooter,一部の報酬は最大所持数を超えているため\n受け取れませんでした,由于部分报酬超过了最大所持数\n无法领取
 mission.receiveAll.maxMessage,最大所持数を超えるため受け取れません,由于超过最大所持数，无法领取
-mission.receiveAll.noPresentMessage,受け取れる報酬はありませんでした,没有可以领取的报酬
+mission.receiveAll.noPresentMessage,受け取れる報酬はありませんでした,　　　 没有可以领取的报酬 　　　
 mission.receiveAll.itemNameNum,%{type} ×%{num},
 option.saveMessage, \n \n設定を保存しました。, \n \n您的设置已保存。
 option.volumeTitle.voice,ボイス,语音
@@ -569,7 +574,7 @@ item.limitNum,最大所持数: %{num},最大所持数: %{num}
 item.headerTitle,アイテム一覧,道具一览
 item.noItem,アイテムがありません。,　　　  无道具
 item.itemConfirm.title,使用確認,使用确认
-item.itemConfirm.effect,以下のアイテムを使用して%{valueName}を回復しますか？,要使用以下道具%{valueName}进行恢复吗？
+item.itemConfirm.effect,以下のアイテムを使用して%{valueName}を回復しますか？,要使用以下道具恢复%{valueName}吗？
 item.itemConfirm.commentBlack,アイテムを使用すると,使用道具后
 item.itemConfirm.commentRed,自然回復の上限を超えて回復できます,可以超出自然恢复上限而恢复
 item.itemConfirm.warningMessage,%{itemName}の所持数が足りません,%{itemName}所持数不足
@@ -639,7 +644,7 @@ filterPop.filter.vocal,Vocal,Vocal
 filterPop.filter.visual,Visual,Visual
 filterPop.filter.mental,メンタル,Mental
 filterPop.filter.limitStaminaUp,体力,体力
-filterPop.filter.placeAppearRate,レッスン・\nお仕事,训练・\n工作
+filterPop.filter.placeAppearRate,レッスン・\nお仕事,练习・\n工作
 filterPop.filter.commu,コミュ,剧情
 produce.header.ideaNote.emptyNotice,使用していません,未使用
 produce.resumePop.progress,シーズン %{season} / 残り %{restOfSeasonWeek}週,季度 %{season} /剩余 %{restOfSeasonWeek}周
@@ -968,7 +973,7 @@ characterBirthday.characterBirthdayListPop.title,誕生日確認,生日确认
 characterBirthday.characterBirthdayListPop.birthday,%{month}/%{day},
 characterBirthday.characterBirthdayListPop.month,月,
 characterBirthday.specialCommunicationDialog.txtNotice,「あとで再生」を選んだ場合、\n期間中誕生日特設ページで再度この確認が表示されます。,若选择「稍后再看」，\n该时段内在生日特设页面可再次确认播放
-characterBirthday.givePresentDialog.text,自然回復の上限を超えて回復でき、\n誕生日ミニコミュが解放されます,超出自然恢复上限而恢复，\n并解锁了生日迷你剧情
+characterBirthday.givePresentDialog.text,自然回復の上限を超えて回復でき、\n誕生日ミニコミュが解放されます,可超出自然恢复上限而恢复，\n并解锁生日迷你剧情
 temp.supportEvent,サポートイベント,Support活动
 announce.eventNotice,イベント予告,活动预告
 announce.songInfo,楽曲情報,乐曲信息
@@ -1125,7 +1130,7 @@ shop.purchasedCountLabelText.gameEvent.scenario_event_point,シナリオP,剧情
 shop.purchasedCountLabelText.gameEvent.fes_event_point,フェスP,FesP
 shop.purchasedCountLabelText.gameEvent.box_event_point,ボックスP,BoxP
 shop.purchasedCountLabelText.gameEvent.ranking_event_point,ランキングP,排名P
-shop.smallTabTitles.money.all,ALL,
+shop.smallTabTitles.money.all,ALL,ALL
 shop.smallTabTitles.money.gashaTicket,ガシャチケット,抽卡券
 shop.smallTabTitles.money.produceItem,プロデュースアイテム,Produce道具
 shop.smallTabTitles.money.enhancementItem,トレーニングチケット,训练券
@@ -1135,11 +1140,11 @@ shop.smallTabTitles.skin.shops,衣装交換所,服装兑换处
 shop.smallTabTitles.skin.skins,所持衣装,所持服装
 shop.smallTabTitles.gameEvent.point,ポイント交換,点数兑换
 shop.smallTabTitles.gameEvent.ticket,チケット交換,券兑换
-shop.smallTabTitles.idolPiece.rainbow,虹,
-shop.smallTabTitles.idolPiece.gold,金,
+shop.smallTabTitles.idolPiece.rainbow,虹,虹
+shop.smallTabTitles.idolPiece.gold,金,金
 shop.smallTabTitles.idolPiece.silver,銀,银
-shop.emptyNotice.purchase,購入できる商品がありません,没有可购入的商品
-shop.emptyNotice.exchange,交換できる商品がありません,没有可兑换的商品
+shop.emptyNotice.purchase,購入できる商品がありません,　　没有可以购买的商品　　
+shop.emptyNotice.exchange,交換できる商品がありません,　　没有可以兑换的商品　　
 shop.trade.tradeConfirmation.title,交換確認,兑换确认
 shop.trade.tradeConfirmation.message,以下のアイテムと\n「%{title}」を交換しますか？,要使用以下道具\n兑换「%{title}」吗？
 shop.trade.tradeConfirmation.shortageMessage,「%{title}」の\n交換に必要なアイテムが不足しています,兑换「%{title}」\n所需的道具不足
@@ -1148,3 +1153,56 @@ training.trainingTicketReturn.title,トレーニングキャンペーン,训练�
 training.trainingTicketReturn.message,%{type}ボーナスの余剰Exp分を\nブロンズトレーニングチケットに変換して\nプレゼントに送りました,%{type}加成奖励的剩余Exp\n已兑换成青铜训练券\n并送入礼物盒中
 training.successType.great,大成功,
 training.successType.super,超成功,
+common.lotteryTicket,283くじ,
+errorDialog.expiredProduceItem,アイテムの使用期限が終了したため\n持ち込むことができませんでした\n\n再度アイテムを選択し直してください,由于道具使用期限已结束\n无法再携带使用\n\n请再次进行道具选择
+extraCampaign.result.announcementDialog.title,特別応募キャンペーン当選結果,
+extraCampaign.result.announcementDialog.description,当選発表のお知らせ\n\n%{campaignName}\nの結果が確認できます,
+extraCampaign.result.announcementDialog.notice,特設ページには\nホーム左下ミニバナーからも遷移できます,
+extraCampaign.result.appliedTicketArea.title,応募総数,
+extraCampaign.result.appliedTicketArea.ticketNum,%{ticketNum}枚,
+extraCampaign.result.appliedTicketArea.rewardTitles.1,A賞,
+extraCampaign.result.appliedTicketArea.rewardTitles.2,B賞,
+extraCampaign.result.rewardA.notice,期限までに個人情報の入力が完了していない場合、当選が無効となります,
+extraCampaign.result.rewardState.unapplied,未応募,
+extraCampaign.result.rewardState.waitForAnnouncement,抽選中,
+extraCampaign.result.rewardState.lose,非当選,
+extraCampaign.result.rewardState.received,受け取り済,
+extraCampaign.result.rewardState.expired.a,入力期間は\n終了しました,
+extraCampaign.result.rewardState.expired.b,受け取り期間は\n終了しました,
+extraCampaign.result.receiveRewardResultDialog.title,アイテム受け取り,
+extraCampaign.result.receiveRewardResultDialog.text,%{name}を\n%{num}枚獲得しました,
+extraCampaign.result.idConfirmationDialog.title,イベント参加用シリアルコード,
+extraCampaign.result.idConfirmationDialog.description,個人情報の入力には上記のコードが必須となります,
+extraCampaign.result.idConfirmationDialog.notices.1,このコードは当選者を識別するためのコードなので\n第三者に知られないようにしてください,
+extraCampaign.result.idConfirmationDialog.notices.2,以下のフォームで住所情報入力まで完了してください\n入力されない場合、参加権が無効となりますのでご注意ください,
+gasha.stamp.complete,スタンプ報酬すべて獲得済み,印章报酬已全部获得
+gasha.stamp.notice.default,スタンプカードが最後まで埋まった後は1枚目～%{boardNum}枚目の内容を繰り返します,集章卡填满之后将重复第1张～第%{boardNum}张的内容
+gasha.stamp.notice.maxStampNum,スタンプ%{maxStampNum}個目以降はスタンプ報酬を獲得できません,第%{maxStampNum}个印章以后将无法再获得印章报酬
+gasha.stepupTimes.long,%{times}連ガシャ,%{times}连抽卡
+gasha.stepupTimes.short,%{times}連,%{times}连
+gasha.gashaHistory.noGashaHistory,ガシャの履歴はありません。,无抽卡历史。
+gasha.gashaHistory.gashaName,「%{name}」\nで加入したアイドルです。,「%{name}」\n抽卡中加入的偶像。
+staffItemPointSimple,シール,贴纸
+header.gashaHistory,ガシャ履歴,抽卡历史
+produceItemPreparation.expiredTime,%{expiredAt}まで,%{expiredAt}截止
+produceAction.eventDetailPop.title,発動中イベント,发动中的事件
+reporterEvent.incomingMail,『%{name}様のご活躍を拝見し、\n是非とも、お話を伺いたいと────────』,『见到%{name}的活跃后，\n无论如何，请您给我采访的机会——————』
+reporterEvent.answerMail,密着取材の依頼だ\nどうしようか……,是想要跟踪采访啊\n该怎么办呢……
+reporterEvent.selectInterviewType,よし！　それじゃあ、\nどんな記事にしてもらおうか？,好的！　那么接下来，\n要进行什么样的报道呢？
+reporterEvent.declineInterview,やめておこう。\n残念だが今回は都合がつかないな────,算了吧。\n很遗憾但目前不太方便————
+reporterEvent.goodReporter,敏腕通信社『週刊イチオシ！』編集部の善村 良子です！\n%{name}様の魅力を伝えられるように努めます！,我是敏腕通信社『周刊首推！』编辑部的善村良子！\n我会努力传达%{name}的魅力的！
+reporterEvent.badReporter,阿久井 徳次郎と申します──それじゃ、\n隅から隅まで取材させていただくんで、どうぞ宜しく,在下阿久井徳次郎——那么，\n请容许我进行全方位的采访，请多关照了
+reporterEvent.speaker.goodReporter,敏腕記者,敏腕记者
+reporterEvent.speaker.badReporter,悪徳記者,恶德记者
+reporterEvent.answer.acceptInterview,取材を受ける,接受采访
+reporterEvent.answer.declineInterview,取材を受けない,拒绝采访
+reporterEvent.answer.private,プライベートの様子,私下的情况
+reporterEvent.answer.lesson,レッスンの様子,练习的情况
+reporterEvent.answer.work,仕事の様子,工作的情况
+reporterEvent.answer.ok,これでOK,这样就好
+reporterEvent.answer.rethink,考え直す,重新考虑
+reporterEvent.eventDetailTitle.success,敏腕記者取材中,敏腕记者取材中
+reporterEvent.eventDetailTitle.failure,悪徳記者取材中,恶德记者取材中
+reporterEvent.eventEndCutIn.endText,取材による効果の発動期間が終了しました,采访效果发动时间已结束
+reporterEvent.eventEndCutIn.success,素敵なお話をありがとうございました！\nこれからのご活躍も楽しみにしております──！,非常感谢能得到这么棒的材料！\n我很期待偶像今后的活跃——！
+reporterEvent.eventEndCutIn.failure,うちの記事のせいでアイドルの評判が落ちた？\n言いがかりはよしてください。偶然ですよ、偶然──,我的报道让偶像的名誉下降了？\n请不要拿我当借口。偶然，偶然而已哦——
