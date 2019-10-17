@@ -1,8 +1,8 @@
 const CROSS_DOMAIN_REQ = !!window.GM_xmlhttpRequest
 
-const request = (url, option) => {
+const request = (url, option, cors = false) => {
   const { method = 'GET', headers, responseType = 'json', data } = option
-  if (!CROSS_DOMAIN_REQ) {
+  if (cors) {
     return fetch(url, {
       body: data,
       headers, method,

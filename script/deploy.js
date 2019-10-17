@@ -6,6 +6,11 @@ const glob = require('glob')
 const CSV = require('papaparse')
 const moduleId = require('./MODULE_ID.json')
 
+const bdsign = {
+  token: 'd0a372e3e02871d51c42606a18702e2b',
+  gtk: '320305.131321201'
+}
+
 const Glob = glob.Glob
 glob.promise = function (pattern, options) {
   return new Promise(function (resolve, reject) {
@@ -50,7 +55,11 @@ const start = async () => {
   await fse.emptyDir('./dist/data/')
   const hash = await md5Dir('./data/')
   console.log(hash)
-  await fse.writeJSON('./dist/manifest.json', { hash, version, moduleId, date: getDate(8) })
+  await fse.writeJSON('./dist/manifest.json', { 
+    hash, version, moduleId, 
+    bdsign,
+    date: getDate(8) 
+  })
   console.log('story...')
   const files = await glob.promise('./data/story/**/*.csv')
   const prims = files.map(file => {

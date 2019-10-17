@@ -66,6 +66,9 @@ const getLocalConfig = () => {
       config[key] = value
     }
   })
+  if (!window.GM_xmlhttpRequest) {
+    config.auto = 'off'
+  }
   setFont()
   if (DEV) {
     config.origin = 'http://localhost:15944'
@@ -94,6 +97,9 @@ const getConfigFromHash = () => {
     if (k && keys.includes(k)) {
       if (v) {
         config[k] = v
+        if (k === 'auto' && !window.GM_xmlhttpRequest) {
+          config.auto = 'off'
+        }
       } else {
         config[k] = defaultConfig[k]
       }

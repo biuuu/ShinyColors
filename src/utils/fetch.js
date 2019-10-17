@@ -68,4 +68,4 @@ const fetchWithHash = async (pathname) => {
 }
 
 export default fetchWithHash
-export { getHash }
+export { getHash, fetchInfo }
