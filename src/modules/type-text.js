@@ -43,7 +43,17 @@ const fesMatchConcert = async (data) => {
 
 const mypageComments = async (data) => {
   try {
-    let list = data.userHomeDeck.userHomeDeckAnimationMember.mypageComments
+    let list = []
+    if (data.userHomeDeck.userHomeDeckAnimationMember) {
+      list = [...data.userHomeDeck.userHomeDeckAnimationMember.mypageComments]
+    }
+    if (data.userHomeDeck.userHomeDeckMembers.length) {
+      data.userHomeDeck.userHomeDeckMembers.forEach(member => {
+        member.mypageComments.forEach(comm => {
+          list.push(comm)
+        })
+      })
+    }
     await autoTransText(list)
   } catch (e) {}
 }
@@ -51,10 +61,14 @@ const mypageComments = async (data) => {
 const fesDeckReactions = async (data) => {
   if (!data.userFesDeck) return
   try {
+    let list = []
     let members  = data.userFesDeck.userFesDeckMembers
     for (let member of members) {
-      await autoTransText(member.fesTopCharacterReactions)
+      member.fesTopCharacterReactions.forEach(item => {
+        list.push(item)
+      })
     }
+    await autoTransText(list)
   } catch (e) {}
 }
 
