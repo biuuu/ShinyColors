@@ -60,7 +60,8 @@ const bdsApi = async (query, from = 'jp') => {
       'origin':'https://fanyi.baidu.com'
     }
   })
-  if (!isString(res.trans_result.data[0].dst)) {
+  if (res.error || !isString(res.trans_result.data[0].dst)) {
+    log2(res)
     throw new Error('trans fail')
   }
   return res.trans_result.data.map(item => item.dst)
