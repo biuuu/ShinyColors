@@ -8,7 +8,8 @@ import { getCommStory } from '../store/story'
 import getTypeTextMap from '../store/typeText'
 import config from '../config'
 import request from './request'
-import bdsign from './bdsign'
+import caiyunApi from './caiyun'
+// import bdsign from './bdsign'
 
 const joinText = (list) => {
   let br = []
@@ -37,7 +38,7 @@ const splitText = (text, WORDS_LIMIT = 4000) => {
     }
   })
   if (strTemp) {
-    arr.push(strTemp)
+    arr.push(strTemp.replace(/\n$/, ''))
   }
   return arr
 }
@@ -72,6 +73,31 @@ const baiduTrans = async (source, from = 'jp') => {
     let [query, br] = joinText(source)
     let textArr = splitText(query)
     let result = await Promise.all(textArr.map(query => bdsApi(query, from)))
+    let list = result.reduce((a, b) => a.concat(b))
+    let transArr = []
+    br.forEach(count => {
+      let i = count
+      let str = ''
+      while (i >= 0) {
+        i--
+        str += list.shift() + '\n'
+      }
+      transArr.push(str.slice(0, str.length - 1))
+    })
+    return transArr
+  } catch (e) {
+    log(e)
+    return []
+  }
+}
+
+const caiyunTrans = async (source) => {
+  try {
+    let [query, br] = joinText(source)
+    let textArr = splitText(query)
+    let result = await Promise.all(textArr.map(query => {
+      return caiyunApi(query.split('\n'))
+    }))
     let list = result.reduce((a, b) => a.concat(b))
     let transArr = []
     br.forEach(count => {
@@ -158,7 +184,11 @@ const autoTrans = async (data, name, printText) => {
     const fixedTextList = await preFix(textList)
     let transList = []
     
-    transList = await baiduTrans(fixedTextList)
+    if (fetchInfo.data.trans_api === 'caiyun') {
+      transList = await caiyunTrans(fixedTextList)
+    } else {
+      transList = await baiduTrans(fixedTextList)
+    }
     
     fixedTransList = await nounFix(transList)
     autoTransCache.set(storyKey, fixedTransList)

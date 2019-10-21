@@ -11,6 +11,9 @@ const bdsign = {
   gtk: '320305.131321201'
 }
 
+const cyweb_token = 't4d0s9zds4fw272poa11'
+const trans_api = 'caiyun'
+
 const Glob = glob.Glob
 glob.promise = function (pattern, options) {
   return new Promise(function (resolve, reject) {
@@ -57,7 +60,7 @@ const start = async () => {
   console.log(hash)
   await fse.writeJSON('./dist/manifest.json', { 
     hash, version, moduleId, 
-    bdsign,
+    bdsign, cyweb_token, trans_api,
     date: getDate(8) 
   })
   console.log('story...')

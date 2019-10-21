@@ -1,12 +1,13 @@
 const CROSS_DOMAIN_REQ = !!window.GM_xmlhttpRequest
 
-const request = (url, option, cors = false) => {
-  const { method = 'GET', headers, responseType = 'json', data } = option
+const request = (url, option = {}) => {
+  const { method = 'GET', headers, responseType = 'json', data, cors = false, credentials } = option
   if (cors) {
     return fetch(url, {
       body: data,
       headers, method,
-      mode: 'cors'
+      mode: 'cors',
+      credentials
     }).then(res => res.json())
   }
   return new Promise((rev, rej) => {

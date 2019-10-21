@@ -20,8 +20,7 @@
   "dependencies": {
     "core-js": "3",
     "lodash": "^4.17.13",
-    "papaparse": "^4.6.3",
-    "url-search-params": "^1.1.0"
+    "papaparse": "^4.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
