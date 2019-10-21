@@ -1,6 +1,5 @@
 import isString from 'lodash/isString'
 import tagText from './tagText'
-import I from './browserId'
 
 const restoreConsole = () => {
   const iframe = document.createElement('iframe')
@@ -102,10 +101,6 @@ const transSpeaker = (item, nameMap) => {
     }
   }
 }
-
-new I().get(function(v) {
-  log(v)
-})
 
 export {
   trim,
