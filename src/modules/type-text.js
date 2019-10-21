@@ -5,6 +5,11 @@ const autoTransText = async (data, key = 'comment') => {
   await autoTrans(data, name, true)
 }
 
+const transText = async (data, key = 'comment') => {
+  const name = data.map(item => item[key]).join('').trim()
+  await autoTrans(data, name, true, true)
+}
+
 const idolMemoryAppealComments = async (data) => {
   if (data.idolMemoryAppealComments) {
     await autoTransText(data.idolMemoryAppealComments)
@@ -21,13 +26,13 @@ const produceAudition = async (data) => {
       let name = data.produceAudition.judges.map(item => {
         return auditionKeys.map(key => item[key] || '').join('')
       }).join('').trim()
-      await autoTrans(data.produceAudition.judges, name, true)
+      await autoTrans(data.produceAudition.judges, name, true, true)
     }
     if (data.produceConcert) {
       let name = data.produceConcert.judges.map(item => {
         return auditionKeys.map(key => item[key] || '').join('')
       }).join('').trim()
-      await autoTrans(data.produceConcert.judges, name, true)
+      await autoTrans(data.produceConcert.judges, name, true, true)
     }
   } catch (e) {}
 }
@@ -37,7 +42,7 @@ const fesMatchConcert = async (data) => {
     let name = data.judges.map(item => {
       return auditionKeys.map(key => item[key] || '').join('')
     }).join('').trim()
-    await autoTrans(data.judges, name, true)
+    await autoTrans(data.judges, name, true, true)
   }
 }
 
@@ -54,7 +59,7 @@ const mypageComments = async (data) => {
         })
       })
     }
-    await autoTransText(list)
+    await transText(list)
   } catch (e) {}
 }
 
@@ -74,7 +79,7 @@ const fesDeckReactions = async (data) => {
 
 const produceHints = async (data) => {
   if (data.produceHints) {
-    await autoTransText(data.produceHints, 'text')
+    await transText(data.produceHints, 'text')
   }
 }
 

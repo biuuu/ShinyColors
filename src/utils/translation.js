@@ -167,7 +167,7 @@ const autoWrap = (text, count) => {
 
 const autoTransCache = new Map()
 
-const autoTrans = async (data, name, printText) => {
+const autoTrans = async (data, name, printText, skip = false) => {
   if (config.auto !== 'on' || !data.length) return
   let fixedTransList
   const commMap = await getCommStory()
@@ -184,10 +184,12 @@ const autoTrans = async (data, name, printText) => {
     const fixedTextList = await preFix(textList)
     let transList = []
     
-    if (fetchInfo.data.trans_api === 'caiyun') {
-      transList = await caiyunTrans(fixedTextList)
-    } else {
-      transList = await baiduTrans(fixedTextList)
+    if (!skip) {
+      if (fetchInfo.data.trans_api === 'caiyun') {
+        transList = await caiyunTrans(fixedTextList)
+      } else {
+        transList = await baiduTrans(fixedTextList)
+      }
     }
     
     fixedTransList = await nounFix(transList)
