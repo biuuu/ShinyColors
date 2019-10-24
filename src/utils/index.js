@@ -74,13 +74,31 @@ const removeWrap = (text) => {
   return text
 }
 
+const randomSep = (length = 2) => {
+  let str = ''
+  for (let i = 0; i < length; i++) {
+    str += String.fromCharCode(Math.floor(Math.random() * 16 + 65520))
+  }
+  return str
+}
+
 const replaceWords = (str, map) => {
   if (!str) return str
   let _str = str
+  let needSplit = false
+  let sep = randomSep(3)
+  if (Array.isArray(str)) {
+    _str = str.join(sep)
+    needSplit = true
+  }
   for (let [key, val] of map) {
     if (!key || key.length < 2) continue
-    const expr = key.replace(/\?/g, '\\?').replace(/\./g, '\\.').replace(/\*/g, '\\*').replace(/\+/g, '\\+')
+    const expr = key.replace(/\./g, '\\.')
+      .replace(/\*/g, '\\*')
     _str = _str.replace(new RegExp(expr, 'g'), val)
+  }
+  if (needSplit) {
+    return _str.split(sep)
   }
   return _str
 }

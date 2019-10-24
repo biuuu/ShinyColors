@@ -145,16 +145,12 @@ const collectText = (data, commMap, typeTextMap) => {
 
 const preFix = async (list) => {
   const cyfMap = await getCaiyunPrefix()
-  return list.map(text => {
-    return replaceWords(text, cyfMap)
-  })
+  return replaceWords(list, cyfMap)
 }
 
 const nounFix = async (list) => {
   const nounFixMap = await getNounFix()
-  return list.map(text => {
-    return replaceWords(text, nounFixMap)
-  })
+  return replaceWords(list, nounFixMap)
 }
 
 const autoWrap = (text, count) => {
