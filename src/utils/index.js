@@ -83,7 +83,7 @@ const randomSep = (length = 2) => {
 }
 
 const replaceWords = (str, map) => {
-  if (!str) return str
+  if (!str || !str.length) return str
   let _str = str
   let needSplit = false
   let sep = randomSep(3)
