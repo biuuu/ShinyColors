@@ -26,13 +26,13 @@ const produceAudition = async (data) => {
       let name = data.produceAudition.judges.map(item => {
         return auditionKeys.map(key => item[key] || '').join('')
       }).join('').trim()
-      await autoTrans(data.produceAudition.judges, name, true, true)
+      await autoTrans(data.produceAudition.judges, name, true)
     }
     if (data.produceConcert) {
       let name = data.produceConcert.judges.map(item => {
         return auditionKeys.map(key => item[key] || '').join('')
       }).join('').trim()
-      await autoTrans(data.produceConcert.judges, name, true, true)
+      await autoTrans(data.produceConcert.judges, name, true)
     }
   } catch (e) {}
 }
@@ -42,7 +42,7 @@ const fesMatchConcert = async (data) => {
     let name = data.judges.map(item => {
       return auditionKeys.map(key => item[key] || '').join('')
     }).join('').trim()
-    await autoTrans(data.judges, name, true, true)
+    await autoTrans(data.judges, name, true)
   }
 }
 
