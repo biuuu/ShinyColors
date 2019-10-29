@@ -9,7 +9,24 @@ import getTypeTextMap from '../store/typeText'
 import config from '../config'
 import request from './request'
 import caiyunApi from './caiyun'
-// import bdsign from './bdsign'
+import bdsign from './bdsign'
+
+const joinBr = (list, br, transArr) => {
+  br.forEach(count => {
+    let i = count
+    let str = ''
+    while (i >= 0) {
+      i--
+      let _str = list.shift()
+      if (_str) {
+        str += _str + '\n'
+      }
+    }
+    if (str) {
+      transArr.push(str.slice(0, str.length - 1))
+    }
+  })
+}
 
 const joinText = (list) => {
   let br = []
@@ -62,7 +79,6 @@ const bdsApi = async (query, from = 'jp') => {
     }
   })
   if (res.error || !isString(res.trans_result.data[0].dst)) {
-    log2(res)
     throw new Error('trans fail')
   }
   return res.trans_result.data.map(item => item.dst)
@@ -75,15 +91,7 @@ const baiduTrans = async (source, from = 'jp') => {
     let result = await Promise.all(textArr.map(query => bdsApi(query, from)))
     let list = result.reduce((a, b) => a.concat(b))
     let transArr = []
-    br.forEach(count => {
-      let i = count
-      let str = ''
-      while (i >= 0) {
-        i--
-        str += list.shift() + '\n'
-      }
-      transArr.push(str.slice(0, str.length - 1))
-    })
+    joinBr(list, br, transArr)
     return transArr
   } catch (e) {
     log(e)
@@ -100,15 +108,7 @@ const caiyunTrans = async (source) => {
     }))
     let list = result.reduce((a, b) => a.concat(b))
     let transArr = []
-    br.forEach(count => {
-      let i = count
-      let str = ''
-      while (i >= 0) {
-        i--
-        str += list.shift() + '\n'
-      }
-      transArr.push(str.slice(0, str.length - 1))
-    })
+    joinBr(list, br, transArr)
     return transArr
   } catch (e) {
     log(e)

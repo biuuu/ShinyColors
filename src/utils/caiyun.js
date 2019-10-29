@@ -62,7 +62,11 @@ const getAuth = () => {
           })
         })
       }).then(res => {
-        pid = res.page_id
+        if (res.auth_type === -1 || !res.page_id) {
+          throw new Error('caiyun api out of limit.')
+        } else {
+          pid = res.page_id
+        }
       }).then(rev).catch(rej)
     })
   }
