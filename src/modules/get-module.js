@@ -20,8 +20,9 @@ const findModule = (id, conditionFunc) => {
   let module
   for (let i = 0; i < idList.length; i++) {
     let cid = idList[i]
-    module = primJsp([], [], [cid])
-    if (conditionFunc(module)) {
+    let _module = primJsp([], [], [cid])
+    if (conditionFunc(_module)) {
+      module = _module
       break
     }
   }
@@ -48,23 +49,23 @@ const getAoba = async () => {
 
 const getScMd = async () => {
   let scMd = await getModule('SCENARIO', (module) => {
-    return !module.default || !module.default['load'] || !module.default['_errorEvent'] || !module.default['_handleError']
+    return module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
   })
-  return scMd
+  return scMd.default
 }
 
 const getRequest = async () => {
   let md = await getModule('REQUEST', (module) => {
-    return module.get && module.post && module.put && module.patch
+    return module.default && module.default.get && module.default.post && module.default.put && module.default.patch
   })
-  return md
+  return md.default
 }
 
 const getPhraseMd = async () => {
   let md = await getModule('PHRASE', (module) => {
     return module.default && module.default._polyglot && module.default._polyglot.phrases
   })
-  return md
+  return md.default._polyglot.phrases
 }
 
 export {
