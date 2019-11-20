@@ -14,18 +14,7 @@ import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
 import isString from 'lodash/isString'
 import isRegExp from 'lodash/isRegExp'
-
-const getRequest = async () => {
-  let request
-  try {
-    const { moduleId } = await getHash
-    const moduleRequest = primJsp([],[],[moduleId.REQUEST])
-    request = moduleRequest.default
-  } catch (e) {
-    log(e)
-  }
-  return request
-}
+import { getRequest } from './get-module'
 
 const logStyles = color => ([
   `background-color:${color};color:#fff;padding:0 0.3em`,

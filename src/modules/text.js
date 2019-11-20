@@ -3,6 +3,7 @@ import getCommMap from '../store/commText'
 import { FONT } from '../config'
 import { log, fixWrap } from '../utils/index'
 import getTypeTextMap from '../store/typeText'
+import { getAoba } from './get-module'
 
 let commMap = new Map()
 let typeTextMap = new Map()
@@ -55,7 +56,8 @@ const fontCheck = (text, style, isType = false) => {
 }
 
 export default async function watchText () {
-  if (!GLOBAL.aoba) return
+  let aoba = await getAoba()
+  if (!aoba) return
   commMap = await getCommMap()
   typeTextMap = await getTypeTextMap()
 

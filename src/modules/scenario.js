@@ -7,26 +7,7 @@ import getName from '../store/name'
 import autoTrans from '../utils/translation'
 import { requestLog } from './request'
 import tagText from '../utils/tagText'
-
-const getModule = async () => {
-  let scnModule
-  try {
-    const { moduleId } = await getHash
-    const moduleLoadScenario = primJsp([],[],[moduleId.SCENARIO])
-    scnModule = moduleLoadScenario.default
-    if (
-      !moduleLoadScenario.default || !moduleLoadScenario.default['load']
-      || !moduleLoadScenario.default['_errorEvent']
-      || !moduleLoadScenario.default['_handleError']
-    ) {
-      throw new Error('模块不匹配')
-    }
-  } catch (e) {
-    log(e)
-    return false
-  }
-  return scnModule
-}
+import { getScMd } from './get-module'
 
 const storyCache = {
   name: '',
@@ -124,7 +105,7 @@ const transStory = (data, storyMap, commMap, nameMap) => {
 }
 
 const transScenario = async () => {
-  const scnModule = await getModule()
+  const scnModule = await getScMd()
   if (!scnModule) return
   const originLoad = scnModule.load
   scnModule.load = async function (...args) {
