@@ -18,7 +18,10 @@ const joinBr = (list, br, transArr) => {
     while (i >= 0) {
       i--
       let _str = list.shift()
-      if (_str) {
+      if (isString(_str)) {
+        if (!_str) {
+          _str = '……'
+        }
         str += _str + '\n'
       }
     }
