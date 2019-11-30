@@ -4,6 +4,13 @@ import replaceText from '../utils/replaceText'
 import { fixWrap, replaceWrap, log } from '../utils/index'
 
 let missionData = null
+const ensureMissionData = async () => {
+  if (!missionData) {
+    missionData = await getMission()
+  }
+  return missionData
+}
+
 const replaceMission = (data, key) => {
   if (!data) return
   const { expMap, wordMaps, textMap } = missionData
@@ -31,6 +38,19 @@ const processMission = (list) => {
   })
 }
 
+const processRaidMission = (list) => {
+  list.forEach(item => {
+    let mission = item.fesRaidAccumulatedReward
+    replaceMission(mission, 'title')
+    replaceMission(mission, 'comment')
+    let content = mission.fesRaidAccumulatedRewardContent
+    if (content && content.content) {
+      replaceMission(content.content, 'name')
+      replaceMission(content.content, 'comment')
+    }
+  })
+}
+
 const unknownMissions = []
 const saveUnknownMissions = (data, key) => {
   if (!data[key]) return
@@ -52,7 +72,7 @@ const collectMissions = (data) => {
 }
 
 const transMission = async (data) => {
-  missionData = await getMission()
+  await ensureMissionData()
   processMission(data.dailyUserMissions)
   processMission(data.weeklyUserMissions)
   data.eventUserMissions.forEach(item => {
@@ -65,7 +85,7 @@ const transMission = async (data) => {
 }
 
 const reportMission = async (data) => {
-  missionData = await getMission()
+  await ensureMissionData()
   processMission(data.reportUserMissions)
 }
 
@@ -76,7 +96,7 @@ const accumulatedPresent = (item, key) => {
 }
 
 const fesRecomMission = async (data) => {
-  missionData = await getMission()
+  await ensureMissionData()
   replaceMission(data.userRecommendedMission.mission, 'comment')
   replaceMission(data.userRecommendedMission.mission, 'title')
   data.accumulatedPresent.userGameEventAccumulatedPresents.forEach(item => {
@@ -85,5 +105,12 @@ const fesRecomMission = async (data) => {
   })
 }
 
-export { reportMission, fesRecomMission }
+const fesRaidMission = async (data) => {
+  await ensureMissionData()
+  processRaidMission(data.fesRaidBestScoreRewards)
+  processRaidMission(data.fesRaidLapRewards)
+  processRaidMission(data.fesRaidPointRewards)
+}
+
+export { reportMission, fesRecomMission, fesRaidMission }
 export default transMission

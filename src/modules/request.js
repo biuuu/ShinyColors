@@ -1,6 +1,6 @@
 import { getHash } from '../utils/fetch'
 import transSkill from './skill'
-import transMission, { reportMission, fesRecomMission } from './mission'
+import transMission, { reportMission, fesRecomMission, fesRaidMission } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
@@ -65,6 +65,7 @@ const requestOfGet = [
   [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/], [transSkill, 'storyTitle']],
   [/^userIdols\/\d+$/, 'storyTitle'],
   ['userMissions', transMission],
+  [/^fesRaidEvents\/\d+\/rewards$/, fesRaidMission],
   [['characterAlbums', 'album/top'], 'storyTitle'],
   [['userShops', 'userIdolPieceShops'], transShopItem],
   [userItemTypes, transUserItem],

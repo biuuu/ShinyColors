@@ -4,12 +4,13 @@ import parseRegExp from '../utils/parseRegExp'
 import { getLocalData, setLocalData } from './index'
 import { trim, trimWrap, pureRE } from '../utils/index'
 import sortWords from '../utils/sortWords'
+import getItem from './item'
 
-const textMap = new Map()
-const expMap = new Map()
-const nounMap = new Map()
-const nameMap = new Map()
-const noteMap = new Map()
+let textMap = new Map()
+let expMap = new Map()
+let nounMap = new Map()
+let nameMap = new Map()
+let noteMap = new Map()
 let loaded = false
 
 const getMission = async (full = false) => {
@@ -60,6 +61,8 @@ const getMission = async (full = false) => {
     loaded = true
   }
   const wordMaps = [nounMap, noteMap, nameMap]
+  let { itemMap } = await getItem()
+  textMap = new Map([...itemMap, ...textMap])
   return { expMap, wordMaps, textMap }
 }
 
