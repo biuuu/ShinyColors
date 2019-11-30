@@ -37,6 +37,9 @@ const getModule = async (name, condition) => {
   } catch (e) {
     log(e)
   }
+  if (!md) {
+    throw new Error(`${name} NOT FOUND.`)
+  }
   return md
 }
 
