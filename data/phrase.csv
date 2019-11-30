@@ -234,7 +234,7 @@ fes.resumeDialog.title,フェス再開,Fes继续
 fes.resumeDialog.text,進行中のフェスがあります。\nフェスを再開しますか？,有进行中的Fes。\n要继续该Fes吗？
 fes.terminateDialog.title,フェス終了,Fes结束
 fes.terminateDialog.text,進行中のフェスを終了します。,结束进行中的Fes
-fes.terminateDialog.textWarning,フェス参加権は返却されません,Fes参加权不退还
+fes.terminateDialog.textWarning,フェス参加権は返却されません,Fes参加权不返还
 fes.fesDeck.title,フェスユニット編成,Fes队伍编成
 fes.fesDeck.invalidFesDeckNotice.title,確認,确认
 fes.fesDeck.invalidFesDeckNotice.message,フェスユニットに空きがあるため\n編成を終了できません,Fes队伍中仍有空位\n无法结束编成
@@ -1251,72 +1251,72 @@ staffAssistEvent.present.pudding,プリンですか～、とっても楽しみ�
 staffAssistEvent.present.chocolate,チョコレートですか～、疲れに良いって言いますもんね♪\n早速いただいちゃいますね～,
 staffAssistEvent.workHard,頑張っちゃいますよ～♪,
 staffAssistEvent.rest,少し休憩してきますね～……,
-concert.judgeDetailDialog.titles.judge.vocal,Vocal審査員,
-concert.judgeDetailDialog.titles.judge.dance,Dance審査員,
-concert.judgeDetailDialog.titles.judge.visual,Visual審査員,
-concert.judgeDetailDialog.titles.instructor.vocal,Vocalコーチ,
-concert.judgeDetailDialog.titles.instructor.dance,Danceコーチ,
-concert.judgeDetailDialog.titles.instructor.visual,Visualコーチ,
-concert.judgeDetailDialog.titles.fan.vocal,Vocal重視の観客,
-concert.judgeDetailDialog.titles.fan.dance,Dance重視の観客,
-concert.judgeDetailDialog.titles.fan.visual,Visual重視の観客,
-concert.judgeDetailDialog.titles.audience.vocal,Vocalステージの観客,
-concert.judgeDetailDialog.titles.audience.dance,Danceステージの観客,
-concert.judgeDetailDialog.titles.audience.visual,Visualステージの観客,
-concert.judgeDetailDialog.titles.audience.all,Centerステージの観客,
+concert.judgeDetailDialog.titles.judge.vocal,Vocal審査員,Vocal审查员
+concert.judgeDetailDialog.titles.judge.dance,Dance審査員,Dance审查员
+concert.judgeDetailDialog.titles.judge.visual,Visual審査員,Visual审查员
+concert.judgeDetailDialog.titles.instructor.vocal,Vocalコーチ,Vocal指导
+concert.judgeDetailDialog.titles.instructor.dance,Danceコーチ,Dance指导
+concert.judgeDetailDialog.titles.instructor.visual,Visualコーチ,Visual指导
+concert.judgeDetailDialog.titles.fan.vocal,Vocal重視の観客,重视Vocal的观众
+concert.judgeDetailDialog.titles.fan.dance,Dance重視の観客,重视Dance的观众
+concert.judgeDetailDialog.titles.fan.visual,Visual重視の観客,重视Visual的观众
+concert.judgeDetailDialog.titles.audience.vocal,Vocalステージの観客,Vocal舞台的观众
+concert.judgeDetailDialog.titles.audience.dance,Danceステージの観客,Dance舞台的观众
+concert.judgeDetailDialog.titles.audience.visual,Visualステージの観客,Visual舞台的观众
+concert.judgeDetailDialog.titles.audience.all,Centerステージの観客,Center舞台的观众
 errorDialog.sdkLoginLoadFailedIOS10,認証に失敗しました。\n通信環境をご確認の上、ページの再読み込みをお試しください。\n何度も発生する場合はブラウザキャッシュクリアをお試しください。\n\niOS11.0未満の動作環境でご利用頂いた場合、\n正常に動作しない恐れがございます。\nお手数ですがOSのアップデートをお試しください。\n,
-errorDialog.staminaLimitOver,スタミナが500を超える為、\nアイテムを使用できませんでした。\n営業やプロデュースでスタミナを消費してください。,
-header.homeDeckAnimationCharacterChange.left,Leftアイドル選択,
-header.homeDeckAnimationCharacterChange.center,Centerアイドル選択,
-header.homeDeckAnimationCharacterChange.right,Rightアイドル選択,
-header.raidDeck,コラボフェスユニット編成,
-ideaNote.idolConfirmationDialog.title,プロデュースアイドル確認,
+errorDialog.staminaLimitOver,スタミナが500を超える為、\nアイテムを使用できませんでした。\n営業やプロデュースでスタミナを消費してください。,精力值已超过500，\n无法使用恢复道具。\n请通过营业或培育偶像消耗精力值。
+header.homeDeckAnimationCharacterChange.left,Leftアイドル選択,左侧偶像选择
+header.homeDeckAnimationCharacterChange.center,Centerアイドル選択,Center偶像选择
+header.homeDeckAnimationCharacterChange.right,Rightアイドル選択,右侧偶像选择
+header.raidDeck,コラボフェスユニット編成,COLLABO FES队伍编成
+ideaNote.idolConfirmationDialog.title,プロデュースアイドル確認,Produce偶像确认
 ideaNote.idolConfirmationDialog.statusNum,%{num} / %{limitNum},
-ideaNote.idolConfirmationDialog.progress,シーズン %{seasonNum} / 残り %{remainSeasonWeek}週,
-homeDeck.verticalPositionSelectButton,立ち位置,
-homeDeck.verticalPositionPopTitle,立ち位置設定,
-homeDeck.bgSelectButton,背景・その他,
-homeDeck.emptyBackGroundEffectName,なし,
-mission.notJoined,未参加です,
-raidConcert.sharedPassiveSkillDialog.title,発動中のパッシブスキル,
+ideaNote.idolConfirmationDialog.progress,シーズン %{seasonNum} / 残り %{remainSeasonWeek}週,季度 %{seasonNum} / 剩余 %{remainSeasonWeek}周
+homeDeck.verticalPositionSelectButton,立ち位置,站立位置
+homeDeck.verticalPositionPopTitle,立ち位置設定,站立位置设置
+homeDeck.bgSelectButton,背景・その他,背景・其他
+homeDeck.emptyBackGroundEffectName,なし,无背景
+mission.notJoined,未参加です,未参加
+raidConcert.sharedPassiveSkillDialog.title,発動中のパッシブスキル,发动中的被动技能
 raidConcert.chain.appealCommentRegExp,(?:[a-zA-Z＆]+[0-9.～〜最大]+倍|思い出)アピール,
-raidConcert.chain.unsupportedSkill,チェイン対象外,
-raidTop.announce.defaultMessages.opening,ステージを選んでコラボフェスに参加してください,
-raidTop.announce.defaultMessages.closed,コラボフェス期間は終了しました,
-raidTop.header.closeDate,開催期間 %{closeAt}まで,
-raidTop.passShortageDialog.title,コラボフェスパス,
-raidTop.passShortageDialog.text,コラボフェスパスが不足しています,
-raidTop.resumeDialog.title,コラボフェス,
-raidTop.resumeDialog.text,進行中のフェスがあります。\nフェスを再開しますか？,
-raidTop.terminateDialog.title,コラボフェス,
-raidTop.terminateDialog.text,進行中のフェスを終了します。,
-raidTop.terminateDialog.textWarning,コラボフェスパスは返却されません,
+raidConcert.chain.unsupportedSkill,チェイン対象外,非连锁对象
+raidTop.announce.defaultMessages.opening,ステージを選んでコラボフェスに参加してください,请选择舞台参加COLLABO FES
+raidTop.announce.defaultMessages.closed,コラボフェス期間は終了しました,COLLABO FES时段已结束
+raidTop.header.closeDate,開催期間 %{closeAt}まで,举办时段 %{closeAt}截止
+raidTop.passShortageDialog.title,コラボフェスパス,COLLABO FES通行券
+raidTop.passShortageDialog.text,コラボフェスパスが不足しています,COLLABO FES通行券不足
+raidTop.resumeDialog.title,コラボフェス,COLLABO FES
+raidTop.resumeDialog.text,進行中のフェスがあります。\nフェスを再開しますか？,有进行中的FES。\n要继续该FES吗？
+raidTop.terminateDialog.title,コラボフェス,COLLABO FES
+raidTop.terminateDialog.text,進行中のフェスを終了します。,结束进行中的FES
+raidTop.terminateDialog.textWarning,コラボフェスパスは返却されません,COLLABO FES通行券不返还
 raidTop.guestedConcertHistoryDialog.title,活躍速報,
 raidTop.guestedConcertHistoryDialog.description,以下のライブで活躍しました,
-raidTop.stageRankingDetailDialog.titles.vocal,Vocalステージ 累計スコアランキングTOP10,
-raidTop.stageRankingDetailDialog.titles.dance,Danceステージ 累計スコアランキングTOP10,
-raidTop.stageRankingDetailDialog.titles.visual,Visualステージ 累計スコアランキングTOP10,
-raidTop.stageRankingDetailDialog.titles.all,Centerステージ 累計スコアランキングTOP10,
+raidTop.stageRankingDetailDialog.titles.vocal,Vocalステージ 累計スコアランキングTOP10,Vocal舞台 累计分数排行榜TOP10
+raidTop.stageRankingDetailDialog.titles.dance,Danceステージ 累計スコアランキングTOP10,Dance舞台 累计分数排行榜TOP10
+raidTop.stageRankingDetailDialog.titles.visual,Visualステージ 累計スコアランキングTOP10,Visual舞台 累计分数排行榜TOP10
+raidTop.stageRankingDetailDialog.titles.all,Centerステージ 累計スコアランキングTOP10,Center舞台 累计分数排行榜TOP10
 raidResult.raidStageDifficultyAndLevel,%{difficulty} Lv.%{level},
 raidResult.raidBonusDifficultyAndLevel,%{difficulty}(%{level}),
-raidResult.raidNoAwardUser,なし,
+raidResult.raidNoAwardUser,なし,无
 raidResult.scoreSuffix,%{value}pt,
 raidResult.difficultyRate,×%{value},
-raidReady.description,テンション決定後は前の画面には戻れません\nコラボフェスパスを1消費します,
-raidReady.unitSkillDetailDialog.title,ユニット詳細,
-raidReward.headerTitle,イベント報酬,
-raidReward.alertTexts.default,最大100件一度に受け取ることが可能です\n受け取り済の報酬は未受け取りの報酬の下部に表示されます,
-raidReward.alertTexts.lap,最大100件一度に受け取ることが可能です\n周数報酬は期間中に1回でもコラボフェスをプレイした場合のみ受け取れます,
-raidReward.popMissionDetail,報酬詳細,
-raidReward.receiveAllConfirm.text,報酬を新しいものから\n100件まで受け取ります。\nよろしいですか？,
-raidReward.receiveAll.title,報酬一括受け取り,
-raidReward.receiveAll.message,以下の報酬を受け取りました,
-raidReward.receiveAll.maxMessageFooter,一部の報酬は最大所持数を超えているため\n受け取れませんでした,
-raidReward.receiveAll.maxMessage,最大所持数を超えるため受け取れません,
-raidReward.receiveAll.noPresentMessage,受け取れる報酬はありませんでした,
+raidReady.description,テンション決定後は前の画面には戻れません\nコラボフェスパスを1消費します,心情确定之后将无法回到之前的界面\n将消耗1张COLLABO FES通行券
+raidReady.unitSkillDetailDialog.title,ユニット詳細,队伍详情
+raidReward.headerTitle,イベント報酬,活动报酬
+raidReward.alertTexts.default,最大100件一度に受け取ることが可能です\n受け取り済の報酬は未受け取りの報酬の下部に表示されます,一次最多可领取100件\n已领取的报酬显示在未领取的报酬的下方
+raidReward.alertTexts.lap,最大100件一度に受け取ることが可能です\n周数報酬は期間中に1回でもコラボフェスをプレイした場合のみ受け取れます,一次最多可领取100件\n周数报酬仅在至少参加1次COLLABO FES的情况下才可领取
+raidReward.popMissionDetail,報酬詳細,报酬详情
+raidReward.receiveAllConfirm.text,報酬を新しいものから\n100件まで受け取ります。\nよろしいですか？,从最新的报酬开始\n至多领取100件。\n确认领取吗？
+raidReward.receiveAll.title,報酬一括受け取り,一次性领取报酬
+raidReward.receiveAll.message,以下の報酬を受け取りました,获得了以下报酬
+raidReward.receiveAll.maxMessageFooter,一部の報酬は最大所持数を超えているため\n受け取れませんでした,由于部分报酬超过了最大所持数\n无法领取
+raidReward.receiveAll.maxMessage,最大所持数を超えるため受け取れません,由于超过最大所持数，无法领取
+raidReward.receiveAll.noPresentMessage,受け取れる報酬はありませんでした,没有可以领取的报酬
 raidReward.receiveAll.itemNameNum,%{type} ×%{num},
-raidReward.popReceive.title,報酬受け取り,
-raidReward.popReceive.comment,以下の報酬を受け取りました,
-raidExceptionPop.title,コラボフェス,
-raidExceptionPop.closeEventText,コラボフェスは終了しました,
-raidExceptionPop.closeHallText,%{name}の\n盛り上がりが最高潮に達しました\n\n他のステージを盛り上げに行ってみましょう！
+raidReward.popReceive.title,報酬受け取り,领取报酬
+raidReward.popReceive.comment,以下の報酬を受け取りました,领取了以下报酬
+raidExceptionPop.title,コラボフェス,COLLABO FES
+raidExceptionPop.closeEventText,コラボフェスは終了しました,COLLABO FES已结束
+raidExceptionPop.closeHallText,%{name}の\n盛り上がりが最高潮に達しました\n\n他のステージを盛り上げに行ってみましょう！,%{name}的\n气氛已达到最高潮\n\n让其他舞台的气氛高涨吧！
