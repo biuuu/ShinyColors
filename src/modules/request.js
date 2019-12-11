@@ -1,5 +1,4 @@
-import { getHash } from '../utils/fetch'
-import transSkill from './skill'
+import { supportSkill, userIdolsSkill } from './skill'
 import transMission, { reportMission, fesRecomMission, fesRaidMission } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
@@ -62,8 +61,8 @@ const requestRouter = async (data, type, list) => {
 }
 
 const requestOfGet = [
-  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/], [transSkill, 'storyTitle']],
-  [/^userIdols\/\d+$/, 'storyTitle'],
+  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/], [supportSkill, 'storyTitle']],
+  [/^userIdols\/\d+$/, [userIdolsSkill, 'storyTitle']],
   ['userMissions', transMission],
   [/^fesRaidEvents\/\d+\/rewards$/, fesRaidMission],
   [['characterAlbums', 'album/top'], 'storyTitle'],
@@ -84,7 +83,7 @@ const requestOfPost = [
   [/userMissions\/\d+\/actions\/receive/, transReceiveMission],
   ['userLoginBonuses', transLoginBonus],
   ['fesTop', [transFesReward, fesDeckReactions]],
-  [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, transSkill],
+  [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, supportSkill],
   [/^produces\/actions\/(resume|next)$/, [topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer]],
   ['produces/actions/endWeek', produceEndWeek],
   ['produces/actions/act', lessonResult],
@@ -96,7 +95,7 @@ const requestOfPost = [
 ]
 
 const requestOfPatch = [
-  [/^userSupportIdols\/\d+$/, transSkill]
+  [/^userSupportIdols\/\d+$/, supportSkill]
 ]
 
 export default async function requestHook () {
