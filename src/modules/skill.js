@@ -10,11 +10,33 @@ const ensureSkillData = async () => {
   return skillData
 }
 
-const preItemReplace = (item, key, data) => {
+const nameWithPlus = (list, data) => {
+  if (data) {
+    list.forEach((str, index) => {
+      list[index] = str + data[index]
+    })
+  } else {
+    let arr = []
+    list.forEach((str, index) => {
+      let rgs = str.match(/([＋+]+)$/)
+      if (rgs && rgs[1]) {
+        arr.push(rgs[1])
+        list[index] = str.replace(/[＋+]+$/, '')
+      } else {
+        arr.push('')
+      }
+    })
+    return arr
+  }
+}
+
+const transSkill = (item, key, data) => {
   if ( item && item[key]) {
     let arr = item[key].split('/')
     arr.forEach((txt, index) => {
+      let plusList = nameWithPlus(arr)
       replaceItem(arr, index, data)
+      nameWithPlus(arr, plusList)
     })
     item[key] = arr.join('/')
   }
@@ -34,34 +56,41 @@ const supportSkill = async (data) => {
   })
 }
 
-const liveSkill = (data, skillData) => {
+const skillWithLink = (data, skillData) => {
   if (!data) return
-  preItemReplace(data, 'comment', skillData)
-  preItemReplace(data, 'name', skillData)
+  transSkill(data, 'comment', skillData)
+  transSkill(data, 'name', skillData)
   if (data.linkSkill) {
-    preItemReplace(data.linkSkill, 'comment', skillData)
-    preItemReplace(data.linkSkill, 'name', skillData)
+    transSkill(data.linkSkill, 'comment', skillData)
+    transSkill(data.linkSkill, 'name', skillData)
   }
 }
 
 const skillPanel = (data, skillData) => {
   data.forEach(item => {
-    preItemReplace(item, 'releaseConditions', skillData)
-    preItemReplace(item.passiveSkills, 'comment', skillData)
-    preItemReplace(item.passiveSkills, 'name', skillData)
-    liveSkill(item.skill, skillData)
-    liveSkill(item.concertActiveSkill, skillData)
+    transSkill(item, 'releaseConditions', skillData)
+    transSkill(item.passiveSkills, 'comment', skillData)
+    transSkill(item.passiveSkills, 'name', skillData)
+    skillWithLink(item.skill, skillData)
+    skillWithLink(item.concertActiveSkill, skillData)
     if (item.activeSkills.length) {
       item.activeSkills.forEach(skill => {
-        liveSkill(skill, skillData)
+        skillWithLink(skill, skillData)
       })
     }
+  })
+}
+
+const memoryAppeal = (data, skillData) => {
+  data.forEach(item => {
+    skillWithLink(item, skillData)
   })
 }
 
 const userIdolsSkill = async (data) => {
   const skillData = await ensureSkillData()
   skillPanel(data.idol.skillPanels, skillData)
+  memoryAppeal(data.idol.memoryAppeals, skillData)
 }
 
 export {

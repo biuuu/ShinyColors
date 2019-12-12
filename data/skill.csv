@@ -1,13 +1,14 @@
 text,trans,type
 $noun$percentUP,$1$2UP,
+$noun$num倍アピール,$1$2倍Appeal,
 $noun＆$noun$num倍アピール,$1＆$2$3倍Appeal,
 $noun＆$noun$percentUP[$numターン],$1＆$2$3UP[$4回合],
 [条件:$numターン以前][確率:$percent][最大:$num回],[条件:$1回合前][概率:$2][最多:$3次],
 [条件:$name][確率:$other][最大:$num回],[条件:$1][概率:$2][最多:$3次],
 [条件:$noun$num以上][確率:$percent][最大:$num回],[条件:$1$2以上][概率:$3][最多:$4次],
 [条件:$noun$num以下][確率:$percent][最大:$num回],[条件:$1$2以下][概率:$3][最多:$4次],
-[条件:$noun$percent以上][確率:$percent][最percent回],[条件:$1$2以上][概率:$3][最多:$4次],
-[条件:$noun$percent以下][確率:$percent][最大:$npercent],[条件:$1$2以下][概率:$3][最多:$4次],
+[条件:$noun$percent以上][確率:$percent][最大$num回],[条件:$1$2以上][概率:$3][最多:$4次],
+[条件:$noun$percent以下][確率:$percent][最大:$num],[条件:$1$2以下][概率:$3][最多:$4次],
 必ず最後にアピールを行い$noun$num倍アピール,必定最后出手的$1$2倍Appeal,
 興味$percentUP[$numターン],兴趣$1UP[$2回合],
 メンタルダメージ$percentCUT,Mental伤害$1CUT,
@@ -22,6 +23,7 @@ Visual,Visual,noun
 ごく稀,非常低,other
 リンクアピール,Link Appeal,text
 特定のアイドルイベントで解放,触发偶像的特定事件时解锁,text
+真っ白になりましたね,变成白色,text
 真乃,真乃,name
 灯織,灯织,name
 めぐる,巡,name
