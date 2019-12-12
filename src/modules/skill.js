@@ -1,5 +1,6 @@
-import replaceText, { replaceItem } from '../utils/replaceText'
+import { replaceItem } from '../utils/replaceText'
 import { getSupportSkill, getSkill } from '../store/skill'
+import { log } from '../utils/index'
 import tagText from '../utils/tagText'
 
 let skillData = null
@@ -38,31 +39,52 @@ const transSkill = (item, key, data) => {
       replaceItem(arr, index, data)
       nameWithPlus(arr, plusList)
     })
-    item[key] = arr.join('/')
+    let text = arr.join('/')
+    if (text !== item[key]) {
+      item[key] = tagText(text)
+    } else {
+      log(text)
+    }
   }
 }
 
 const supportSkill = async (data) => {
   let obj = data
   if (data.userSupportIdol) obj = data.userSupportIdol
-  const { expMap, wordMaps } = await getSupportSkill()
+  const skillData = await getSupportSkill()
   const sskill = obj.supportSkills || obj.supportIdol.supportSkills
   const asskill = obj.acquiredSupportSkills
   sskill && sskill.forEach(item => {
-    item.description = tagText(replaceText(item.description, expMap, wordMaps))
+    transSkill(item, 'description', skillData)
+    transSkill(item, 'name', skillData)
   })
   asskill && asskill.forEach(item => {
-    item.description = tagText(replaceText(item.description, expMap, wordMaps))
+    transSkill(item, 'description', skillData)
+    transSkill(item, 'name', skillData)
   })
 }
 
-const skillWithLink = (data, skillData) => {
+const transEffects = (data, skillData) => {
+  if (!data.skillEffects) return
+  data.skillEffects.forEach(item => {
+    transSkill(item, 'effectName', skillData)
+    transSkill(item, 'effectDescription', skillData)
+  })
+}
+
+const skillWithLink = (data, skillData, transEffect = false) => {
   if (!data) return
   transSkill(data, 'comment', skillData)
   transSkill(data, 'name', skillData)
+  if (transEffect) {
+    transEffects(data, skillData)
+  }
   if (data.linkSkill) {
     transSkill(data.linkSkill, 'comment', skillData)
     transSkill(data.linkSkill, 'name', skillData)
+    if (transEffect) {
+      transEffects(data.linkSkill, skillData)
+    }
   }
 }
 
@@ -222,9 +244,36 @@ const produceFinish = async (data) => {
   shortProIdol(data, skillData)
 }
 
+const fesMatchConcertSkill = async (data) => {
+  const skillData = await ensureSkillData()
+  data.userFesDeck.userFesDeckMembers.forEach(member => {
+    member.userFesIdol.activeSkills.forEach(item => {
+      skillWithLink(item, skillData, true)
+    })
+    skillWithLink(member.userFesIdol.memoryAppeal, skillData, true)
+    member.userFesIdol.passiveSkills.forEach(item => {
+      transSkill(item, 'comment', skillData)
+      transSkill(item, 'name', skillData)
+      transEffects(item, skillData)
+    })
+  })
+}
+
+const resumeGameSkill = async (data) => {
+  if (!data.gameData) return
+  try {
+    let gData = JSON.parse(data.gameData)
+    await fesMatchConcertSkill(gData)
+    data.gameData = JSON.stringify(gData)
+  } catch (e) {
+    log(e)
+  }
+}
+
 export {
   supportSkill, userIdolsSkill, produceExSkillTop,
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
   reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userProIdolsSkill,
-  userProSptIdolsSkill, proSkillPanels, produceFinish
+  userProSptIdolsSkill, proSkillPanels, produceFinish,
+  fesMatchConcertSkill, resumeGameSkill
 }

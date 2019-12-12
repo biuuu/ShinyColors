@@ -1,4 +1,5 @@
 import autoTrans from '../utils/translation'
+import { log } from '../utils/index'
 
 const autoTransText = async (data, key = 'comment') => {
   const name = data.map(item => item[key]).join('').trim()

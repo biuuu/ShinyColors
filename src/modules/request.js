@@ -1,7 +1,8 @@
 import { supportSkill, userIdolsSkill, produceExSkillTop, 
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
   otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck,
-  userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish } from './skill'
+  userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish,
+  fesMatchConcertSkill, resumeGameSkill } from './skill'
 import transMission, { reportMission, fesRecomMission, fesRaidMission } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
@@ -102,8 +103,8 @@ const requestOfPost = [
   ['produces/actions/resume', produceFinish],
   ['produces/actions/endWeek', produceEndWeek],
   ['produces/actions/act', lessonResult],
-  [/^fes(Match)?Concert\/actions\/start$/, fesMatchConcert],
-  [/^fes(Match)?Concert\/actions\/resume$/, resumeGamedata],
+  [/^fes(Match)?Concert\/actions\/start$/, [fesMatchConcert, fesMatchConcertSkill]],
+  [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
   ['produces/actions/result', trustLevelUp],
   [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment]],
   ['userProduceHelperSupportIdols', helperSupportIdols]
