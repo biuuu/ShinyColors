@@ -1,4 +1,7 @@
-import { supportSkill, userIdolsSkill } from './skill'
+import { supportSkill, userIdolsSkill, produceExSkillTop, 
+  userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
+  otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck,
+  userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish } from './skill'
 import transMission, { reportMission, fesRecomMission, fesRaidMission } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
@@ -61,8 +64,16 @@ const requestRouter = async (data, type, list) => {
 }
 
 const requestOfGet = [
-  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/], [supportSkill, 'storyTitle']],
+  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/], [supportSkill, userSptIdolsSkill, 'storyTitle']],
+  [/^userProduceSupportIdols\/\d+$/, [supportSkill, userProSptIdolsSkill]],
+  [/^userReserveSupportIdols\/userSupportIdol\/\d+$/, [supportSkill, reserveUserSptIdolsSkill]],
+  [/^userIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
+  [/^userSupportIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
   [/^userIdols\/\d+$/, [userIdolsSkill, 'storyTitle']],
+  [/^userProduceIdols\/\d+$/, userProIdolsSkill],
+  [/^userReserveIdols\/userIdol\/\d+$/, reserveUserIdolsSkill],
+  [/^userFesIdols\/\d+$/, userFesIdolsSkill],
+  ['userProduces/skillPanels', proSkillPanels],
   ['userMissions', transMission],
   [/^fesRaidEvents\/\d+\/rewards$/, fesRaidMission],
   [['characterAlbums', 'album/top'], 'storyTitle'],
@@ -72,19 +83,23 @@ const requestOfGet = [
   [/gashaGroups\/\d+\/rates/, 'cardName'],
   ['userProduces', [topCharacterReaction]],
   [/^fes(Match)?Concert\/actions\/resume$/, resumeGamedata],
+  [/earthUsers\/[^\/]+\/userFesIdols\/\d+$/, otherFesIdolSkill]
 ]
 
 const requestOfPost = [
   ['myPage', [reportMission, mypageComments]],
   [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
+  [/userIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, userIdolsSkill],
   ['userShops/actions/purchase', transShopPurchase],
   [/produces\/\d+\/actions\/ready/, transUserItem],
   [/userPresents\/\d+\/actions\/receive/, transReceivePresent],
   [/userMissions\/\d+\/actions\/receive/, transReceiveMission],
   ['userLoginBonuses', transLoginBonus],
   ['fesTop', [transFesReward, fesDeckReactions]],
-  [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, supportSkill],
+  [/^userProduces\/skillPanels\/\d+$/, proSkillPanels],
+  [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, [ userSptIdolsSkill, supportSkill]],
   [/^produces\/actions\/(resume|next)$/, [topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer]],
+  ['produces/actions/resume', produceFinish],
   ['produces/actions/endWeek', produceEndWeek],
   ['produces/actions/act', lessonResult],
   [/^fes(Match)?Concert\/actions\/start$/, fesMatchConcert],
@@ -95,7 +110,8 @@ const requestOfPost = [
 ]
 
 const requestOfPatch = [
-  [/^userSupportIdols\/\d+$/, supportSkill]
+  [/^userSupportIdols\/\d+$/, supportSkill],
+  ['userFesDecks', userFesDeck]
 ]
 
 export default async function requestHook () {
