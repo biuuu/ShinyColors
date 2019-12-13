@@ -24,6 +24,7 @@ text,trans,type
 一緒にダンスレッスンをすると$noun＋$num,一起在舞蹈室训练时$1＋$2,
 行動した場所に自分以外のユニットメンバーがいると1人につき$noun＋$num,一起行动时每有一个自己以外的组合成员$1＋$2,
 オーディションで$num位を取ると$noun＋$num,在试镜中取得第$1名时$2＋$3,
+体力サポート,体力支援,text
 Dance,Dance,noun
 Visual,Visual,noun
 Vocal,Vocal,noun
