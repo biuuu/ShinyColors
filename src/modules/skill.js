@@ -116,6 +116,7 @@ const memoryAppeal = (data, skillData) => {
 }
 
 const shortProIdol = (data, skillData, panel = false) => {
+  if (!data.userProduceIdol) return
   data.userProduceIdol.activeSkills.forEach(item => {
     commSkill(item, skillData)
   })
