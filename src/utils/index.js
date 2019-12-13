@@ -14,6 +14,12 @@ const isDomain = (str) => {
   return true
 }
 
+const sleep = (time) => {
+  return new Promise(rev => {
+    setTimeout(rev, time)
+  })
+}
+
 const trim = (str) => {
   if (!str) return ''
   let _str = str.replace(/[\u0020]+$/g, '')
@@ -133,5 +139,6 @@ export {
   replaceWords,
   replaceQuote,
   pureRE,
-  transSpeaker
+  transSpeaker,
+  sleep
 }

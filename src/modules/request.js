@@ -2,7 +2,7 @@ import { supportSkill, userIdolsSkill, produceExSkillTop,
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
   otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck,
   userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish,
-  fesMatchConcertSkill, resumeGameSkill } from './skill'
+  fesMatchConcertSkill, resumeGameSkill, auditionSkill, produceResultSkill } from './skill'
 import transMission, { reportMission, fesRecomMission, fesRaidMission } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
@@ -70,7 +70,7 @@ const requestOfGet = [
   [/^userReserveSupportIdols\/userSupportIdol\/\d+$/, [supportSkill, reserveUserSptIdolsSkill]],
   [/^userIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
   [/^userSupportIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
-  [/^userIdols\/\d+$/, [userIdolsSkill, 'storyTitle']],
+  [[/^userIdols\/\d+$/, /^userIdols\/statusMax$/], [userIdolsSkill, 'storyTitle']],
   [/^userProduceIdols\/\d+$/, userProIdolsSkill],
   [/^userReserveIdols\/userIdol\/\d+$/, reserveUserIdolsSkill],
   [/^userFesIdols\/\d+$/, userFesIdolsSkill],
@@ -99,13 +99,14 @@ const requestOfPost = [
   ['fesTop', [transFesReward, fesDeckReactions]],
   [/^userProduces\/skillPanels\/\d+$/, proSkillPanels],
   [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, [ userSptIdolsSkill, supportSkill]],
-  [/^produces\/actions\/(resume|next)$/, [topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer]],
-  ['produces/actions/resume', produceFinish],
+  [/^produces\/actions\/(resume|next)$/, [topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer, supportSkill]],
+  [['produces/actions/resume', 'produces/actions/finish'], [produceFinish, resumeGameSkill]],
   ['produces/actions/endWeek', produceEndWeek],
   ['produces/actions/act', lessonResult],
   [/^fes(Match)?Concert\/actions\/start$/, [fesMatchConcert, fesMatchConcertSkill]],
   [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
-  ['produces/actions/result', trustLevelUp],
+  ['produces/actions/result', [trustLevelUp, produceResultSkill]],
+  [/^produces\/(\d+\/audition|concert)\/actions\/start$/, [auditionSkill]],
   [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment]],
   ['userProduceHelperSupportIdols', helperSupportIdols]
 ]

@@ -50,10 +50,16 @@ const transSkill = (item, key, data) => {
 
 const supportSkill = async (data) => {
   let obj = data
+  if (data.gameData) return
   if (data.userSupportIdol) obj = data.userSupportIdol
-  const skillData = await getSupportSkill()
-  const sskill = obj.supportSkills || obj.supportIdol.supportSkills
+  let sskill
   const asskill = obj.acquiredSupportSkills
+  if (obj.supportSkills) {
+    sskill = obj.supportSkills
+  } else if (obj.supportIdol && obj.supportIdol.supportSkills) {
+    sskill = obj.supportIdol.supportSkills
+  }
+  const skillData = await getSupportSkill()
   sskill && sskill.forEach(item => {
     transSkill(item, 'description', skillData)
     transSkill(item, 'name', skillData)
@@ -65,8 +71,11 @@ const supportSkill = async (data) => {
 }
 
 const transEffects = (data, skillData) => {
-  if (!data.skillEffects) return
-  data.skillEffects.forEach(item => {
+  data.skillEffects && data.skillEffects.forEach(item => {
+    transSkill(item, 'effectName', skillData)
+    transSkill(item, 'effectDescription', skillData)
+  })
+  data.rivalMemoryAppealEffects && data.rivalMemoryAppealEffects.forEach(item => {
     transSkill(item, 'effectName', skillData)
     transSkill(item, 'effectDescription', skillData)
   })
@@ -88,7 +97,7 @@ const commSkill = (data, skillData, transEffect = false) => {
   }
 }
 
-const exSkill = (data) => {
+const exSkill = (data, skillData) => {
   transSkill(data, 'name', skillData)
   transSkill(data, 'description', skillData)
 }
@@ -101,7 +110,7 @@ const skillPanel = (data, skillData) => {
     transSkill(item.passiveSkills, 'name', skillData)
     commSkill(item.skill, skillData)
     commSkill(item.concertActiveSkill, skillData)
-    if (item.activeSkills.length) {
+    if (item.activeSkills) {
       item.activeSkills.forEach(skill => {
         commSkill(skill, skillData)
       })
@@ -116,15 +125,19 @@ const memoryAppeal = (data, skillData) => {
 }
 
 const shortProIdol = (data, skillData, panel = false) => {
-  if (!data.userProduceIdol) return
-  data.userProduceIdol.activeSkills.forEach(item => {
+  let proIdol = data.userProduceIdol
+  if (!proIdol) return
+  proIdol.activeSkills && proIdol.activeSkills.forEach(item => {
     commSkill(item, skillData)
   })
-  data.userProduceIdol.passiveSkills.forEach(item => {
+  proIdol.passiveSkills && proIdol.passiveSkills.forEach(item => {
+    commSkill(item, skillData)
+  })
+  proIdol.limitBreaks && proIdol.limitBreaks.forEach(item => {
     commSkill(item, skillData)
   })
   if (panel) {
-    skillPanel(data.userProduceIdol.skillPanels, skillData)
+    skillPanel(proIdol.skillPanels, skillData)
   }
 }
 
@@ -134,7 +147,7 @@ const judegsSkill = (data, skillData) => {
   })
 }
 
-const rivalsSkill = (data, skillData) => {
+const fesRivalsSkill = (data, skillData) => {
   data.forEach(rival => {
     rival.userFesDeck && rival.userFesDeck.userFesDeckMembers.forEach(member => {
       member.userFesIdol.activeSkills.forEach(skill => {
@@ -142,6 +155,15 @@ const rivalsSkill = (data, skillData) => {
       })
     })
     rival.rival && rival.rival.rivalSkills.forEach(skill => {
+      transEffects(skill, skillData)
+    })
+  })
+}
+
+const audRivalsSkill = (data, skillData) => {
+  data.forEach(rival => {
+    transEffects(rival.rivalMemoryAppeal, skillData)
+    rival.rivalSkills.forEach(skill => {
       transEffects(skill, skillData)
     })
   })
@@ -260,10 +282,14 @@ const proSkillPanels = async (data) => {
   data.userProduceSupportIdols.forEach(item => {
     skillPanel(item.skillPanels, skillData)
   })
-  shortProIdol(data, skillData)
+  shortProIdol(data, skillData, true)
+  try {
+    skillPanel(data.userProduceIdol.userIdol.idol.skillPanels, skillData)
+  } catch (e) {}
 }
 
 const produceFinish = async (data) => {
+  if (data.gameData) return
   const skillData = await ensureSkillData()
   shortProIdol(data, skillData)
 }
@@ -282,18 +308,47 @@ const fesMatchConcertSkill = async (data) => {
     })
   })
   judegsSkill(data.judges, skillData)
-  rivalsSkill(data.userFesRivals, skillData)
+  fesRivalsSkill(data.userFesRivals, skillData)
+}
+
+const auditionSkill = async (data) => {
+  const skillData = await ensureSkillData()
+  data.userProduceSupportIdols.forEach(item => {
+    commSkill(item.activeSkill, skillData, true)
+  })
+  let proIdol = data.userProduceIdol
+  proIdol.activeSkills.forEach(skill => {
+    commSkill(skill, skillData, true)
+  })
+  commSkill(proIdol.memoryAppeal, skillData, true)
+  proIdol.passiveSkills.forEach(skill => {
+    commSkill(skill, skillData, true)
+  })
+  let audition = data.produceAudition || data.produceConcert
+  judegsSkill(audition.judges, skillData)
+  audRivalsSkill(audition.rivals, skillData)
 }
 
 const resumeGameSkill = async (data) => {
   if (!data.gameData) return
   try {
     let gData = JSON.parse(data.gameData)
-    await fesMatchConcertSkill(gData)
+    if (gData.produceAudition || gData.produceConcert) {
+      await auditionSkill(gData)
+    } else if (gData.userFesDeck) {
+      await fesMatchConcertSkill(gData)
+    }
     data.gameData = JSON.stringify(gData)
   } catch (e) {
     log(e)
   }
+}
+
+const produceResultSkill = async (data) => {
+  const skillData = await ensureSkillData()
+  data.produceExSkillRewards.forEach(reward => {
+    exSkill(reward.produceExSkill, skillData)
+  })
 }
 
 export {
@@ -301,5 +356,5 @@ export {
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
   reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userProIdolsSkill,
   userProSptIdolsSkill, proSkillPanels, produceFinish,
-  fesMatchConcertSkill, resumeGameSkill
+  fesMatchConcertSkill, resumeGameSkill, auditionSkill, produceResultSkill
 }
