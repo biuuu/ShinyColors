@@ -43,7 +43,7 @@ const transSkill = (item, key, data) => {
     if (text !== item[key]) {
       item[key] = tagText(text)
     } else {
-      log(text)
+      // log(text)
     }
   }
 }
@@ -283,6 +283,10 @@ const proSkillPanels = async (data) => {
     skillPanel(item.skillPanels, skillData)
   })
   shortProIdol(data, skillData, true)
+  data.userProduceLimitedSkills.forEach(item => {
+    commSkill(item.passiveSkills, skillData)
+    commSkill(item.skill, skillData)
+  })
   try {
     skillPanel(data.userProduceIdol.userIdol.idol.skillPanels, skillData)
   } catch (e) {}
@@ -351,10 +355,33 @@ const produceResultSkill = async (data) => {
   })
 }
 
+const ideaNotesSkill = async (data) => {
+  if (!data.userProduceIdeaNotes) return
+  const skillData = await ensureSkillData()
+  data.userProduceIdeaNotes.forEach(note => {
+    let bonus = note.produceIdeaNote.produceIdeaNoteCompleteBonus
+    transSkill(bonus, 'title', skillData)
+    transSkill(bonus, 'comment', skillData)
+    note.produceIdeaNote.produceIdeaNoteExtraBonuses.forEach(item => {
+      transSkill(item, 'comment', skillData)
+      transSkill(item, 'condition', skillData)
+    })
+  })
+}
+
+const noteResultSkill = async (data) => {
+  const skillData = await ensureSkillData()
+  try {
+    let item = data.lessonResult.userProduceIdeaNote.produceIdeaNote.produceIdeaNoteCompleteBonus
+    commSkill(item, skillData)
+  } catch (e) {}
+}
+
 export {
   supportSkill, userIdolsSkill, produceExSkillTop,
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
   reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userProIdolsSkill,
   userProSptIdolsSkill, proSkillPanels, produceFinish,
-  fesMatchConcertSkill, resumeGameSkill, auditionSkill, produceResultSkill
+  fesMatchConcertSkill, resumeGameSkill, auditionSkill, produceResultSkill,
+  ideaNotesSkill, noteResultSkill
 }

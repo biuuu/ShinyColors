@@ -5,9 +5,8 @@ import resourceHook from './modules/resourse'
 import transScenario from './modules/scenario'
 import addFont from './utils/fontFace'
 import './utils/keepBgm'
-import { log, sleep } from './utils/index'
+import { log } from './utils/index'
 
-let errCount = 0
 const main = async () => {
   try {
     await Promise.all([resourceHook(), addFont(), transPhrase(), watchText(), requestHook(), transScenario()])
@@ -16,13 +15,8 @@ const main = async () => {
   }
 }
 
-const start = async () => {
-  log(primEnv)
-  main()
-}
-
 if (window.unsafeWindow) {
-  unsafeWindow.addEventListener('load', start)
+  unsafeWindow.addEventListener('load', main)
 } else {
-  window.addEventListener('load', start)
+  window.addEventListener('load', main)
 }
