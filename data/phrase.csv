@@ -1276,7 +1276,7 @@ ideaNote.idolConfirmationDialog.progress,シーズン %{seasonNum} / 残り %{re
 homeDeck.verticalPositionSelectButton,立ち位置,站立位置
 homeDeck.verticalPositionPopTitle,立ち位置設定,站立位置设置
 homeDeck.bgSelectButton,背景・その他,背景・其他
-homeDeck.emptyBackGroundEffectName,なし,无背景
+homeDeck.emptyBackGroundEffectName,なし,无特效
 mission.notJoined,未参加です,未参加
 raidConcert.sharedPassiveSkillDialog.title,発動中のパッシブスキル,发动中的被动技能
 raidConcert.chain.appealCommentRegExp,(?:[a-zA-Z＆]+[0-9.～〜最大]+倍|思い出)アピール,
