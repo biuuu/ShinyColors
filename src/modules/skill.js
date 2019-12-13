@@ -72,7 +72,7 @@ const transEffects = (data, skillData) => {
   })
 }
 
-const skillWithLink = (data, skillData, transEffect = false) => {
+const commSkill = (data, skillData, transEffect = false) => {
   if (!data) return
   transSkill(data, 'comment', skillData)
   transSkill(data, 'name', skillData)
@@ -99,11 +99,11 @@ const skillPanel = (data, skillData) => {
     transSkill(item, 'releaseConditions', skillData)
     transSkill(item.passiveSkills, 'comment', skillData)
     transSkill(item.passiveSkills, 'name', skillData)
-    skillWithLink(item.skill, skillData)
-    skillWithLink(item.concertActiveSkill, skillData)
+    commSkill(item.skill, skillData)
+    commSkill(item.concertActiveSkill, skillData)
     if (item.activeSkills.length) {
       item.activeSkills.forEach(skill => {
-        skillWithLink(skill, skillData)
+        commSkill(skill, skillData)
       })
     }
   })
@@ -111,19 +111,42 @@ const skillPanel = (data, skillData) => {
 
 const memoryAppeal = (data, skillData) => {
   data.forEach(item => {
-    skillWithLink(item, skillData)
+    commSkill(item, skillData)
   })
 }
 
-const shortProIdol = (data, skillData) => {
+const shortProIdol = (data, skillData, panel = false) => {
   data.userProduceIdol.activeSkills.forEach(item => {
-    skillWithLink(item, skillData)
+    commSkill(item, skillData)
   })
   data.userProduceIdol.passiveSkills.forEach(item => {
-    skillWithLink(item, skillData)
+    commSkill(item, skillData)
+  })
+  if (panel) {
+    skillPanel(data.userProduceIdol.skillPanels, skillData)
+  }
+}
+
+const judegsSkill = (data, skillData) => {
+  data.forEach(judge => {
+    commSkill(judge.skill, skillData, true)
   })
 }
 
+const rivalsSkill = (data, skillData) => {
+  data.forEach(rival => {
+    rival.userFesDeck && rival.userFesDeck.userFesDeckMembers.forEach(member => {
+      member.userFesIdol.activeSkills.forEach(skill => {
+        transEffects(skill, skillData)
+      })
+    })
+    rival.rival && rival.rival.rivalSkills.forEach(skill => {
+      transEffects(skill, skillData)
+    })
+  })
+}
+
+// ==================================================
 // request entry
 const userIdolsSkill = async (data) => {
   const skillData = await ensureSkillData()
@@ -137,7 +160,7 @@ const userIdolsSkill = async (data) => {
 const userProIdolsSkill = async (data) => {
   const skillData = await ensureSkillData()
   data.activeSkills.forEach(item => {
-    skillWithLink(item, skillData)
+    commSkill(item, skillData)
   })
   memoryAppeal(data.userIdol.idol.memoryAppeals, skillData)
   data.userProduceIdolProduceExSkills.forEach(item => {
@@ -194,9 +217,9 @@ const userFesIdolsSkill = async (data) => {
   const skillData = await ensureSkillData()
   const fesIdol = data.userFesIdol
   fesIdol.activeSkills.forEach(item => {
-    skillWithLink(item, skillData)
+    commSkill(item, skillData)
   })
-  skillWithLink(fesIdol.memoryAppeal, skillData)
+  commSkill(fesIdol.memoryAppeal, skillData)
   fesIdol.passiveSkills.forEach(item => {
     transSkill(item, 'comment', skillData)
     transSkill(item, 'name', skillData)
@@ -225,7 +248,7 @@ const userFesDeck = async (data) => {
   data.userFesDecks.forEach(deck => {
     deck.userFesDeckMembers.forEach(member => {
       member.userFesIdol.activeSkills.forEach(item => {
-        skillWithLink(item, skillData)
+        commSkill(item, skillData)
       })
     })
   })
@@ -248,15 +271,17 @@ const fesMatchConcertSkill = async (data) => {
   const skillData = await ensureSkillData()
   data.userFesDeck.userFesDeckMembers.forEach(member => {
     member.userFesIdol.activeSkills.forEach(item => {
-      skillWithLink(item, skillData, true)
+      commSkill(item, skillData, true)
     })
-    skillWithLink(member.userFesIdol.memoryAppeal, skillData, true)
+    commSkill(member.userFesIdol.memoryAppeal, skillData, true)
     member.userFesIdol.passiveSkills.forEach(item => {
       transSkill(item, 'comment', skillData)
       transSkill(item, 'name', skillData)
       transEffects(item, skillData)
     })
   })
+  judegsSkill(data.judges, skillData)
+  rivalsSkill(data.userFesRivals, skillData)
 }
 
 const resumeGameSkill = async (data) => {

@@ -83,7 +83,7 @@ const requestOfGet = [
   [[/^userPresents\?limit=/, /^userPresentHistories\?limit=/], transPresentItem],
   [/gashaGroups\/\d+\/rates/, 'cardName'],
   ['userProduces', [topCharacterReaction]],
-  [/^fes(Match)?Concert\/actions\/resume$/, resumeGamedata],
+  [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
   [/earthUsers\/[^\/]+\/userFesIdols\/\d+$/, otherFesIdolSkill]
 ]
 
