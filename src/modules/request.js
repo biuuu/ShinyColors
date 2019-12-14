@@ -3,7 +3,7 @@ import { supportSkill, userIdolsSkill, produceExSkillTop,
   otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck, ideaNotesSkill,
   userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish,
   fesMatchConcertSkill, resumeGameSkill, auditionSkill, produceResultSkill } from './skill'
-import transMission, { reportMission, fesRecomMission, fesRaidMission } from './mission'
+import transMission, { reportMission, fesRecomMission, fesRaidMission, teachingMission } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
@@ -65,16 +65,16 @@ const requestRouter = async (data, type, list) => {
 }
 
 const requestOfGet = [
-  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/], [supportSkill, userSptIdolsSkill, 'storyTitle']],
-  [/^userProduceSupportIdols\/\d+$/, [supportSkill, userProSptIdolsSkill]],
+  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/, /^produceTeachingSupportIdols\/\d+$/], [supportSkill, userSptIdolsSkill, 'storyTitle']],
+  [/^userProduce(Teaching)?SupportIdols\/\d+$/, [supportSkill, userProSptIdolsSkill]],
   [/^userReserveSupportIdols\/userSupportIdol\/\d+$/, [supportSkill, reserveUserSptIdolsSkill]],
   [/^userIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
   [/^userSupportIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
-  [[/^userIdols\/\d+$/, /^userIdols\/statusMax$/], [userIdolsSkill, 'storyTitle']],
-  [/^userProduceIdols\/\d+$/, userProIdolsSkill],
+  [[/^userIdols\/\d+$/, /^userIdols\/statusMax$/, /^produceTeachingIdols\/\d+$/], [userIdolsSkill, 'storyTitle']],
+  [[/^userProduce(Teaching)?Idols\/\d+$/, 'userProduceTeachingIdol'], userProIdolsSkill],
   [/^userReserveIdols\/userIdol\/\d+$/, reserveUserIdolsSkill],
   [/^userFesIdols\/\d+$/, userFesIdolsSkill],
-  ['userProduces/skillPanels', proSkillPanels],
+  [['userProduces/skillPanels', 'userProduceTeachings/skillPanels'], proSkillPanels],
   ['userMissions', transMission],
   [/^fesRaidEvents\/\d+\/rewards$/, fesRaidMission],
   [['characterAlbums', 'album/top'], 'storyTitle'],
@@ -97,18 +97,19 @@ const requestOfPost = [
   [/userMissions\/\d+\/actions\/receive/, transReceiveMission],
   ['userLoginBonuses', transLoginBonus],
   ['fesTop', [transFesReward, fesDeckReactions]],
-  [[/^userProduces\/skillPanels\/\d+$/, /^userProduces\/limitedSkills\/\d+$/], proSkillPanels],
+  [[/^userProduce(Teaching)?s\/skillPanels\/\d+$/, /^userProduces\/limitedSkills\/\d+$/], proSkillPanels],
   [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, [ userSptIdolsSkill, supportSkill]],
   [/^produces\/actions\/(resume|next)$/, [ideaNotesSkill, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer, supportSkill]],
-  [['produces/actions/resume', 'produces/actions/finish'], [produceFinish, resumeGameSkill]],
+  [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
   ['produces/actions/endWeek', produceEndWeek],
   ['produces/actions/act', [lessonResult, noteResultSkill]],
   [/^fes(Match)?Concert\/actions\/start$/, [fesMatchConcert, fesMatchConcertSkill]],
   [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
   ['produces/actions/result', [trustLevelUp, produceResultSkill]],
-  [/^produces\/(\d+\/audition|concert)\/actions\/start$/, [auditionSkill]],
+  [[/^produce(Teaching)?s\/(\d+\/audition|concert)\/actions\/start$/, /^produceTeachings\/(auditions|concerts)\/start$/], [auditionSkill]],
   [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment]],
-  ['userProduceHelperSupportIdols', helperSupportIdols]
+  ['userProduceHelperSupportIdols', helperSupportIdols],
+  [['produceTeachings/resume', 'produceTeachings/next'], [teachingMission, supportSkill]]
 ]
 
 const requestOfPatch = [
