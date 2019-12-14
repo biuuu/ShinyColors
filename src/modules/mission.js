@@ -112,5 +112,14 @@ const fesRaidMission = async (data) => {
   processRaidMission(data.fesRaidPointRewards)
 }
 
-export { reportMission, fesRecomMission, fesRaidMission }
+const teachingMission = async (data) => {
+  await ensureMissionData()
+  data.teachingHints && data.teachingHints.forEach(item => {
+    item.userProduceTeachingHints.forEach(hint => {
+      replaceMission(hint.produceTeachingHint, 'title')
+    })
+  })
+}
+
+export { reportMission, fesRecomMission, fesRaidMission, teachingMission }
 export default transMission

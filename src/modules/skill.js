@@ -283,7 +283,7 @@ const proSkillPanels = async (data) => {
     skillPanel(item.skillPanels, skillData)
   })
   shortProIdol(data, skillData, true)
-  data.userProduceLimitedSkills.forEach(item => {
+  data.userProduceLimitedSkills && data.userProduceLimitedSkills.forEach(item => {
     commSkill(item.passiveSkills, skillData)
     commSkill(item.skill, skillData)
   })
