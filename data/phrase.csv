@@ -521,7 +521,7 @@ option.saveMessage, \n \n設定を保存しました。, \n \n您的设置已保
 option.volumeTitle.voice,ボイス,语音
 option.produceContentTitle.touch,アイドルへのタップ判定,偶像的触摸判定
 option.produceContentTitle.hint,はづきさんのヒント表示,叶月的提示显示
-option.produceContentTitle.newEventSpeed,未読イベント開始時に早送り解除\n（アイドル・サポートイベント）,未读过的事件开始时取消快进\n（偶像・Support事件）
+option.produceContentTitle.newEventSpeed,未読イベント開始時に早送り解除\n（アイドル・サポートイベント）,未读过的事件开始时取消快进\n（偶像・支援事件）
 option.produceContentTitle.restConfirm,休む選択時に確認画面を表示,选择休息时显示确认画面
 option.produceContentTitle.concertConfirm,ライブ選択時に確認画面を表示,选择Live时显示确认画面
 option.twitterProfileDescription,設定したイラストをTwitterでシェアできます\n投稿にはTwitter連携が必要です,设定的插画可分享至Twitter\n投稿须绑定Twitter
@@ -1153,7 +1153,7 @@ training.trainingTicketReturn.title,トレーニングキャンペーン,训练�
 training.trainingTicketReturn.message,%{type}ボーナスの余剰Exp分を\nブロンズトレーニングチケットに変換して\nプレゼントに送りました,%{type}加成奖励的剩余Exp\n已兑换成青铜训练券\n并送入礼物盒中
 training.successType.great,大成功,
 training.successType.super,超成功,
-common.lotteryTicket,283くじ,
+common.lotteryTicket,283くじ,283抽奖券
 errorDialog.expiredProduceItem,アイテムの使用期限が終了したため\n持ち込むことができませんでした\n\n再度アイテムを選択し直してください,由于道具使用期限已结束\n无法再携带使用\n\n请再次进行道具选择
 extraCampaign.result.announcementDialog.title,特別応募キャンペーン当選結果,
 extraCampaign.result.announcementDialog.description,当選発表のお知らせ\n\n%{campaignName}\nの結果が確認できます,
@@ -1239,8 +1239,8 @@ jewelPurchase.productsDialog.purchaseLimitText,%{purchasedNum}/%{limitNum}回,
 loginBonus.absenceClerkComment.greeting,ただいま外出中です。ログインボーナスはこちらに置いておきます,
 loginBonus.absenceClerkComment.nextBonus,明日のログインボーナスも、忘れずに確認してください,
 loginBonus.absenceClerkComment.totalBonus,ただいま外出中です\nプロデューサー就任%{totalLoginDays}日記念プレゼントはこちらに置いておきます,
-mypageCommunication.producerComment,さて、仕事も一段落したし、\n少し休憩しようかな──……,
-mypageCommunication.idolComment,だ〜れだ？,
+mypageCommunication.producerComment,さて、仕事も一段落したし、\n少し休憩しようかな──……,好，工作已经告一段落了，\n好好休息一下吧──……
+mypageCommunication.idolComment,だ〜れだ？,我～是谁？
 mypageCommunication.unknownCharacterName,？？？,
 staffAssistEvent.eventDetailTitle,はづきさんアシスト中,
 staffAssistEvent.greet,プロデューサーさん、どうかしましたか～？,
@@ -1321,41 +1321,41 @@ raidExceptionPop.title,コラボフェス,COLLABO FES
 raidExceptionPop.closeEventText,コラボフェスは終了しました,COLLABO FES已结束
 raidExceptionPop.closeHallText,%{name}の\n盛り上がりが最高潮に達しました\n\n他のステージを盛り上げに行ってみましょう！,%{name}的\n气氛已达到最高潮\n\n让其他舞台的气氛高涨吧！
 announce.package,パッケージ,
-announce.noticeLabel.topics,開催中のトピックス,
-announce.noticeLabel.update,すべてのお知らせ,
-announce.noticeLabel.problem,メンテナンス・不具合情報,
-announce.noticeLabel.contents,コンテンツ情報,
+announce.noticeLabel.topics,開催中のトピックス,开展中的话题
+announce.noticeLabel.update,すべてのお知らせ,所有通知
+announce.noticeLabel.problem,メンテナンス・不具合情報,维护・问题信息
+announce.noticeLabel.contents,コンテンツ情報,内容信息
 commonMenu.produceRetire.comment1.produce,プロデュース中のデータは失われます\n消費したスタミナと\nプロデュースアイテムは返却されません,　 正在Produce中的数据将会消失 　\n 已消耗的精力值和 \n　　　 Produce道具将不会返还 　　　
-commonMenu.produceRetire.comment1.trueEndTeaching,プロデュース中のデータは失われます,
+commonMenu.produceRetire.comment1.trueEndTeaching,プロデュース中のデータは失われます,正在Produce中的数据将会消失
 commonMenu.produceResume.produceTitle,プロデュース再開,Produce继续
-commonMenu.produceResume.trueEndTeachingTitle,True End研修再開,
-selectLoginBonus.comment,好きな場所を選択してください,
-selectLoginBonus.rewardPop.title,アイテム獲得,
+commonMenu.produceResume.trueEndTeachingTitle,True End研修再開,True End研修继续
+selectLoginBonus.comment,好きな場所を選択してください,请选择喜欢的地方
+selectLoginBonus.rewardPop.title,アイテム獲得,道具获得
 selectLoginBonus.rewardPop.text,以下のアイテムがプレゼントBOXに送られました,以下道具已经送入礼物盒中
 ending.popReceiveProduceIdol.title,報酬受け取り,领取报酬
 ending.popReceiveProduceIdol.comment,以下の報酬を受け取りました,领取了以下报酬
-trueEndTeachingEnding.receivePop.popTitle,True End研修達成,
-trueEndTeachingEnding.receivePop.missionTitle,True End研修でTrue Endを達成しよう,
-trueEndTeachingEnding.receivePop.adviceText,研修お疲れさまでした〜\nこれからもプロデュース、がんばっていきましょう\nね〜,
-trueEndTeachingEnding.receivePop.rewardDetailText,True End研修達成報酬SSRプロデュースアイドルです,
-errorDialog.trueEndTeachingDuplicate,進行中のTrue End研修があるので\n開始できませんでした。\n一度True End研修を終了してから始めてください。,
-gasha.skinRateDescription,衣装,
-gasha.skinFixSubtitle,通常ガシャ提供割合,
-gasha.skinFixSubtitleIdol,衣装確定の衣装一覧,
-gasha.normalWithSkinSubtitleIdol,通常ガシャの提供アイドル、衣装一覧,
-gasha.gashaHistory.skinGashaName,「%{name}」で獲得した衣装です。,
-gasha.gashaHistory.replacedWithTicket,すでに所持していたため「%{name}」と交換しました。,
-gasha.skinReplacement.title,確認,
-gasha.skinReplacement.message,すでに取得済の衣装は\n「%{name}」に変換されました,
-gasha.skinReplacement.possessionLabel,所持数,
-header.trueEndTeachingProduceIdolSelect,プロデュースアイドル選択,
-header.trueEndReport,研修レポート,
-loginBonus.christmasClerkComment.greeting,プロデューサーさん、メリークリスマス！\nこちらは今日のログインボーナスですよ,
-loginBonus.christmasClerkComment.nextBonus,明日はこちらがもらえますから、頑張っていきましょ〜,
-loginBonus.christmasClerkComment.totalBonus,今日はプロデューサー就任%{totalLoginDays}日記念ですね！\nこれはみんなからのお祝いです！受け取ってください！,
-produceMain.supportSkillsDialog.title,発動中スキル,发动的技能
-produceMain.supportSkillsDialog.noSkill,発動中のサポートスキルはありません,没有发动中的支援技能
-produceMain.supportSkillsDialog.helper,お手伝い中のアイドルです,
+trueEndTeachingEnding.receivePop.popTitle,True End研修達成,True End研修达成
+trueEndTeachingEnding.receivePop.missionTitle,True End研修でTrue Endを達成しよう,在True End研修中达成True End吧
+trueEndTeachingEnding.receivePop.adviceText,研修お疲れさまでした〜\nこれからもプロデュース、がんばっていきましょう\nね〜,研修辛苦了～\n今后的Produce也请继续加油吧～
+trueEndTeachingEnding.receivePop.rewardDetailText,True End研修達成報酬SSRプロデュースアイドルです,达成True End研修的奖励SSR Produce偶像
+errorDialog.trueEndTeachingDuplicate,進行中のTrue End研修があるので\n開始できませんでした。\n一度True End研修を終了してから始めてください。,由于有进行中的True End研修\n无法开始。\n请结束一次True End研修后再开始。
+gasha.skinRateDescription,衣装,服装
+gasha.skinFixSubtitle,通常ガシャ提供割合,通常抽卡提供比例
+gasha.skinFixSubtitleIdol,衣装確定の衣装一覧,服装确定的服装一览
+gasha.normalWithSkinSubtitleIdol,通常ガシャの提供アイドル、衣装一覧,通常卡池提供偶像、服装一览
+gasha.gashaHistory.skinGashaName,「%{name}」で獲得した衣装です。,「%{name}」中获得的服装。
+gasha.gashaHistory.replacedWithTicket,すでに所持していたため「%{name}」と交換しました。,由于已持有而兑换为了「%{name}」
+gasha.skinReplacement.title,確認,确认
+gasha.skinReplacement.message,すでに取得済の衣装は\n「%{name}」に変換されました,已获得的服装\n已变换为「%{name}」
+gasha.skinReplacement.possessionLabel,所持数,所持数
+header.trueEndTeachingProduceIdolSelect,プロデュースアイドル選択,Produce偶像选择
+header.trueEndReport,研修レポート,研修报告
+loginBonus.christmasClerkComment.greeting,プロデューサーさん、メリークリスマス！\nこちらは今日のログインボーナスですよ,制作人，圣诞快乐！\n这是今天的登录奖励哦
+loginBonus.christmasClerkComment.nextBonus,明日はこちらがもらえますから、頑張っていきましょ〜,明天的奖励是这个，加油吧～
+loginBonus.christmasClerkComment.totalBonus,今日はプロデューサー就任%{totalLoginDays}日記念ですね！\nこれはみんなからのお祝いです！受け取ってください！,今天是制作人就任%{totalLoginDays}天纪念日！\n这是大家的祝福！请收下吧！
+produceMain.supportSkillsDialog.title,発動中スキル,发动中的技能
+produceMain.supportSkillsDialog.noSkill,発動中のサポートスキルはありません,没有发动中的Support技能
+produceMain.supportSkillsDialog.helper,お手伝い中のアイドルです,正在帮忙的偶像
 produceMain.supportSkillsDialog.placeTitle.vocalLesson,ボーカルレッスン,声乐课
 produceMain.supportSkillsDialog.placeTitle.danceLesson,ダンスレッスン,舞蹈课
 produceMain.supportSkillsDialog.placeTitle.visualLesson,ビジュアルレッスン,形象课
@@ -1367,19 +1367,19 @@ produceMain.supportSkillsDialog.placeTitle.none,その他,其他
 trueEndTeaching.objectivePopupTitle.season,シーズン%{seasonNum}目標,季度%{seasonNum}的目标
 trueEndTeaching.objectivePopupHadukiHint.season2,目標をすべて達成したら、次のシーズンを見据えて\nレッスンやお仕事を行いましょう♪,完成所有目标后，让我们展望下一个季度\n继续课程和工作吧♪
 trueEndTeaching.objectivePopupHadukiHint.season3,目標をすべて達成したら、W.I.N.G.へ向けて\nレッスンやお仕事を行いましょう♪,完成所有目标后，让我们朝着W.I.N.G.\n进行课程和工作吧♪
-trueEndTeaching.skillGetRecommendTipsTitle,振り返りでスキルを習得しましたか？,
+trueEndTeaching.skillGetRecommendTipsTitle,振り返りでスキルを習得しましたか？,已经在技能回顾中学习技能了吗？
 trueEndTeaching.allObjectiveClearedText,目標全てクリア,已完成所有目标
-trueEndTeaching.auditionTipsTitle,おすすめオーディション,
-trueEndTeaching.auditionTipsHadukiHintText,流行にも注目です〜♪　今週がチャンスですよ〜,
-trueEndTeaching.openDialogTitle,初心者ミッションクリア,
-trueEndTeaching.openDialogDescription,True End研修はホーム画面からスタートすることができます,
-trueEndTeaching.tipsText,おめでとうございます♪　すべての初心者ミッションをクリア\nしましたよ～　次はアイドルのTrue Endミッション達成を\n目標にしてみましょう,
-trueEndTeachingTipsText.areaSelect.clearedTrueEnd,プロデューサーさん、お疲れ様です♪\n初心にかえって研修を受けてみませんか？,
-trueEndTeachingTipsText.areaSelect.notClearedTrueEnd,プロデューサーさん、お疲れ様です♪\nお仕事には慣れてきましたか？\n難関ミッションの達成にはコツが必要なんですよ～,
-trueEndTeachingTipsText.produceIdolSelect.text1,まずはプロデュースするアイドルを選択してください♪,
-trueEndTeachingTipsText.produceIdolSelect.text2,プロデュースしたアイドルがTrue Endの条件を\n達成すると、ミッションクリアになります♪,
-trueEndTeachingTipsText.deckEdit.text1,特別に%{name}さんのサポートに適したアイドルのみなさんに\nお手伝いしてもらいますね～,
-trueEndTeachingTipsText.deckEdit.text2,便利なアイテムを持ち込んで\nプロデュースに役立ててくださいね～\n今回は特別に2つのアイテムをプレゼントします♪,
-trueEndTeachingTipsText.trend,流行1位と得意ジャンルが一致していないようですね～\nそんな時は『流行雑誌』を使ってみましょう,
-trueEndTeachingTipsText.skillBoard,おすすめのスキルをご紹介しますね～\n強力なスキルを優先して習得することが\nTrue Endへの近道ですよ♪,
-twitter.postDialog.staticComment.gashaResultSkin,限定衣装%{idolName}を獲得したよ！とっても素敵な衣装！,
+trueEndTeaching.auditionTipsTitle,おすすめオーディション,推荐试镜
+trueEndTeaching.auditionTipsHadukiHintText,流行にも注目です〜♪　今週がチャンスですよ〜,关注好流行〜♪　本周是绝佳机会哦～
+trueEndTeaching.openDialogTitle,初心者ミッションクリア,新手任务完成
+trueEndTeaching.openDialogDescription,True End研修はホーム画面からスタートすることができます,True End研修可从主界面进入
+trueEndTeaching.tipsText,おめでとうございます♪　すべての初心者ミッションをクリア\nしましたよ～　次はアイドルのTrue Endミッション達成を\n目標にしてみましょう,恭喜你♪　已经完成了全部的\n新手任务～　接下来请将达成True End\n作为下一个目标吧
+trueEndTeachingTipsText.areaSelect.clearedTrueEnd,プロデューサーさん、お疲れ様です♪\n初心にかえって研修を受けてみませんか？,制作人先生，辛苦了♪\n要试试新手之上的研修吗？
+trueEndTeachingTipsText.areaSelect.notClearedTrueEnd,プロデューサーさん、お疲れ様です♪\nお仕事には慣れてきましたか？\n難関ミッションの達成にはコツが必要なんですよ～,制作人先生，辛苦了♪\n已经习惯你的工作了吗？\n达成难关任务是需要诀窍的哦～
+trueEndTeachingTipsText.produceIdolSelect.text1,まずはプロデュースするアイドルを選択してください♪,首先请选择要培育的偶像吧♪　
+trueEndTeachingTipsText.produceIdolSelect.text2,プロデュースしたアイドルがTrue Endの条件を\n達成すると、ミッションクリアになります♪,培育的偶像达成True End\n条件后，任务即可完成
+trueEndTeachingTipsText.deckEdit.text1,特別に%{name}さんのサポートに適したアイドルのみなさんに\nお手伝いしてもらいますね～,特别适合%{name}的偶像们\n也会来帮忙哦～
+trueEndTeachingTipsText.deckEdit.text2,便利なアイテムを持ち込んで\nプロデュースに役立ててくださいね～\n今回は特別に2つのアイテムをプレゼントします♪,携带便利的道具\n在Produce中好好利用吧～\n本次特别赠送两种道具作为礼物♪
+trueEndTeachingTipsText.trend,流行1位と得意ジャンルが一致していないようですね～\nそんな時は『流行雑誌』を使ってみましょう,流行1位与擅长的类型似乎不一致了呀～\n这种时候就请使用“流行杂志”试试吧
+trueEndTeachingTipsText.skillBoard,おすすめのスキルをご紹介しますね～\n強力なスキルを優先して習得することが\nTrue Endへの近道ですよ♪,介绍一下推荐的技能吧～\n优先学习强力的技能\n是通往True End的捷径♪
+twitter.postDialog.staticComment.gashaResultSkin,限定衣装%{idolName}を獲得したよ！とっても素敵な衣装！,限定服装%{idolName}已获得！非常漂亮的服装！
