@@ -4,10 +4,12 @@ import replaceText from '../utils/replaceText'
 import { fixWrap, replaceWrap, log } from '../utils/index'
 
 let missionData = null
+let msPrms = null
 const ensureMissionData = async () => {
-  if (!missionData) {
-    missionData = await getMission()
+  if (!msPrms) {
+    msPrms = getMission()
   }
+  missionData = await msPrms
   return missionData
 }
 

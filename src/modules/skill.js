@@ -3,12 +3,12 @@ import { getSupportSkill, getSkill } from '../store/skill'
 import { log } from '../utils/index'
 import tagText from '../utils/tagText'
 
-let skillData = null
+let skillDataPrms = null
 const ensureSkillData = async () => {
-  if (!skillData) {
-    skillData = await getSkill()
+  if (!skillDataPrms) {
+    skillDataPrms = getSkill()
   }
-  return skillData
+  return await skillDataPrms
 }
 
 const nameWithPlus = (list, data) => {
