@@ -1,6 +1,6 @@
 import isString from 'lodash/isString'
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, log, log2, replaceQuote, fixWrap, transSpeaker, replaceWrap } from '../utils/index'
+import { replaceWords, log, log2, replaceQuote, fixWrap, transSpeaker, replaceWrap, tagStoryText } from '../utils/index'
 import { fetchInfo } from './fetch'
 import getName from '../store/name'
 import tagText from './tagText'
@@ -203,6 +203,7 @@ const autoTrans = async (data, name, printText, skip = false) => {
     if (!name || printText) _log = log2
     _log(mergedList.join('\n'))
   }
+  tagStoryText(data)
   fixedTransList.forEach((trans, idx) => {
     let _trans = trans
     const { key, index } = textInfo[idx]

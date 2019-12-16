@@ -8,6 +8,23 @@ import { getAoba } from './get-module'
 let commMap = new Map()
 let typeTextMap = new Map()
 
+const typeTextStack = []
+const setTypeText = (text) => {
+  typeTextStack.push(text)
+  if (DEV && SHOW_UPDATE_TEXT) log(typeTextStack)
+  setTimeout(() => typeTextStack.shift(), 10000)
+}
+
+const isTyping = (text) => {
+  let typing = false
+  typeTextStack.forEach(txt => {
+    if (txt.startsWith(text)) {
+      typing = true
+    }
+  })
+  return typing
+}
+
 const replaceFont = (style) => {
   if (style && style.fontFamily) {
     if (style.fontFamily === FONT.HEITI_JA) {
@@ -48,7 +65,8 @@ const fontCheck = (text, style, isType = false) => {
   } else if (text.trim()) {
     if (isType) {
       _text = textInMap(text, typeTextMap, style)
-    } else {
+      setTypeText(text)
+    } else if (!isTyping(text) && !text.startsWith('\u200c')) {
       _text = textInMap(text, commMap, style)
     }
   }

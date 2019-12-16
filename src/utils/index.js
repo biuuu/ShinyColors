@@ -126,19 +126,16 @@ const transSpeaker = (item, nameMap) => {
   }
 }
 
+const tagStoryText = (data) => {
+  data.forEach(item => {
+    if (item.text) {
+      item.text = '\u200c' + item.text
+    }
+  })
+}
+
 export {
-  trim,
-  trimWrap,
-  fixWrap,
-  restoreConsole,
-  isDomain,
-  log, log2,
-  tryDownload,
-  replaceWrap,
-  removeWrap,
-  replaceWords,
-  replaceQuote,
-  pureRE,
-  transSpeaker,
-  sleep
+  trim, trimWrap, fixWrap, restoreConsole, isDomain, log, log2,
+  tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
+  transSpeaker, sleep, tagStoryText
 }

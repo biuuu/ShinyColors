@@ -1,5 +1,4 @@
-import { getHash } from '../utils/fetch'
-import { log, replaceWrap, fixWrap, trim, transSpeaker } from '../utils/index'
+import { log, replaceWrap, fixWrap, trim, transSpeaker, tagStoryText } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
 import getStory, { storyTitle, getCommStory } from '../store/story'
@@ -142,6 +141,8 @@ const transScenario = async () => {
           transStory(res, storyMap, commMap, nameMap)
         } else if (config.auto === 'on') {
           await autoTrans(res, name)
+        } else {
+          tagStoryText(res)
         }
       } catch (e) {
         log(e)
