@@ -1,6 +1,6 @@
 import isString from 'lodash/isString'
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, log, log2, replaceQuote, fixWrap, transSpeaker, replaceWrap, tagStoryText } from '../utils/index'
+import { replaceWords, log, log2, replaceQuote, fixWrap, transSpeaker, replaceWrap, tagStoryText, sess } from '../utils/index'
 import { fetchInfo } from './fetch'
 import getName from '../store/name'
 import tagText from './tagText'
@@ -104,6 +104,10 @@ const baiduTrans = async (source, from = 'jp') => {
 
 const caiyunTrans = async (source) => {
   try {
+    let limitTime = sess('caiyuLimit')
+    if (limitTime && Date.now() - limitTime < 1000 * 60 * 60) {
+      return []
+    }
     let [query, br] = joinText(source)
     let textArr = splitText(query)
     let result = await Promise.all(textArr.map(query => {
@@ -114,6 +118,9 @@ const caiyunTrans = async (source) => {
     joinBr(list, br, transArr)
     return transArr
   } catch (e) {
+    if (e.message === 'Caiyun api out of limit.') {
+      sess('caiyuLimit', Date.now())
+    }
     log(e)
     return []
   }

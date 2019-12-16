@@ -134,8 +134,20 @@ const tagStoryText = (data) => {
   })
 }
 
+const sess = (key, data) => {
+  try {
+    if (data) {
+      sessionStorage.setItem(key, JSON.stringify(data))
+      return true
+    } else {
+      let str = sessionStorage.getItem(key)
+      return JSON.parse(str)
+    }
+  } catch (e) {}
+}
+
 export {
   trim, trimWrap, fixWrap, restoreConsole, isDomain, log, log2,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
-  transSpeaker, sleep, tagStoryText
+  transSpeaker, sleep, tagStoryText, sess
 }
