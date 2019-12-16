@@ -92,7 +92,7 @@ const reportMission = async (data) => {
 }
 
 const accumulatedPresent = (item, key) => {
-  if (item && item[key] && /イベントミッションを\d+個達成しよう/.test(item[key])) {
+  if (item && item[key]) {
     item[key] = tagText(item[key].replace(/イベントミッションを(\d+)個達成しよう/, '完成$1个活动任务'))
   }
 }
@@ -102,8 +102,8 @@ const fesRecomMission = async (data) => {
   replaceMission(data.userRecommendedMission.mission, 'comment')
   replaceMission(data.userRecommendedMission.mission, 'title')
   data.accumulatedPresent.userGameEventAccumulatedPresents.forEach(item => {
-    accumulatedPresent(item.gameEventAccumulatedPresent, 'comment')
-    accumulatedPresent(item.gameEventAccumulatedPresent, 'title')
+    replaceMission(item.gameEventAccumulatedPresent, 'comment')
+    replaceMission(item.gameEventAccumulatedPresent, 'title')
   })
 }
 
