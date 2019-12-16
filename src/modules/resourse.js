@@ -3,6 +3,14 @@ import getImage from '../store/image'
 import config from '../config'
 import { getAoba } from './get-module'
 
+let imageDataPrms = null
+const ensureImage = async () => {
+  if (!imageDataPrms) {
+    imageDataPrms = getImage()
+  }
+  return await imageDataPrms
+}
+
 let replaced = false
 export default async function resourceHook () {
   let aoba = await getAoba()
@@ -13,7 +21,7 @@ export default async function resourceHook () {
       log(this.url, this.name)
     }
     try {
-      const imageMap = await getImage()
+      const imageMap = await ensureImage()
       if (type === 'image' && imageMap.has(this.name)) {
         const data = imageMap.get(this.name)
         if (this.url.endsWith(`v=${data.version}`)) {
