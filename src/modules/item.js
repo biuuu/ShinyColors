@@ -24,6 +24,14 @@ const itemTypes = [
   'enhancementItem'
 ]
 
+let itemPrms
+const ensureItem = async () => {
+  if (!itemPrms) {
+    itemPrms = getItem()
+  }
+  return await itemPrms
+}
+
 const transItem = (item, key, { itemMap, itemLimitMap }) => {
   if (!item || typeof item[key] !== 'string') return
   let text = fixWrap(item[key])
@@ -59,7 +67,7 @@ const switchShop = (shop, maps) => {
 }
 
 const transShopItem = async (data) => {
-  const maps = await getItem()
+  const maps = await ensureItem()
   if (data) {
     if (Array.isArray(data.userShops)) {
       data.userShops.forEach(shop => {
@@ -77,7 +85,7 @@ const transShopItem = async (data) => {
 const transUserItem = async (data) => {
   let list = data
   if (data.userProduceItems) list = data.userProduceItems
-  const maps = await getItem()
+  const maps = await ensureItem()
   if (Array.isArray(list)) {
     list.forEach(obj => {
       const item = obj[itemTypes[0]]
@@ -95,7 +103,7 @@ const transUserItem = async (data) => {
 }
 
 const transShopPurchase = async (data) => {
-  const maps = await getItem()
+  const maps = await ensureItem()
   if (data && data.shopMerchandise) {
     transItem(data.shopMerchandise, 'title', maps)
     transItem(data.shopMerchandise, 'comment', maps)
@@ -103,7 +111,7 @@ const transShopPurchase = async (data) => {
 }
 
 const transPresentItem = async (data) => {
-  const maps = await getItem()
+  const maps = await ensureItem()
   if (Array.isArray(data)) {
     data.forEach(obj => {
       transItem(obj.content, 'name', maps)
@@ -112,17 +120,17 @@ const transPresentItem = async (data) => {
 }
 
 const transReceivePresent = async (data) => {
-  const maps = await getItem()
+  const maps = await ensureItem()
   transItem(data.receivedPresent, 'Name', maps)
 }
 
 const transReceiveMission = async (data) => {
-  const maps = await getItem()
+  const maps = await ensureItem()
   transItem(data.userMission.mission.missionReward.content, 'name', maps)
 }
 
 const transLoginBonus = async (data) => {
-  const maps = await getItem()
+  const maps = await ensureItem()
   data.userLoginBonuses.forEach(item => {
     item.loginBonus.sheets.forEach(sheet => {
       sheet.rewards.forEach(reward => {
@@ -138,7 +146,7 @@ const transLoginBonus = async (data) => {
 }
 
 const transFesReward = async (data) => {
-  const maps = await getItem()
+  const maps = await ensureItem()
   if (data.lastRankingResult) {
     if (Array.isArray(data.lastRankingResult.fesMatchGradeRewards)) {
       data.lastRankingResult.fesMatchGradeRewards.forEach(item => {
@@ -149,11 +157,18 @@ const transFesReward = async (data) => {
 }
 
 const transAccumulatedPresent = async (data) => {
-  const maps = await getItem()
+  const maps = await ensureItem()
   data.accumulatedPresent.userGameEventAccumulatedPresents.forEach(item => {
     item.gameEventAccumulatedPresent.rewards.forEach(reward => {
       transItem(reward.content, 'name', maps)
     })
+  })
+}
+
+const selectLoginBonus = async (data) => {
+  const maps = await ensureItem()
+  data.rewards.forEach(reward => {
+    transItem(reward.content, 'name', maps)
   })
 }
 
@@ -167,5 +182,6 @@ export {
   transReceiveMission,
   transLoginBonus,
   transFesReward,
-  transAccumulatedPresent
+  transAccumulatedPresent,
+  selectLoginBonus
 }

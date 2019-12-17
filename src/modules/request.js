@@ -8,7 +8,7 @@ import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
   transPresentItem, transLoginBonus, transReceivePresent,
-  transReceiveMission } from './item'
+  transReceiveMission, selectLoginBonus } from './item'
 import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata,
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
@@ -109,7 +109,8 @@ const requestOfPost = [
   [[/^produce(Teaching)?s\/(\d+\/audition|concert)\/actions\/start$/, /^produceTeachings\/(auditions|concerts)\/start$/], [auditionSkill]],
   [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment]],
   ['userProduceHelperSupportIdols', helperSupportIdols],
-  [['produceTeachings/resume', 'produceTeachings/next'], [teachingMission, supportSkill]]
+  [['produceTeachings/resume', 'produceTeachings/next'], [teachingMission, supportSkill]],
+  [/^userSelectLoginBonuses\/\d+$/, selectLoginBonus]
 ]
 
 const requestOfPatch = [
