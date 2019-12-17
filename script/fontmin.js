@@ -3,7 +3,7 @@ const ttf2woff2 = require('./fontmin-ttf2woff2')
 const glob = require('glob')
 const fs = require('fs')
 
-const srcPath = ['localfont/heiti.ttf', 'localfont/yuanti.ttf', 'localfont/yuanti2.ttf']
+const srcPath = ['localfont/heiti.ttf', 'localfont/yuanti.ttf']
 const destPath = 'data/font'
 let text = '剧情预览下载关闭'
 for (let i = 33; i < 127; i++) {
@@ -61,6 +61,5 @@ glob('data/**/*.csv', function (err, files) {
     console.log(text.length + '个字符')
     start(srcPath[0], text)
     start(srcPath[1], text, true)
-    if (srcPath[2]) start(srcPath[2], text, true)
   })
 })
