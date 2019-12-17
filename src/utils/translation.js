@@ -9,7 +9,6 @@ import getTypeTextMap from '../store/typeText'
 import config from '../config'
 import request from './request'
 import caiyunApi from './caiyun'
-import bdsign from './bdsign'
 
 const joinBr = (list, br, transArr) => {
   br.forEach(count => {
@@ -61,45 +60,6 @@ const splitText = (text, WORDS_LIMIT = 4000) => {
     arr.push(strTemp.replace(/\n$/, ''))
   }
   return arr
-}
-
-const bdsApi = async (query, from = 'jp') => {
-  let formData = new FormData()
-  formData.append('from', from)
-  formData.append('to', 'zh')
-  formData.append('query', query)
-  formData.append('transtype', 'realtime')
-  formData.append('simple_means_flag', '3')
-  formData.append('sign', bdsign(query))
-  formData.append('token', fetchInfo.data.bdsign.token || 'b8441b5ad0953d78dbf4c8829bd226d1')
-  let res = await request(`https://fanyi.baidu.com/v2transapi?from=${from}&to=zh`, {
-    data: formData,
-    method: 'POST',
-    headers: {
-      'accept': '*/*',
-      'referer': 'https://fanyi.baidu.com/translate',
-      'origin':'https://fanyi.baidu.com'
-    }
-  })
-  if (res.error || !isString(res.trans_result.data[0].dst)) {
-    throw new Error('trans fail')
-  }
-  return res.trans_result.data.map(item => item.dst)
-}
-
-const baiduTrans = async (source, from = 'jp') => {
-  try {
-    let [query, br] = joinText(source)
-    let textArr = splitText(query)
-    let result = await Promise.all(textArr.map(query => bdsApi(query, from)))
-    let list = result.reduce((a, b) => a.concat(b))
-    let transArr = []
-    joinBr(list, br, transArr)
-    return transArr
-  } catch (e) {
-    log(e)
-    return []
-  }
 }
 
 const caiyunTrans = async (source) => {
@@ -194,7 +154,7 @@ const autoTrans = async (data, name, printText, skip = false) => {
       if (fetchInfo.data.trans_api === 'caiyun') {
         transList = await caiyunTrans(fixedTextList)
       } else {
-        transList = await baiduTrans(fixedTextList)
+        
       }
     }
     

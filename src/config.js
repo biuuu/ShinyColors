@@ -4,12 +4,6 @@ import isBoolean from 'lodash/isBoolean'
 import isPlainObject from 'lodash/isPlainObject'
 import { version } from '../package.json'
 
-const MODULE_ID = {
-  REQUEST: 3,
-  PHRASE: 4,
-  SCENARIO: 118
-}
-
 const PREVIEW_COUNT = 5
 
 const config = {
@@ -119,5 +113,5 @@ getConfigFromHash()
 
 window.addEventListener('hashchange', getConfigFromHash)
 
-export { MODULE_ID, FONT, PREVIEW_COUNT, saveConfig }
+export { FONT, PREVIEW_COUNT, saveConfig }
 export default config
