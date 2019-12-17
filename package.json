@@ -1,6 +1,6 @@
 {
   "name": "shinycolors-zh",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "main": "main.js",
   "repository": "git@github.com:biuuu/ShinyColors.git",
   "author": "biuuu",
@@ -20,7 +20,8 @@
   "dependencies": {
     "core-js": "3",
     "lodash": "^4.17.13",
-    "papaparse": "^4.6.3"
+    "papaparse": "^4.6.3",
+    "qs": "^6.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

@@ -7,7 +7,8 @@ const CSV = require('papaparse')
 const moduleId = require('./MODULE_ID.json')
 
 const cyweb_token = 't4d0s9zds4fw272poa11'
-const trans_api = 'caiyun'
+const trans_api = 'caiyun'  // Optional: google
+const language = 'zh-CN'    // Can be changed when using google: en/ko/de/fr/ru etc.
 
 const Glob = glob.Glob
 glob.promise = function (pattern, options) {
@@ -55,7 +56,7 @@ const start = async () => {
   console.log(hash)
   await fse.writeJSON('./dist/manifest.json', { 
     hash, version, moduleId, 
-    cyweb_token, trans_api,
+    cyweb_token, trans_api, language,
     date: getDate(8) 
   })
   console.log('story...')

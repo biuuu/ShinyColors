@@ -1,6 +1,6 @@
 import BrowserId from './browserId'
 import request from './request'
-import { fetchInfo, getHash } from './fetch'
+import { fetchInfo } from './fetch'
 
 let defaultUid = '5a096eec830f7876a48aac47'
 let bid = ''
@@ -15,7 +15,6 @@ const sleep = (time) => {
 }
 
 const testCookies = async () => {
-  await getHash
   const res = await request('https://biz.caiyunapp.com/test_cookies', { 
     cors: true,
     credentials: 'include',
