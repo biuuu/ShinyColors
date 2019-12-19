@@ -151,8 +151,7 @@ const autoWrap = (text, count) => {
 const autoTransCache = new Map()
 
 const autoTrans = async (data, name, printText, skip = false) => {
-  if (config.auto !== 'on' || !data.length) return
-  let fixedTransList
+  if (!data.length) return
   const commMap = await getCommStory()
   const typeTextMap = await getTypeTextMap()
   const { textInfo, textList } = collectText(data, commMap, typeTextMap)
@@ -160,27 +159,24 @@ const autoTrans = async (data, name, printText, skip = false) => {
 
   const storyKey = name || data
   let hasCache = false
+  let fixedTransList = []
   if (autoTransCache.has(storyKey)) {
     hasCache = true
     fixedTransList = autoTransCache.get(storyKey)
   } else {
     let transApi = fetchInfo.data.trans_api
-    let fixedTextList = textList
-    if (transApi === 'caiyun') {
-      fixedTextList = await preFix(textList)
-    }
     let transList = []
     
-    if (!skip) {
+    if (config.auto === 'on' && !skip) {
       if (transApi === 'caiyun') {
+        let fixedTextList = await preFix(textList)
         transList = await caiyunTrans(fixedTextList)
       } else if (transApi === 'google') {
-        transList = await googleTrans(fixedTextList)
+        transList = await googleTrans(textList)
       }
+      fixedTransList = await nounFix(transList)
     }
 
-    fixedTransList = await nounFix(transList)
-    
     autoTransCache.set(storyKey, fixedTransList)
   }
   if (!hasCache && (DEV || !name || printText)) {
@@ -192,7 +188,6 @@ const autoTrans = async (data, name, printText, skip = false) => {
     if (!name || printText) _log = log2
     _log(mergedList.join('\n'))
   }
-  tagStoryText(data)
   fixedTransList.forEach((trans, idx) => {
     let _trans = trans
     const { key, index } = textInfo[idx]
@@ -209,6 +204,8 @@ const autoTrans = async (data, name, printText, skip = false) => {
   data.forEach(item => {
     transSpeaker(item, nameMap)
   })
+
+  tagStoryText(data)
 }
 
 export default autoTrans

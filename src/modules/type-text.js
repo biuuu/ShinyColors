@@ -35,7 +35,9 @@ const produceAudition = async (data) => {
       }).join('').trim()
       await autoTrans(data.produceConcert.judges, name, true)
     }
-  } catch (e) {}
+  } catch (e) {
+    log(e)
+  }
 }
 
 const fesMatchConcert = async (data) => {
@@ -53,6 +55,14 @@ const mypageComments = async (data) => {
     if (data.userHomeDeck.userHomeDeckAnimationMember) {
       list = [...data.userHomeDeck.userHomeDeckAnimationMember.mypageComments]
     }
+    let animeMembers = data.userHomeDeck.userHomeAnimationDeck.userHomeAnimationDeckMembers
+    if (animeMembers) {
+      animeMembers.forEach(member => {
+        member.mypageComments.forEach(comm => {
+          list.push(comm)
+        })
+      })
+    }
     if (data.userHomeDeck.userHomeDeckMembers.length) {
       data.userHomeDeck.userHomeDeckMembers.forEach(member => {
         member.mypageComments.forEach(comm => {
@@ -61,7 +71,9 @@ const mypageComments = async (data) => {
       })
     }
     await transText(list)
-  } catch (e) {}
+  } catch (e) {
+    log(e)
+  }
 }
 
 const fesDeckReactions = async (data) => {
@@ -75,7 +87,9 @@ const fesDeckReactions = async (data) => {
       })
     }
     await autoTransText(list)
-  } catch (e) {}
+  } catch (e) {
+    log(e)
+  }
 }
 
 const produceHints = async (data) => {
@@ -95,7 +109,9 @@ const topCharacterReaction = async (data) => {
       ...data.topCharacterReaction.waitReactions
     ]
     await autoTransText(list)
-  } catch (e) {}
+  } catch (e) {
+    log(e)
+  }
 }
 
 const lessonResult = async (data) => {
@@ -110,7 +126,9 @@ const lessonResult = async (data) => {
     if (lr.produceRestBoostSupportIdolComment) list = list.concat(lr.produceRestBoostSupportIdolComment)
     if (lr.produceRestComments) list = list.concat(lr.produceRestComments)
     await autoTransText(list)
-  } catch (e) {}
+  } catch (e) {
+    log(e)
+  }
 }
 
 const produceEndWeek = async (data) => {
@@ -148,21 +166,29 @@ const helperSupportIdols = async (data) => {
   try {
     let name = data.characterComment + data.producerComment
     await autoTrans([data], name, true)
-  } catch (e) {}
+  } catch (e) {
+    log(e)
+  }
 }
 
 const produceReporterAnswer = async (data) => {
   try {
-    let list = data.produceReporterEvent.produceReporterEventAnswers
-    await autoTransText(list, 'comment2')
-  } catch (e) {}
+    let revent = data.produceReporterEvent
+    if (revent && revent.produceReporterEventAnswers) {
+      await autoTransText(revent.produceReporterEventAnswers, 'comment2')
+    }
+  } catch (e) {
+    log(e)
+  }
 }
 
 const trustLevelUp = async (data) => {
   try {
     let list = data.characterTrustLevelUpComments
     await autoTransText(list)
-  } catch (e) {}
+  } catch (e) {
+    log(e)
+  }
 }
 
 export {

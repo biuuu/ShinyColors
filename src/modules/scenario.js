@@ -142,7 +142,7 @@ const transScenario = async () => {
         } else if (config.auto === 'on') {
           await autoTrans(res, name)
         } else {
-          tagStoryText(res)
+          await autoTrans(res, name, false, true)
         }
       } catch (e) {
         log(e)
