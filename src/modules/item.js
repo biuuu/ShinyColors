@@ -1,6 +1,6 @@
 import getItem from '../store/item'
 import tagText from '../utils/tagText'
-import { fixWrap } from '../utils/'
+import { fixWrap, replaceWrap, log } from '../utils/'
 
 const userItemTypes = [
   'userRecoveryItems',
@@ -32,6 +32,18 @@ const ensureItem = async () => {
   return await itemPrms
 }
 
+let unknownItems = []
+const collectItems = (text) => {
+  if (!text) return
+  let _text = replaceWrap(text)
+  if (!unknownItems.includes(_text)) {
+    unknownItems.push(_text)
+  }
+}
+
+let win = (unsafeWindow || window)
+win.printUnknowItems = () => log(unknownItems.join('\n'))
+
 const transItem = (item, key, { itemMap, itemLimitMap }) => {
   if (!item || typeof item[key] !== 'string') return
   let text = fixWrap(item[key])
@@ -54,6 +66,8 @@ const transItem = (item, key, { itemMap, itemLimitMap }) => {
       trans += `\n${limit}`
     }
     item[key] = tagText(trans)
+  } else if (DEV) {
+    collectItems(item[key])
   }
 }
 
