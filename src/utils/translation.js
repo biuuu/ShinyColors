@@ -88,10 +88,6 @@ const caiyunTrans = async (source) => {
 
 const googleTrans = async (source) => {
   try {
-    let limitTime = sess('caiyuLimit')
-    if (limitTime && Date.now() - limitTime < 1000 * 60 * 60) {
-      return []
-    }
     let [query, br] = joinText(source)
     let textArr = splitText(query)
     let result = await Promise.all(textArr.map(query => {
