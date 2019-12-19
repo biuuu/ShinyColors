@@ -75,6 +75,7 @@ const switchShop = (shop, maps) => {
   if (shop && shop.shopMerchandises) {
     shop.shopMerchandises.forEach(item => {
       transItem(item, 'title', maps)
+      transItem(item, 'shopTitle', maps)
       transItem(item, 'comment', maps)
     })
   }
