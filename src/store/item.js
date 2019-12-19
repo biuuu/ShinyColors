@@ -5,6 +5,7 @@ import { trimWrap, trim } from '../utils/index'
 
 const itemMap = new Map()
 const itemLimitMap = new Map()
+const itemNoteMap = new Map()
 let loaded = false
 
 const getItem = async () => {
@@ -23,6 +24,8 @@ const getItem = async () => {
         if (text && trans && text !== trans) {
           if (type === 'limit') {
             itemLimitMap.set(text, trans)
+          } else if (type === 'note') {
+            itemNoteMap.set(text, trans)
           } else {
             itemMap.set(text, trans)
           }
@@ -32,7 +35,7 @@ const getItem = async () => {
     loaded = true
   }
 
-  return { itemMap, itemLimitMap }
+  return { itemMap, itemLimitMap, itemNoteMap }
 }
 
 export default getItem

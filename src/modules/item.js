@@ -44,27 +44,43 @@ const collectItems = (text) => {
 let win = (unsafeWindow || window)
 win.printUnknowItems = () => log(unknownItems.join('\n'))
 
-const transItem = (item, key, { itemMap, itemLimitMap }) => {
+const transItem = (item, key, { itemMap, itemLimitMap, itemNoteMap }) => {
   if (!item || typeof item[key] !== 'string') return
   let text = fixWrap(item[key])
   let limit = ''
-  if (/[\r\n]{1,2}\[[^\]]+\]$/.test(text)) {
-    let rgs = text.match(/([\s\S]+)[\r\n]{1,2}(\[[^\]]+\])$/)
-    if (rgs && rgs[1]) {
-      text = rgs[1].trim()
-      if (itemLimitMap.has(rgs[2])) {
-        limit = itemLimitMap.get(rgs[2])
-      } else {
-        limit = rgs[2]
-      }
+  let note = ''
+  let exp = ''
+  if (/[\s\S]+[\r\n]{0,2}\[[^\]]+\]$/.test(text)) {
+    let rgs = text.match(/([\s\S]+)([\r\n]{0,2}\[[^\]]+\])$/)
+    text = rgs[1].trim()
+    let txt = rgs[2]
+    if (itemLimitMap.has(txt)) {
+      limit = itemLimitMap.get(txt)
+    } else {
+      limit = txt
+    }
+  }
+
+  if (/[\s\S]+[\r\n]{0,2}【Exp:\d+】$/.test(text)) {
+    let rgs = text.match(/([\s\S]+)([\r\n]{0,2}【Exp:\d+】)$/)
+    text = rgs[1].trim()
+    exp = rgs[2]
+  }
+
+  if (/[\s\S]+[\r\n]{0,2}[(（][^)）]+[）)]$/.test(text)) {
+    let rgs = text.match(/([\s\S]+)([\r\n]{0,2})[(（]([^)）]+)[）)]$/)
+    text = rgs[1].trim()
+    let txt = rgs[3]
+    if (itemNoteMap.has(txt)) {
+      note = `${rgs[2]}（${itemNoteMap.get(txt)}）`
+    } else {
+      note = `${rgs[2]}（txt）`
     }
   }
 
   if (itemMap.has(text)) {
     let trans = itemMap.get(text)
-    if (limit) {
-      trans += `\n${limit}`
-    }
+    trans = `${trans}${note}${exp}${limit}`
     item[key] = tagText(trans)
   } else if (DEV) {
     collectItems(item[key])
