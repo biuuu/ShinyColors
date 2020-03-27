@@ -1,7 +1,7 @@
 import { log } from '../utils/index'
 import { getHash } from '../utils/fetch'
 
-let OFFSET = 2
+let OFFSET = 10
 const setIdList = (id, offset) => {
   let start = id - 2
   let end = id + 2
