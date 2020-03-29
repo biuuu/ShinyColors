@@ -121,11 +121,15 @@ VERYHARD,VERYHARD,noun
 フェスマスター,Fes Master,noun
 パーフェクトライブ,Perfect Live,noun
 伝説の一瞬,传说的一瞬,noun
+ランクF,Rank F,noun
+ランクE,Rank E,noun
 ランクD,Rank D,noun
 ランクC,Rank C,noun
 ランクB,Rank B,noun
 ランクA,Rank A,noun
 ランクS,Rank S,noun
+Fランク,F Rank,noun
+Eランク,E Rank,noun
 Dランク,D Rank,noun
 Cランク,C Rank,noun
 Bランク,B Rank,noun
@@ -222,11 +226,11 @@ W.I.N.G.編のプロデュースで$noun以上のフェスアイドルを$num名
 Lv.$numチケット,Lv.$1训练券,exp
 SR以上のサポートアイドルをLv.$numにするチケットです\n【Lv.$num以上のサポートアイドルには使えません】,将Support偶像提升至Lv.$1的训练券\n【Lv.$2以上的Support偶像无法使用】,exp
 トレーニングで【$unknown】$nameをLv.$numにしよう,训练【$1】$2至Lv.$3,exp
-【$unknown】$nameを最大まで特訓しよう,把【$1】$2特训至最大,exp
+【$unknown】$nameを最大まで特訓しよう,特训【$1】$2至满破,exp
 $nameのSRサポートアイドルです,$1的SR Support偶像,exp
 【$unknown】$nameを編成しよう,把【$1】$2编入队伍,exp
 $nameのRアイドルです,$1的R偶像,exp
-【$note】$nameを最大まで特訓しよう,把【$1】$2特训至最大,exp
+【$note】$nameを最大まで特訓しよう,特训【$1】$2至满破,exp
 振り返りでスキルを習得してみよう,在技能面板中学习技能,text
 初心者ミッションを進めるプロデュースアイドルを選択しよう,,text
 初心者ミッションでプロデュースのコツを掴んでいってくださいね～,,text
