@@ -214,7 +214,7 @@ evolution.confirm.title,特訓確認,特训确认
 evolution.confirm.comment,選択した対象を消費して、特訓をします。\nよろしいですか？,确认消耗选择的对象进行特训吗？
 evolution.complete.title,特訓結果,特训结果
 evolution.complete.comment,特訓が完了しました！,特训完成！
-evolution.costumeRelease.first,最大まで特訓したことによって\n,由于已特训至最大阶段\n
+evolution.costumeRelease.first,最大まで特訓したことによって\n,由于已特训至最终阶段\n
 evolution.costumeRelease.second,の衣装に\n変更可能になりました！,服装解锁！\n已经可以变更为该服装
 fes.top.title,フェス,Fes
 fes.top.scoreTitle,現在のスコア,当前分数
@@ -528,7 +528,7 @@ option.twitterProfileDescription,設定したイラストをTwitterでシェア�
 option.twitterDeAuthorizeDialog.title,連携解除,解除绑定
 option.twitterDeAuthorizeDialog.message,Twitter連携を解除しました,已解除Twitter绑定
 idol,アイドル,偶像
-supportIdolDetail.fromGashaNotice,最大まで特訓とトレーニングを行なった状態を表示しています。,当前显示为已达到最大特训和训练时的状态
+supportIdolDetail.fromGashaNotice,最大まで特訓とトレーニングを行なった状態を表示しています。,当前显示为已达到最终特训和训练时的状态
 idolDetail.fromGashaNotice,最大特訓時の状態を表示しています。,当前显示为最大特训时的状态
 idolDetail.headerTitle.produce,プロデュースアイドル詳細,Produce偶像详情
 idolDetail.headerTitle.support,サポートアイドル詳細,Support偶像详情
@@ -678,7 +678,7 @@ produceTop.ideaNoteAlertPop.message.expired,アイデアノートの期限が切
 produceAction.auditionRule,特殊ルール,特殊规则
 produceAction.auditionConditions,出場条件,出场条件
 produceMain.supportSkillsDialogTitle,発動中サポートスキル,发动中的Support技能
-produceCostume.requirements,を最大まで特訓する,特训至最大阶段
+produceCostume.requirements,を最大まで特訓する,特训至最终阶段
 produceCostume.casualCloth,私服衣装,私人服装
 produceCostume.idolCloth,ライブ衣装,Live服装
 produceCostume.requirementsPopTitle,衣装解放条件,服装解锁条件
