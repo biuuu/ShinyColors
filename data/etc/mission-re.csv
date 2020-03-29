@@ -215,8 +215,8 @@ $ukを$num以上にしよう,$1达到$2以上,exp
 営業を$num回完了しよう,完成$1次营业,exp
 【$unknown】$name,【$1】$2,exp
 【$note】$name,【$1】$2,exp
-W.I.N.G.のプロデュースで$noun以上のフェスアイドルを$num名誕生させよう,进行W.I.N.G.的Produce并诞生$2名$1的偶像,exp
-W.I.N.G.編のプロデュースで$noun以上のフェスアイドルを$num名誕生させよう,进行W.I.N.G.篇的Produce并诞生$2名$1的偶像,exp
+W.I.N.G.のプロデュースで$noun以上のフェスアイドルを$num名誕生させよう,进行W.I.N.G.的Produce并培育出$2名$1的Fes偶像,exp
+W.I.N.G.編のプロデュースで$noun以上のフェスアイドルを$num名誕生させよう,进行W.I.N.G.篇的Produce并培育出$2名$1的Fes偶像,exp
 サポートアイドル$num人をLv.$num以上にしよう,将$1个Support偶像提升至Lv.$2以上,exp
 サポートアイドルのトレーニングに必要なチケットです\n【Exp:$num】,Support偶像提升等级所需的训练券\n【Exp:$1】,exp
 Lv.$numチケット,Lv.$1训练券,exp
