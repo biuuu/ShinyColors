@@ -3,5 +3,8 @@ images/ui/common/parts_buttons.json_image,common.parts_buttons.png,32
 images/ui/start_and_common/parts.json_image,start_and_common.parts.png,8
 images/ui/my_page/parts.json_image,my_page.parts.png,28
 images/ui/present_box/parts.json_image,present_box_parts.png,7
-images/ui/mission/parts.json_image,mission_parts.png,13
+images/ui/mission/parts.json_image,mission_parts.png,14
 images/ui/idol_portal/parts.json_image,idol_portal.parts.png,6
+images/ui/fes/parts.json_image,,23
+images/ui/produce_top/parts.json_image,,15
+images/ui/produce_action/parts_wing.json_image,produce_action.parts_wing.png,1
