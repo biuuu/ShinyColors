@@ -41,7 +41,7 @@ const collectItems = (text) => {
   }
 }
 
-let win = (unsafeWindow || window)
+let win = (window.unsafeWindow || window)
 win.printUnknowItems = () => log(unknownItems.join('\n'))
 
 const transItem = (item, key, { itemMap, itemLimitMap, itemNoteMap }) => {
