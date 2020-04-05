@@ -17,6 +17,7 @@
 - iOS: Alook
 - Android: Via/Kiwi/米侠/荟萃
 
+Alook也可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html)
 **关于机翻**
 
 如果当前剧情还没有人提交翻译的话，插件可以进行机翻。
