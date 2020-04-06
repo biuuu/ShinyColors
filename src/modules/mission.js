@@ -25,6 +25,8 @@ const replaceMission = (data, key) => {
     _text = replaceText(text, expMap, wordMaps)
     if (text !== _text) {
       data[key] = tagText(_text)
+    } else if (DEV) {
+      saveUnknownMissions(data, key)
     }
   }
 }
@@ -53,24 +55,27 @@ const processRaidMission = (list) => {
   })
 }
 
+const processBeginnerMission = (list) => {
+  list && list.forEach(item => {
+    let mission = item
+    replaceMission(mission, 'title')
+    replaceMission(mission, 'afterAchievedComment')
+    replaceMission(mission, 'beforeAchievedComment')
+    let content = mission.lectureMissionReward
+    if (content && content.content) {
+      replaceMission(content.content, 'name')
+      replaceMission(content.content, 'comment')
+    }
+  })
+}
+
 const unknownMissions = []
 const saveUnknownMissions = (data, key) => {
   if (!data[key]) return
   const text = replaceWrap(data[key])
-  if (!missionMap.has(text) && !unknownMissions.includes(text)) {
+  if (!unknownMissions.includes(text)) {
     unknownMissions.push(text)
   }
-}
-const collectMissions = (data) => {
-  const list = data.eventUserMissions[0].userMissions
-  list.forEach(item => {
-    saveUnknownMissions(item.mission, 'title')
-    saveUnknownMissions(item.mission, 'comment')
-    if (item.mission.missionReward.content) {
-      saveUnknownMissions(item.mission.missionReward.content, 'name')
-      saveUnknownMissions(item.mission.missionReward.content, 'comment')
-    }
-  })
 }
 
 const transMission = async (data) => {
@@ -89,6 +94,19 @@ const transMission = async (data) => {
 const reportMission = async (data) => {
   await ensureMissionData()
   processMission(data.reportUserMissions)
+}
+
+const beginnerMissionComplete = async (data) => {
+  await ensureMissionData()
+  let mission = data.beginnerMission
+  if (mission) {
+    if (mission.clearedLectureMission) {
+      processBeginnerMission([mission.clearedLectureMission])
+    }
+    if (mission.progressLectureMission) {
+      processBeginnerMission([mission.progressLectureMission])
+    }
+  }
 }
 
 const accumulatedPresent = (item, key) => {
@@ -123,5 +141,10 @@ const teachingMission = async (data) => {
   })
 }
 
-export { reportMission, fesRecomMission, fesRaidMission, teachingMission }
+const beginnerMission = async (data) => {
+  await ensureMissionData()
+  processBeginnerMission(data.lectureMissions)
+}
+
+export { reportMission, fesRecomMission, fesRaidMission, teachingMission, beginnerMission, beginnerMissionComplete }
 export default transMission

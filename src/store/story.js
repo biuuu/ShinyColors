@@ -51,7 +51,7 @@ const getStoryMap = (csv) => {
     const trans = trimWrap(item.trans)
     const name = trim(item.name)
     if (text && trans) {
-      if (id && !/^0+$/.test(id) && id !== 'select') {
+      if (id && !/^0+$/.test(id) && !storyMap.has(id) && id !== 'select') {
         storyMap.set(id, tagText(trans))
       } else {
         if (id === 'select') {

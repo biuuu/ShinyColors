@@ -85,6 +85,8 @@ const start = async () => {
   await fse.writeJSON('./dist/story.json', storyData)
   console.log('move data files...')
   await fse.copy('./data/', './dist/data/')
+  console.log('move install.html...')
+  await fse.copy('./script/install.html', './dist/install.html')
   console.log('move etc...')
   for (let fileName of etcFiles) {
     await fse.move(`./dist/data/etc/${fileName}.csv`, `./dist/data/${fileName}.csv`, { overwrite: true })
