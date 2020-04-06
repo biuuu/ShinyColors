@@ -79,9 +79,9 @@ const transStory = (data, storyMap, commMap, nameMap) => {
     if (item.text) {
       const text = fixWrap(item.text)
       if (storyMap.has(text)) {
-        item.text = tagText(storyMap.get(text))
+        item.text = storyMap.get(text)
       } else if (item.id && storyMap.has(`${item.id}`)) {
-        item.text = tagText(storyMap.get(`${item.id}`))
+        item.text = storyMap.get(`${item.id}`)
       } else if (commMap.has(text)) {
         item.text = tagText(commMap.get(text))
       }
