@@ -90,6 +90,7 @@ const requestOfGet = [
 
 const requestOfPost = [
   ['myPage', [reportMission, mypageComments, beginnerMissionComplete]],
+  [/^characterAlbums\/characters\/\d+$/, 'storyTitle'],
   [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
   [/userIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, userIdolsSkill],
   ['userShops/actions/purchase', transShopPurchase],
