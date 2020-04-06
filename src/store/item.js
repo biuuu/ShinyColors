@@ -19,7 +19,7 @@ const getItem = async () => {
     list.forEach(item => {
       if (item && item.text) {
         const text = trimWrap(item.text)
-        const trans = trimWrap(item.trans)
+        const trans = trimWrap(item.trans, true)
         const type = trim(item.type) || 'normal'
         if (text && trans && text !== trans) {
           if (type === 'limit') {

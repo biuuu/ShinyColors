@@ -1,5 +1,5 @@
 import getPhrase from '../store/phrase'
-import { getHash } from '../utils/fetch'
+import CSV from 'papaparse'
 import { replaceWrap, log } from '../utils/index'
 import { getPhraseMd } from './get-module'
 let phraseMap = null
@@ -7,11 +7,15 @@ let phraseMap = null
 const collectPhrases = (obj) => {
   let list = []
   for (let key in obj) {
-    if (!phraseMap.has(key) && !key.includes('license')) {
-      list.push(`${key},${replaceWrap(obj[key])}`)
+    if (obj[key].trim() && !key.includes('license')) {
+      list.push({
+        name: key,
+        ja: replaceWrap(obj[key]),
+        zh: (replaceWrap(phraseMap.get(key)) || '').replace(/^\u200b/, '')
+      })
     }
   }
-  log(list.join(',\n'))
+  log(CSV.unparse(list))
 }
 
 export default async function transPhrase () {

@@ -26,8 +26,9 @@ const trim = (str) => {
   return _str.replace(/^[\u0020]+/g, '')
 }
 
-const trimWrap = (str) => {
-  return trim(str).replace(/\\r/g, '\n').replace(/\\n/g, '\n').replace(/\n{2,}/g, '\n')
+const trimWrap = (str, trans = false) => {
+  let _str = trim(str).replace(/(\\r)?\\n/g, '\n').replace(/\\r/g, '\n')
+  return trans ? _str : _str.replace(/\n{2,}/g, '\n')
 }
 
 const fixWrap = (str) => {
@@ -68,14 +69,14 @@ const tryDownload = (content, filename) => {
 
 const replaceWrap = (text) => {
   if (isString(text)) {
-    return text.replace(/\r?\n|\r/g, '\\n')
+    return text.replace(/\r?\n/g, '\\n').replace(/\r/g, '\\n')
   }
   return text
 }
 
 const removeWrap = (text) => {
   if (isString(text)) {
-    return text.replace(/\r?\n|\r/g, '')
+    return text.replace(/\n|\r/g, '')
   }
   return text
 }

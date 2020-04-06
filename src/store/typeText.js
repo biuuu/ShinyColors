@@ -18,7 +18,7 @@ const getTypeTextMap = async () => {
     list.forEach(item => {
       if (item && item.ja) {
         const _ja = trimWrap(item.ja)
-        const _zh = trimWrap(item.zh)
+        const _zh = trimWrap(item.zh, true)
         if (_ja && _zh && _ja !== _zh) {
           typeTextMap.set(_ja, _zh)
         }

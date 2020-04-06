@@ -28,7 +28,7 @@ const getMission = async (full = false) => {
     sortWords(list, 'text').forEach(item => {
       if (item && item.text) {
         const text = trimWrap(item.text)
-        const trans = trimWrap(item.trans)
+        const trans = trimWrap(item.trans, true)
         const type = trim(item.type)
         if (text && trans) {
           if (type === 'noun') {
