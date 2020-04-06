@@ -1,5 +1,5 @@
 import getPhrase from '../store/phrase'
-import CSV from 'papaparse'
+import CSV from 'papaparse/papaparse.min'
 import { replaceWrap, log } from '../utils/index'
 import { getPhraseMd } from './get-module'
 let phraseMap = null

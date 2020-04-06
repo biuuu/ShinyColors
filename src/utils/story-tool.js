@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce'
 import config, { saveConfig, PREVIEW_COUNT } from '../config'
 import { tryDownload } from './index'
-import CSV from 'papaparse'
+import CSV from 'papaparse/papaparse.min'
 import { getStoryMap } from '../store/story'
 
 const html = `
