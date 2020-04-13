@@ -19,8 +19,12 @@ const getPhrase = async (full = false) => {
       if (item && item.name) {
         const _name = trimWrap(item.name)
         const _zh = trimWrap(item.zh, true)
-        if (_name && (_zh || full)) {
-          phraseMap.set(_name, tagText(_zh))
+        if (_name) {
+          if (full) {
+            phraseMap.set(_name, item.zh)
+          } else if (_zh) {
+            phraseMap.set(_name, tagText(_zh))
+          }
         }
       }
     })
