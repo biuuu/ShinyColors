@@ -3,7 +3,8 @@ import { supportSkill, userIdolsSkill, produceExSkillTop,
   otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck, userRaidDeck, ideaNotesSkill,
   userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill } from './skill'
-import transMission, { reportMission, fesRecomMission, fesRaidMission, teachingMission, beginnerMission, beginnerMissionComplete } from './mission'
+import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadMission,
+  teachingMission, beginnerMission, beginnerMissionComplete } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
@@ -86,7 +87,8 @@ const requestOfGet = [
   [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
   [/earthUsers\/[^\/]+\/userFesIdols\/\d+$/, otherFesIdolSkill],
   ['userBeginnerMissions/top', beginnerMission],
-  ['userRaidDecks', userRaidDeck]
+  ['userRaidDecks', userRaidDeck],
+  ['idolRoads/top', idolRoadMission]
 ]
 
 const requestOfPost = [

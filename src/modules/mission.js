@@ -55,16 +55,19 @@ const processRaidMission = (list) => {
   })
 }
 
-const processBeginnerMission = (list) => {
+const fullMission = (list, hasReward = true) => {
   list && list.forEach(item => {
     let mission = item
     replaceMission(mission, 'title')
+    replaceMission(mission, 'comment')
     replaceMission(mission, 'afterAchievedComment')
     replaceMission(mission, 'beforeAchievedComment')
-    let content = mission.lectureMissionReward
-    if (content && content.content) {
-      replaceMission(content.content, 'name')
-      replaceMission(content.content, 'comment')
+    if (hasReward) {
+      let reward = mission.lectureMissionReward
+      if (reward && reward.content) {
+        replaceMission(reward.content, 'name')
+        replaceMission(reward.content, 'comment')
+      }
     }
   })
 }
@@ -77,6 +80,9 @@ const saveUnknownMissions = (data, key) => {
     unknownMissions.push(text)
   }
 }
+
+let win = window.unsafeWindow || window
+win.printUnknownMission = () => log(unknownMissions.join('\n'))
 
 const transMission = async (data) => {
   await ensureMissionData()
@@ -143,8 +149,20 @@ const teachingMission = async (data) => {
 
 const beginnerMission = async (data) => {
   await ensureMissionData()
-  processBeginnerMission(data.lectureMissions)
+  fullMission(data.lectureMissions)
 }
 
-export { reportMission, fesRecomMission, fesRaidMission, teachingMission, beginnerMission, beginnerMissionComplete }
+const idolRoadMission = async (data) => {
+  await ensureMissionData()
+  fullMission(data.userMissions)
+  data.userIdols && data.userIdols.forEach(idol => {
+    idol.userIdolRoad.idolRoad.idolRoadRewards.forEach(reward => {
+      replaceMission(reward.content, 'name')
+      replaceMission(reward.content, 'comment')
+    })
+  })
+}
+
+export { reportMission, fesRecomMission, fesRaidMission, idolRoadMission,
+  teachingMission, beginnerMission, beginnerMissionComplete }
 export default transMission
