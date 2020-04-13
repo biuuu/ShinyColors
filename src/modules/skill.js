@@ -148,10 +148,16 @@ const judegsSkill = (data, skillData) => {
 }
 
 const fesRivalsSkill = (data, skillData) => {
+  if (!data) return
   data.forEach(rival => {
     rival.userFesDeck && rival.userFesDeck.userFesDeckMembers.forEach(member => {
       member.userFesIdol.activeSkills.forEach(skill => {
         transEffects(skill, skillData)
+      })
+    })
+    rival.userRaidDeck && rival.userRaidDeck.userRaidDeckMembers.forEach(member => {
+      member.userFesIdol.activeSkills.forEach(skill => {
+        commSkill(skill, skillData, true)
       })
     })
     rival.rival && rival.rival.rivalSkills.forEach(skill => {
@@ -270,7 +276,18 @@ const userFesDeck = async (data) => {
   const skillData = await ensureSkillData()
   data.userFesDecks.forEach(deck => {
     deck.userFesDeckMembers.forEach(member => {
-      member.userFesIdol.activeSkills.forEach(item => {
+      member.userFesIdol && member.userFesIdol.activeSkills.forEach(item => {
+        commSkill(item, skillData)
+      })
+    })
+  })
+}
+
+const userRaidDeck = async (data) => {
+  const skillData = await ensureSkillData()
+  data.userRaidDecks.forEach(deck => {
+    deck.userRaidDeckMembers.forEach(member => {
+      member.userFesIdol && member.userFesIdol.activeSkills.forEach(item => {
         commSkill(item, skillData)
       })
     })
@@ -300,7 +317,7 @@ const produceFinish = async (data) => {
 
 const fesMatchConcertSkill = async (data) => {
   const skillData = await ensureSkillData()
-  data.userFesDeck.userFesDeckMembers.forEach(member => {
+  const transDeckMember = (member) => {
     member.userFesIdol.activeSkills.forEach(item => {
       commSkill(item, skillData, true)
     })
@@ -310,9 +327,12 @@ const fesMatchConcertSkill = async (data) => {
       transSkill(item, 'name', skillData)
       transEffects(item, skillData)
     })
-  })
+  }
+  data.userFesDeck && data.userFesDeck.userFesDeckMembers.forEach(transDeckMember)
+  data.userRaidDeck && data.userRaidDeck.userRaidDeckMembers.forEach(transDeckMember)
   judegsSkill(data.judges, skillData)
   fesRivalsSkill(data.userFesRivals, skillData)
+  fesRivalsSkill(data.userFesRaidRivals, skillData)
 }
 
 const auditionSkill = async (data) => {
@@ -339,10 +359,23 @@ const resumeGameSkill = async (data) => {
     let gData = JSON.parse(data.gameData)
     if (gData.produceAudition || gData.produceConcert) {
       await auditionSkill(gData)
-    } else if (gData.userFesDeck) {
+    } else if (gData.userFesDeck || gData.userRaidDeck) {
       await fesMatchConcertSkill(gData)
     }
     data.gameData = JSON.stringify(gData)
+  } catch (e) {
+    log(e)
+  }
+}
+
+const resumeRaidGameSkill = async (data) => {
+  if (!data.gameState || !data.gameState.game_data) return
+  try {
+    let gData = JSON.parse(data.gameState.game_data)
+    if (gData.userRaidDeck) {
+      await fesMatchConcertSkill(gData)
+    }
+    data.gameState.game_data = JSON.stringify(gData)
   } catch (e) {
     log(e)
   }
@@ -380,8 +413,8 @@ const noteResultSkill = async (data) => {
 export {
   supportSkill, userIdolsSkill, produceExSkillTop,
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
-  reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userProIdolsSkill,
+  reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userRaidDeck, userProIdolsSkill,
   userProSptIdolsSkill, proSkillPanels, produceFinish,
-  fesMatchConcertSkill, resumeGameSkill, auditionSkill, produceResultSkill,
+  fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill,
   ideaNotesSkill, noteResultSkill
 }
