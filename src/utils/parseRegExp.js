@@ -1,5 +1,5 @@
-const numRE = '([+-＋－]?\\d{1,10}\\.?\\d{0,4}?)'
-const percentRE = '([+-＋－]?\\d{1,10}\\.?\\d{0,4}?[%％])'
+const numRE = '([+-＋－]?[0-9０-９]{1,10}\\.?[0-9０-９]{0,4}?)'
+const percentRE = '([+-＋－]?[0-9０-９]{1,10}\\.?[0-9０-９]{0,4}?[%％])'
 const unknownRE = '(.+?)'
 
 const parseRegExp = (str, list) => {

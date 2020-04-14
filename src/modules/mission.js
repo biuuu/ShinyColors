@@ -16,7 +16,7 @@ const ensureMissionData = async () => {
 
 const replaceMission = (data, key) => {
   let transed = false
-  if (!data) return transed
+  if (!data || typeof data[key] !== 'string') return transed
   const { expMap, wordMaps, textMap } = missionMaps
   const text = fixWrap(data[key])
   let _text = text
@@ -69,7 +69,7 @@ const processRaidMission = (list) => {
 
 const fullMission = (list, hasReward = true) => {
   list && list.forEach(item => {
-    let mission = item
+    let mission = item.mission || item
     replaceMission(mission, 'title')
     replaceMission(mission, 'comment')
     replaceMission(mission, 'afterAchievedComment')
