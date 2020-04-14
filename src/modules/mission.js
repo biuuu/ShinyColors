@@ -152,17 +152,24 @@ const beginnerMission = async (data) => {
   fullMission(data.lectureMissions)
 }
 
-const idolRoadMission = async (data) => {
-  await ensureMissionData()
-  fullMission(data.userMissions)
-  data.userIdols && data.userIdols.forEach(idol => {
-    idol.userIdolRoad.idolRoad.idolRoadRewards.forEach(reward => {
-      replaceMission(reward.content, 'name')
-      replaceMission(reward.content, 'comment')
-    })
+const idolRoadRewards = (idol) => {
+  idol.userIdolRoad && idol.userIdolRoad.idolRoad.idolRoadRewards.forEach(reward => {
+    replaceMission(reward.content, 'name')
+    replaceMission(reward.content, 'comment')
   })
 }
 
-export { reportMission, fesRecomMission, fesRaidMission, idolRoadMission,
+const idolRoadMission = async (data) => {
+  await ensureMissionData()
+  fullMission(data.userMissions)
+  data.userIdols && data.userIdols.forEach(idolRoadRewards)
+}
+
+const idolRoadForward = async (data) => {
+  await ensureMissionData()
+  idolRoadRewards(data.userIdol)
+}
+
+export { reportMission, fesRecomMission, fesRaidMission, idolRoadMission, idolRoadForward,
   teachingMission, beginnerMission, beginnerMissionComplete }
 export default transMission

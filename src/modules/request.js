@@ -3,7 +3,7 @@ import { supportSkill, userIdolsSkill, produceExSkillTop,
   otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck, userRaidDeck, ideaNotesSkill,
   userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill } from './skill'
-import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadMission,
+import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadMission, idolRoadForward,
   teachingMission, beginnerMission, beginnerMissionComplete } from './mission'
 import { collectStoryTitle } from '../store/story'
 import { userItemTypes, transShopItem,
@@ -125,6 +125,10 @@ const requestOfPatch = [
   ['userFesDecks', userFesDeck]
 ]
 
+const requestOfPut = [
+  ['userIdolRoads', idolRoadForward]
+]
+
 export default async function requestHook () {
   const request = await getRequest()
   if (!request || !request.get) return
@@ -173,6 +177,7 @@ export default async function requestHook () {
     if (!type) return res
     let data = res.body
     requestLog('PUT', '#9C27B0', args, data)
+    await requestRouter(data, type, requestOfPut)
     return res
   }
 }
