@@ -24,12 +24,14 @@ const itemTypes = [
   'enhancementItem'
 ]
 
+
+let itemMaps
 let itemPrms
 const ensureItem = async () => {
   if (!itemPrms) {
     itemPrms = getItem()
   }
-  return await itemPrms
+  itemMaps = await itemPrms
 }
 
 let unknownItems = []
@@ -44,8 +46,9 @@ const collectItems = (text) => {
 let win = (window.unsafeWindow || window)
 win.printUnknowItems = () => log(unknownItems.join('\n'))
 
-const transItem = (item, key, { itemMap, itemLimitMap, itemNoteMap }) => {
+const transItem = (item, key) => {
   if (!item || typeof item[key] !== 'string') return
+  const { itemMap, itemLimitMap, itemNoteMap} = itemMaps
   let text = fixWrap(item[key])
   let limit = ''
   let note = ''
@@ -87,27 +90,27 @@ const transItem = (item, key, { itemMap, itemLimitMap, itemNoteMap }) => {
   }
 }
 
-const switchShop = (shop, maps) => {
+const switchShop = (shop) => {
   if (shop && shop.shopMerchandises) {
     shop.shopMerchandises.forEach(item => {
-      transItem(item, 'title', maps)
-      transItem(item, 'shopTitle', maps)
-      transItem(item, 'comment', maps)
+      transItem(item, 'title')
+      transItem(item, 'shopTitle')
+      transItem(item, 'comment')
     })
   }
 }
 
 const transShopItem = async (data) => {
-  const maps = await ensureItem()
+  await ensureItem()
   if (data) {
     if (Array.isArray(data.userShops)) {
       data.userShops.forEach(shop => {
-        switchShop(shop, maps)
+        switchShop(shop)
       })
     }
     if (Array.isArray(data.userEventShops)) {
       data.userEventShops.forEach(item => {
-        switchShop(item.userShop, maps)
+        switchShop(item.userShop)
       })
     }
   }
@@ -116,7 +119,7 @@ const transShopItem = async (data) => {
 const transUserItem = async (data) => {
   let list = data
   if (data.userProduceItems) list = data.userProduceItems
-  const maps = await ensureItem()
+  await ensureItem()
   if (Array.isArray(list)) {
     list.forEach(obj => {
       const item = obj[itemTypes[0]]
@@ -127,83 +130,85 @@ const transUserItem = async (data) => {
       || obj[itemTypes[5]]
       || obj[itemTypes[6]]
       || obj[itemTypes[7]];
-      transItem(item, 'name', maps)
-      transItem(item, 'comment', maps)
+      transItem(item, 'name')
+      transItem(item, 'comment')
     })
   }
 }
 
 const transShopPurchase = async (data) => {
-  const maps = await ensureItem()
+  await ensureItem()
   if (data && data.shopMerchandise) {
-    transItem(data.shopMerchandise, 'title', maps)
-    transItem(data.shopMerchandise, 'comment', maps)
+    transItem(data.shopMerchandise, 'title')
+    transItem(data.shopMerchandise, 'comment')
   }
 }
 
 const transPresentItem = async (data) => {
-  const maps = await ensureItem()
+  await ensureItem()
   if (Array.isArray(data)) {
     data.forEach(obj => {
-      transItem(obj.content, 'name', maps)
+      transItem(obj.content, 'name')
     })
   }
 }
 
 const transReceivePresent = async (data) => {
-  const maps = await ensureItem()
-  transItem(data.receivedPresent, 'Name', maps)
+  await ensureItem()
+  transItem(data.receivedPresent, 'Name')
 }
 
 const transReceiveMission = async (data) => {
-  const maps = await ensureItem()
-  transItem(data.userMission.mission.missionReward.content, 'name', maps)
+  await ensureItem()
+  transItem(data.userMission.mission.missionReward.content, 'name')
 }
 
 const transLoginBonus = async (data) => {
-  const maps = await ensureItem()
+  await ensureItem()
   data.userLoginBonuses.forEach(item => {
     item.loginBonus.sheets.forEach(sheet => {
       sheet.rewards.forEach(reward => {
-        transItem(reward.content, 'name', maps)
+        transItem(reward.content, 'name')
       })
     })
   })
   data.userTotalBonuses.forEach(item => {
     item.rewards.forEach(reward => {
-      transItem(reward.content, 'name', maps)
+      transItem(reward.content, 'name')
     })
   })
 }
 
 const transFesReward = async (data) => {
-  const maps = await ensureItem()
+  await ensureItem()
   if (data.lastRankingResult) {
     if (Array.isArray(data.lastRankingResult.fesMatchGradeRewards)) {
       data.lastRankingResult.fesMatchGradeRewards.forEach(item => {
-        transItem(item.content, 'name', maps)
+        transItem(item.content, 'name')
       })
     }
   }
 }
 
 const transAccumulatedPresent = async (data) => {
-  const maps = await ensureItem()
+  await ensureItem()
   data.accumulatedPresent.userGameEventAccumulatedPresents.forEach(item => {
     item.gameEventAccumulatedPresent.rewards.forEach(reward => {
-      transItem(reward.content, 'name', maps)
+      transItem(reward.content, 'name')
     })
   })
 }
 
 const selectLoginBonus = async (data) => {
-  const maps = await ensureItem()
+  await ensureItem()
   data.rewards.forEach(reward => {
-    transItem(reward.content, 'name', maps)
+    transItem(reward.content, 'name')
   })
 }
 
 export {
+  ensureItem,
+  transItem,
   transShopItem,
   transUserItem,
   userItemTypes,

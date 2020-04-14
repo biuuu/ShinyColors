@@ -2,32 +2,44 @@ import getMission from '../store/mission'
 import tagText from '../utils/tagText'
 import replaceText from '../utils/replaceText'
 import { fixWrap, replaceWrap, log } from '../utils/index'
+import { transItem, ensureItem } from './item'
 
-let missionData = null
+let missionMaps = null
 let msPrms = null
 const ensureMissionData = async () => {
   if (!msPrms) {
     msPrms = getMission()
   }
-  missionData = await msPrms
-  return missionData
+  await ensureItem()
+  missionMaps = await msPrms
 }
 
 const replaceMission = (data, key) => {
-  if (!data) return
-  const { expMap, wordMaps, textMap } = missionData
+  let transed = false
+  if (!data) return transed
+  const { expMap, wordMaps, textMap } = missionMaps
   const text = fixWrap(data[key])
   let _text = text
-  if (!text) return
+  if (!text) return transed
   if (textMap.has(text)) {
+    transed = true
     data[key] = tagText(textMap.get(text))
   } else {
     _text = replaceText(text, expMap, wordMaps)
     if (text !== _text) {
+      transed = true
       data[key] = tagText(_text)
     } else if (DEV) {
       saveUnknownMissions(data, key)
     }
+  }
+  return transed
+}
+
+const processReward = (data, key) => {
+  let transed = replaceMission(data, key)
+  if (!transed) {
+    transItem(data, key)
   }
 }
 
@@ -36,8 +48,8 @@ const processMission = (list) => {
     replaceMission(item.mission, 'title')
     replaceMission(item.mission, 'comment')
     if (item.mission.missionReward.content) {
-      replaceMission(item.mission.missionReward.content, 'name')
-      replaceMission(item.mission.missionReward.content, 'comment')
+      processReward(item.mission.missionReward.content, 'name')
+      processReward(item.mission.missionReward.content, 'comment')
     }
   })
 }
@@ -49,8 +61,8 @@ const processRaidMission = (list) => {
     replaceMission(mission, 'comment')
     let content = mission.fesRaidAccumulatedRewardContent
     if (content && content.content) {
-      replaceMission(content.content, 'name')
-      replaceMission(content.content, 'comment')
+      processReward(content.content, 'name')
+      processReward(content.content, 'comment')
     }
   })
 }
@@ -65,8 +77,8 @@ const fullMission = (list, hasReward = true) => {
     if (hasReward) {
       let reward = mission.lectureMissionReward
       if (reward && reward.content) {
-        replaceMission(reward.content, 'name')
-        replaceMission(reward.content, 'comment')
+        processReward(reward.content, 'name')
+        processReward(reward.content, 'comment')
       }
     }
   })
@@ -107,10 +119,10 @@ const beginnerMissionComplete = async (data) => {
   let mission = data.beginnerMission
   if (mission) {
     if (mission.clearedLectureMission) {
-      processBeginnerMission([mission.clearedLectureMission])
+      fullMission([mission.clearedLectureMission])
     }
     if (mission.progressLectureMission) {
-      processBeginnerMission([mission.progressLectureMission])
+      fullMission([mission.progressLectureMission])
     }
   }
 }
@@ -154,14 +166,14 @@ const beginnerMission = async (data) => {
 
 const idolRoadRewards = (idol) => {
   idol.userIdolRoad && idol.userIdolRoad.idolRoad.idolRoadRewards.forEach(reward => {
-    replaceMission(reward.content, 'name')
-    replaceMission(reward.content, 'comment')
+    processReward(reward.content, 'name')
+    processReward(reward.content, 'comment')
   })
 }
 
 const idolRoadMission = async (data) => {
   await ensureMissionData()
-  fullMission(data.userMissions)
+  fullMission(data.userMissions, false)
   data.userIdols && data.userIdols.forEach(idolRoadRewards)
 }
 
