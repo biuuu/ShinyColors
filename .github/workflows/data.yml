@@ -1,0 +1,34 @@
+name: Save data
+
+on:
+  schedule:
+    - cron:  '5 * * * *'
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: data
+        path: data1
+    - name: Checkout group data repo
+      uses: actions/checkout@v2
+      with:
+        repository: ShinyGroup/SCTranslationData
+        path: data2
+    - name: Move files
+      run: |
+        mv data2/data/ data1/data/
+    - name: Commit changes
+      run: |
+        cd data1
+        git add --a
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m 'update data' -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: data
+        github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,11 +1,8 @@
-name: Deploy
+name: Build
 
 on:
-  repository_dispatch:
-    types: [ update-data ]
   push:
     branches: [ master ]
-
 jobs:
   main:
     runs-on: ubuntu-latest

@@ -1,6 +1,6 @@
 <a href="https://www.shiny.fun/ShinyColors.user.js"><img src="data/image/banner.jpg" alt="检查更新"></a>
 <p align="center">
-<a href="https://travis-ci.com/biuuu/ShinyColors"><img alt="Build Status" src="https://travis-ci.com/biuuu/ShinyColors.svg?branch=master"></a>
+<a href="https://github.com/biuuu/ShinyColors/actions?query=workflow%3ABuild"><img alt="Build Status" src="https://github.com/biuuu/ShinyColors/workflows/Build/badge.svg"></a>
 <a href="https://github.com/biuuu/ShinyColors/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/biuuu/ShinyColors.svg"></a>
 <a href="https://idolmaster.jp/"><img alt="THE IDOLM@STER" src="https://img.shields.io/badge/IDOL-M%40STER-ff779c.svg"></a>
 <a href="https://shinycolors.enza.fun/"><img alt="283 Production" src="https://img.shields.io/badge/283-Production-9a77ff.svg"></a>
@@ -10,7 +10,7 @@
 ## 简介
 安装插件：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
 
-提交翻译：[说明](https://github.com/ShinyGroup/ShinyColors/tree/master/data)
+提交翻译：[说明](https://github.com/ShinyGroup/SCTranslationData)
 
 ## Devlopment
 ```bash
