@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  repository_dispatch:
+    types: [ update-data ]
+  push:
+    branches: [ master ]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.head_commit.message, 'Update') || startsWith(github.event.head_commit.message, 'Fix') || startsWith(github.event.head_commit.message, 'update-data')
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Checkout data repo
+      uses: actions/checkout@v2
+      with:
+        repository: ShinyGroup/SCTranslationData
+        path: scdata
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Install dependencies
+      run: yarn --frozen-lockfile
+    - name: Build data
+      run: yarn deploy_action
+    - name: Deploy
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v1
+      with:
+        target_branch: gh-pages
+        build_dir: dist
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

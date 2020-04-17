@@ -15,6 +15,7 @@
     "deploy": "node ./script/cleanDist.js && rollup --config ./script/build.js && node ./script/deploy.js",
     "font": "node script/fontmin.js",
     "deployc": "cross-env CUSTOM_DOMAIN=true node script/deployWithGroup.js",
+    "deploy_action": "cross-env CUSTOM_DOMAIN=true GITHUB_ACTION=true yarn deploy",
     "travis_deploy": "cross-env CUSTOM_DOMAIN=true TRAVIS=true yarn deploy"
   },
   "dependencies": {

@@ -50,9 +50,10 @@ const getDate = (offset = 0) => {
 
 const etcFiles = ['image', 'item', 'support-skill', 'mission-re']
 
+const DATA_PATH = process.env.GITHUB_ACTION ? './scdata/data/' : './data/'
 const start = async () => {
   await fse.emptyDir('./dist/data/')
-  const hash = await md5Dir('./data/')
+  const hash = await md5Dir(DATA_PATH)
   console.log(hash)
   await fse.writeJSON('./dist/manifest.json', { 
     hash, version, moduleId, 
@@ -60,7 +61,7 @@ const start = async () => {
     date: getDate(8) 
   })
   console.log('story...')
-  const files = await glob.promise('./data/story/**/*.csv')
+  const files = await glob.promise(`${DATA_PATH}story/**/*.csv`)
   const prims = files.map(file => {
     return readCsv(file).then(list => {
       for (let i = list.length - 1; i >= 0; i--) {
@@ -84,7 +85,7 @@ const start = async () => {
   })
   await fse.writeJSON('./dist/story.json', storyData)
   console.log('move data files...')
-  await fse.copy('./data/', './dist/data/')
+  await fse.copy(DATA_PATH, './dist/data/')
   console.log('move install.html...')
   await fse.copy('./script/install.html', './dist/install.html')
   console.log('move etc...')
@@ -98,8 +99,7 @@ const start = async () => {
   if (process.env.CUSTOM_DOMAIN) {
     await fse.outputFile('./dist/CNAME', 'www.shiny.fun')
   }
-  if (process.env.TRAVIS) {
-    console.log('travis')
+  if (process.env.TRAVIS || process.env.GITHUB_ACTION) {
     return
   }
   console.log('start publish...')
