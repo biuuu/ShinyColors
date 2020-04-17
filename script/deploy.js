@@ -50,7 +50,7 @@ const getDate = (offset = 0) => {
 
 const etcFiles = ['image', 'item', 'support-skill', 'mission-re']
 
-const DATA_PATH = process.env.GITHUB_ACTION ? './scdata/data/' : './data/'
+const DATA_PATH = './data/'
 const start = async () => {
   await fse.emptyDir('./dist/data/')
   const hash = await md5Dir(DATA_PATH)
