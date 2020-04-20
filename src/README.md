@@ -34,3 +34,17 @@ Alook也可以直接通过这个网址安装插件：[https://www.shiny.fun/inst
 开启方法是在游戏 URL 后面加上 #bgm=on ，关闭则是 #bgm=off 。
 
 也可以直接点这两个链接来开启或关闭，[保持BGM持续播放](https://shinycolors.enza.fun/home#bgm=on)  /  [取消保持BGM播放](https://shinycolors.enza.fun/home#bgm=off)
+
+**无法访问脚本链接**
+
+如果点不开脚本地址，可能是因网络问题无法访问 `www.shiny.fun` 这个域名。
+
+可以试着用 https://cdn.jsdelivr.net/gh/biuuu/ShinyColors@gh-pages/ShinyColors.user.js 这个地址安装。
+
+并在进入游戏后通过在游戏 URL 后面加上 `#origin=https://cdn.jsdelivr.net/gh/biuuu/ShinyColors@gh-pages` 修改数据源。
+
+改回默认数据源则是 `#origin=` 。
+
+也可以直接点这两个链接来修改或恢复，[修改数据源](https://shinycolors.enza.fun/home#origin=https://cdn.jsdelivr.net/gh/biuuu/ShinyColors@gh-pages)  /  [取消修改](https://shinycolors.enza.fun/home#origin=)
+
+上面涉及到 `www.shiny.fun` 地方的操作都可以替换为 `cdn.jsdelivr.net/gh/biuuu/ShinyColors@gh-pages`
