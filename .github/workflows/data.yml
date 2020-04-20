@@ -1,8 +1,8 @@
-name: Save data
+name: Data
 
 on:
   schedule:
-    - cron:  '0 19 * * *'
+    - cron:  '0 0,6,9,14 * * *'
     
 jobs:
   main:

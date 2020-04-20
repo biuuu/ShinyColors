@@ -2,12 +2,14 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
+    - data
 
 jobs:
   main:
     runs-on: ubuntu-latest
-    if: startsWith(github.event.head_commit.message, 'Update') || startsWith(github.event.head_commit.message, 'Fix') || startsWith(github.event.head_commit.message, 'update-data')
+    if: startsWith(github.event.head_commit.message, 'Update') || startsWith(github.event.head_commit.message, 'Fix')
 
     steps:
     - uses: actions/checkout@v2
