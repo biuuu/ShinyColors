@@ -2,14 +2,14 @@ name: Build
 
 on:
   push:
-    branches:
-    - master
-    - data
+    branches: [ master ]
+  repository_dispatch:
+    types: [ update-data ]
 
 jobs:
   main:
     runs-on: ubuntu-latest
-    if: startsWith(github.event.head_commit.message, 'Update') || startsWith(github.event.head_commit.message, 'Fix')
+    if: startsWith(github.event.head_commit.message, 'Update') || startsWith(github.event.head_commit.message, 'Fix') || contains(github.event_name, 'repository_dispatch')
 
     steps:
     - uses: actions/checkout@v2
