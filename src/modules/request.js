@@ -13,6 +13,7 @@ import { userItemTypes, transShopItem,
 import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resumeRaidGamedata,
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
+import { produceIdolName } from './produce'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
@@ -105,7 +106,7 @@ const requestOfPost = [
   [[/^userProduce(Teaching)?s\/skillPanels\/\d+$/, /^userProduces\/limitedSkills\/\d+$/], proSkillPanels],
   [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, [ userSptIdolsSkill, supportSkill]],
   [/^produces\/actions\/(resume|next)$/, [ideaNotesSkill, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer, supportSkill]],
-  [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
+  [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill, produceIdolName]],
   ['produces/actions/endWeek', produceEndWeek],
   ['produces/actions/act', [lessonResult, noteResultSkill]],
   [/^fes(Match|Raid)?Concert\/actions\/start$/, [fesMatchConcert, fesMatchConcertSkill]],
@@ -113,7 +114,7 @@ const requestOfPost = [
   ['fesRaidConcert/actions/resume', [resumeRaidGamedata, resumeRaidGameSkill]],
   ['produces/actions/result', [trustLevelUp, produceResultSkill]],
   [[/^produce(Teaching)?s\/(\d+\/audition|concert)\/actions\/start$/, /^produceTeachings\/(auditions|concerts)\/start$/], [auditionSkill]],
-  [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment]],
+  [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment, produceIdolName]],
   ['userProduceHelperSupportIdols', helperSupportIdols],
   [['produceTeachings/resume', 'produceTeachings/next'], [teachingMission, supportSkill]],
   [/^userSelectLoginBonuses\/\d+$/, selectLoginBonus],
