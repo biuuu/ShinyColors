@@ -2,7 +2,7 @@ name: Data
 
 on:
   schedule:
-    - cron:  '0 0,6,9,14 * * *'
+    - cron:  '0 20 * * *'
     
 jobs:
   main:
