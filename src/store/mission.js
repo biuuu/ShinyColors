@@ -41,10 +41,11 @@ const getMission = async (full = false) => {
           } else if (type === 'name') {
             nameArr.push(pureRE(text))
             nameMap.set(text, trans)
-          } else if (type === 'text') {
-            textMap.set(text, trans)
-          } else {
+          } else if (type === 'exp') {
             reMap.set(text, trans)
+          }
+          if (type !== 'exp') {
+            textMap.set(text, trans)
           }
         }
       }

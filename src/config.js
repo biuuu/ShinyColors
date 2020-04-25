@@ -62,7 +62,7 @@ const getLocalConfig = () => {
   })
 
   setFont()
-  if (DEV) {
+  if (DEV & ENVIRONMENT === 'development') {
     config.origin = 'http://localhost:15944'
   }
 }

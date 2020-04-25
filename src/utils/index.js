@@ -43,11 +43,9 @@ const pureRE = str => {
 }
 
 let _console = restoreConsole()
-// if (ENVIRONMENT === 'development') {
-//   _console = restoreConsole()
-// }
+
 const log = (...args) => {
-  if (ENVIRONMENT === 'development') {
+  if (DEV) {
     _console.log(...args)
   }
 }
