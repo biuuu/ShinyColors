@@ -14,6 +14,8 @@ const banner = `// ==UserScript==
 // @match        https://shinycolors.enza.fun/*
 // @run-at       document-end
 // @grant        GM_xmlhttpRequest
+// @grant        GM_registerMenuCommand
+// @grant        GM_unregisterMenuCommand
 // @connect      api.interpreter.caiyunai.com
 // @connect      translate.google.cn
 // @connect      fanyi.baidu.com

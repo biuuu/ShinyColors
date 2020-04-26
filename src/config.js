@@ -1,4 +1,4 @@
-import { isDomain } from './utils/index'
+import { isDomain, trim } from './utils/index'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
 import isPlainObject from 'lodash/isPlainObject'
@@ -107,9 +107,76 @@ const getLocalHash = () => {
   }
 }
 
+const menuCommand = {
+  auto: {
+    on: '关闭机翻', off: '开启机翻', id: 0, 
+    callback: () => {
+      config.auto = config.auto !== 'off' ? 'off' : 'on'
+    }
+  },
+  story: {
+    normal: '开启剧情提取', edit: '关闭剧情提取', id: 0,
+    callback: () => {
+      if (config.story === 'normal') {
+        config.story = 'edit'
+      } else {
+        const btnClose = document.getElementById('btn-close-sczh')
+        if (btnClose) {
+          btnClose.click()
+        } else {
+          config.story = 'normal'
+        }
+      }
+    }
+  },
+  bgm: {
+    on: '关闭BGM后台播放', off: '开启BGM后台播放', id: 0, 
+    callback: () => {
+      config.bgm = config.bgm !== 'off' ? 'off' : 'on'
+    }
+  },
+  origin: {
+    id: 0, title: '修改数据源',
+    callback: () => {
+      const origin = prompt('请输入数据源URL，清空则使用默认数据源', config.origin)
+      if (origin !== null) {
+        config.origin = trim(origin)
+      }
+    }
+  }
+}
+
+const menuCommandCb = (cb) => {
+  cb()
+  saveConfig()
+  setAllGMMenuCommand()
+}
+
+const setGMMenuCommand = (type) => {
+  const value = config[type]
+  const data = menuCommand[type]
+  const text = data.title || data[value]
+  const id = data.id
+  if (id) {
+    GM_unregisterMenuCommand(id)
+  }
+  data.id = GM_registerMenuCommand(text, () => {
+    menuCommandCb(data.callback)
+  })
+}
+
+const setAllGMMenuCommand = () => {
+  if (!GM_registerMenuCommand || !GM_unregisterMenuCommand) return
+  const menuCommandList = ['bgm', 'story', 'origin', 'auto']
+  menuCommandList.forEach(type => {
+    setGMMenuCommand(type)
+  })
+}
+
 getLocalConfig()
 getLocalHash()
 getConfigFromHash()
+setAllGMMenuCommand()
 
 window.addEventListener('hashchange', getConfigFromHash)
 
