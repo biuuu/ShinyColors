@@ -15,7 +15,7 @@
 ```
 已知支持用户脚本的浏览器
 - iOS: Alook
-- Android: Via/Kiwi/米侠/荟萃
+- Android: Kiwi
 
 Alook也可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html)
 
