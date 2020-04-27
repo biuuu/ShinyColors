@@ -158,15 +158,15 @@ const setGMMenuCommand = (type) => {
   const text = data.title || data[value]
   const id = data.id
   if (id) {
-    GM_unregisterMenuCommand(id)
+    window.GM_unregisterMenuCommand(id)
   }
-  data.id = GM_registerMenuCommand(text, () => {
+  data.id = window.GM_registerMenuCommand(text, () => {
     menuCommandCb(data.callback)
   })
 }
 
 const setAllGMMenuCommand = () => {
-  if (!GM_registerMenuCommand || !GM_unregisterMenuCommand) return
+  if (!window.GM_registerMenuCommand || !window.GM_unregisterMenuCommand) return
   const menuCommandList = ['bgm', 'story', 'origin', 'auto']
   menuCommandList.forEach(type => {
     setGMMenuCommand(type)
