@@ -26,7 +26,7 @@ export default async function resourceHook () {
       if (type === 'image' && imageMap.has(this.name)) {
         const data = imageMap.get(this.name)
         if (this.url.endsWith(`v=${data.version}`)) {
-          this.url = `${config.origin}/data/image/${data.url}?V=${config.hash}`
+          this.url = `${config.origin}/data/image/${data.url}?v=${config.hash}`
           this.crossOrigin = true
         } else {
           log('%cimage version not match', 'color:#fc4175')
