@@ -7,14 +7,16 @@ export default function (data) {
       item.contents.forEach(cont => {
         normal.push({
           name: cont.contentName,
-          rate: cont.rate
+          rate: cont.rate,
+          id: cont.contentId
         })
       })
     } else if (item.buttonImage === 'sr_up_button') {
       item.contents.forEach(cont => {
         sr.push({
           name: cont.contentName,
-          rate: cont.rate
+          rate: cont.rate,
+          id: cont.contentId
         })
       })
     }
