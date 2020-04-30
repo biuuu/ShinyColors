@@ -20,7 +20,7 @@ const findModule = (id, conditionFunc) => {
   let module
   for (let i = 0; i < idList.length; i++) {
     let cid = idList[i]
-    let _module = primJsp([], [], [cid])
+    let _module = _require(cid)
     if (conditionFunc(_module)) {
       module = _module
       break
