@@ -7,6 +7,11 @@
 </p>
 
 ---
+
+这次的游戏更新隐藏了之前游戏代码里暴露的一些模块。无法确定能不能找到新的办法来使用用户脚本进行汉化。所以暂时注释代码避免影响到启用了翻译插件的玩家。
+
+This game update hides some modules exposed in the previous game code. I am not sure if I can find a new way to use the user script for localization. So temporarily comment the code to avoid affecting players who have enabled the translation plugin.
+
 ## 简介
 安装插件：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
 
