@@ -28,8 +28,12 @@ const start = async () => {
   }
 }
 
-if (window.unsafeWindow) {
-  window.unsafeWindow.addEventListener('load', start)
+if (document.readyState != 'loading') {
+  start()
 } else {
-  window.addEventListener('load', start)
+  if (window.unsafeWindow) {
+    window.unsafeWindow.addEventListener('DOMContentLoaded', start)
+  } else {
+    window.addEventListener('DOMContentLoaded', start)
+  }
 }
