@@ -1,4 +1,4 @@
-import { log, replaceWrap, fixWrap, trim, transSpeaker, tagStoryText } from '../utils/index'
+import { log, replaceWrap, fixWrap, trim, transSpeaker, uniqueStoryId } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
 import getStory, { storyTitle, getCommStory } from '../store/story'
@@ -74,14 +74,16 @@ const saveData = (data, name) => {
 
 const transStory = (data, storyMap, commMap, nameMap) => {
   if (!Array.isArray(data)) return
+  const getId = uniqueStoryId()
   data.forEach(item => {
     transSpeaker(item, nameMap)
+    const id = getId(item.id)
     if (item.text) {
       const text = fixWrap(item.text)
       if (storyMap.has(text)) {
         item.text = storyMap.get(text)
-      } else if (item.id && storyMap.has(`${item.id}`)) {
-        item.text = storyMap.get(`${item.id}`)
+      } else if (id && storyMap.has(`${id}`)) {
+        item.text = storyMap.get(`${id}`)
       } else if (commMap.has(text)) {
         item.text = tagText(commMap.get(text))
       }

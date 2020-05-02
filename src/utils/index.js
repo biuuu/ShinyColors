@@ -133,6 +133,22 @@ const tagStoryText = (data) => {
   })
 }
 
+const uniqueStoryId = () => {
+  const idMap = new Map()
+  return (id) => {
+    if (id && !/^0+$/.test(id) && id !== 'select') {
+      if (idMap.has(id)) {
+        const count = idMap.get(id)
+        idMap.set(id, count + 1)
+        return `${id}-${count}`
+      } else {
+        idMap.set(id, 0)
+      }
+    }
+    return id
+  }
+}
+
 const sess = (key, data) => {
   try {
     if (data) {
@@ -148,5 +164,5 @@ const sess = (key, data) => {
 export {
   trim, trimWrap, fixWrap, restoreConsole, isDomain, log, log2,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
-  transSpeaker, sleep, tagStoryText, sess
+  transSpeaker, sleep, tagStoryText, sess, uniqueStoryId
 }
