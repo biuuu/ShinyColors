@@ -1,6 +1,6 @@
 ## 翻译数据
 
-有兴趣一起完善翻译的话，可以加下QQ群讨论：1018154722 。
+有兴趣一起完善翻译的话，可以加下QQ群讨论：1063178885 。
 
 如果还未安装汉化插件，请先看这边的[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)来装上汉化插件。
 
