@@ -77,8 +77,8 @@ const transStory = (data, storyMap, commMap, nameMap) => {
   const getId = uniqueStoryId()
   data.forEach(item => {
     transSpeaker(item, nameMap)
-    const id = getId(item.id)
     if (item.text) {
+      const id = getId(item.id)
       const text = fixWrap(item.text)
       if (storyMap.has(text)) {
         item.text = storyMap.get(text)
