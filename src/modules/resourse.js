@@ -18,7 +18,7 @@ export default async function resourceHook () {
   aoba.loaders.Resource.prototype = Object.assign({}, aoba.loaders.Resource.prototype)
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
   aoba.loaders.Resource.prototype._loadElement = async function (type) {
-    if (DEV && type === 'image' && this.url.includes('bc86b91f4f40a00be6c149478bb5f370')) {
+    if (DEV && type === 'image' && RES_NAME && this.url.includes(RES_NAME)) {
       log(this.url, this.name)
     }
     try {

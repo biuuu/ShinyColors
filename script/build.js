@@ -44,6 +44,7 @@ module.exports = {
     intro: `const ENVIRONMENT = "${process.env.BUILD === 'development' ? 'development' : ''}";
     const DEV = ${process.env.DEV ? true : false};
     const SHOW_UPDATE_TEXT = ${process.env.TEXT ? true : false};
-    const COLLECT_CARD_RATE = ${process.env.CARD ? true : false};`
+    const COLLECT_CARD_RATE = ${process.env.CARD ? true : false};
+    const RES_NAME = '';`
   }
 };
