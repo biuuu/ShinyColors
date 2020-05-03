@@ -33,10 +33,4 @@ jobs:
       with:
         branch: data
         directory: data1
-        github_token: ${{ secrets.DATA_TOKEN }}
-    - name: Repository Dispatch
-      if: "!contains(env.commit_state, 'nothing to commit')"
-      uses: peter-evans/repository-dispatch@v1
-      with:
-        token: ${{ secrets.DATA_TOKEN }}
-        event-type: update-data
+        github_token: ${{ secrets.GITHUB_TOKEN }}
