@@ -13,6 +13,7 @@ import { userItemTypes, transShopItem,
 import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resumeRaidGamedata,
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
+import albumTrustLevel from './album/trust-level'
 import { produceIdolName } from './produce'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
@@ -94,7 +95,7 @@ const requestOfGet = [
 
 const requestOfPost = [
   ['myPage', [reportMission, mypageComments, beginnerMissionComplete]],
-  [/^characterAlbums\/characters\/\d+$/, 'storyTitle'],
+  [/^characterAlbums\/characters\/\d+$/, ['storyTitle', albumTrustLevel]],
   [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
   [/userIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, userIdolsSkill],
   ['userShops/actions/purchase', transShopPurchase],

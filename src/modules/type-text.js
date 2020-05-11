@@ -205,6 +205,7 @@ const trustLevelUp = async (data) => {
 }
 
 export {
+  transText,
   mypageComments,
   fesDeckReactions,
   idolMemoryAppealComments,
