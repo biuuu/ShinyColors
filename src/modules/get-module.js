@@ -3,8 +3,8 @@ import { getHash } from '../utils/fetch'
 
 let OFFSET = 10
 const setIdList = (id, offset) => {
-  let start = id - 2
-  let end = id + 2
+  let start = id - offset
+  let end = id + offset
   let list = []
   for (let i = start; i <= end; i++) {
     if (i >= 0 && i !== id) {

@@ -8,7 +8,7 @@ if (!log) {
 
 const getModule = async (name, condition) => {
   for (let i = 1; i < 500; i++) {
-    let module = primJsp([], [], [i])
+    let module = _require(i)
     if (module && condition(module)) {
       log(`${name}: ${i}`)
       break
