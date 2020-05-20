@@ -76,18 +76,10 @@ const fontCheck = (text, style, isType = false) => {
 export default async function watchText () {
   let aoba = await getAoba()
   if (!aoba) return
-  commMap = await getCommMap()
-  typeTextMap = await getTypeTextMap()
-
-  const Text = new Proxy(aoba.Text, {
-    construct (target, args, newTarget) {
-      const text = args[0]
-      const option = args[1]
-      if (SHOW_UPDATE_TEXT) log('new text', ...args)
-      args[0] = fontCheck(text, option)
-      return Reflect.construct(target, args, newTarget)
-    }
-  })
+  try {
+    commMap = await getCommMap()
+    typeTextMap = await getTypeTextMap()
+  } catch (e) {}
 
   // watch typeText
   const originTypeText = aoba.Text.prototype.typeText
@@ -107,13 +99,4 @@ export default async function watchText () {
       return originUpdateText.call(this, t)
     }
   }
-
-  GLOBAL.aoba = new Proxy(aoba, {
-    get (target, name, receiver) {
-      if (name === 'Text') {
-        return Text
-      }
-      return Reflect.get(target, name, receiver)
-    }
-  })
 }
