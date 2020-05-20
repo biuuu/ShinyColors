@@ -71,11 +71,11 @@ const getStoryMap = (csv) => {
 
 const getStory = async (name) => {
   if (!storyIndex) {
-    let storyIndexStr = await getLocalData('story.json')
+    let storyIndexStr = await getLocalData('story-map.json')
     if (!storyIndexStr) {
-      const storyIndexData = await fetchData('/story.json')
+      const storyIndexData = await fetchData('/story-map.json')
       storyIndex = new Map(storyIndexData)
-      setLocalData('story.json', JSON.stringify(storyIndexStr))
+      setLocalData('story-map.json', JSON.stringify(storyIndex))
     } else {
       storyIndex = new Map(JSON.parse(storyIndexStr))
     }

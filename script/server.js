@@ -6,7 +6,6 @@ const server = http.createServer((request, response) => {
   // You pass two more arguments for config and middleware
   // More details here: https://github.com/zeit/serve-handler#options
   response.setHeader('Access-Control-Allow-Origin', '*')
-  response.setHeader('Cache-Control', 'no-cache')
   return handler(request, response, {
     public: './dist/'
   })

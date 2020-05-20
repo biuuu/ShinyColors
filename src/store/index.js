@@ -6,24 +6,29 @@ let data = null
 
 const getLocalData = async (type) => {
   // if (DEV) return false
-  if (data) return data[type]
-  try {
-    const str = sessionStorage.getItem('sczh:data')
-    if (!str) return false
-    data = JSON.parse(str)
-    const { hashes } = await getHash
-    const newHash = hashes[`${type}.csv`]
-    const savedHash = data.hashes[`${type}.csv`]
-    if (!savedHash || savedHash === newHash) {
-      return data[type]
-    } else {
-      data.hashes[`${type}.csv`] = newHash
+  if (!data) {
+    try {
+      const str = sessionStorage.getItem('sczh:data')
+      if (!str) return false
+      data = JSON.parse(str)
+    } catch (err) {
+      console.error(err)
       return false
     }
-  } catch (err) {
-    console.error(err)
   }
-  return false
+  let key = type
+  if (!/(\.csv|\.json)/.test(type)) {
+    key = `${type}.csv`
+  }
+  const { hashes } = await getHash
+  const newHash = hashes[key]
+  const savedHash = data.hashes[key]
+  if (!savedHash || savedHash === newHash) {
+    return data[type]
+  } else {
+    data.hashes[key] = newHash
+    return false
+  }
 }
 
 const setLocalData = (type, value) => {
