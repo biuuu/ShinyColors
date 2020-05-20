@@ -1,6 +1,7 @@
 const ghpages = require('gh-pages')
 const fse = require('fs-extra')
-const md5Dir = require('md5-dir/promise')
+const path = require('path')
+const md5 = require('md5-file')
 const { version } = require('../package.json')
 const glob = require('glob')
 const CSV = require('papaparse')
@@ -48,33 +49,49 @@ const getDate = (offset = 0) => {
   return `${year}/${month}/${date} ${h}:${m}:${sec}.${msec}`
 }
 
-const etcFiles = ['image', 'item', 'support-skill', 'mission-re']
+const md5File = async () => {
+  const data = {}
+  const doMd5File = async (cwd) => {
+    const files = await glob.promise('{image/*,font/*,etc/*,*}.{csv,json,woff2,png}', {
+      nodir: true, cwd: path.resolve(process.cwd(), cwd) 
+    })
+    const prms = files.map(file => {
+      return md5(path.resolve(process.cwd(), cwd, file)).then(hash => {
+        data[file] = hash.slice(0, 7)
+      })
+    })
+    await Promise.all(prms)
+  }
 
+  await doMd5File('./dist/data/')
+  await doMd5File('./dist/')
+  
+  return data
+}
+
+const etcFiles = ['image', 'item', 'support-skill', 'mission-re']
 const DATA_PATH = './data/'
 const start = async () => {
   await fse.emptyDir('./dist/data/')
-  const hash = await md5Dir(DATA_PATH)
-  console.log(hash)
-  await fse.writeJSON('./dist/manifest.json', { 
-    hash, version, moduleId, 
-    cyweb_token, trans_api, language,
-    date: getDate(8) 
-  })
+  const hash = version
   console.log('story...')
   const files = await glob.promise(`${DATA_PATH}story/**/*.csv`)
-  const prims = files.map(file => {
-    return readCsv(file).then(list => {
-      for (let i = list.length - 1; i >= 0; i--) {
-        if (list[i].id === 'info') {
-          if (list[i].name) {
-            const name = list[i].name.trim()
-            if (name) {
-              return [name, file.replace(/^\./, '')]
-            }
+  const prims = files.map(async file => {
+    const list = await readCsv(file)
+    for (let i = list.length - 1; i >= 0; i--) {
+      if (list[i].id === 'info') {
+        if (list[i].name) {
+          const name = list[i].name.trim()
+          if (name) {
+            const hash = (await md5(file)).slice(0, 7)
+            await fse.copy(file, `./dist/data/story/${hash}.csv`, {
+              overwrite: false, errorOnExist: true
+            })
+            return [name, file.replace(/^\./, ''), hash]
           }
         }
       }
-    })
+    }
   })
   const result = await Promise.all(prims)
   const storyData = result.filter(item => {
@@ -83,7 +100,8 @@ const start = async () => {
     }
     return false
   })
-  await fse.writeJSON('./dist/story.json', storyData)
+  await fse.writeJSON('./dist/story.json', storyData.map(item => ([item[0], item[1]])))
+  await fse.writeJSON('./dist/story-map.json', storyData.map(item => ([item[0], item[2]])))
   console.log('move data files...')
   await fse.copy(DATA_PATH, './dist/data/')
   console.log('move install.html...')
@@ -92,6 +110,13 @@ const start = async () => {
   for (let fileName of etcFiles) {
     await fse.move(`./dist/data/etc/${fileName}.csv`, `./dist/data/${fileName}.csv`, { overwrite: true })
   }
+  console.log('file md5...')
+  const hashes = await md5File()
+  await fse.writeJSON('./dist/manifest.json', { 
+    hash, version, hashes, moduleId, 
+    cyweb_token, trans_api, language,
+    date: getDate(8) 
+  })
   if (process.env.PUBLISH === 'skip') {
     console.log('data prepared')
     return
