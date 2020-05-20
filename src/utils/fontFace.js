@@ -11,33 +11,29 @@ const preload = (src) => {
   document.head.appendChild(link)
 }
 
+const getPath = (name, hashes) => `/data/font/${name}.woff2?v=${hashes[`font/${name}.woff2`]}`
+
 const addFont = async () => {
   const tag = document.createElement('style')
-  const { hash } = await getHash
+  const { hashes } = await getHash
   tag.innerHTML = `
   @font-face {
     font-family: "sczh-heiti";
-    src: url("${config.origin}/data/font/heiti.woff2?v=${hash}");
+    src: url("${config.origin}${getPath('heiti', hashes)}");
   }
   @font-face {
     font-family: "sczh-yuanti";
-    src: url("${config.origin}/data/font/yuanti.woff2?v=${hash}");
-  }
-  @font-face {
-    font-family: "sczh-yuanti2";
-    src: url("${config.origin}/data/font/yuanti2.woff2?v=${hash}");
+    src: url("${config.origin}${getPath('yuanti', hashes)}");
   }
   ::-webkit-scrollbar {
     display: none;
   }
   `
   if (config.font1 === 'yuanti') {
-    preload(`${config.origin}/data/font/yuanti.woff2?v=${hash}`)
-  } else if (config.font1 === 'yuanti2') {
-    preload(`${config.origin}/data/font/yuanti2.woff2?v=${hash}`)
+    preload(`${config.origin}${getPath('yuanti', hashes)}`)
   }
   if (config.font2 === 'heiti') {
-    preload(`${config.origin}/data/font/heiti.woff2?v=${hash}`)
+    preload(`${config.origin}${getPath('heiti', hashes)}`)
   }
 
   document.head.appendChild(tag)

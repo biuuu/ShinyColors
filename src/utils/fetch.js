@@ -59,14 +59,18 @@ const getHash = new Promise((rev, rej) => {
   getManifest().then(data => {
     fetchInfo.data = data
     config.newVersion = data.version
-    config.hash = data.hash
+    config.hashes = data.hashes
     rev(data)
   }).catch(rej)
 })
 
-const fetchWithHash = async (pathname) => {
-  const { hash } = await getHash
-  const data = await request(`${pathname}?v=${hash}`)
+const fetchWithHash = async (pathname, hash) => {
+  if (!hash) {
+    const { hashes } = await getHash
+    const key = pathname.replace(/^\/(data\/)?/, '')
+    hash = hashes[key]
+  }
+  const data = await request(`${pathname}${hash ? `?v=${hash}` : ''}`)
   return data
 }
 
