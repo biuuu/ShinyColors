@@ -5,42 +5,9 @@ import { trimWrap, trim, uniqueStoryId } from '../utils/index'
 import tagText from '../utils/tagText'
 
 const storyTemp = new Map()
-const storyTitle = new Map()
 const commStoryMap = new Map()
 let commStoryLoaded = false
 let storyIndex = null
-
-const collectStoryTitle = (data) => {
-  if (data.communications && data.communications.length) {
-    data.communications.forEach(item => {
-      storyTitle.set(item.communicationId, item.title)
-    })
-  } else if (data.idol && data.idol.produceIdolEvents) {
-    data.idol.produceIdolEvents.forEach(item => {
-      storyTitle.set(item.id, item.title)
-    })
-    data.idol.produceAfterEvents.forEach(item => {
-      storyTitle.set(item.id, item.title)
-    })
-  } else if (data.supportIdol && data.supportIdol.produceSupportIdolEvents) {
-    data.supportIdol.produceSupportIdolEvents.forEach(item => {
-      storyTitle.set(item.id, item.title)
-    })
-  } else if (data.gameEvents) {
-    data.gameEvents.forEach(events => {
-      events.communications.forEach(item => {
-        storyTitle.set(item.id, `${item.name} ${item.title}`)
-      })
-    })
-  } else if (data.specialEvents) {
-    data.specialEvents.forEach(events => {
-      events.communications.forEach(item => {
-        storyTitle.set(item.id, `${item.name} ${item.title}`)
-      })
-    })
-  }
-  return storyTitle
-}
 
 const getStoryMap = (csv) => {
   const list = parseCsv(csv)
@@ -118,5 +85,5 @@ const getCommStory = async () => {
   return commStoryMap
 }
 
-export { getStoryMap, storyTitle, collectStoryTitle, getCommStory }
+export { getStoryMap, getCommStory }
 export default getStory

@@ -23,7 +23,7 @@ const getLocalData = async (type) => {
   const { hashes } = await getHash
   const newHash = hashes[key]
   const savedHash = data.hashes[key]
-  if (!savedHash || savedHash === newHash) {
+  if (savedHash && savedHash === newHash) {
     return data[type]
   } else {
     data.hashes[key] = newHash
