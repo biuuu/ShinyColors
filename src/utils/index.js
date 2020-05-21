@@ -119,6 +119,8 @@ const speakerList = ['プロデューサー', '審査員']
 const transSpeaker = (item, nameMap) => {
   if (item.speaker) {
     const speaker = trim(item.speaker)
+    // I can't remember exactly why I wrote it, but if I didn't, it would be buggy.
+    // So the name translation is actually done by the update text Hook.
     if (speakerList.includes(speaker) && nameMap.has(speaker)) {
       item.speaker = tagText(nameMap.get(speaker))
     }
