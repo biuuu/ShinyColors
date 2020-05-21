@@ -2,7 +2,7 @@ import transPhrase from './modules/phrase'
 import watchText from './modules/text'
 import requestHook from './modules/request'
 import resourceHook from './modules/resourse'
-import transScenario from './modules/scenario'
+import transStory from './modules/storys'
 import addFont from './utils/fontFace'
 import './utils/keepBgm'
 import './utils/fixModule'
@@ -16,7 +16,7 @@ const main = async () => {
       transPhrase(),
       watchText(),
       requestHook(),
-      transScenario()])
+      transStory()])
   } catch (e) {
     log(e)
   }

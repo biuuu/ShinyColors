@@ -100,7 +100,7 @@ const transStory = (data, storyMap, commMap, nameMap) => {
   })
 }
 
-const transScenario = async () => {
+const transStory = async () => {
   const scnModule = await getScMd()
   if (!scnModule) return
   const originLoad = scnModule.load
@@ -149,4 +149,4 @@ const transScenario = async () => {
   }
 }
 
-export default transScenario
+export default transStory
