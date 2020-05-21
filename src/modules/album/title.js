@@ -1,15 +1,36 @@
 import getTitle from '../../store/title'
+import getName from '../../store/name'
 import { replaceItem } from '../../utils/replaceText'
+import { replaceWrap, log } from '../../utils/index'
 import isString from 'lodash/isString'
 
 let titleMaps
+let nameMap
 let titlePrms
+let namePrms
 const ensureTitle = async () => {
   if (!titlePrms) {
     titlePrms = getTitle()
+    namePrms = getName()
   }
-  titleMaps = await titlePrms
+  if (!titleMaps || !nameMap) {
+    titleMaps = await titlePrms
+    nameMap = await namePrms
+    titleMaps.wordMaps = [nameMap]
+  }
 }
+
+let unknownTitles = []
+const collectTitles = (text) => {
+  if (!text) return
+  let _text = replaceWrap(text)
+  if (!unknownTitles.includes(_text)) {
+    unknownTitles.push(_text)
+  }
+}
+
+let win = (window.unsafeWindow || window)
+win.printUnknowTitles = () => log(unknownTitles.join('\n'))
 
 const storyTitle = new Map()
 
@@ -19,7 +40,11 @@ const saveTitle = (id, text) => {
 }
 
 const transTitle = (item, key) => {
+  let text = item[key]
   replaceItem(item, key, titleMaps)
+  if (DEV && text === item[key]) {
+    collectTitles(text)
+  }
 }
 
 const transEvents = (events) => {
