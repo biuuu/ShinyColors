@@ -1,9 +1,10 @@
 import tagText from './tagText'
 import { fixWrap } from './index'
+import isString from 'lodash/isString'
 
 const autoTransCache = new Map()
 
-const replaceText = (text, expMap, wordMaps) => {
+const replaceText = (text, expMap, wordMaps = []) => {
   if (autoTransCache.has(text)) return autoTransCache.get(text)
   let result = text
   for (let [re, trans] of expMap) {
@@ -31,7 +32,7 @@ const replaceText = (text, expMap, wordMaps) => {
 }
 
 const replaceItem = (item, key, data) => {
-  if (!item) return
+  if (!item || !isString(item[key])) return
   const { expMap, wordMaps, textMap } = data
   const text = fixWrap(item[key])
   let _text = text

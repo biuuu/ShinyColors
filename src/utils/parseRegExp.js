@@ -2,7 +2,7 @@ const numRE = '([+-＋－]?[0-9０-９]{1,10}\\.?[0-9０-９]{0,4}?)'
 const percentRE = '([+-＋－]?[0-9０-９]{1,10}\\.?[0-9０-９]{0,4}?[%％])'
 const unknownRE = '(.+?)'
 
-const parseRegExp = (str, list) => {
+const parseRegExp = (str, list = []) => {
   let result = str.replace(/\$num/g, numRE)
     .replace(/\$percent/g, percentRE)
     .replace(/\$unknown/g, unknownRE)

@@ -1,7 +1,8 @@
 import { log, replaceWrap, fixWrap, trim, transSpeaker, uniqueStoryId } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
-import getStory, { storyTitle, getCommStory } from '../store/story'
+import getStory, { getCommStory } from '../store/story'
+import { storyTitle } from './album/title'
 import getName from '../store/name'
 import autoTrans from '../utils/translation'
 import { requestLog } from './request'
@@ -72,7 +73,7 @@ const saveData = (data, name) => {
   storyCache.list = list
 }
 
-const transStory = (data, storyMap, commMap, nameMap) => {
+const startTrans = (data, storyMap, commMap, nameMap) => {
   if (!Array.isArray(data)) return
   const getId = uniqueStoryId()
   data.forEach(item => {
@@ -135,7 +136,7 @@ const transStory = async () => {
         if (storyMap) {
           const commMap = await getCommStory()
           const nameMap = await getName()
-          transStory(res, storyMap, commMap, nameMap)
+          startTrans(res, storyMap, commMap, nameMap)
         } else if (config.auto === 'on') {
           await autoTrans(res, name)
         } else {

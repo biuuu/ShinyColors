@@ -5,7 +5,7 @@ import { supportSkill, userIdolsSkill, produceExSkillTop,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill } from './skill'
 import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadMission, idolRoadForward,
   teachingMission, beginnerMission, beginnerMissionComplete } from './mission'
-import { collectStoryTitle } from '../store/story'
+import { albumTopTitle, characterAlbumTitle, userIdolsTitle, userSupportIdolsTitle } from './album/title'
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
   transPresentItem, transLoginBonus, transReceivePresent,
@@ -54,8 +54,7 @@ const requestRouter = async (data, type, list) => {
         if (!Array.isArray(handles)) handles = [handles]
         for (let handle of handles) {
           if (isString(handle)) {
-            if (handle === 'storyTitle') collectStoryTitle(data)
-            else if (handle === 'cardName') collectCardName(data)
+            if (handle === 'cardName') collectCardName(data)
           } else {
             await handle(data)
           }
@@ -68,19 +67,19 @@ const requestRouter = async (data, type, list) => {
 }
 
 const requestOfGet = [
-  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/, /^produceTeachingSupportIdols\/\d+$/], [supportSkill, userSptIdolsSkill, 'storyTitle']],
+  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/, /^produceTeachingSupportIdols\/\d+$/], [supportSkill, userSptIdolsSkill, userSupportIdolsTitle]],
   [/^userProduce(Teaching)?SupportIdols\/\d+$/, [supportSkill, userProSptIdolsSkill]],
   [/^userReserveSupportIdols\/userSupportIdol\/\d+$/, [supportSkill, reserveUserSptIdolsSkill]],
   [/^userIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
   [/^userSupportIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
-  [[/^userIdols\/\d+$/, /^userIdols\/statusMax$/, /^produceTeachingIdols\/\d+$/], [userIdolsSkill, 'storyTitle']],
+  [[/^userIdols\/\d+$/, /^userIdols\/statusMax$/, /^produceTeachingIdols\/\d+$/], [userIdolsSkill, userIdolsTitle]],
   [[/^userProduce(Teaching)?Idols\/\d+$/, 'userProduceTeachingIdol'], userProIdolsSkill],
   [/^userReserveIdols\/userIdol\/\d+$/, reserveUserIdolsSkill],
   [/^userFesIdols\/\d+$/, userFesIdolsSkill],
   [['userProduces/skillPanels', 'userProduceTeachings/skillPanels'], proSkillPanels],
   ['userMissions', transMission],
   [/^fesRaidEvents\/\d+\/rewards$/, fesRaidMission],
-  [['characterAlbums', 'album/top'], 'storyTitle'],
+  [['characterAlbums', 'album/top'], albumTopTitle],
   [['userShops', 'userIdolPieceShops'], transShopItem],
   [userItemTypes, transUserItem],
   [[/^userPresents\?limit=/, /^userPresentHistories\?limit=/], transPresentItem],
@@ -95,7 +94,7 @@ const requestOfGet = [
 
 const requestOfPost = [
   ['myPage', [reportMission, mypageComments, beginnerMissionComplete]],
-  [/^characterAlbums\/characters\/\d+$/, ['storyTitle', albumTrustLevel]],
+  [/^characterAlbums\/characters\/\d+$/, [characterAlbumTitle, albumTrustLevel]],
   [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
   [/userIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, userIdolsSkill],
   ['userShops/actions/purchase', transShopPurchase],
