@@ -5,7 +5,7 @@ import { supportSkill, userIdolsSkill, produceExSkillTop,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill } from './skill'
 import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadMission, idolRoadForward,
   teachingMission, beginnerMission, beginnerMissionComplete } from './mission'
-import { albumTopTitle, characterAlbumTitle, userIdolsTitle, userSupportIdolsTitle } from './album/title'
+import { albumTopTitle, characterAlbumTitle, userIdolsTitle, userSupportIdolsTitle, marathonTitle } from './album/title'
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
   transPresentItem, transLoginBonus, transReceivePresent,
@@ -14,7 +14,7 @@ import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resu
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
 import albumTrustLevel from './album/trust-level'
-import { produceIdolName } from './produce'
+import { produceIdolName, produceEventTitle } from './produce'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
@@ -105,10 +105,10 @@ const requestOfPost = [
   ['fesTop', [transFesReward, fesDeckReactions]],
   [[/^userProduce(Teaching)?s\/skillPanels\/\d+$/, /^userProduces\/limitedSkills\/\d+$/], proSkillPanels],
   [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, [ userSptIdolsSkill, supportSkill]],
-  [/^produces\/actions\/(resume|next)$/, [ideaNotesSkill, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer, supportSkill, produceIdolName]],
+  [/^produces\/actions\/(resume|next)$/, [produceEventTitle, ideaNotesSkill, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer, supportSkill, produceIdolName]],
   [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
   ['produces/actions/endWeek', produceEndWeek],
-  ['produces/actions/act', [lessonResult, noteResultSkill]],
+  ['produces/actions/act', [lessonResult, noteResultSkill, produceEventTitle]],
   [/^fes(Match|Raid)?Concert\/actions\/start$/, [fesMatchConcert, fesMatchConcertSkill]],
   [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
   ['fesRaidConcert/actions/resume', [resumeRaidGamedata, resumeRaidGameSkill]],
@@ -118,7 +118,8 @@ const requestOfPost = [
   ['userProduceHelperSupportIdols', helperSupportIdols],
   [['produceTeachings/resume', 'produceTeachings/next'], [teachingMission, supportSkill]],
   [/^userSelectLoginBonuses\/\d+$/, selectLoginBonus],
-  [/^userLectureMissions\/\d+\/actions\/receive$/, beginnerMission]
+  [/^userLectureMissions\/\d+\/actions\/receive$/, beginnerMission],
+  [/^produceMarathons\/\d+\/top$/, marathonTitle]
 ]
 
 const requestOfPatch = [

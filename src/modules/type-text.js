@@ -1,5 +1,6 @@
 import autoTrans from '../utils/translation'
 import { log } from '../utils/index'
+import { produceEventTitle } from './produce'
 
 const autoTransText = async (data, key = 'comment') => {
   const name = data.map(item => item[key]).join('').trim()
