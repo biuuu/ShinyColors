@@ -69,12 +69,9 @@ const md5File = async () => {
   return data
 }
 
-const etcFiles = ['image', 'item', 'support-skill', 'mission-re']
-const DATA_PATH = './data/'
-const start = async () => {
-  await fse.emptyDir('./dist/data/')
-  const hash = version
+const buildStory = async (DATA_PATH) => {
   console.log('story...')
+  await fse.emptyDir('./dist/data/story/')
   const files = await glob.promise(`${DATA_PATH}story/**/*.csv`)
   const prims = files.map(async file => {
     const list = await readCsv(file)
@@ -87,7 +84,7 @@ const start = async () => {
             await fse.copy(file, `./dist/data/story/${hash}.csv`, {
               overwrite: false, errorOnExist: true
             })
-            return [name, file.replace(/^\./, ''), hash]
+            return [name, hash]
           }
         }
       }
@@ -100,16 +97,28 @@ const start = async () => {
     }
     return false
   })
-  await fse.writeJSON('./dist/story.json', storyData.map(item => ([item[0], item[1]])))
-  await fse.writeJSON('./dist/story-map.json', storyData.map(item => ([item[0], item[2]])))
+  await fse.writeJSON('./dist/story-map.json', storyData)
+}
+
+const etcFiles = ['image', 'item', 'support-skill', 'mission-re']
+const DATA_PATH = './data/'
+const start = async () => {
+  await fse.emptyDir('./dist/data/')
+  const hash = version
+
   console.log('move data files...')
   await fse.copy(DATA_PATH, './dist/data/')
+
+  await buildStory(DATA_PATH)
+
   console.log('move install.html...')
   await fse.copy('./script/install.html', './dist/install.html')
+
   console.log('move etc...')
   for (let fileName of etcFiles) {
     await fse.move(`./dist/data/etc/${fileName}.csv`, `./dist/data/${fileName}.csv`, { overwrite: true })
   }
+
   console.log('file md5...')
   const hashes = await md5File()
   await fse.writeJSON('./dist/manifest.json', { 
@@ -117,6 +126,7 @@ const start = async () => {
     cyweb_token, trans_api, language,
     date: getDate(8) 
   })
+
   if (process.env.PUBLISH === 'skip') {
     console.log('data prepared')
     return
@@ -124,9 +134,10 @@ const start = async () => {
   if (process.env.CUSTOM_DOMAIN) {
     await fse.outputFile('./dist/CNAME', 'www.shiny.fun')
   }
-  if (process.env.TRAVIS || process.env.GITHUB_ACTION) {
+  if (process.env.GITHUB_ACTION) {
     return
   }
+
   console.log('start publish...')
   ghpages.publish('dist', {
     add: false
