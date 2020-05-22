@@ -25,7 +25,7 @@ jobs:
       run: |
         cd data1
         git add --a
-        git config --local user.email "10892119+biuuu@users.noreply.github.com"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "tenka"
         echo "::set-env name=commit_state::$(git commit -m 'Update data' | tr '\n' ' ')"
     - name: Push changes

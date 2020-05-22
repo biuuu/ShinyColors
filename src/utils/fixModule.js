@@ -1,15 +1,21 @@
-const win = window.unsafeWindow || window
+const fixModule = (param = {}) => {
+  let source = 'var n=window.csobb3pncbpccs;'
+  let result = 'var n=window.csobb3pncbpccs;window._require=t;'
+  if (param.source) source = param.source
+  if (param.result) result = param.result
 
-win.eval = new Proxy(win.eval, {
-  apply(target, _this, [code]) {
-    if (code.includes('var n=window.primJsp;')) {
-      code = code.replace(
-        'var n=window.primJsp;',
-        'var n=window.primJsp;window._require=t;'
-      )
+  const win = window.unsafeWindow || window
+
+  win.eval = new Proxy(win.eval, {
+    apply(target, context, args) {
+      if (args[0] && args[0].includes(source)) {
+        args[0] = args[0].replace(source, result)
+      }
+      return Reflect.apply(target, context, args)
     }
-    return Reflect.apply(target, _this, [code])
-  }
-})
+  })
 
-win.eval.toString = () => 'function eval() { [native code] }'
+  win.eval.toString = () => 'function eval() { [native code] }'
+}
+
+export default fixModule

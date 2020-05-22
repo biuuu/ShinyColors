@@ -5,7 +5,6 @@ import resourceHook from './modules/resourse'
 import transStory from './modules/story'
 import addFont from './utils/fontFace'
 import './utils/keepBgm'
-import './utils/fixModule'
 import { log, sleep } from './utils/index'
 
 const main = async () => {
@@ -24,13 +23,14 @@ const main = async () => {
 
 let waitCount = 0
 const start = async () => {
-  if ((window.unsafeWindow && window.unsafeWindow.ezg || window.ezg) && waitCount < 300) {
+  const win = window.unsafeWindow || window
+  if (win._require || waitCount >= 300) {
+    main()
+  } else {
     await sleep(100)
     waitCount++
     if (waitCount % 10 === 0) log(`Waiting: ${waitCount / 10}s`)
     await start()
-  } else {
-    main()
   }
 }
 
