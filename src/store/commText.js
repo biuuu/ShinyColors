@@ -17,11 +17,11 @@ const getCommMap = async () => {
     }
     const list = parseCsv(csv)
     list.forEach(item => {
-      if (item && item.ja) {
-        const _ja = trimWrap(item.ja)
-        const _zh = trimWrap(item.zh, true)
-        if (_ja && _zh && _ja !== _zh) {
-          commonMap.set(_ja, _zh)
+      if (item && item.text) {
+        const text = trimWrap(item.text)
+        const trans = trimWrap(item.trans, true)
+        if (text && trans && text !== trans) {
+          commonMap.set(text, trans)
         }
       }
     })

@@ -16,14 +16,14 @@ const getPhrase = async (full = false) => {
     }
     const list = parseCsv(csv)
     list.forEach(item => {
-      if (item && item.name) {
-        const _name = trimWrap(item.name)
-        const _zh = trimWrap(item.zh, true)
-        if (_name) {
+      if (item && item.id) {
+        const id = trimWrap(item.id)
+        const trans = trimWrap(item.trans, true)
+        if (id) {
           if (full) {
-            phraseMap.set(_name, item.zh)
-          } else if (_zh) {
-            phraseMap.set(_name, tagText(_zh))
+            phraseMap.set(id, item.trans)
+          } else if (trans) {
+            phraseMap.set(id, tagText(trans))
           }
         }
       }

@@ -38,11 +38,11 @@ const getStoryMap = (csv) => {
 
 const getStory = async (name) => {
   if (!storyIndex) {
-    let storyIndexStr = await getLocalData('story-map.json')
+    let storyIndexStr = await getLocalData('story.json')
     if (!storyIndexStr) {
-      const storyIndexData = await fetchData('/story-map.json')
+      const storyIndexData = await fetchData('/story.json')
       storyIndex = new Map(storyIndexData)
-      setLocalData('story-map.json', JSON.stringify(storyIndex))
+      setLocalData('story.json', JSON.stringify(storyIndex))
     } else {
       storyIndex = new Map(JSON.parse(storyIndexStr))
     }
@@ -71,11 +71,11 @@ const getCommStory = async () => {
     }
     const list = parseCsv(csv)
     list.forEach(item => {
-      if (item && item.ja) {
-        const _ja = trimWrap(item.ja)
-        const _zh = trimWrap(item.zh, true)
-        if (_ja && _zh && _ja !== _zh) {
-          commStoryMap.set(_ja, _zh)
+      if (item && item.text) {
+        const text = trimWrap(item.text)
+        const trans = trimWrap(item.trans, true)
+        if (text && trans && text !== trans) {
+          commStoryMap.set(text, trans)
         }
       }
     })

@@ -97,7 +97,7 @@ const buildStory = async (DATA_PATH) => {
     }
     return false
   })
-  await fse.writeJSON('./dist/story-map.json', storyData)
+  await fse.writeJSON('./dist/story.json', storyData)
 }
 
 const etcFiles = ['image', 'item', 'support-skill', 'mission-re']
