@@ -99,7 +99,10 @@ const userSupportIdolsTitle = async (data) => {
   })
 }
 
-export { 
+export {
+  ensureTitle,
+  saveTitle,
+  transTitle,
   storyTitle,
   albumTopTitle,
   characterAlbumTitle,

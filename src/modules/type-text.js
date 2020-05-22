@@ -1,5 +1,6 @@
 import autoTrans from '../utils/translation'
 import { log } from '../utils/index'
+import { produceEventTitle } from './produce'
 
 const autoTransText = async (data, key = 'comment') => {
   const name = data.map(item => item[key]).join('').trim()
@@ -146,6 +147,8 @@ const resumeGamedata = async (data) => {
     let gData = JSON.parse(data.gameData)
     if (gData.judges) {
       await fesMatchConcert(gData)
+    } else if (gData.produceEvents) {
+      await produceEventTitle(gData)
     } else {
       await produceAudition(gData)
     }

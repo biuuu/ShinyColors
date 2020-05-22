@@ -14,7 +14,7 @@ import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resu
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
 import albumTrustLevel from './album/trust-level'
-import { produceIdolName } from './produce'
+import { produceIdolName, produceEventTitle } from './produce'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
@@ -105,7 +105,7 @@ const requestOfPost = [
   ['fesTop', [transFesReward, fesDeckReactions]],
   [[/^userProduce(Teaching)?s\/skillPanels\/\d+$/, /^userProduces\/limitedSkills\/\d+$/], proSkillPanels],
   [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, [ userSptIdolsSkill, supportSkill]],
-  [/^produces\/actions\/(resume|next)$/, [ideaNotesSkill, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer, supportSkill, produceIdolName]],
+  [/^produces\/actions\/(resume|next)$/, [produceEventTitle, ideaNotesSkill, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer, supportSkill, produceIdolName]],
   [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
   ['produces/actions/endWeek', produceEndWeek],
   ['produces/actions/act', [lessonResult, noteResultSkill]],

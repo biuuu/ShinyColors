@@ -1,5 +1,6 @@
 import getName from '../store/name'
 import tagText from '../utils/tagText'
+import { ensureTitle, saveTitle, transTitle } from './album/title'
 
 const produceIdolName = async (data) => {
   const nameMap = await getName()
@@ -14,4 +15,12 @@ const produceIdolName = async (data) => {
   }
 }
 
-export { produceIdolName }
+const produceEventTitle = async (data) => {
+  await ensureTitle()
+  data.produceEvents.forEach(event => {
+    transTitle(event, 'title')
+    saveTitle(event.id, event.title)
+  })
+}
+
+export { produceIdolName, produceEventTitle }
