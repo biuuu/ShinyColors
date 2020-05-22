@@ -17,7 +17,7 @@ const getModule = async (name, condition) => {
 }
 
 getModule('REQUEST', (module) => {
-  return module.default && module.default.get && module.default.post && module.default.put && module.default.patch
+  return module.get && module.post && module.put && module.patch
 })
 getModule('PHRASE', (module) => {
   return module.default && module.default._polyglot && module.default._polyglot.phrases
