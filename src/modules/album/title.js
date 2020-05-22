@@ -99,6 +99,16 @@ const userSupportIdolsTitle = async (data) => {
   })
 }
 
+const marathonTitle = async (data) => {
+  await ensureTitle()
+  data.releasedCommunications.forEach(item => {
+    transTitle(item, 'name')
+    transTitle(item, 'title')
+    saveTitle(item.id, `${item.name} ${item.title}`)
+  })
+  transTitle(data.gameEvent, 'name')
+}
+
 export {
   ensureTitle,
   saveTitle,
@@ -107,5 +117,6 @@ export {
   albumTopTitle,
   characterAlbumTitle,
   userIdolsTitle,
-  userSupportIdolsTitle
+  userSupportIdolsTitle,
+  marathonTitle
 }

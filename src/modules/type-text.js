@@ -147,8 +147,6 @@ const resumeGamedata = async (data) => {
     let gData = JSON.parse(data.gameData)
     if (gData.judges) {
       await fesMatchConcert(gData)
-    } else if (gData.produceEvents) {
-      await produceEventTitle(gData)
     } else {
       await produceAudition(gData)
     }
