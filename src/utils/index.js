@@ -129,7 +129,7 @@ const transSpeaker = (item, nameMap) => {
 
 const tagStoryText = (data) => {
   data.forEach(item => {
-    if (item.text && !item.text.startsWith('\u200b')) {
+    if (!item.text?.startsWith('\u200b')) {
       item.text = '\u200c' + item.text
     }
   })

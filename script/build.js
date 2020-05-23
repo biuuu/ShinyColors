@@ -26,10 +26,11 @@ module.exports = {
   input: 'src/main.js',
   plugins: [
     resolve({ preferBuiltins: false }),
-    cmjs({ ignore: ['stream'] }),
+    cmjs({ ignore: ['stream'], include: /node_modules/ }),
     json(),
     babel({
       exclude: 'node_modules/**',
+      plugins: ['@babel/plugin-proposal-optional-chaining', '@babel/plugin-proposal-nullish-coalescing-operator'],
       presets: [['@babel/preset-env', {
         modules: false,
         targets: 'last 3 iOS versions'

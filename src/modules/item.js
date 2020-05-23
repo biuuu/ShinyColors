@@ -93,13 +93,11 @@ const transItem = (item, key) => {
 }
 
 const switchShop = (shop) => {
-  if (shop && shop.shopMerchandises) {
-    shop.shopMerchandises.forEach(item => {
-      transItem(item, 'title')
-      transItem(item, 'shopTitle')
-      transItem(item, 'comment')
-    })
-  }
+  shop?.shopMerchandises?.forEach(item => {
+    transItem(item, 'title')
+    transItem(item, 'shopTitle')
+    transItem(item, 'comment')
+  })
 }
 
 const transShopItem = async (data) => {
@@ -140,10 +138,8 @@ const transUserItem = async (data) => {
 
 const transShopPurchase = async (data) => {
   await ensureItem()
-  if (data && data.shopMerchandise) {
-    transItem(data.shopMerchandise, 'title')
-    transItem(data.shopMerchandise, 'comment')
-  }
+  transItem(data?.shopMerchandise, 'title')
+  transItem(data?.shopMerchandise, 'comment')
 }
 
 const transPresentItem = async (data) => {
@@ -210,7 +206,7 @@ const selectLoginBonus = async (data) => {
 
 const produceActiveItem = async (data) => {
   await ensureItem()
-  data.activeProduceItems && data.activeProduceItems.forEach(item => {
+  data.activeProduceItems?.forEach(item => {
     transItem(item.produceItem, 'name')
     transItem(item.produceItem, 'comment')
   })

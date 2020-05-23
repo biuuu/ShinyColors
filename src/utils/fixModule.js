@@ -10,7 +10,7 @@ const fixModule = (param = {}) => {
   win.eval = new Proxy(win.eval, {
     apply(target, context, args) {
       for (let i = 0; i < source.length; i++) {
-        if (args[0] && args[0].includes(source[i])) {
+        if (args[0]?.includes(source[i])) {
           args[0] = args[0].replace(source[i], result[i])
         }
       }

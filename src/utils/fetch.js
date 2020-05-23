@@ -48,7 +48,7 @@ const request = async (pathname) => {
         return ''
       }
       const type = res.headers.get('content-type')
-      if (type && type.includes('json')) {
+      if (type?.includes('json')) {
         return res.json()
       }
       return res.text()

@@ -7,11 +7,11 @@ let phraseMap = null
 const collectPhrases = (obj) => {
   let list = []
   for (let key in obj) {
-    if (obj[key].trim() && !key.includes('license')) {
+    if (obj[key].trim() && !key.includes('license') && !key.startsWith('temp')) {
       list.push({
-        name: key,
-        ja: replaceWrap(obj[key]),
-        zh: (replaceWrap(phraseMap.get(key)) || '').replace(/^\u200b/, '')
+        id: key,
+        text: replaceWrap(obj[key]),
+        trans: (replaceWrap(phraseMap.get(key)) || '').replace(/^\u200b/, '')
       })
     }
   }

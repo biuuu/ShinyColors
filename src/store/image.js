@@ -15,7 +15,7 @@ const getImage = async () => {
     }
     const list = parseCsv(csv)
     list.forEach(item => {
-      if (item && item.name) {
+      if (item?.name) {
         const name = trim(item.name)
         const url = trim(item.url)
         const version = trim(item.version) || '1'

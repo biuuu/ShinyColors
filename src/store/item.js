@@ -17,7 +17,7 @@ const getItem = async () => {
     }
     const list = parseCsv(csv)
     list.forEach(item => {
-      if (item && item.text) {
+      if (item?.text) {
         const text = trimWrap(item.text)
         const trans = trimWrap(item.trans, true)
         const type = trim(item.type) || 'normal'

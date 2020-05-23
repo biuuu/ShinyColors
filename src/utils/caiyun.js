@@ -93,7 +93,7 @@ const translator = async (list, from = 'ja') => {
       url: document.URL
     })
   })
-  if (res && res.target) {
+  if (res?.target) {
     return res.target.map(item => item.target)
   }
   return []

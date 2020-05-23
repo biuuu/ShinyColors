@@ -27,7 +27,7 @@ const getSupportSkill = async () => {
     const list = parseCsv(csv)
     const reMap = new Map()
     sortWords(list, 'text').forEach(item => {
-      if (item && item.text) {
+      if (item?.text) {
         const text = trimWrap(item.text)
         const trans = trimWrap(item.trans, true)
         const type = trim(item.type)
@@ -73,7 +73,7 @@ const getSkill = async () => {
     const list = parseCsv(csv)
     const reMap = new Map()
     sortWords(list, 'text').forEach(item => {
-      if (item && item.text) {
+      if (item?.text) {
         const text = trimWrap(item.text)
         const trans = trimWrap(item.trans, true)
         const type = trim(item.type)

@@ -44,7 +44,7 @@ const processReward = (data, key) => {
 }
 
 const processMission = (list) => {
-  list.forEach(item => {
+  list?.forEach(item => {
     replaceMission(item.mission, 'title')
     replaceMission(item.mission, 'comment')
     if (item.mission.missionReward.content) {
@@ -60,7 +60,7 @@ const processRaidMission = (list) => {
     replaceMission(mission, 'title')
     replaceMission(mission, 'comment')
     let content = mission.fesRaidAccumulatedRewardContent
-    if (content && content.content) {
+    if (content?.content) {
       processReward(content.content, 'name')
       processReward(content.content, 'comment')
     }
@@ -68,7 +68,7 @@ const processRaidMission = (list) => {
 }
 
 const fullMission = (list, hasReward = true) => {
-  list && list.forEach(item => {
+  list?.forEach(item => {
     let mission = item.mission || item
     replaceMission(mission, 'title')
     replaceMission(mission, 'comment')
@@ -76,7 +76,7 @@ const fullMission = (list, hasReward = true) => {
     replaceMission(mission, 'beforeAchievedComment')
     if (hasReward) {
       let reward = mission.lectureMissionReward
-      if (reward && reward.content) {
+      if (reward?.content) {
         processReward(reward.content, 'name')
         processReward(reward.content, 'comment')
       }
@@ -100,10 +100,8 @@ const transMission = async (data) => {
   await ensureMissionData()
   processMission(data.dailyUserMissions)
   processMission(data.weeklyUserMissions)
-  data.eventUserMissions.forEach(item => {
-    if (item && item.userMissions) {
-      processMission(item.userMissions)
-    }
+  data.eventUserMissions?.forEach(item => {
+    processMission(item?.userMissions)
   })
   processMission(data.normalUserMissions)
   processMission(data.specialUserMissions)
@@ -127,12 +125,6 @@ const beginnerMissionComplete = async (data) => {
   }
 }
 
-const accumulatedPresent = (item, key) => {
-  if (item && item[key]) {
-    item[key] = tagText(item[key].replace(/イベントミッションを(\d+)個達成しよう/, '完成$1个活动任务'))
-  }
-}
-
 const fesRecomMission = async (data) => {
   await ensureMissionData()
   replaceMission(data.userRecommendedMission.mission, 'comment')
@@ -152,7 +144,7 @@ const fesRaidMission = async (data) => {
 
 const teachingMission = async (data) => {
   await ensureMissionData()
-  data.teachingHints && data.teachingHints.forEach(item => {
+  data.teachingHints?.forEach(item => {
     item.userProduceTeachingHints.forEach(hint => {
       replaceMission(hint.produceTeachingHint, 'title')
     })
@@ -165,7 +157,7 @@ const beginnerMission = async (data) => {
 }
 
 const idolRoadRewards = (idol) => {
-  idol.userIdolRoad && idol.userIdolRoad.idolRoad.idolRoadRewards.forEach(reward => {
+  idol.userIdolRoad?.idolRoad.idolRoadRewards.forEach(reward => {
     processReward(reward.content, 'name')
     processReward(reward.content, 'comment')
   })
@@ -174,7 +166,7 @@ const idolRoadRewards = (idol) => {
 const idolRoadMission = async (data) => {
   await ensureMissionData()
   fullMission(data.userMissions, false)
-  data.userIdols && data.userIdols.forEach(idolRoadRewards)
+  data.userIdols?.forEach(idolRoadRewards)
 }
 
 const idolRoadForward = async (data) => {

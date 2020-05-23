@@ -71,7 +71,7 @@ const getCommStory = async () => {
     }
     const list = parseCsv(csv)
     list.forEach(item => {
-      if (item && item.text) {
+      if (item?.text) {
         const text = trimWrap(item.text)
         const trans = trimWrap(item.trans, true)
         if (text && trans && text !== trans) {

@@ -16,7 +16,7 @@ const getPhrase = async (full = false) => {
     }
     const list = parseCsv(csv)
     list.forEach(item => {
-      if (item && item.id) {
+      if (item?.id) {
         const id = trimWrap(item.id)
         const trans = trimWrap(item.trans, true)
         if (id) {

@@ -1,13 +1,14 @@
 import autoTrans from '../utils/translation'
 import { log } from '../utils/index'
-import { produceEventTitle } from './produce'
 
 const autoTransText = async (data, key = 'comment') => {
+  if (!data) return
   const name = data.map(item => item[key]).join('').trim()
   await autoTrans(data, name, true)
 }
 
 const transText = async (data, key = 'comment') => {
+  if (!data) return
   const name = data.map(item => item[key]).join('').trim()
   await autoTrans(data, name, true, true)
 }
@@ -187,10 +188,7 @@ const helperSupportIdols = async (data) => {
 
 const produceReporterAnswer = async (data) => {
   try {
-    let revent = data.produceReporterEvent
-    if (revent && revent.produceReporterEventAnswers) {
-      await autoTransText(revent.produceReporterEventAnswers, 'comment2')
-    }
+    await autoTransText(data.produceReporterEvent?.produceReporterEventAnswers, 'comment2')
   } catch (e) {
     log(e)
   }

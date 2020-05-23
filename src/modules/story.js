@@ -36,8 +36,7 @@ const getPreview = () => {
 
 const getCid = (name) => {
   const res = name.match(/\/(\d+)$/)
-  if (res && res[1]) return res[1]
-  return ''
+  return res?.[1] ?? ''
 }
 const saveData = (data, name) => {
   const _name = name.replace('.json', '')
@@ -46,7 +45,7 @@ const saveData = (data, name) => {
   const list = []
   data.forEach(item => {
     let text = trim(replaceWrap(item.text))
-    if (text && text.trim()) {
+    if (text?.trim()) {
       list.push({
         id: item.id || '0000000000000',
         name: item.speaker || '',

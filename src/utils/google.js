@@ -3,7 +3,7 @@ import request from './request'
 import { fetchInfo } from './fetch'
 
 const getTransResult = (data) => {
-  if (data[0] && data[0].length) {
+  if (data[0]?.length) {
     const result = data[0].map(item => item[0])
     return result.join('').split('\n')
   }

@@ -37,7 +37,7 @@ const replaceItem = (item, key, data) => {
   const text = fixWrap(item[key])
   let _text = text
   if (!text) return
-  if (textMap && textMap.has(text)) {
+  if (textMap?.has(text)) {
     item[key] = tagText(textMap.get(text))
   } else {
     _text = replaceText(text, expMap, wordMaps)
