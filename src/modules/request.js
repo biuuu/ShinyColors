@@ -1,7 +1,7 @@
-import { supportSkill, userIdolsSkill, produceExSkillTop, 
+import { supportSkill, userIdolsSkill, produceExSkillTop, producesActionReadySkill,
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill, noteResultSkill,
   otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck, userRaidDeck, ideaNotesSkill,
-  userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish,
+  userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish, producesDecksSkill,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill } from './skill'
 import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadMission, idolRoadForward,
   teachingMission, beginnerMission, beginnerMissionComplete } from './mission'
@@ -90,7 +90,8 @@ const requestOfGet = [
   [/earthUsers\/[^\/]+\/userFesIdols\/\d+$/, otherFesIdolSkill],
   ['userBeginnerMissions/top', beginnerMission],
   ['userRaidDecks', userRaidDeck],
-  ['idolRoads/top', idolRoadMission]
+  ['idolRoads/top', idolRoadMission],
+  [/^produces\/\d+\/decks$/, producesDecksSkill]
 ]
 
 const requestOfPost = [
@@ -99,7 +100,7 @@ const requestOfPost = [
   [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
   [/userIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, userIdolsSkill],
   ['userShops/actions/purchase', transShopPurchase],
-  [/produces\/\d+\/actions\/ready/, transUserItem],
+  [/produces\/\d+\/actions\/ready/, [transUserItem, producesActionReadySkill]],
   [/userPresents\/\d+\/actions\/receive/, transReceivePresent],
   [/userMissions\/\d+\/actions\/receive/, transReceiveMission],
   ['userLoginBonuses', transLoginBonus],
