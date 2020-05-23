@@ -31,7 +31,9 @@ const ensureItem = async () => {
   if (!itemPrms) {
     itemPrms = getItem()
   }
-  itemMaps = await itemPrms
+  if (!itemMaps) {
+    itemMaps = await itemPrms
+  }
 }
 
 let unknownItems = []
@@ -206,6 +208,14 @@ const selectLoginBonus = async (data) => {
   })
 }
 
+const produceActiveItem = async (data) => {
+  await ensureItem()
+  data.activeProduceItems && data.activeProduceItems.forEach(item => {
+    transItem(item.produceItem, 'name')
+    transItem(item.produceItem, 'comment')
+  })
+}
+
 export {
   ensureItem,
   transItem,
@@ -219,5 +229,6 @@ export {
   transLoginBonus,
   transFesReward,
   transAccumulatedPresent,
-  selectLoginBonus
+  selectLoginBonus,
+  produceActiveItem
 }

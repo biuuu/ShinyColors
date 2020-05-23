@@ -9,7 +9,7 @@ import { albumTopTitle, characterAlbumTitle, userIdolsTitle, userSupportIdolsTit
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
   transPresentItem, transLoginBonus, transReceivePresent,
-  transReceiveMission, selectLoginBonus } from './item'
+  transReceiveMission, selectLoginBonus, produceActiveItem } from './item'
 import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resumeRaidGamedata,
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
@@ -84,7 +84,7 @@ const requestOfGet = [
   [userItemTypes, transUserItem],
   [[/^userPresents\?limit=/, /^userPresentHistories\?limit=/], transPresentItem],
   [/gashaGroups\/\d+\/rates/, 'cardName'],
-  ['userProduces', [topCharacterReaction]],
+  ['userProduces', [topCharacterReaction, produceActiveItem]],
   [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
   [/earthUsers\/[^\/]+\/userFesIdols\/\d+$/, otherFesIdolSkill],
   ['userBeginnerMissions/top', beginnerMission],
