@@ -5,7 +5,6 @@ import isString from 'lodash/isString'
 let data = null
 
 const getLocalData = async (type) => {
-  // if (DEV) return false
   if (!data) {
     try {
       const str = sessionStorage.getItem('sczh:data')
@@ -32,7 +31,6 @@ const getLocalData = async (type) => {
 }
 
 const setLocalData = (type, value) => {
-  // if (DEV) return false
   if (!data || !data.hashes) data = { hashes: config.hashes }
   let key = type
   if (!/(\.csv|\.json)/.test(type)) {

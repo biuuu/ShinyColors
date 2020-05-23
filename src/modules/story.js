@@ -108,7 +108,7 @@ const transStory = async () => {
     const res = await originLoad.apply(this, args)
     const type = args[0]
     if (!type) return res
-    if (DEV && type.includes('/assets/json/')) requestLog('STORY', '#ad37c2', args, res)
+    if (config.dev && type.includes('/assets/json/')) requestLog('STORY', '#ad37c2', args, res)
     if (type.includes('/produce_events/') ||
       type.includes('/produce_communications/') ||
       type.includes('/produce_communications_promises/') ||

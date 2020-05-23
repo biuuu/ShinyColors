@@ -179,7 +179,7 @@ const autoTrans = async (data, name, printText, skip = false) => {
 
     autoTransCache.set(storyKey, fixedTransList)
   }
-  if (!hasCache && (DEV || !name || printText)) {
+  if (!hasCache && (config.dev || !name || printText)) {
     let mergedList = []
     textList.forEach((text, index) => {
       mergedList.push(replaceWrap(text), fixedTransList[index])

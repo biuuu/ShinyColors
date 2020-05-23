@@ -3,6 +3,7 @@ import tagText from '../utils/tagText'
 import replaceText from '../utils/replaceText'
 import { fixWrap, replaceWrap, log } from '../utils/index'
 import { transItem, ensureItem } from './item'
+import config from '../config'
 
 let missionMaps = null
 let msPrms = null
@@ -29,7 +30,7 @@ const replaceMission = (data, key) => {
     if (text !== _text) {
       transed = true
       data[key] = tagText(_text)
-    } else if (DEV) {
+    } else if (config.dev) {
       saveUnknownMissions(data, key)
     }
   }

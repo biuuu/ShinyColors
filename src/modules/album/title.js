@@ -3,6 +3,7 @@ import getName from '../../store/name'
 import { replaceItem } from '../../utils/replaceText'
 import { replaceWrap, log } from '../../utils/index'
 import isString from 'lodash/isString'
+import config from '../../config'
 
 let titleMaps
 let nameMap
@@ -42,7 +43,7 @@ const saveTitle = (id, text) => {
 const transTitle = (item = {}, key) => {
   let text = item[key]
   replaceItem(item, key, titleMaps)
-  if (DEV && text === item[key]) {
+  if (config.dev && text === item[key]) {
     collectTitles(text)
   }
 }

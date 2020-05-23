@@ -4,6 +4,7 @@ import { FONT } from '../config'
 import { log, fixWrap } from '../utils/index'
 import getTypeTextMap from '../store/typeText'
 import { getAoba } from './get-module'
+import config from '../config'
 
 let commMap = new Map()
 let typeTextMap = new Map()
@@ -11,7 +12,7 @@ let typeTextMap = new Map()
 const typeTextStack = []
 const setTypeText = (text) => {
   typeTextStack.push(text)
-  if (DEV && SHOW_UPDATE_TEXT) log(typeTextStack)
+  if (config.dev && SHOW_UPDATE_TEXT) log(typeTextStack)
   setTimeout(() => typeTextStack.shift(), 10000)
 }
 
@@ -93,7 +94,7 @@ export default async function watchText () {
   const originUpdateText = aoba.Text.prototype.updateText
   aoba.Text.prototype.updateText = function (t) {
     if (this.localStyleID !== this._style.styleID && (this.dirty = !0,this._style.styleID),this.dirty || !t) {
-      if (DEV && SHOW_UPDATE_TEXT) log('update text', this._text)
+      if (config.dev && SHOW_UPDATE_TEXT) log('update text', this._text)
       const value = fontCheck(this._text, this._style)
       Reflect.set(this, '_text', value)
       return originUpdateText.call(this, t)

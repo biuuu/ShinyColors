@@ -1,5 +1,6 @@
 import isString from 'lodash/isString'
 import tagText from './tagText'
+import config from '../config'
 
 const restoreConsole = () => {
   const iframe = document.createElement('iframe')
@@ -45,7 +46,7 @@ const pureRE = str => {
 let _console = restoreConsole()
 
 const log = (...args) => {
-  if (DEV) {
+  if (config.dev) {
     _console.log(...args)
   }
 }
@@ -129,7 +130,7 @@ const transSpeaker = (item, nameMap) => {
 
 const tagStoryText = (data) => {
   data.forEach(item => {
-    if (!item.text?.startsWith('\u200b')) {
+    if (item.text && !item.text.startsWith('\u200b')) {
       item.text = '\u200c' + item.text
     }
   })

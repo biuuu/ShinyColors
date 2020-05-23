@@ -21,6 +21,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import isString from 'lodash/isString'
 import isRegExp from 'lodash/isRegExp'
 import { getRequest } from './get-module'
+import config from '../config'
 
 const logStyles = color => ([
   `background-color:${color};color:#fff;padding:0 0.3em`,
@@ -29,7 +30,7 @@ const logStyles = color => ([
 ])
 
 const requestLog = (method, color, args, data) => {
-  if (DEV) {
+  if (config.dev) {
     let _data = data
     if (data) {
       _data = cloneDeep(data)

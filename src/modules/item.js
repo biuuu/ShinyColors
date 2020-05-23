@@ -1,6 +1,7 @@
 import getItem from '../store/item'
 import tagText from '../utils/tagText'
 import { fixWrap, replaceWrap, log } from '../utils/'
+import config from '../config'
 
 const userItemTypes = [
   'userRecoveryItems',
@@ -87,7 +88,7 @@ const transItem = (item, key) => {
     let trans = itemMap.get(text)
     trans = `${trans}${note}${exp}${limit}`
     item[key] = tagText(trans)
-  } else if (DEV) {
+  } else if (config.dev) {
     collectItems(item[key])
   }
 }

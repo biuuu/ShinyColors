@@ -1,4 +1,3 @@
-import { isDomain, trim } from './utils/index'
 import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
 import isPlainObject from 'lodash/isPlainObject'
@@ -16,7 +15,8 @@ const config = {
   font1: 'yuanti',
   font2: 'heiti',
   auto: 'off',
-  bgm: 'off'
+  bgm: 'off',
+  dev: false
 }
 
 const defaultConfig = Object.assign({}, config)
@@ -30,7 +30,7 @@ const FONT = {
   YUAN_TRANS: `sczh-yuanti,HummingStd-E`
 }
 
-const _keys = ['origin', 'font1', 'font2', 'timeout', 'story', 'auto', 'bgm']
+const _keys = ['origin', 'font1', 'font2', 'timeout', 'story', 'auto', 'bgm', 'dev']
 const keys = DEV ? _keys.slice(1, _keys.length) : _keys
 
 const setFont = () => {
@@ -50,7 +50,7 @@ const getLocalConfig = () => {
   if (!isPlainObject(setting)) setting = {}
   fixDefault(setting)
   const { origin } = setting
-  if (isDomain(origin)) {
+  if (/^https?:\/\//.test(origin)) {
     config.origin = origin.trim()
   }
   keys.forEach(key => {
@@ -64,6 +64,9 @@ const getLocalConfig = () => {
   setFont()
   if (DEV & ENVIRONMENT === 'development') {
     config.origin = 'http://localhost:15944'
+  }
+  if (DEV) {
+    config.dev = true
   }
 }
 
@@ -140,8 +143,14 @@ const menuCommand = {
     callback: () => {
       const origin = prompt('请输入数据源URL，清空则使用默认数据源', config.origin)
       if (origin !== null) {
-        config.origin = trim(origin)
+        config.origin = origin.trim()
       }
+    }
+  },
+  dev: {
+    id: 0, titles: ['打开开发模式', '关闭开发模式'],
+    callback: () => {
+      config.dev = !config.dev
     }
   }
 }
@@ -155,7 +164,13 @@ const menuCommandCb = (cb) => {
 const setGMMenuCommand = (type) => {
   const value = config[type]
   const data = menuCommand[type]
-  const text = data.title || data[value]
+  let text = ''
+  if (isBoolean(value)) {
+    let index = value ? 1 : 0
+    text = data.titles[index]
+  } else {
+    text = data.title || data[value]
+  }
   const id = data.id
   if (id) {
     window.GM_unregisterMenuCommand(id)
@@ -167,7 +182,7 @@ const setGMMenuCommand = (type) => {
 
 const setAllGMMenuCommand = () => {
   if (!window.GM_registerMenuCommand || !window.GM_unregisterMenuCommand) return
-  const menuCommandList = ['bgm', 'story', 'origin', 'auto']
+  const menuCommandList = ['bgm', 'story', 'origin', 'auto', 'dev']
   menuCommandList.forEach(type => {
     setGMMenuCommand(type)
   })
