@@ -23,4 +23,9 @@ const produceEventTitle = async (data) => {
   })
 }
 
-export { produceIdolName, produceEventTitle }
+const homeProduceTitle = async (data) => {
+  await ensureTitle()
+  transTitle(data?.userProduce?.produce, 'title')
+}
+
+export { produceIdolName, produceEventTitle, homeProduceTitle }

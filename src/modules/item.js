@@ -206,10 +206,14 @@ const selectLoginBonus = async (data) => {
 
 const produceActiveItem = async (data) => {
   await ensureItem()
-  data.activeProduceItems?.forEach(item => {
+  data?.activeProduceItems?.forEach(item => {
     transItem(item.produceItem, 'name')
     transItem(item.produceItem, 'comment')
   })
+}
+
+const homeProduceActiveItem = async (data) => {
+  await produceActiveItem(data.userProduce)
 }
 
 export {
@@ -226,5 +230,6 @@ export {
   transFesReward,
   transAccumulatedPresent,
   selectLoginBonus,
-  produceActiveItem
+  produceActiveItem,
+  homeProduceActiveItem
 }

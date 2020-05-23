@@ -9,12 +9,12 @@ import { albumTopTitle, characterAlbumTitle, userIdolsTitle, userSupportIdolsTit
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
   transPresentItem, transLoginBonus, transReceivePresent,
-  transReceiveMission, selectLoginBonus, produceActiveItem } from './item'
+  transReceiveMission, selectLoginBonus, produceActiveItem, homeProduceActiveItem } from './item'
 import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resumeRaidGamedata,
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
 import albumTrustLevel from './album/trust-level'
-import { produceIdolName, produceEventTitle } from './produce'
+import { produceIdolName, produceEventTitle, homeProduceTitle } from './produce'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
@@ -93,7 +93,7 @@ const requestOfGet = [
 ]
 
 const requestOfPost = [
-  ['myPage', [reportMission, mypageComments, beginnerMissionComplete]],
+  ['myPage', [reportMission, mypageComments, beginnerMissionComplete, homeProduceActiveItem, homeProduceTitle]],
   [/^characterAlbums\/characters\/\d+$/, [characterAlbumTitle, albumTrustLevel]],
   [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
   [/userIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, userIdolsSkill],

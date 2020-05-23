@@ -39,7 +39,7 @@ const saveTitle = (id, text) => {
   if (!storyTitle.has(id)) storyTitle.set(id, text)
 }
 
-const transTitle = (item, key) => {
+const transTitle = (item = {}, key) => {
   let text = item[key]
   replaceItem(item, key, titleMaps)
   if (DEV && text === item[key]) {
