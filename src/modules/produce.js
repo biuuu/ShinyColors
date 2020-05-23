@@ -17,7 +17,7 @@ const produceIdolName = async (data) => {
 
 const produceEventTitle = async (data) => {
   await ensureTitle()
-  data.produceEvents.forEach(event => {
+  data.produceEvents && data.produceEvents.forEach(event => {
     transTitle(event, 'title')
     saveTitle(event.id, event.title)
   })
