@@ -152,6 +152,12 @@ const menuCommand = {
     callback: () => {
       config.dev = !config.dev
     }
+  },
+  update: {
+    id: 0, title: '检查更新',
+    callback: () => {
+      window.open(`${config.origin}/ShinyColors.user.js`)
+    }
   }
 }
 
@@ -182,7 +188,7 @@ const setGMMenuCommand = (type) => {
 
 const setAllGMMenuCommand = () => {
   if (!window.GM_registerMenuCommand || !window.GM_unregisterMenuCommand) return
-  const menuCommandList = ['bgm', 'story', 'origin', 'auto', 'dev']
+  const menuCommandList = ['update', 'bgm', 'story', 'origin', 'auto', 'dev']
   menuCommandList.forEach(type => {
     setGMMenuCommand(type)
   })
