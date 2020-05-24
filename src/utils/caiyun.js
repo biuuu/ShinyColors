@@ -1,4 +1,4 @@
-import BrowserId from './browserId'
+import Fingerprint2 from 'fingerprintjs2/dist/fingerprint2.min'
 import request from './request'
 import { fetchInfo } from './fetch'
 
@@ -35,14 +35,12 @@ const getAuth = () => {
     auth = new Promise((rev, rej) => {
       testCookies().then(async () => {
         if (!uid && !bid) {
-          new BrowserId().get(id => bid = id)
-          let count = 5
-          while (!bid || --count > 0) {
-            await sleep(300)
-          }
-          if (!bid) {
-            throw new Error('timeout: get browser id ')
-          }
+          const components = await Fingerprint2.getPromise({
+            excludes: { fonts: true, canvas: true, webgl: true, audio: true}
+          })
+          let values = components.map(function (component) { return component.value })
+          bid = Fingerprint2.x64hash128(values.join(''), 31)
+          console.log(components, bid)
         }
         return request('https://api.interpreter.caiyunai.com/v1/page/auth', {
           cors: true,
