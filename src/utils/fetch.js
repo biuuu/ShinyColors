@@ -17,11 +17,6 @@ const saveManifest = async () => {
   }
 }
 
-const intervalSaveManifest = () => {
-  saveManifest()
-  setTimeout(intervalSaveManifest, 10 * 60 * 1000)
-}
-
 const getManifest = async () => {
   let data
   try {
