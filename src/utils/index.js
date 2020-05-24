@@ -88,6 +88,18 @@ const randomSep = (length = 2) => {
   return str
 }
 
+const isNewVersion = (newVer = '0.0.0', oldVer = '0.0.0') => {
+  let isNew = false
+  const arr1 = newVer.split('.').map(str => parseInt(str, 10))
+  const arr2 = oldVer.split('.').map(str => parseInt(str, 10))
+  for (let i = 0; i < arr1.length; i++) {
+    let newNum = arr1[i] || 0
+    let oldNum = arr2[i] || 0
+    if (newNum > oldNum) isNew = true
+  }
+  return isNew
+}
+
 const replaceWords = (str, map) => {
   if (!str || !str.length) return str
   let _str = str
@@ -167,5 +179,5 @@ const sess = (key, data) => {
 export {
   trim, trimWrap, fixWrap, restoreConsole, isDomain, log, log2,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
-  transSpeaker, sleep, tagStoryText, sess, uniqueStoryId
+  transSpeaker, sleep, tagStoryText, sess, uniqueStoryId, isNewVersion
 }

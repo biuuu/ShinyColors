@@ -1,7 +1,8 @@
 import config from '../config'
 import fixModule from './fixModule'
+import { isNewVersion } from './index'
 
-const { origin } = config
+const { origin, version } = config
 
 const saveManifest = async () => {
   const t = Math.floor(Date.now() / 1000 / 60 / 60 / 6)
@@ -16,6 +17,11 @@ const saveManifest = async () => {
   }
 }
 
+const intervalSaveManifest = () => {
+  saveManifest()
+  setTimeout(intervalSaveManifest, 10 * 60 * 1000)
+}
+
 const getManifest = async () => {
   let data
   try {
@@ -26,7 +32,11 @@ const getManifest = async () => {
   if (!data) {
     data = await saveManifest()
   } else {
-    setTimeout(saveManifest, 5 * 1000)
+    if (isNewVersion(version, data.version)) {
+      data = await saveManifest()
+    } else {
+      setTimeout(saveManifest, 5 * 1000)
+    }
   }
   return data
 }

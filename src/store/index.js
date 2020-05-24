@@ -1,6 +1,6 @@
 import config from '../config'
 import { getHash } from '../utils/fetch'
-import isString from 'lodash/isString'
+import { isNewVersion } from '../utils/'
 
 let data = null
 
@@ -8,13 +8,17 @@ const getLocalData = async (type) => {
   if (ENVIRONMENT === 'development') return false
   if (!data) {
     try {
-      const str = sessionStorage.getItem('sczh:data')
+      const str = localStorage.getItem('sczh:data')
       if (!str) return false
       data = JSON.parse(str)
     } catch (err) {
       console.error(err)
       return false
     }
+  }
+  if (isNewVersion(config.version, data.version)) {
+    localStorage.removeItem('sczh:data')
+    return false
   }
   let key = type
   if (!/(\.csv|\.json)/.test(type)) {
@@ -33,7 +37,7 @@ const getLocalData = async (type) => {
 
 const setLocalData = (type, value) => {
   if (ENVIRONMENT === 'development') return false
-  if (!data || !data.hashes) data = { hashes: config.hashes }
+  if (!data || !data.hashes) data = { hashes: config.hashes, version: config.version }
   let key = type
   if (!/(\.csv|\.json)/.test(type)) {
     key = `${type}.csv`
@@ -45,7 +49,7 @@ const setLocalData = (type, value) => {
   data[type] = value
   const str = JSON.stringify(data)
   try {
-    sessionStorage.setItem('sczh:data', str)
+    localStorage.setItem('sczh:data', str)
   } catch (err) {
     console.error(err)
   }
