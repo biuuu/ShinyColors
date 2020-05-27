@@ -77,7 +77,7 @@ const transEffects = (data) => {
   })
 }
 
-const commSkill = (data, skillData, transEffect = false) => {
+const commSkill = (data, transEffect = false) => {
   if (!data) return
   transSkill(data, 'comment')
   transSkill(data, 'name')
@@ -139,7 +139,7 @@ const shortProIdol = (data, skillData, panel = false) => {
 
 const judegsSkill = (data) => {
   data.forEach(judge => {
-    commSkill(judge.skill, skillData, true)
+    commSkill(judge.skill, true)
   })
 }
 
@@ -153,7 +153,7 @@ const fesRivalsSkill = (data) => {
     })
     rival.userRaidDeck?.userRaidDeckMembers.forEach(member => {
       member.userFesIdol.activeSkills.forEach(skill => {
-        commSkill(skill, skillData, true)
+        commSkill(skill, true)
       })
     })
     rival.rival?.rivalSkills.forEach(skill => {
@@ -202,40 +202,34 @@ const reserveUserIdolsSkill = async (data) => {
 const userSptIdolsSkill = async (data) => {
   await ensureSkillData()
   skillPanel(data.supportIdol.skillPanels)
-  data.userSupportIdolProduceExSkills.forEach(item => {
+  data.userSupportIdolProduceExSkills?.forEach(item => {
     exSkill(item.produceExSkill)
   })
-  try {
-    data.supportIdol.supportIdolActiveSkill.activeSkills.forEach(item => {
-      transSkill(item, 'comment')
-      transSkill(item, 'name')
-    })
-  } catch (e) {}
+  data.supportIdol?.supportIdolActiveSkill?.activeSkills?.forEach(item => {
+    transSkill(item, 'comment')
+    transSkill(item, 'name')
+  })
 }
 
 const userProSptIdolsSkill = async (data) => {
   await ensureSkillData()
   skillPanel(data.skillPanels)
-  data.userProduceSupportIdolProduceExSkills.forEach(item => {
+  data.userProduceSupportIdolProduceExSkills?.forEach(item => {
     exSkill(item.produceExSkill)
   })
-  try {
-    data.userSupportIdol.supportIdol.supportIdolActiveSkill.activeSkills.forEach(item => {
-      transSkill(item, 'comment')
-      transSkill(item, 'name')
-    })
-  } catch (e) {}
+  data.userSupportIdol?.supportIdol?.supportIdolActiveSkill?.activeSkills?.forEach(item => {
+    transSkill(item, 'comment')
+    transSkill(item, 'name')
+  })
 }
 
 const reserveUserSptIdolsSkill = async (data) => {
   await ensureSkillData()
   skillPanel(data.supportIdol.skillPanels)
-  try {
-    data.supportIdol.supportIdolActiveSkill.activeSkills.forEach(item => {
-      transSkill(item, 'comment')
-      transSkill(item, 'name')
-    })
-  } catch (e) {}
+  data.supportIdol?.supportIdolActiveSkill?.activeSkills?.forEach(item => {
+    transSkill(item, 'comment')
+    transSkill(item, 'name')
+  })
 }
 
 const userFesIdolsSkill = async (data) => {
@@ -300,9 +294,7 @@ const proSkillPanels = async (data) => {
     commSkill(item.passiveSkills)
     commSkill(item.skill)
   })
-  try {
-    skillPanel(data.userProduceIdol.userIdol.idol.skillPanels)
-  } catch (e) {}
+  skillPanel(data.userProduceIdol?.userIdol?.idol?.skillPanels)
 }
 
 const produceFinish = async (data) => {
@@ -315,9 +307,9 @@ const fesMatchConcertSkill = async (data) => {
   await ensureSkillData()
   const transDeckMember = (member) => {
     member.userFesIdol.activeSkills.forEach(item => {
-      commSkill(item, skillData, true)
+      commSkill(item, true)
     })
-    commSkill(member.userFesIdol.memoryAppeal, skillData, true)
+    commSkill(member.userFesIdol.memoryAppeal, true)
     member.userFesIdol.passiveSkills.forEach(item => {
       transSkill(item, 'comment')
       transSkill(item, 'name')
@@ -334,15 +326,15 @@ const fesMatchConcertSkill = async (data) => {
 const auditionSkill = async (data) => {
   await ensureSkillData()
   data.userProduceSupportIdols.forEach(item => {
-    commSkill(item.activeSkill, skillData, true)
+    commSkill(item.activeSkill, true)
   })
   let proIdol = data.userProduceIdol
   proIdol.activeSkills.forEach(skill => {
-    commSkill(skill, skillData, true)
+    commSkill(skill, true)
   })
-  commSkill(proIdol.memoryAppeal, skillData, true)
+  commSkill(proIdol.memoryAppeal, true)
   proIdol.passiveSkills.forEach(skill => {
-    commSkill(skill, skillData, true)
+    commSkill(skill, true)
   })
   let audition = data.produceAudition || data.produceConcert
   judegsSkill(audition.judges)
@@ -400,10 +392,8 @@ const ideaNotesSkill = async (data) => {
 
 const noteResultSkill = async (data) => {
   await ensureSkillData()
-  try {
-    let item = data.lessonResult.userProduceIdeaNote.produceIdeaNote.produceIdeaNoteCompleteBonus
-    commSkill(item)
-  } catch (e) {}
+  let item = data.lessonResult?.userProduceIdeaNote?.produceIdeaNote?.produceIdeaNoteCompleteBonus
+  commSkill(item)
 }
 
 const producesDecksSkill = async (data) => {
