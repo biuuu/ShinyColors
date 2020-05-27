@@ -238,6 +238,9 @@ const userFesIdolsSkill = async (data) => {
   fesIdol.activeSkills.forEach(item => {
     commSkill(item)
   })
+  fesIdol.abilities.forEach(item => {
+    commSkill(item)
+  })
   commSkill(fesIdol.memoryAppeal)
   fesIdol.passiveSkills.forEach(item => {
     transSkill(item, 'comment')
@@ -308,6 +311,12 @@ const fesMatchConcertSkill = async (data) => {
   const transDeckMember = (member) => {
     member.userFesIdol.activeSkills.forEach(item => {
       commSkill(item, true)
+    })
+    member.userFesIdol.abilities.forEach(item => {
+      commSkill(item)
+    })
+    member.userFesIdol.concertAbilities.forEach(item => {
+      commSkill(item)
     })
     commSkill(member.userFesIdol.memoryAppeal, true)
     member.userFesIdol.passiveSkills.forEach(item => {
@@ -412,11 +421,28 @@ const producesActionReadySkill = async (data) => {
   })
 }
 
+const produceAbilitiySkill = async (data) => {
+  await ensureSkillData()
+  data.userProduceIdol.activeSkills.forEach(item => {
+    commSkill(item)
+  })
+  data.userProduceIdol.abilities.forEach(item => {
+    commSkill(item)
+  })
+  data.userProduceAbilities.forEach(item => {
+    commSkill(item.ability)
+    transSkill(item.ability, 'acquireComment')
+    item.ability.produceAbilityAcquireConditionComments.forEach(comm => {
+      transSkill(comm, 'name')
+    })
+  })
+}
+
 export {
   supportSkill, userIdolsSkill, produceExSkillTop,
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
   reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userRaidDeck, userProIdolsSkill,
   userProSptIdolsSkill, proSkillPanels, produceFinish, producesActionReadySkill,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill,
-  ideaNotesSkill, noteResultSkill, producesDecksSkill
+  ideaNotesSkill, noteResultSkill, producesDecksSkill, produceAbilitiySkill
 }
