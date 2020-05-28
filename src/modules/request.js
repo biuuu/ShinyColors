@@ -85,7 +85,7 @@ const requestOfGet = [
   [userItemTypes, transUserItem],
   [[/^userPresents\?limit=/, /^userPresentHistories\?limit=/], transPresentItem],
   [/gashaGroups\/\d+\/rates/, 'cardName'],
-  ['userProduces', [topCharacterReaction, produceActiveItem]],
+  ['userProduces', [topCharacterReaction, produceActiveItem, teachingMission]],
   [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
   [/earthUsers\/[^\/]+\/userFesIdols\/\d+$/, otherFesIdolSkill],
   ['userBeginnerMissions/top', beginnerMission],

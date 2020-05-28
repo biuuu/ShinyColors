@@ -146,7 +146,10 @@ const fesRaidMission = async (data) => {
 const teachingMission = async (data) => {
   await ensureMissionData()
   data.teachingHints?.forEach(item => {
-    item.userProduceTeachingHints.forEach(hint => {
+    item.userProduceHints?.forEach(hint => {
+      replaceMission(hint.produceTeachingHint, 'title')
+    })
+    item.userProduceTeachingHints?.forEach(hint => {
       replaceMission(hint.produceTeachingHint, 'title')
     })
   })
