@@ -23,6 +23,7 @@ const getManifest = async () => {
     let str = localStorage.getItem('sczh:manifest')
     if (str) data = JSON.parse(str)
     if (Date.now() - data.time > config.cacheTime * 60 * 1000) data = false
+    fixModule(data?.moduleId?.INJECT)
   } catch (e) {}
   if (!data) {
     data = await saveManifest()
@@ -66,7 +67,6 @@ const getHash = new Promise((rev, rej) => {
     fetchInfo.data = data
     config.newVersion = data.version
     config.hashes = data.hashes
-    fixModule(data.moduleId.INJECT)
     rev(data)
   }).catch(rej)
 })

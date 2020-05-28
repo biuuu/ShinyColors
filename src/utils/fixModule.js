@@ -1,7 +1,7 @@
 const fixModule = (param = {}) => {
   let source = ["var n=window.csobb3pncbpccs;", "Object.freeze({addHeader:"]
   let result = ["var n=window.csobb3pncbpccs;window._require=t;", "({addHeader:"]
-  
+
   if (param.source) source = param.source
   if (param.result) result = param.result
 
