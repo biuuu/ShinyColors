@@ -1,6 +1,4 @@
 text,trans,type
-Leader適正 ○,leader test,
-フェスユニット編成時、Leaderに設定した際のポジションボーナスを$percent,bdeliao $1,
 $noun$percentUP,$1$2UP,
 $noun$percent回復,$1恢复$2,
 $noun$num回復,$1恢复$2,

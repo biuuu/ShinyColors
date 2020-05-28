@@ -120,10 +120,13 @@ const memoryAppeal = (data) => {
   })
 }
 
-const shortProIdol = (data, skillData, panel = false) => {
+const shortProIdol = (data, panel = false) => {
   let proIdol = data.userProduceIdol
   if (!proIdol) return
   proIdol.activeSkills?.forEach(item => {
+    commSkill(item)
+  })
+  proIdol.abilities?.forEach(item => {
     commSkill(item)
   })
   proIdol.passiveSkills?.forEach(item => {
@@ -292,7 +295,7 @@ const proSkillPanels = async (data) => {
   data.userProduceSupportIdols.forEach(item => {
     skillPanel(item.skillPanels)
   })
-  shortProIdol(data, skillData, true)
+  shortProIdol(data, true)
   data.userProduceLimitedSkills?.forEach(item => {
     commSkill(item.passiveSkills)
     commSkill(item.skill)
@@ -334,11 +337,20 @@ const fesMatchConcertSkill = async (data) => {
 
 const auditionSkill = async (data) => {
   await ensureSkillData()
+  data.fanActiveSkills?.forEach(item => {
+    commSkill(item, true)
+  })
   data.userProduceSupportIdols.forEach(item => {
     commSkill(item.activeSkill, true)
   })
   let proIdol = data.userProduceIdol
   proIdol.activeSkills.forEach(skill => {
+    commSkill(skill, true)
+  })
+  proIdol.abilities?.forEach(skill => {
+    commSkill(skill, true)
+  })
+  proIdol.concertAbilities?.forEach(skill => {
     commSkill(skill, true)
   })
   commSkill(proIdol.memoryAppeal, true)
@@ -438,8 +450,15 @@ const produceAbilitiySkill = async (data) => {
   })
 }
 
+const finishAbility = async (data) => {
+  await ensureSkillData()
+  data.concertEvent?.abilities?.forEach(item => {
+    transSkill(item, 'name')
+  })
+}
+
 export {
-  supportSkill, userIdolsSkill, produceExSkillTop,
+  supportSkill, userIdolsSkill, produceExSkillTop, finishAbility,
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
   reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userRaidDeck, userProIdolsSkill,
   userProSptIdolsSkill, proSkillPanels, produceFinish, producesActionReadySkill,
