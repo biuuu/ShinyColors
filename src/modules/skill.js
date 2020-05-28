@@ -457,9 +457,18 @@ const finishAbility = async (data) => {
   })
 }
 
+const produceAreaAbilitySkill = async (data) => {
+  await ensureSkillData()
+  data.abilities?.forEach(item => {
+    transSkill(item, 'acquireComment')
+    transSkill(item, 'name')
+    transSkill(item, 'comment')
+  })
+}
+
 export {
   supportSkill, userIdolsSkill, produceExSkillTop, finishAbility,
-  userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill,
+  userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill, produceAreaAbilitySkill,
   reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userRaidDeck, userProIdolsSkill,
   userProSptIdolsSkill, proSkillPanels, produceFinish, producesActionReadySkill,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill,

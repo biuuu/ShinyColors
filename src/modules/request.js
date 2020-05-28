@@ -1,6 +1,6 @@
 import { supportSkill, userIdolsSkill, produceExSkillTop, producesActionReadySkill,
   userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill, noteResultSkill, produceAbilitiySkill, finishAbility,
-  otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck, userRaidDeck, ideaNotesSkill,
+  otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck, userRaidDeck, ideaNotesSkill, produceAreaAbilitySkill,
   userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish, producesDecksSkill,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill } from './skill'
 import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadMission, idolRoadForward,
@@ -92,7 +92,8 @@ const requestOfGet = [
   ['userRaidDecks', userRaidDeck],
   ['idolRoads/top', idolRoadMission],
   [/^produces\/\d+\/decks$/, producesDecksSkill],
-  ['userProduceAbilities', produceAbilitiySkill]
+  ['userProduceAbilities', produceAbilitiySkill],
+  ['userProduceAreas', produceAreaAbilitySkill]
 ]
 
 const requestOfPost = [
