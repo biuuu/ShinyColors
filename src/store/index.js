@@ -17,6 +17,7 @@ const getLocalData = async (type) => {
     }
   }
   if (isNewVersion(config.version, data.version)) {
+    data = null
     localStorage.removeItem('sczh:data')
     return false
   }
