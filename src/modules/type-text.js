@@ -37,6 +37,9 @@ const produceAudition = async (data) => {
       }).join('').trim()
       await autoTrans(data.produceConcert.judges, name, true)
     }
+    if (data.produceConcertFanSkillComments) {
+      await autoTransText(data.produceConcertFanSkillComments, 'comment1')
+    }
   } catch (e) {
     log(e)
   }

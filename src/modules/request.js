@@ -1,5 +1,5 @@
 import { supportSkill, userIdolsSkill, produceExSkillTop, producesActionReadySkill,
-  userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill, noteResultSkill,
+  userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill, noteResultSkill, produceAbilitiySkill, finishAbility,
   otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck, userRaidDeck, ideaNotesSkill,
   userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish, producesDecksSkill,
   fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill } from './skill'
@@ -91,7 +91,8 @@ const requestOfGet = [
   ['userBeginnerMissions/top', beginnerMission],
   ['userRaidDecks', userRaidDeck],
   ['idolRoads/top', idolRoadMission],
-  [/^produces\/\d+\/decks$/, producesDecksSkill]
+  [/^produces\/\d+\/decks$/, producesDecksSkill],
+  ['userProduceAbilities', produceAbilitiySkill]
 ]
 
 const requestOfPost = [
@@ -116,12 +117,13 @@ const requestOfPost = [
   ['fesRaidConcert/actions/resume', [resumeRaidGamedata, resumeRaidGameSkill]],
   ['produces/actions/result', [trustLevelUp, produceResultSkill]],
   [[/^produce(Teaching)?s\/(\d+\/audition|concert)\/actions\/start$/, /^produceTeachings\/(auditions|concerts)\/start$/], [auditionSkill]],
-  [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment, produceIdolName]],
+  [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment, produceIdolName, finishAbility]],
   ['userProduceHelperSupportIdols', helperSupportIdols],
   [['produceTeachings/resume', 'produceTeachings/next'], [teachingMission, supportSkill]],
   [/^userSelectLoginBonuses\/\d+$/, selectLoginBonus],
   [/^userLectureMissions\/\d+\/actions\/receive$/, beginnerMission],
-  [/^produceMarathons\/\d+\/top$/, marathonTitle]
+  [/^produceMarathons\/\d+\/top$/, marathonTitle],
+  ['userProduceAbilities', produceAbilitiySkill]
 ]
 
 const requestOfPatch = [

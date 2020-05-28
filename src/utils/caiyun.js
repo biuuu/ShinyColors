@@ -15,7 +15,7 @@ const sleep = (time) => {
 }
 
 const testCookies = async () => {
-  const res = await request('https://biz.caiyunapp.com/test_cookies', { 
+  const res = await request('https://biz.caiyunapp.com/test_cookies', {
     cors: true,
     credentials: 'include',
     headers: {
@@ -40,7 +40,6 @@ const getAuth = () => {
           })
           let values = components.map(function (component) { return component.value })
           bid = Fingerprint2.x64hash128(values.join(''), 31)
-          console.log(components, bid)
         }
         return request('https://api.interpreter.caiyunai.com/v1/page/auth', {
           cors: true,
