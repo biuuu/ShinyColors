@@ -1,9 +1,9 @@
-const babel = require('@rollup/plugin-babel')
-const json = require('@rollup/plugin-json')
-const resolve = require('@rollup/plugin-node-resolve')
-const cmjs = require('@rollup/plugin-commonjs')
-const { terser } = require('rollup-plugin-terser')
-const { version } = require('../package.json')
+import babel from '@rollup/plugin-babel'
+import json from '@rollup/plugin-json'
+import resolve from '@rollup/plugin-node-resolve'
+import cmjs from '@rollup/plugin-commonjs'
+import { terser } from 'rollup-plugin-terser'
+import { version } from '../package.json'
 
 const banner = `// ==UserScript==
 // @name         偶像大师ShinyColors汉化
@@ -23,15 +23,16 @@ const banner = `// ==UserScript==
 // @updateURL    https://www.shiny.fun/ShinyColors.user.js
 // @supportURL   https://github.com/biuuu/ShinyColors/issues
 // ==/UserScript==`
-module.exports = {
+export default {
   input: 'src/main.js',
   plugins: [
     resolve({ preferBuiltins: false }),
     cmjs({ ignore: ['stream'], include: /node_modules/ }),
     json(),
     babel({
+      babelHelpers: 'runtime',
       exclude: 'node_modules/**',
-      plugins: ['@babel/plugin-proposal-optional-chaining', '@babel/plugin-proposal-nullish-coalescing-operator'],
+      plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-proposal-optional-chaining', '@babel/plugin-proposal-nullish-coalescing-operator'],
       presets: [['@babel/preset-env', {
         modules: false,
         targets: 'last 3 iOS versions'
