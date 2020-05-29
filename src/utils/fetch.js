@@ -1,5 +1,4 @@
 import config from '../config'
-import fixModule from './fixModule'
 import { isNewVersion } from './index'
 
 const { origin, version } = config
@@ -23,7 +22,6 @@ const getManifest = async () => {
     let str = localStorage.getItem('sczh:manifest')
     if (str) data = JSON.parse(str)
     if (Date.now() - data.time > config.cacheTime * 60 * 1000) data = false
-    fixModule(data?.moduleId?.INJECT)
   } catch (e) {}
   if (!data) {
     data = await saveManifest()

@@ -1,5 +1,54 @@
-import { log } from '../utils/index'
+import { log } from '../utils/'
 import { getHash } from '../utils/fetch'
+
+let require = null
+
+const conditions = new Map([
+  ['AOBA', (module) => {
+    return module && module.loaders && module.Text && module.BLEND_MODES
+  }],
+  ['SCENARIO', (module) => {
+    return module && module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
+  }],
+  ['REQUEST', (module) => {
+    return module && module.get && module.post && module.put && module.patch
+  }],
+  ['PHRASE', (module) => {
+    return module && module.default && module.default._polyglot && module.default._polyglot.phrases
+  }]
+])
+
+const resultMap = new Map([
+  ['AOBA', (module) => module],
+  ['SCENARIO', (module) => module.default],
+  ['REQUEST', (module) => module],
+  ['PHRASE', (module) => module.default._polyglot.phrases]
+])
+
+const isReady = () => {
+  return !!require
+}
+
+const originFreeze = Object.freeze
+
+Object.freeze = new Proxy(originFreeze, {
+  apply (target, self, [data]) {
+    return data
+  }
+})
+
+const originCall = Function.prototype.call
+Function.prototype.call = new Proxy(originCall, {
+  apply (target, self, args) {
+    if (args?.[3]?.toString) {
+      if (args[3].toString() === 'function t(n){if(r[n])return r[n].exports;var o=r[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}') {
+        require = args[3]
+        Function.prototype.call = originCall
+      }
+    }
+    return Reflect.apply(target, self, args)
+  }
+})
 
 let OFFSET = 10
 const setIdList = (id, offset) => {
@@ -19,8 +68,7 @@ const findModule = (id, conditionFunc) => {
   let idList = setIdList(id, OFFSET)
   let module
   for (let i = 0; i < idList.length; i++) {
-    let cid = idList[i]
-    let _module = _require(cid)
+    let _module = require(idList[i])
     if (conditionFunc(_module)) {
       module = _module
       break
@@ -29,48 +77,12 @@ const findModule = (id, conditionFunc) => {
   return module
 }
 
-const getModule = async (name, condition) => {
-  let md
-  try {
-    const { moduleId } = await getHash
-    md = findModule(moduleId[name], condition)
-  } catch (e) {
-    log(e)
-  }
-  if (!md) {
-    throw new Error(`${name} NOT FOUND.`)
-  }
-  return md
-}
-
-const getAoba = async () => {
-  let aoba = await getModule('AOBA', (module) => {
-    return module.loaders && module.Text && module.BLEND_MODES
-  })
-  return aoba
-}
-
-const getScMd = async () => {
-  let scMd = await getModule('SCENARIO', (module) => {
-    return module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
-  })
-  return scMd.default
-}
-
-const getRequest = async () => {
-  let md = await getModule('REQUEST', (module) => {
-    return module.get && module.post && module.put && module.patch
-  })
-  return md
-}
-
-const getPhraseMd = async () => {
-  let md = await getModule('PHRASE', (module) => {
-    return module.default && module.default._polyglot && module.default._polyglot.phrases
-  })
-  return md.default._polyglot.phrases
+const getModule = async (name) => {
+  const { moduleId } = await getHash
+  const md = findModule(moduleId[name], conditions.get(name))
+  return resultMap.get(name)(md)
 }
 
 export {
-  getAoba, getScMd, getRequest, getPhraseMd
+  getModule, isReady
 }

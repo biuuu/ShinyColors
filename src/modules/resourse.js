@@ -1,7 +1,7 @@
 import { log } from '../utils/index'
 import getImage from '../store/image'
 import config from '../config'
-import { getAoba } from './get-module'
+import { getModule } from './get-module'
 
 let imageDataPrms = null
 const ensureImage = async () => {
@@ -13,9 +13,8 @@ const ensureImage = async () => {
 
 let replaced = false
 export default async function resourceHook () {
-  let aoba = await getAoba()
-  if (!aoba || replaced) return
-  aoba.loaders.Resource.prototype = Object.assign({}, aoba.loaders.Resource.prototype)
+  const aoba = await getModule('AOBA')
+  if (replaced) return
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
   aoba.loaders.Resource.prototype._loadElement = async function (type) {
     if (config.dev && type === 'image' && RES_NAME && this.url.includes(RES_NAME)) {

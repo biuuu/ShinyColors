@@ -1,8 +1,9 @@
-const babel = require('rollup-plugin-babel')
+const babel = require('@rollup/plugin-babel')
+const json = require('@rollup/plugin-json')
+const resolve = require('@rollup/plugin-node-resolve')
+const cmjs = require('@rollup/plugin-commonjs')
+const { terser } = require('rollup-plugin-terser')
 const { version } = require('../package.json')
-const json = require('rollup-plugin-json')
-const resolve = require('rollup-plugin-node-resolve')
-const cmjs = require('rollup-plugin-commonjs')
 
 const banner = `// ==UserScript==
 // @name         偶像大师ShinyColors汉化
@@ -12,7 +13,7 @@ const banner = `// ==UserScript==
 // @icon         https://shinycolors.enza.fun/icon_192x192.png
 // @author       biuuu
 // @match        https://shinycolors.enza.fun/*
-// @run-at       document-end
+// @run-at       document-start
 // @grant        GM_xmlhttpRequest
 // @grant        GM_registerMenuCommand
 // @grant        GM_unregisterMenuCommand
@@ -35,6 +36,18 @@ module.exports = {
         modules: false,
         targets: 'last 3 iOS versions'
       }]]
+    }),
+    terser({
+      output: {
+        comments: function (node, comment) {
+          var text = comment.value;
+          var type = comment.type;
+          if (type == "comment1") {
+            // multiline comment
+            return /^\s@|\s==\/?UserScript==/i.test(text);
+          }
+        }
+      }
     })
   ],
   output: {

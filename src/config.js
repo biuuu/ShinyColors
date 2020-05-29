@@ -93,16 +93,6 @@ const getConfigFromHash = () => {
   })
 }
 
-const getLocalHash = () => {
-  try {
-    const str = sessionStorage.getItem('sczh:data')
-    const data = JSON.parse(str)
-    config.localHash = data.hash
-  } catch (err) {
-    // ignore
-  }
-}
-
 const menuCommand = {
   auto: {
     on: '关闭机翻', off: '开启机翻', id: 0, 
@@ -188,7 +178,6 @@ const setAllGMMenuCommand = () => {
 }
 
 getLocalConfig()
-getLocalHash()
 getConfigFromHash()
 setAllGMMenuCommand()
 

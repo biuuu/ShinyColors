@@ -1,7 +1,7 @@
 import getPhrase from '../store/phrase'
 import CSV from 'papaparse/papaparse.min'
 import { replaceWrap, log } from '../utils/index'
-import { getPhraseMd } from './get-module'
+import { getModule } from './get-module'
 let phraseMap = null
 
 const collectPhrases = (obj) => {
@@ -19,7 +19,7 @@ const collectPhrases = (obj) => {
 }
 
 export default async function transPhrase () {
-  const obj = await getPhraseMd()
+  const obj = await getModule('PHRASE')
   if (!obj) return
   // if (ENVIRONMENT === 'development') {
   //   phraseMap = await getPhrase(true)

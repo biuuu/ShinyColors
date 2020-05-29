@@ -7,7 +7,7 @@ import getName from '../store/name'
 import autoTrans from '../utils/translation'
 import { requestLog } from './request'
 import tagText from '../utils/tagText'
-import { getScMd } from './get-module'
+import { getModule } from './get-module'
 
 const storyCache = {
   name: '',
@@ -101,8 +101,7 @@ const startTrans = (data, storyMap, commMap, nameMap) => {
 }
 
 const transStory = async () => {
-  const scnModule = await getScMd()
-  if (!scnModule) return
+  const scnModule = await getModule('SCENARIO')
   const originLoad = scnModule.load
   scnModule.load = async function (...args) {
     const res = await originLoad.apply(this, args)

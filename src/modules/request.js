@@ -20,7 +20,7 @@ import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
 import isString from 'lodash/isString'
 import isRegExp from 'lodash/isRegExp'
-import { getRequest } from './get-module'
+import { getModule } from './get-module'
 import config from '../config'
 
 const logStyles = color => ([
@@ -137,8 +137,7 @@ const requestOfPut = [
 ]
 
 export default async function requestHook () {
-  const request = await getRequest()
-  if (!request || !request.get) return
+  const request = await getModule('REQUEST')
 
   // GET
   const originGet = request.get
