@@ -8,10 +8,6 @@
 
 ---
 
-It looks like this patch will no longer work on new game versions.
-
-2020/5/29 游戏更新后，插件已经失效，不用再安装了。
-
 ## 简介
 安装插件：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
 
