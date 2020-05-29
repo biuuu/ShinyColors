@@ -8,6 +8,8 @@
 
 ---
 
+It looks like this patch will no longer work on new game versions.
+
 ## 简介
 安装插件：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
 
