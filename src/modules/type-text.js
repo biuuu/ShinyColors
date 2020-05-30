@@ -66,6 +66,11 @@ const mypageComments = async (data) => {
         member.mypageComments.forEach(comm => {
           list.push(comm)
         })
+        member.mypageConversations.forEach(conv => {
+          conv.mypageConversationComments.forEach(comm => {
+            list.push(comm)
+          })
+        })
       })
     }
     if (data.userHomeDeck.userHomeDeckMembers.length) {
