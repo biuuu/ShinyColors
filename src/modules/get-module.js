@@ -38,6 +38,7 @@ Object.freeze = new Proxy(originFreeze, {
 })
 
 const originCall = Function.prototype.call
+let win = { Reflect: window.Reflect }
 Function.prototype.call = new Proxy(originCall, {
   apply (target, self, args) {
     if (args?.[3]?.toString) {
@@ -46,7 +47,7 @@ Function.prototype.call = new Proxy(originCall, {
         Function.prototype.call = originCall
       }
     }
-    return Reflect.apply(target, self, args)
+    return win.Reflect.apply(target, self, args)
   }
 })
 
