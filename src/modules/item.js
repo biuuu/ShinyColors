@@ -217,6 +217,15 @@ const homeProduceActiveItem = async (data) => {
   await produceActiveItem(data.userProduce)
 }
 
+const useProduceItem = async (data) => {
+  await ensureItem()
+  const item = data.consumeProduceItem?.produceItem
+  if (item) {
+    transItem(item, 'name')
+    transItem(item, 'comment')
+  }
+}
+
 export {
   ensureItem,
   transItem,
@@ -232,5 +241,6 @@ export {
   transAccumulatedPresent,
   selectLoginBonus,
   produceActiveItem,
-  homeProduceActiveItem
+  homeProduceActiveItem,
+  useProduceItem
 }

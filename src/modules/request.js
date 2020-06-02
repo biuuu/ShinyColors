@@ -8,7 +8,7 @@ import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadM
 import { albumTopTitle, characterAlbumTitle, userIdolsTitle, userSupportIdolsTitle, marathonTitle } from './album/title'
 import { userItemTypes, transShopItem,
   transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
-  transPresentItem, transLoginBonus, transReceivePresent,
+  transPresentItem, transLoginBonus, transReceivePresent, useProduceItem,
   transReceiveMission, selectLoginBonus, produceActiveItem, homeProduceActiveItem } from './item'
 import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resumeRaidGamedata,
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
@@ -129,7 +129,8 @@ const requestOfPost = [
 
 const requestOfPatch = [
   [/^userSupportIdols\/\d+$/, supportSkill],
-  ['userFesDecks', userFesDeck]
+  ['userFesDecks', userFesDeck],
+  [/^produces\/\d\/produceItem\/consume$/, useProduceItem]
 ]
 
 const requestOfPut = [
