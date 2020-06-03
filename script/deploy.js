@@ -52,7 +52,7 @@ const getDate = (offset = 0) => {
 const md5File = async () => {
   const data = {}
   const doMd5File = async (cwd) => {
-    const files = await glob.promise('{image/*,font/*,etc/*,*}.{csv,json,woff2,png}', {
+    const files = await glob.promise('{image/**/*,font/*,etc/*,*}.{csv,json,woff2,png,jpg}', {
       nodir: true, cwd: path.resolve(process.cwd(), cwd) 
     })
     const prms = files.map(file => {
