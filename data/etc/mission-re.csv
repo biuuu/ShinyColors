@@ -39,6 +39,7 @@ W.I.N.G.を優勝しよう,在W.I.N.G.中取得优胜,text
 トラブルを発生させずにシーズンをクリアしよう,在没有发生事故的情况下通过这个季度,text
 フェスリハーサルに参加しよう,参加Fes彩排,text
 プロフィールで誕生日を設定しよう！,在个人简介里设定生日！,text
+メンタル上限アップのスキルを1つ習得をしよう,学习一个Mental上限提升技能,text
 櫻木真乃,樱木真乃,name
 風野灯織,风野灯织,name
 八宮めぐる,八宫巡,name
@@ -90,7 +91,7 @@ W.I.N.G.を優勝しよう,在W.I.N.G.中取得优胜,text
 グレードフェス,排位Fes,noun
 リンクアピール,Link Appeal,noun
 パーフェクト,Perfect,noun
-がっちりアピール,がっちりアピール,noun
+がっちりアピール,Top + Last Appeal,noun
 トップアピール,Top Appeal,noun
 ラストアピール,Last Appeal,noun
 プロ根性,Pro根性,noun
@@ -103,6 +104,7 @@ VERYHARD,VERYHARD,noun
 アンティーカ,L'Antica,noun
 アルストロメリア,ALSTROEMERIA,noun
 ストレイライト,Straylight,noun
+ノクチル,noctchill,noun
 完全掌握,完全掌握,noun
 フェスマスター,Fes Master,noun
 パーフェクトライブ,Perfect Live,noun
@@ -203,9 +205,11 @@ $num$num周目クリア,通过第$1$2周目,exp
 ラジオの収録などでメンタルを$num以上にしよう,通过广播收录将Mental提高到$1以上,exp
 ラジオの収録やトークイベントに出演などでファン数を$num人以上獲得しよう,通过广播收录或参加访谈节目获得$1人以上的粉丝数,exp
 トークイベントに出演などでSPを累計$num以上にしよう,通过参加访谈节目使SP累计超过200,exp
+メンタルを$numにしよう,Mental达到$1,exp
+オーディションに参加してファン数を累計$1万人以上獲得しよう,通过参加试镜累计获得$1万以上的粉丝数,exp
 $ukを$num以上にしよう,$1达到$2以上,exp
 「$uk」に$num回合格しよう,「$1」合格$2次,exp
-ファン数を累計$num万人以上獲得しよう,累计获得$1万粉丝数,exp
+ファン数を累計$num万人以上獲得しよう,累计获得$1万以上的粉丝数,exp
 イベントミッションを$num個達成しよう,完成$1个活动任务,exp
 営業を$num回完了しよう,完成$1次营业,exp
 【$unknown】$name,【$1】$2,exp

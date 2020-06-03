@@ -90,6 +90,7 @@ $nounが$percentDOWNする効果,$1降低$2的效果,
 与える$nounを$percentCUTする効果,造成的$1减免$2的效果,
 $nounを$percent受けにくくなる効果,受到$1的概率下降$2的效果,
 $nounを$percent受けやすくなる効果,受到$1的概率上升$2的效果,
+受ける$nounを毎ターン$percentで回避する効果,受到的$1每回合有$2的概率回避的效果,
 $noun効果$percentが付与される,给予$2的$1效果,
 $noun開始時に$nounが$percent回復する効果,$1开始时$2恢复$3的效果,
 思い出アピール,回忆Appeal,
@@ -119,7 +120,8 @@ Vi,Vi,noun
 Me,Me,noun
 メンタル,Mental,noun
 メンタルダメージ,Mental伤害,noun
-リアクション,关注,noun
+リアクション,反响,noun
+リアクション回避率,反响回避率,noun
 SP,SP,noun
 スター,星星,noun
 観客,观众,noun

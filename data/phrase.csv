@@ -45,7 +45,6 @@ countUpCampaign.closeAt,集計期間: %{closeAt} まで,
 countUpCampaign.lastChallengeTitle,前回のチャレンジ結果,
 countUpCampaign.pCupAttention,休憩時間中のプロデュースなどで獲得したファン数も集計対象に含まれます,
 countUpCampaign.fanCount,約%{count}億,
-downLoad.confirmTitle,データダウンロード,数据下载
 downLoad.confirmComment,ゲームデータを一括でダウンロードし、端末に保存します\n\nゲーム中の読み込み時間が減るため、より快適にプレイすることができます\n最大約 %{gb} GB のデバイスの空き容量が必要となります,游戏数据一次性下载后，游戏中保存到终端的的读取时间减少，以便于游玩更加流畅，至少需要%{gb} GB的空余容量
 downLoad.persistMessageMobile,データダウンロードを開始するためには\rアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\rホーム画面に追加、またはブックマークする必要があります,为了开始下载数据，必须将\n偶像大师闪耀色彩的URL(shinycolors.enza.fun)\n添加到主页屏幕上或书签中
 downLoad.persistMessagePc,データダウンロードを開始するためには\nアイドルマスターシャイニーカラーズのURL(shinycolors.enza.fun)を\nブックマークする必要があります,为了开始下载数据，必须将\n偶像大师闪耀色彩的URL(shinycolors.enza.fun)\n添加到书签中
@@ -900,7 +899,7 @@ mission.remainingDays,あと%{days}日%{hours}時間,还有%{days}天%{hours}小
 mission.missionCountMessage,%{clearedMissionLen}/%{missionLen},
 mission.gaugeNumberMessage,%{progress}/%{progressMax},
 mission.receiveAllConfirm.text,ミッション報酬を新しいものから\n100件まで受け取ります。\nよろしいですか？,从最新的任务报酬开始至多领取100件。\n确认吗？
-mission.receiveAll.title,ミッション報酬一括受け取り,一次性领取任务报酬
+mission.receiveAll.title,ミッション報酬一括受け取り,一键领取任务报酬
 mission.receiveAll.message,以下の報酬を受け取りました,领取了以下报酬
 mission.receiveAll.maxMessageFooter,一部の報酬は最大所持数を超えているため\n受け取れませんでした,由于部分报酬超过了最大所持数\n无法领取
 mission.receiveAll.maxMessage,最大所持数を超えるため受け取れません,由于超过最大所持数，无法领取
@@ -1049,9 +1048,9 @@ present.main.notice,期限が切れたプレゼントは自動的に削除され
 present.receive.title,プレゼント受け取り,领取礼物
 present.receive.message,以下のプレゼントを受け取りました,已领取以下礼物
 present.receive.itemNameNum,%{Name} ×%{Num},
-present.receiveAllConfirm.title,プレゼント一括受け取り,一次性领取礼物
+present.receiveAllConfirm.title,プレゼント一括受け取り,一键领取礼物
 present.receiveAllConfirm.text,プレゼントを新しいものから\n100件まで受け取ります。\nよろしいですか？,从最新的礼物开始最多领取100件。\n确认吗？
-present.receiveAll.title,プレゼント一括受け取り,一次性领取礼物
+present.receiveAll.title,プレゼント一括受け取り,一键领取礼物
 present.receiveAll.message,以下のプレゼントを受け取りました,已领取以下礼物
 present.receiveAll.maxMessage,最大所持数を超えているため受け取れません,由于超过最大所持数，无法领取
 present.receiveAll.maxMessageFooter,一部のプレゼントは最大所持数を超えているため\n受け取れませんでした,由于部分礼物超过了最大所持数\n无法领取
@@ -1385,7 +1384,7 @@ raidReward.alertTexts.default,最大100件一度に受け取ることが可能�
 raidReward.alertTexts.lap,最大100件一度に受け取ることが可能です\n周数報酬は期間中に1回でもコラボフェスをプレイした場合のみ受け取れます,一次最多可领取100件\n周数报酬仅在至少参加1次COLLABO FES的情况下才可领取
 raidReward.popMissionDetail,報酬詳細,报酬详情
 raidReward.receiveAllConfirm.text,報酬を新しいものから\n100件まで受け取ります。\nよろしいですか？,从最新的报酬开始\n至多领取100件。\n确认领取吗？
-raidReward.receiveAll.title,報酬一括受け取り,一次性领取报酬
+raidReward.receiveAll.title,報酬一括受け取り,一键领取报酬
 raidReward.receiveAll.message,以下の報酬を受け取りました,获得了以下报酬
 raidReward.receiveAll.maxMessageFooter,一部の報酬は最大所持数を超えているため\n受け取れませんでした,由于部分报酬超过了最大所持数\n无法领取
 raidReward.receiveAll.maxMessage,最大所持数を超えるため受け取れません,由于超过最大所持数，无法领取
@@ -1459,6 +1458,7 @@ trueEndTeaching.tipsText,おめでとうございます♪　すべての初心�
 trend.historyText,先週%{rank}位,上周%{rank}位
 trend.txtFan,%{count}人,
 trend.txtNextFan,あと  %{count}人,还需  %{count}人
+trend.staffComment,流行の結果にあわせて、\nオーディションを受けてみてください♪,
 tutorial.openingMessage.mes0,「アイドル」,
 tutorial.openingMessage.mes1,それは,
 tutorial.openingMessage.mes2,女の子達の永遠の憧れ,
