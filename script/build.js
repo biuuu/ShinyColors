@@ -23,34 +23,40 @@ const banner = `// ==UserScript==
 // @updateURL    https://www.shiny.fun/ShinyColors.user.js
 // @supportURL   https://github.com/biuuu/ShinyColors/issues
 // ==/UserScript==`
-export default {
-  input: 'src/main.js',
-  plugins: [
-    resolve({ preferBuiltins: false }),
-    cmjs({ ignore: ['stream'], include: /node_modules/ }),
-    json(),
-    babel({
-      babelHelpers: 'runtime',
-      exclude: 'node_modules/**',
-      plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-proposal-optional-chaining', '@babel/plugin-proposal-nullish-coalescing-operator'],
-      presets: [['@babel/preset-env', {
-        modules: false,
-        targets: 'last 3 iOS versions'
-      }]]
-    }),
-    terser({
-      output: {
-        comments: function (node, comment) {
-          var text = comment.value;
-          var type = comment.type;
-          if (type == "comment1") {
-            // multiline comment
-            return /^\s@|\s==\/?UserScript==/i.test(text);
-          }
+
+const plugins = [
+  resolve({ preferBuiltins: false }),
+  cmjs({ ignore: ['stream'], include: /node_modules/ }),
+  json(),
+  babel({
+    babelHelpers: 'runtime',
+    exclude: 'node_modules/**',
+    plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-proposal-optional-chaining', '@babel/plugin-proposal-nullish-coalescing-operator'],
+    presets: [['@babel/preset-env', {
+      modules: false,
+      targets: 'last 3 iOS versions'
+    }]]
+  })
+]
+
+if (!process.env.DEV) {
+  plugins.push(terser({
+    output: {
+      comments: function (node, comment) {
+        var text = comment.value;
+        var type = comment.type;
+        if (type == "comment1") {
+          // multiline comment
+          return /^\s@|\s==\/?UserScript==/i.test(text);
         }
       }
-    })
-  ],
+    }
+  }))
+}
+
+export default {
+  input: 'src/main.js',
+  plugins,
   output: {
     file: './dist/ShinyColors.user.js',
     format: 'iife',

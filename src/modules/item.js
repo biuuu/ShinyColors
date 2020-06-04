@@ -148,6 +148,7 @@ const transPresentItem = async (data) => {
   if (Array.isArray(data)) {
     data.forEach(obj => {
       transItem(obj.content, 'name')
+      transItem(obj, 'note')
     })
   }
 }
