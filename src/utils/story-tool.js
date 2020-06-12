@@ -26,6 +26,7 @@ const html = `
     border-image: url(${config.origin}/data/image/border.png);
     border-image-slice: 7;
     transform-origin: top right;
+    transition: opacity 0.3s;
   }
   .story-tool-btns {
     width: 100%;
@@ -84,6 +85,9 @@ const html = `
   #sczh-story-tool .btn-close-sczh:hover {
     background: rgba(0, 0, 0, 0.9);
   }
+  #sczh-story-tool.blur {
+    opacity: 0.2;
+  }
   .story-tool-btns label:hover {
     color: #f270b1;
   }
@@ -114,7 +118,6 @@ let showToolFlag = false
 const showStoryTool = (storyCache) => {
   if (showToolFlag) return
   showToolFlag = true
-
   document.body.insertAdjacentHTML('beforeend', html)
   const cont = document.getElementById('sczh-story-tool')
   const setToolPos = debounce(() => {
@@ -146,7 +149,9 @@ const showStoryTool = (storyCache) => {
       cont.style.display = 'none'
     }
   }, 300)
+
   setToolPos()
+
   window.addEventListener('resize', setToolPos)
   const btnDl = document.getElementById('btn-download-sczh')
   btnDl.addEventListener('click', function () {
@@ -155,12 +160,14 @@ const showStoryTool = (storyCache) => {
       tryDownload(str, storyCache.filename)
     }
   })
+
   const btnClose = document.getElementById('btn-close-sczh')
   btnClose.addEventListener('click', function () {
     cont.style.display = 'none'
     config.story = 'normal'
     saveConfig()
   })
+
   const iptPreview = document.getElementById('ipt-preview-sczh')
   iptPreview.addEventListener('change', function () {
     const files = this.files
@@ -180,6 +187,21 @@ const showStoryTool = (storyCache) => {
       reader.readAsText(file)
     })
   })
+
+  let blurTimer
+  cont.addEventListener('mouseenter', () => {
+    clearTimeout(blurTimer)
+    cont.classList.remove('blur')
+  })
+
+  const contBlur = () => {
+    clearTimeout(blurTimer)
+    blurTimer = setTimeout(() => {
+      cont.classList.add('blur')
+    }, 5000)
+  }
+  cont.addEventListener('mouseleave' , contBlur)
+  contBlur()
 }
 
 export default showStoryTool
