@@ -154,6 +154,7 @@ const showStoryTool = (storyCache) => {
 
   window.addEventListener('resize', setToolPos)
   const btnDl = document.getElementById('btn-download-sczh')
+  
   btnDl.addEventListener('click', function () {
     if (storyCache.name) {
       const str = CSV.unparse(storyCache.list)

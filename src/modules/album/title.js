@@ -54,7 +54,7 @@ const transEvents = (events) => {
     event.communications.forEach(commu => {
       transTitle(commu, 'name')
       transTitle(commu, 'title')
-      saveTitle(commu.id, `${commu.name} ${commu.title}`)
+      saveTitle(commu.id, `${commu.name}-${commu.title}`)
     })
   })
 }
@@ -105,7 +105,7 @@ const marathonTitle = async (data) => {
   data.releasedCommunications.forEach(item => {
     transTitle(item, 'name')
     transTitle(item, 'title')
-    saveTitle(item.id, `${item.name} ${item.title}`)
+    saveTitle(item.id, `${item.name}-${item.title}`)
   })
   transTitle(data.gameEvent, 'name')
 }

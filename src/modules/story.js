@@ -41,7 +41,8 @@ const getCid = (name) => {
 const saveData = (data, name) => {
   const _name = name.replace('.json', '')
   const _cid = getCid(_name)
-  const filename = storyTitle.get(_cid) || _name.replace(/\//g, '_')
+  let filename = storyTitle.get(_cid) || _name.replace(/\//g, '_')
+  filename = filename.replace('\u200b', '')
   const list = []
   data.forEach(item => {
     let text = trim(replaceWrap(item.text))
