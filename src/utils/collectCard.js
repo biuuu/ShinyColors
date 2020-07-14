@@ -2,13 +2,16 @@ export default function (data) {
   if (!DEV || !COLLECT_CARD_RATE) return
   const normal = []
   const sr = []
+  const rarityType = { 2: 'r', 3: 'sr', 4: 'ssr' }
   data.forEach(item => {
+    let type = rarityType[item.rarity]
     if (item.buttonImage === 'normal_gasha_button') {
       item.contents.forEach(cont => {
         normal.push({
           name: cont.contentName,
           rate: cont.rate,
-          id: cont.contentId
+          id: cont.contentId,
+          type
         })
       })
     } else if (item.buttonImage === 'sr_up_button') {
@@ -16,7 +19,8 @@ export default function (data) {
         sr.push({
           name: cont.contentName,
           rate: cont.rate,
-          id: cont.contentId
+          id: cont.contentId,
+          type
         })
       })
     }
