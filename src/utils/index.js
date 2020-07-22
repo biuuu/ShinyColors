@@ -2,13 +2,6 @@ import isString from 'lodash/isString'
 import tagText from './tagText'
 import config from '../config'
 
-const restoreConsole = () => {
-  const iframe = document.createElement('iframe')
-  iframe.style.display = 'none'
-  document.body.appendChild(iframe)
-  return iframe.contentWindow.console
-}
-
 const isDomain = (str) => {
   if (!/^https?:\/\//.test(str)) return false
   if (/\s/.test(str.trim())) return false
@@ -43,16 +36,14 @@ const pureRE = str => {
   .replace(/\)/g, '\\)')
 }
 
-let _console = restoreConsole()
-
 const log = (...args) => {
   if (config.dev) {
-    _console.log(...args)
+    console.info(...args)
   }
 }
 
 const log2 = (...args) => {
-  _console.log(...args)
+  console.info(...args)
 }
 
 const tryDownload = (content, filename) => {
@@ -177,7 +168,7 @@ const sess = (key, data) => {
 }
 
 export {
-  trim, trimWrap, fixWrap, restoreConsole, isDomain, log, log2,
+  trim, trimWrap, fixWrap, isDomain, log, log2,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
   transSpeaker, sleep, tagStoryText, sess, uniqueStoryId, isNewVersion
 }
