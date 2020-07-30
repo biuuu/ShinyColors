@@ -14,6 +14,7 @@ import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resu
   trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
   produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
 import albumTrustLevel from './album/trust-level'
+import { gashaDrawComment, gashaReDrawComment, idolComment } from './album/idol-comment'
 import { produceIdolName, produceEventTitle, homeProduceTitle } from './produce'
 import { log } from '../utils/index'
 import collectCardName from '../utils/collectCard'
@@ -93,7 +94,8 @@ const requestOfGet = [
   ['idolRoads/top', idolRoadMission],
   [/^produces\/\d+\/decks$/, producesDecksSkill],
   ['userProduceAbilities', produceAbilitiySkill],
-  ['userProduceAreas', produceAreaAbilitySkill]
+  ['userProduceAreas', produceAreaAbilitySkill],
+  ['gashas/289101/redraws', gashaReDrawComment]
 ]
 
 const requestOfPost = [
@@ -124,7 +126,9 @@ const requestOfPost = [
   [/^userSelectLoginBonuses\/\d+$/, selectLoginBonus],
   [/^userLectureMissions\/\d+\/actions\/receive$/, beginnerMission],
   [/^produceMarathons\/\d+\/top$/, marathonTitle],
-  ['userProduceAbilities', produceAbilitiySkill]
+  ['userProduceAbilities', produceAbilitiySkill],
+  [/^characterAlbums\/characters\/\d+$/, idolComment],
+  [/^gashas\/\d+\/actions\/draw$/, gashaDrawComment]
 ]
 
 const requestOfPatch = [
