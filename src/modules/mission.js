@@ -128,8 +128,8 @@ const beginnerMissionComplete = async (data) => {
 
 const fesRecomMission = async (data) => {
   await ensureMissionData()
-  replaceMission(data.userRecommendedMission.mission, 'comment')
-  replaceMission(data.userRecommendedMission.mission, 'title')
+  replaceMission(data.userRecommendedMission?.mission, 'comment')
+  replaceMission(data.userRecommendedMission?.mission, 'title')
   data.accumulatedPresent.userGameEventAccumulatedPresents.forEach(item => {
     replaceMission(item.gameEventAccumulatedPresent, 'comment')
     replaceMission(item.gameEventAccumulatedPresent, 'title')

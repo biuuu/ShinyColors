@@ -96,6 +96,7 @@ const requestOfGet = [
   ['userProduceAbilities', produceAbilitiySkill],
   ['userProduceAreas', produceAreaAbilitySkill],
   [/^gashas\/\d+\/redraws$/, gashaReDrawComment],
+  [/^missionEvents\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]]
 ]
 
 const requestOfPost = [
