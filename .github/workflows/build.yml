@@ -9,7 +9,7 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
-    if: startsWith(github.event.head_commit.message, 'Update') || startsWith(github.event.head_commit.message, 'Fix') || contains(github.event_name, 'repository_dispatch')
+    if: contains(github.event.head_commit.message, 'Update') || contains(github.event.head_commit.message, 'Fix') || contains(github.event.head_commit.message, 'feat') || contains(github.event_name, 'repository_dispatch')
 
     steps:
     - uses: actions/checkout@v2
