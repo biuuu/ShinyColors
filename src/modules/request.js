@@ -95,7 +95,7 @@ const requestOfGet = [
   [/^produces\/\d+\/decks$/, producesDecksSkill],
   ['userProduceAbilities', produceAbilitiySkill],
   ['userProduceAreas', produceAreaAbilitySkill],
-  ['gashas/289101/redraws', gashaReDrawComment]
+  [/^gashas\/\d+\/redraws$/, gashaReDrawComment],
 ]
 
 const requestOfPost = [
