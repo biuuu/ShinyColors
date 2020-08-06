@@ -1,0 +1,8 @@
+import './skill'
+import './mission'
+import './item'
+import './produce'
+import './type-text'
+import './album/title'
+import './album/idol-comment'
+import './album/trust-level'

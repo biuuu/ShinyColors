@@ -2,6 +2,7 @@ import { replaceItem } from '../utils/replaceText'
 import { getSupportSkill, getSkill } from '../store/skill'
 import { log } from '../utils/index'
 import tagText from '../utils/tagText'
+import { router } from './request'
 
 let skillDataPrms = null
 let skillData = null
@@ -466,11 +467,41 @@ const produceAreaAbilitySkill = async (data) => {
   })
 }
 
-export {
-  supportSkill, userIdolsSkill, produceExSkillTop, finishAbility,
-  userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill, produceAreaAbilitySkill,
-  reserveUserSptIdolsSkill, otherFesIdolSkill, userFesDeck, userRaidDeck, userProIdolsSkill,
-  userProSptIdolsSkill, proSkillPanels, produceFinish, producesActionReadySkill,
-  fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill,
-  ideaNotesSkill, noteResultSkill, producesDecksSkill, produceAbilitiySkill
-}
+router.get([
+  [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], [supportSkill, userSptIdolsSkill]],
+  ['userProduce(Teaching)?SupportIdols/{num}', [supportSkill, userProSptIdolsSkill]],
+  ['userReserveSupportIdols/userSupportIdol/{num}', [supportSkill, reserveUserSptIdolsSkill]],
+  ['userIdols/{num}/produceExSkillTop', produceExSkillTop],
+  ['userSupportIdols/{num}/produceExSkillTop', produceExSkillTop],
+  [['userIdols/{num}', 'userIdols/statusMax', 'produceTeachingIdols/{num}'], [userIdolsSkill]],
+  [['userProduce(Teaching)?Idols/{num}', 'userProduceTeachingIdol'], userProIdolsSkill],
+  ['userReserveIdols/userIdol/{num}', reserveUserIdolsSkill],
+  ['userFesIdols/{num}', userFesIdolsSkill],
+  [['userProduces/skillPanels', 'userProduceTeachings/skillPanels'], proSkillPanels],
+  ['fes(Match)?Concert/actions/resume', [resumeGameSkill]],
+  ['earthUsers/{uuid}/userFesIdols/{num}', otherFesIdolSkill],
+  ['userRaidDecks', userRaidDeck],
+  ['produces/{num}/decks', producesDecksSkill],
+  ['userProduceAbilities', produceAbilitiySkill],
+  ['userProduceAreas', produceAreaAbilitySkill]
+])
+
+router.post([
+  ['userIdols/{num}/produceExSkills/{num}/actions/set', userIdolsSkill],
+  ['produces/{num}/actions/ready', [producesActionReadySkill]],
+  [['userProduce(Teaching)?s/skillPanels/{num}', 'userProduces/limitedSkills/{num}'], proSkillPanels],
+  ['userSupportIdols/{num}/produceExSkills/{num}/actions/set', [ userSptIdolsSkill, supportSkill]],
+  ['produces/actions/(resume|next)', [ideaNotesSkill, supportSkill]],
+  [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
+  ['produces/actions/act', [noteResultSkill]],
+  ['fes(Match|Raid)?Concert/actions/start', [fesMatchConcertSkill]],
+  ['fes(Match)?Concert/actions/resume', [resumeGameSkill]],
+  ['fesRaidConcert/actions/resume', [resumeRaidGameSkill]],
+  ['produces/actions/result', [produceResultSkill]],
+  [['produce(Teaching)?s/({num}/audition|concert)/actions/start', 'produceTeachings/(auditions|concerts)/start'], [auditionSkill]],
+  ['produces/({num}/audition|concert)/actions/(start|finish)', finishAbility],
+  [['produceTeachings/resume', 'produceTeachings/next'], supportSkill],
+  ['userProduceAbilities', produceAbilitiySkill]
+])
+
+router.patch('userSupportIdols/{num}', supportSkill)

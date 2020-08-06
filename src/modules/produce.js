@@ -1,6 +1,7 @@
 import getName from '../store/name'
 import tagText from '../utils/tagText'
 import { ensureTitle, saveTitle, transTitle } from './album/title'
+import { router } from './request'
 
 const produceIdolName = async (data) => {
   const nameMap = await getName()
@@ -28,4 +29,10 @@ const homeProduceTitle = async (data) => {
   transTitle(data?.userProduce?.produce, 'title')
 }
 
-export { produceIdolName, produceEventTitle, homeProduceTitle }
+router.post([
+  ['myPage', homeProduceTitle],
+  ['produces/actions/(resume|next)', [produceEventTitle, produceIdolName]],
+  [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], produceEventTitle],
+  ['produces/actions/act', produceEventTitle],
+  ['produces/({num}/audition|concert)/actions/(start|finish)', produceIdolName]
+])

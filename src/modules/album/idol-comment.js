@@ -1,4 +1,5 @@
 import { transText } from '../type-text'
+import { router } from '../request'
 
 const gashaDrawComment = async (data) => {
   const list = []
@@ -30,4 +31,9 @@ const idolComment = async (data) => {
   await transText(list)
 }
 
-export { gashaDrawComment, gashaReDrawComment, idolComment }
+router.get('gashas/{num}/redraws', gashaReDrawComment)
+
+router.post([
+  ['characterAlbums/characters/{num}', idolComment],
+  ['gashas/{num}/actions/draw', gashaDrawComment]
+])

@@ -1,5 +1,6 @@
 import autoTrans from '../utils/translation'
 import { log } from '../utils/index'
+import { router } from './request'
 
 const autoTransText = async (data, key = 'comment') => {
   if (!data) return
@@ -211,21 +212,23 @@ const trustLevelUp = async (data) => {
   }
 }
 
-export {
-  transText,
-  mypageComments,
-  fesDeckReactions,
-  idolMemoryAppealComments,
-  produceAudition,
-  produceHints,
-  topCharacterReaction,
-  lessonResult,
-  produceEndWeek,
-  resumeGamedata,
-  resumeRaidGamedata,
-  characterComment,
-  fesMatchConcert,
-  helperSupportIdols,
-  produceReporterAnswer,
-  trustLevelUp
-}
+router.get([
+  ['userProduces', topCharacterReaction],
+  ['fes(Match)?Concert/actions/resume', resumeGamedata],
+])
+
+router.post([
+  ['myPage', mypageComments],
+  ['fesTop', fesDeckReactions],
+  ['produces/actions/(resume|next)', [topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer]],
+  ['produces/actions/endWeek', produceEndWeek],
+  ['produces/actions/act', lessonResult],
+  ['fes(Match|Raid)?Concert/actions/start', fesMatchConcert],
+  ['fes(Match)?Concert/actions/resume', resumeGamedata],
+  ['fesRaidConcert/actions/resume', resumeRaidGamedata],
+  ['produces/actions/result', trustLevelUp],
+  ['produces/({num}/audition|concert)/actions/(start|finish)', [produceAudition, characterComment]],
+  ['userProduceHelperSupportIdols', helperSupportIdols],
+])
+
+export { transText }

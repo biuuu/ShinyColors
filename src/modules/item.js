@@ -2,6 +2,7 @@ import getItem from '../store/item'
 import tagText from '../utils/tagText'
 import { fixWrap, replaceWrap, log } from '../utils/'
 import config from '../config'
+import { router } from './request'
 
 const userItemTypes = [
   'userRecoveryItems',
@@ -227,21 +228,26 @@ const useProduceItem = async (data) => {
   }
 }
 
-export {
-  ensureItem,
-  transItem,
-  transShopItem,
-  transUserItem,
-  userItemTypes,
-  transShopPurchase,
-  transPresentItem,
-  transReceivePresent,
-  transReceiveMission,
-  transLoginBonus,
-  transFesReward,
-  transAccumulatedPresent,
-  selectLoginBonus,
-  produceActiveItem,
-  homeProduceActiveItem,
-  useProduceItem
-}
+router.get([
+  [['userShops', 'userIdolPieceShops'], transShopItem],
+  [userItemTypes, transUserItem],
+  [['userPresents\\?limit={num}', 'userPresentHistories\\?limit={num}'], transPresentItem],
+  ['userProduces', produceActiveItem],
+  ['missionEvents/{num}/top', transAccumulatedPresent]
+])
+
+router.post([
+  ['myPage', homeProduceActiveItem],
+  ['(produceMarathons|fesMarathons|trainingEvents)/{num}/top', transAccumulatedPresent],
+  ['userShops/actions/purchase', transShopPurchase],
+  ['produces/{num}/actions/ready', transUserItem],
+  ['userPresents/{num}/actions/receive', transReceivePresent],
+  ['userMissions/{num}/actions/receive', transReceiveMission],
+  ['userLoginBonuses', transLoginBonus],
+  ['fesTop', transFesReward],
+  ['userSelectLoginBonuses/{num}', selectLoginBonus]
+])
+
+router.patch('produces/{num}/produceItem/consume', useProduceItem)
+
+export { ensureItem, transItem }

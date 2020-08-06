@@ -4,6 +4,7 @@ import replaceText from '../utils/replaceText'
 import { fixWrap, replaceWrap, log } from '../utils/index'
 import { transItem, ensureItem } from './item'
 import config from '../config'
+import { router } from './request'
 
 let missionMaps = null
 let msPrms = null
@@ -178,6 +179,20 @@ const idolRoadForward = async (data) => {
   idolRoadRewards(data.userIdol)
 }
 
-export { reportMission, fesRecomMission, fesRaidMission, idolRoadMission, idolRoadForward,
-  teachingMission, beginnerMission, beginnerMissionComplete }
-export default transMission
+router.get([
+  ['userMissions', transMission],
+  ['fesRaidEvents/{num}/rewards', fesRaidMission],
+  ['userProduces', [teachingMission]],
+  ['userBeginnerMissions/top', beginnerMission],
+  ['idolRoads/top', idolRoadMission],
+  ['missionEvents/{num}/top', [fesRecomMission]]
+])
+
+router.post([
+  ['myPage', [reportMission, beginnerMissionComplete]],
+  ['(produceMarathons|fesMarathons|trainingEvents)/{num}/top', [fesRecomMission]],
+  [['produceTeachings/resume', 'produceTeachings/next'], teachingMission],
+  ['userLectureMissions/{num}/actions/receive', beginnerMission]
+])
+
+router.put('userIdolRoads', idolRoadForward)

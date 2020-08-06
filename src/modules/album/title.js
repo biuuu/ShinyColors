@@ -4,6 +4,7 @@ import { replaceItem } from '../../utils/replaceText'
 import { replaceWrap, log } from '../../utils/index'
 import isString from 'lodash/isString'
 import config from '../../config'
+import { router } from '../request'
 
 let titleMaps
 let nameMap
@@ -110,14 +111,15 @@ const marathonTitle = async (data) => {
   transTitle(data.gameEvent, 'name')
 }
 
-export {
-  ensureTitle,
-  saveTitle,
-  transTitle,
-  storyTitle,
-  albumTopTitle,
-  characterAlbumTitle,
-  userIdolsTitle,
-  userSupportIdolsTitle,
-  marathonTitle
-}
+router.get([
+  [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], userSupportIdolsTitle],
+  [['userIdols/{num}', 'userIdols/statusMax', 'produceTeachingIdols/{num}'], userIdolsTitle],
+  [['characterAlbums', 'album/top'], albumTopTitle],
+])
+
+router.post([
+  ['characterAlbums/characters/{num}', characterAlbumTitle],
+  ['produceMarathons/{num}/top', marathonTitle]
+])
+
+export { ensureTitle, saveTitle, transTitle, storyTitle }

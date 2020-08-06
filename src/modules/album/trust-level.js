@@ -1,4 +1,5 @@
 import { transText } from '../type-text'
+import { router } from '../request'
 
 const albumTrustLevel = async (data) => {
   if (data.voices) {
@@ -12,4 +13,4 @@ const albumTrustLevel = async (data) => {
   }
 }
 
-export default albumTrustLevel
+router.get('characterAlbums/characters/{num}',albumTrustLevel)

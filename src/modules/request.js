@@ -1,26 +1,6 @@
-import { supportSkill, userIdolsSkill, produceExSkillTop, producesActionReadySkill,
-  userFesIdolsSkill, userSptIdolsSkill, reserveUserIdolsSkill, noteResultSkill, produceAbilitiySkill, finishAbility,
-  otherFesIdolSkill, reserveUserSptIdolsSkill, userFesDeck, userRaidDeck, ideaNotesSkill, produceAreaAbilitySkill,
-  userProIdolsSkill, userProSptIdolsSkill, proSkillPanels, produceFinish, producesDecksSkill,
-  fesMatchConcertSkill, resumeGameSkill, resumeRaidGameSkill, auditionSkill, produceResultSkill } from './skill'
-import transMission, { reportMission, fesRecomMission, fesRaidMission, idolRoadMission, idolRoadForward,
-  teachingMission, beginnerMission, beginnerMissionComplete } from './mission'
-import { albumTopTitle, characterAlbumTitle, userIdolsTitle, userSupportIdolsTitle, marathonTitle } from './album/title'
-import { userItemTypes, transShopItem,
-  transUserItem, transShopPurchase, transFesReward, transAccumulatedPresent,
-  transPresentItem, transLoginBonus, transReceivePresent, useProduceItem,
-  transReceiveMission, selectLoginBonus, produceActiveItem, homeProduceActiveItem } from './item'
-import { mypageComments, fesDeckReactions, produceAudition, resumeGamedata, resumeRaidGamedata,
-  trustLevelUp, produceReporterAnswer, topCharacterReaction, helperSupportIdols,
-  produceEndWeek, lessonResult, characterComment, fesMatchConcert } from './type-text'
-import albumTrustLevel from './album/trust-level'
-import { gashaDrawComment, gashaReDrawComment, idolComment } from './album/idol-comment'
-import { produceIdolName, produceEventTitle, homeProduceTitle } from './produce'
+
 import { log } from '../utils/index'
-import collectCardName from '../utils/collectCard'
 import cloneDeep from 'lodash/cloneDeep'
-import isString from 'lodash/isString'
-import isRegExp from 'lodash/isRegExp'
 import { getModule } from './get-module'
 import config from '../config'
 
@@ -40,26 +20,19 @@ const requestLog = (method, color, args, data) => {
   }
 }
 
-const requestRouter = async (data, type, list) => {
+const requestRouter = async (data, type, map) => {
   try {
-    for (let [paths, handles] of list) {
-      if (!Array.isArray(paths)) paths = [paths]
+    for (let [key, params] of map) {
       let pass = false
-      for (let path of paths) {
-        if (isString(path) && path === type) {
-          pass = true
-        } else if (isRegExp(path) && path.test(type)) {
-          pass = true
-        }
+      if (params.type === 'string' && params.key === type) {
+        pass = true
+      } else if (params.type === 'regexp' && params.key.test(type)) {
+        pass = true
       }
       if (pass) {
-        if (!Array.isArray(handles)) handles = [handles]
+        const handles = params.handles
         for (let handle of handles) {
-          if (isString(handle)) {
-            if (handle === 'cardName') collectCardName(data)
-          } else {
-            await handle(data)
-          }
+          await handle(data)
         }
       }
     }
@@ -68,80 +41,65 @@ const requestRouter = async (data, type, list) => {
   }
 }
 
-const requestOfGet = [
-  [[/^userSupportIdols\/\d+$/, /^userSupportIdols\/statusMax/, /^produceTeachingSupportIdols\/\d+$/], [supportSkill, userSptIdolsSkill, userSupportIdolsTitle]],
-  [/^userProduce(Teaching)?SupportIdols\/\d+$/, [supportSkill, userProSptIdolsSkill]],
-  [/^userReserveSupportIdols\/userSupportIdol\/\d+$/, [supportSkill, reserveUserSptIdolsSkill]],
-  [/^userIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
-  [/^userSupportIdols\/\d+\/produceExSkillTop$/, produceExSkillTop],
-  [[/^userIdols\/\d+$/, /^userIdols\/statusMax$/, /^produceTeachingIdols\/\d+$/], [userIdolsSkill, userIdolsTitle]],
-  [[/^userProduce(Teaching)?Idols\/\d+$/, 'userProduceTeachingIdol'], userProIdolsSkill],
-  [/^userReserveIdols\/userIdol\/\d+$/, reserveUserIdolsSkill],
-  [/^userFesIdols\/\d+$/, userFesIdolsSkill],
-  [['userProduces/skillPanels', 'userProduceTeachings/skillPanels'], proSkillPanels],
-  ['userMissions', transMission],
-  [/^fesRaidEvents\/\d+\/rewards$/, fesRaidMission],
-  [['characterAlbums', 'album/top'], albumTopTitle],
-  [['userShops', 'userIdolPieceShops'], transShopItem],
-  [userItemTypes, transUserItem],
-  [[/^userPresents\?limit=/, /^userPresentHistories\?limit=/], transPresentItem],
-  [/gashaGroups\/\d+\/rates/, 'cardName'],
-  ['userProduces', [topCharacterReaction, produceActiveItem, teachingMission]],
-  [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
-  [/earthUsers\/[^\/]+\/userFesIdols\/\d+$/, otherFesIdolSkill],
-  ['userBeginnerMissions/top', beginnerMission],
-  ['userRaidDecks', userRaidDeck],
-  ['idolRoads/top', idolRoadMission],
-  [/^produces\/\d+\/decks$/, producesDecksSkill],
-  ['userProduceAbilities', produceAbilitiySkill],
-  ['userProduceAreas', produceAreaAbilitySkill],
-  [/^gashas\/\d+\/redraws$/, gashaReDrawComment],
-  [/^missionEvents\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]]
-]
+const parseExp = (str) => {
+  const exp = str.replace(/{num}/g, '\\d+')
+    .replace(/{uuid}/g, '[a-f\\d]{8}-([a-f\\d]{4}-){3}[a-f\\d]{12}')
+  return new RegExp(exp)
+}
 
-const requestOfPost = [
-  ['myPage', [reportMission, mypageComments, beginnerMissionComplete, homeProduceActiveItem, homeProduceTitle]],
-  [/^characterAlbums\/characters\/\d+$/, [characterAlbumTitle, albumTrustLevel]],
-  [/^(produceMarathons|fesMarathons|trainingEvents)\/\d+\/top$/, [fesRecomMission, transAccumulatedPresent]],
-  [/userIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, userIdolsSkill],
-  ['userShops/actions/purchase', transShopPurchase],
-  [/produces\/\d+\/actions\/ready/, [transUserItem, producesActionReadySkill]],
-  [/userPresents\/\d+\/actions\/receive/, transReceivePresent],
-  [/userMissions\/\d+\/actions\/receive/, transReceiveMission],
-  ['userLoginBonuses', transLoginBonus],
-  ['fesTop', [transFesReward, fesDeckReactions]],
-  [[/^userProduce(Teaching)?s\/skillPanels\/\d+$/, /^userProduces\/limitedSkills\/\d+$/], proSkillPanels],
-  [/userSupportIdols\/\d+\/produceExSkills\/\d+\/actions\/set/, [ userSptIdolsSkill, supportSkill]],
-  [/^produces\/actions\/(resume|next)$/, [produceEventTitle, ideaNotesSkill, topCharacterReaction, produceEndWeek, resumeGamedata, characterComment, produceAudition, produceReporterAnswer, supportSkill, produceIdolName]],
-  [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill, produceEventTitle]],
-  ['produces/actions/endWeek', produceEndWeek],
-  ['produces/actions/act', [lessonResult, noteResultSkill, produceEventTitle]],
-  [/^fes(Match|Raid)?Concert\/actions\/start$/, [fesMatchConcert, fesMatchConcertSkill]],
-  [/^fes(Match)?Concert\/actions\/resume$/, [resumeGamedata, resumeGameSkill]],
-  ['fesRaidConcert/actions/resume', [resumeRaidGamedata, resumeRaidGameSkill]],
-  ['produces/actions/result', [trustLevelUp, produceResultSkill]],
-  [[/^produce(Teaching)?s\/(\d+\/audition|concert)\/actions\/start$/, /^produceTeachings\/(auditions|concerts)\/start$/], [auditionSkill]],
-  [/^produces\/(\d+\/audition|concert)\/actions\/(start|finish)$/, [produceAudition, characterComment, produceIdolName, finishAbility]],
-  ['userProduceHelperSupportIdols', helperSupportIdols],
-  [['produceTeachings/resume', 'produceTeachings/next'], [teachingMission, supportSkill]],
-  [/^userSelectLoginBonuses\/\d+$/, selectLoginBonus],
-  [/^userLectureMissions\/\d+\/actions\/receive$/, beginnerMission],
-  [/^produceMarathons\/\d+\/top$/, marathonTitle],
-  ['userProduceAbilities', produceAbilitiySkill],
-  [/^characterAlbums\/characters\/\d+$/, idolComment],
-  [/^gashas\/\d+\/actions\/draw$/, gashaDrawComment]
-]
+const routerMaps = {
+  get: new Map(), post: new Map(),
+  patch: new Map(), put: new Map()
+}
 
-const requestOfPatch = [
-  [/^userSupportIdols\/\d+$/, supportSkill],
-  ['userFesDecks', userFesDeck],
-  [/^produces\/\d\/produceItem\/consume$/, useProduceItem]
-]
+const addRouter = (path, handle, map) => {
+  if (!map.has(path)) {
+    const isRegExp = path.includes('{') || path.includes('(')
+    const data = {
+      handles: [],
+      key: isRegExp ? parseExp(path) : path,
+      type: isRegExp ? 'regexp' : 'string'
+    }
+    map.set(path, data)
+  }
+  const data = map.get(path)
+  if (Array.isArray(handle)) {
+    data.handles = data.handles.concat(handle)
+  } else {
+    data.handles.push(handle)
+  }
+}
 
-const requestOfPut = [
-  ['userIdolRoads', idolRoadForward]
-]
+const routerProcess = (paths, handle, map) => {
+  if (!Array.isArray(paths)) {
+    addRouter(paths, handle, map)
+  } else {
+    for (let path of paths) {
+      addRouter(path, handle, map)
+    }
+  }
+}
 
+const routerOf = (type) => (paths, handle) => {
+  const map = routerMaps[type]
+  if (!handle) {
+    const list = paths
+    for (let [_paths, _handle] of list) {
+      routerProcess(_paths, _handle, map)
+    }
+  } else {
+    routerProcess(paths, handle, map)
+  }
+}
+
+const router = {
+  get: routerOf('get'),
+  post: routerOf('post'),
+  patch: routerOf('patch'),
+  put: routerOf('put')
+}
+
+export { requestLog, router }
 export default async function requestHook () {
   const request = await getModule('REQUEST')
 
@@ -153,7 +111,7 @@ export default async function requestHook () {
     if (!type) return res
     let data = res.body
     requestLog('GET', '#009688', args, data)
-    await requestRouter(data, type, requestOfGet)
+    await requestRouter(data, type, routerMaps['get'])
     return res
   }
 
@@ -165,7 +123,7 @@ export default async function requestHook () {
     if (!type) return res
     let data = res.body
     requestLog('PATCH', '#8BC34A', args, data)
-    await requestRouter(data, type, requestOfPatch)
+    await requestRouter(data, type, routerMaps['patch'])
     return res
   }
 
@@ -177,7 +135,7 @@ export default async function requestHook () {
     if (!type) return res
     let data = res.body
     requestLog('POST', '#3F51B5', args, data)
-    await requestRouter(data, type, requestOfPost)
+    await requestRouter(data, type, routerMaps['post'])
     return res
   }
 
@@ -189,9 +147,7 @@ export default async function requestHook () {
     if (!type) return res
     let data = res.body
     requestLog('PUT', '#9C27B0', args, data)
-    await requestRouter(data, type, requestOfPut)
+    await requestRouter(data, type, routerMaps['put'])
     return res
   }
 }
-
-export { requestLog }
