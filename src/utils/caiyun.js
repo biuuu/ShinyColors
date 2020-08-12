@@ -5,7 +5,6 @@ import x64hash128 from './x64hash128'
 let bid = ''
 let uid = ''
 let pid = ''
-let auth = null
 let limited = false
 
 const setBid = () => {
@@ -47,13 +46,13 @@ const getAuth = async () => {
     limited = true
     setBid()
   } else {
+    limited = false
     pid = res.page_id
   }
 }
 
 const translator = async (list, from = 'ja') => {
   await getAuth()
-  await auth
   if (limited) {
     return []
   }
