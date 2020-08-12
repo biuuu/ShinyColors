@@ -55,7 +55,7 @@ const translator = async (list, from = 'ja') => {
   await getAuth()
   await auth
   if (limited) {
-    return ['caiyunoutoflimit']
+    return []
   }
   const res = await request('https://api.interpreter.caiyunai.com/v1/page/translator', {
     cors: true,
