@@ -13,4 +13,4 @@ const albumTrustLevel = async (data) => {
   }
 }
 
-router.get('characterAlbums/characters/{num}',albumTrustLevel)
+router.post('characterAlbums/characters/{num}',albumTrustLevel)
