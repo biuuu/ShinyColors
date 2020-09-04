@@ -19,7 +19,7 @@
     "core-js": "3",
     "fingerprintjs2": "^2.1.0",
     "lodash": "^4.17.19",
-    "papaparse": "^4.6.3",
+    "papaparse": "^5.2.0",
     "qs": "^6.9.1"
   },
   "devDependencies": {
