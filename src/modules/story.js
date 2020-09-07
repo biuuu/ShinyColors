@@ -1,9 +1,9 @@
-import { log, replaceWrap, fixWrap, trim, transSpeaker, uniqueStoryId } from '../utils/index'
+import { log, replaceWrap, fixWrap, trim, uniqueStoryId } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
 import getStory, { getCommStory } from '../store/story'
 import { storyTitle } from './album/title'
-import getName from '../store/name'
+import transSpeaker from './story/speaker'
 import autoTrans from '../utils/translation'
 import { requestLog } from './request'
 import tagText from '../utils/tagText'
@@ -73,11 +73,9 @@ const saveData = (data, name) => {
   storyCache.list = list
 }
 
-const startTrans = (data, storyMap, commMap, nameMap) => {
-  if (!Array.isArray(data)) return
+const startTrans = (data, storyMap, commMap) => {
   const getId = uniqueStoryId()
   data.forEach(item => {
-    transSpeaker(item, nameMap)
     if (item.text) {
       const id = getId(item.id)
       const text = fixWrap(item.text)
@@ -120,6 +118,7 @@ const transStory = async () => {
       type.includes('/produce_communication_televisions/')
     ) {
       try {
+        if (!Array.isArray(res)) return res
         const name = type.replace(/^\/assets\/json\//, '')
         let storyMap
         if (config.story === 'edit') {
@@ -134,12 +133,14 @@ const transStory = async () => {
         }
         if (storyMap) {
           const commMap = await getCommStory()
-          const nameMap = await getName()
-          startTrans(res, storyMap, commMap, nameMap)
+          startTrans(res, storyMap, commMap)
         } else if (config.auto === 'on') {
           await autoTrans(res, name)
         } else {
           await autoTrans(res, name, false, true)
+        }
+        for (let item of res) {
+          await transSpeaker(item)
         }
       } catch (e) {
         log(e)

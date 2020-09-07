@@ -119,18 +119,6 @@ const replaceQuote = (str) => {
     .replace(/‘([^']+)'/g, '“$1”')
 }
 
-const speakerList = ['プロデューサー', '審査員']
-const transSpeaker = (item, nameMap) => {
-  if (item.speaker) {
-    const speaker = trim(item.speaker)
-    // I can't remember exactly why I wrote it, but if I didn't, it would be buggy.
-    // So the name translation is actually done by the update text Hook.
-    if (speakerList.includes(speaker) && nameMap.has(speaker)) {
-      item.speaker = tagText(nameMap.get(speaker))
-    }
-  }
-}
-
 const tagStoryText = (data) => {
   data.forEach(item => {
     if (item.text && !item.text.startsWith('\u200b')) {
@@ -170,5 +158,5 @@ const sess = (key, data) => {
 export {
   trim, trimWrap, fixWrap, isDomain, log, log2,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
-  transSpeaker, sleep, tagStoryText, sess, uniqueStoryId, isNewVersion
+  sleep, tagStoryText, sess, uniqueStoryId, isNewVersion
 }

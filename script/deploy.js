@@ -53,7 +53,7 @@ const md5File = async () => {
   const data = {}
   const doMd5File = async (cwd) => {
     const files = await glob.promise('{image/**/*,font/*,etc/*,*}.{csv,json,woff2,png,jpg}', {
-      nodir: true, cwd: path.resolve(process.cwd(), cwd) 
+      nodir: true, cwd: path.resolve(process.cwd(), cwd)
     })
     const prms = files.map(file => {
       return md5(path.resolve(process.cwd(), cwd, file)).then(hash => {
@@ -65,7 +65,7 @@ const md5File = async () => {
 
   await doMd5File('./dist/data/')
   await doMd5File('./dist/')
-  
+
   return data
 }
 
@@ -100,7 +100,7 @@ const buildStory = async (DATA_PATH) => {
   await fse.writeJSON('./dist/story.json', storyData)
 }
 
-const etcFiles = ['image', 'item', 'support-skill', 'mission-re']
+const etcFiles = ['image', 'item', 'support-skill', 'mission-re', 'speaker-icon']
 const DATA_PATH = './data/'
 const start = async () => {
   await fse.emptyDir('./dist/data/')
@@ -121,10 +121,10 @@ const start = async () => {
 
   console.log('file md5...')
   const hashes = await md5File()
-  await fse.writeJSON('./dist/manifest.json', { 
-    hash, version, hashes, moduleId, 
+  await fse.writeJSON('./dist/manifest.json', {
+    hash, version, hashes, moduleId,
     cyweb_token, trans_api, language,
-    date: getDate(8) 
+    date: getDate(8)
   })
 
   if (process.env.PUBLISH === 'skip') {

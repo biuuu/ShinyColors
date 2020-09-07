@@ -1,16 +1,8 @@
-var log
-if (!log) {
-  const iframe = document.createElement('iframe')
-  iframe.style.display = 'none'
-  document.body.appendChild(iframe)
-  log = iframe.contentWindow.console.log
-}
-
 const getModule = async (name, condition) => {
-  for (let i = 1; i < 500; i++) {
+  for (let i = 1; i < 1500; i++) {
     let module = _require(i)
     if (module && condition(module)) {
-      log(`${name}: ${i}`)
+      console.info(`${name}: ${i}`)
       break
     }
   }
@@ -24,4 +16,8 @@ getModule('PHRASE', (module) => {
 })
 getModule('SCENARIO', (module) => {
   return module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
+})
+
+getModule('SPEAKER', (module) => {
+  return module.default && module.default['getCharacterBackLogIconId']
 })

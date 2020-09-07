@@ -1,4 +1,3 @@
-import { log } from '../utils/'
 import { getHash } from '../utils/fetch'
 
 let require = null
@@ -15,6 +14,9 @@ const conditions = new Map([
   }],
   ['PHRASE', (module) => {
     return module && module.default && module.default._polyglot && module.default._polyglot.phrases
+  }],
+  ['SPEAKER', (module) => {
+    return module && module.default && module.default.getCharacterBackLogIconId
   }]
 ])
 
@@ -22,7 +24,8 @@ const resultMap = new Map([
   ['AOBA', (module) => module],
   ['SCENARIO', (module) => module.default],
   ['REQUEST', (module) => module],
-  ['PHRASE', (module) => module.default._polyglot.phrases]
+  ['PHRASE', (module) => module.default._polyglot.phrases],
+  ['SPEAKER', (module) => module.default]
 ])
 
 const isReady = () => {
@@ -44,6 +47,7 @@ Function.prototype.call = new Proxy(originCall, {
     if (args?.[3]?.toString) {
       if (args[3].toString() === 'function t(n){if(r[n])return r[n].exports;var o=r[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}') {
         require = args[3]
+        if (ENVIRONMENT === 'development') unsafeWindow._require = require
         Function.prototype.call = originCall
       }
     }

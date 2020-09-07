@@ -2,9 +2,6 @@
   "AOBA": 0,
   "REQUEST": 4,
   "PHRASE": 6,
-  "SCENARIO": 160,
-  "INJECT": {
-    "source": ["var n=window.csobb3pncbpccs;", "Object.freeze({addHeader:"],
-    "result": ["var n=window.csobb3pncbpccs;window._require=t;", "({addHeader:"]
-  }
+  "SCENARIO": 161,
+  "SPEAKER": 610
 }

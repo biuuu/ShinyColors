@@ -1,8 +1,7 @@
 import isString from 'lodash/isString'
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, log, log2, replaceQuote, fixWrap, transSpeaker, replaceWrap, tagStoryText, sess } from '../utils/index'
+import { replaceWords, log, log2, replaceQuote, fixWrap, replaceWrap, tagStoryText, sess } from '../utils/index'
 import { fetchInfo } from './fetch'
-import getName from '../store/name'
 import tagText from './tagText'
 import { getCommStory } from '../store/story'
 import getTypeTextMap from '../store/typeText'
@@ -166,7 +165,7 @@ const autoTrans = async (data, name, printText, skip = false) => {
   } else {
     let transApi = fetchInfo.data.trans_api
     let transList = []
-    
+
     if (config.auto === 'on' && !skip) {
       if (transApi === 'caiyun') {
         let fixedTextList = await preFix(textList)
@@ -196,13 +195,9 @@ const autoTrans = async (data, name, printText, skip = false) => {
       _trans = autoWrap(_trans, 8)
     }
     _trans = replaceQuote(_trans)
-    
+
     if (idx === 0 && !printText) _trans = `${_trans} ☁️`
     data[index][key] = tagText(_trans)
-  })
-  const nameMap = await getName()
-  data.forEach(item => {
-    transSpeaker(item, nameMap)
   })
 
   tagStoryText(data)
