@@ -85,7 +85,7 @@ const findModule = (id, conditionFunc) => {
 const getModule = async (name) => {
   const { moduleId } = await getHash
   const md = findModule(moduleId[name], conditions.get(name))
-  return resultMap.get(name)(md)
+  return md ? resultMap.get(name)(md) : null
 }
 
 export {
