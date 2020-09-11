@@ -11,7 +11,7 @@
 ## 简介
 安装插件：[说明](https://github.com/biuuu/ShinyColors/blob/master/src/README.md)
 
-提交翻译：[说明](https://github.com/ShinyGroup/SCTranslationData)
+提交翻译：[说明](https://github.com/ShinyColors/blob/master/data/README.md)
 
 ## Devlopment
 ```bash
