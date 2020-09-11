@@ -5,7 +5,22 @@
 
 游戏地址：[直接打开](https://shinycolors.enza.fun/home) 或帮忙点下我的 [招待链接](https://go.enza.fun/YLZXbw) 来开始游戏。
 
-如果是用手机，可以安装支持用户脚本的浏览器，使用下面的代码。
+如果是用手机，可以使用支持用户脚本的浏览器来安装插件。
+
+已知支持用户脚本的浏览器
+- iOS: Alook
+- Android: Kiwi
+
+Kiwi浏览器安装插件的方法跟PC一致，先安装Tampermonkey扩展，再点击脚本地址添加用户脚本
+
+Alook可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html)
+
+另外Alook也可以按下面的步骤自行添加插件：
+- 设置 -> 自定义设置 -> JavaScript扩展 
+- 点加号 -> 新建被动扩展
+- 名称随便填，匹配类型选域名，匹配值`shinycolors.enza.fun`，运行时间尽早
+
+JavaScript代码栏里，填写如下代码：
 ```javascript
 (function(){
   const script = document.createElement('script');
@@ -13,11 +28,15 @@
   document.head.appendChild(script);
 }())
 ```
-已知支持用户脚本的浏览器
-- iOS: Alook
-- Android: Kiwi
 
-Alook也可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html)
+**使用插件提取文本和预览翻译**
+
+插件提供了提取剧情文本并预览的功能，如果你经常录翻译视频，可以考虑使用这个功能节省手动添加字幕的步骤。
+
+详情查看 https://github.com/biuuu/ShinyColors/blob/master/data/README.md
+
+将自己的翻译录成视频并没有任何限制，但录制他人的翻译前需要取得译者的同意。
+
 
 **关于机翻**
 
