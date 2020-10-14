@@ -44,7 +44,7 @@ const requestRouter = async (data, type, map) => {
 const parseExp = (str) => {
   const exp = str.replace(/{num}/g, '\\d+')
     .replace(/{uuid}/g, '[a-f\\d]{8}-([a-f\\d]{4}-){3}[a-f\\d]{12}')
-  return new RegExp(exp)
+  return new RegExp(`^${exp}$`)
 }
 
 const routerMaps = {
