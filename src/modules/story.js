@@ -113,6 +113,7 @@ const transStory = async () => {
       type.includes('/produce_communication_promise_results/') ||
       type.includes('/game_event_communications/') ||
       type.includes('/special_communications/') ||
+      type.includes('/mypage_communications/') ||
       type.includes('/produce_communication_cheers/') ||
       type.includes('/produce_communication_auditions/') ||
       type.includes('/produce_communication_televisions/')
