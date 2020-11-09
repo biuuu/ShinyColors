@@ -8,7 +8,7 @@ const produceIdolName = async (data) => {
   if (data.userProduceIdol) {
     const char = data.userProduceIdol.userIdol.idol.character
     if (nameMap.has(char.name)) {
-      char.name = nameMap.get(char.name)
+      char.name = tagText(nameMap.get(char.name))
     }
     if (nameMap.has(char.firstName)) {
       char.firstName = tagText(nameMap.get(char.firstName))
