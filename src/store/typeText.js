@@ -3,6 +3,7 @@ import parseCsv from '../utils/parseCsv'
 import { getLocalData, setLocalData } from './index'
 import { trimWrap } from '../utils/index'
 import { getCommStory } from './story'
+import getName from './name'
 
 let typeTextMap = new Map()
 let loaded = false
@@ -25,7 +26,8 @@ const getTypeTextMap = async () => {
       }
     })
     const commStoryMap = await getCommStory()
-    typeTextMap = new Map([...commStoryMap, ...typeTextMap])
+    const nameMap = await getName()
+    typeTextMap = new Map([...commStoryMap, ...typeTextMap, ...nameMap])
     loaded = true
   }
 

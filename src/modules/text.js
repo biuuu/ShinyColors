@@ -66,7 +66,9 @@ const fontCheck = (text, style, isType = false) => {
   } else if (text.trim()) {
     if (isType) {
       _text = textInMap(text, typeTextMap, style)
-      setTypeText(text)
+      if (_text === text) {
+        setTypeText(text)
+      }
     } else if (!isTyping(text) && !text.startsWith('\u200c')) {
       _text = textInMap(text, commMap, style)
     }
