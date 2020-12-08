@@ -67,7 +67,9 @@ const transSpeaker = async (item) => {
     sepList.forEach(sep => {
       text = splitText(text, sep, nameMap)
     })
-    item.speaker = tagText(text)
+    if (text !== item.speaker) {
+      item.speaker = tagText(text)
+    }
   }
 }
 
