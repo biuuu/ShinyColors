@@ -1,5 +1,4 @@
 import isString from 'lodash/isString'
-import tagText from './tagText'
 import config from '../config'
 
 const isDomain = (str) => {

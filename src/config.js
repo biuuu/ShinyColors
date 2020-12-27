@@ -2,6 +2,7 @@ import isString from 'lodash/isString'
 import isBoolean from 'lodash/isBoolean'
 import isPlainObject from 'lodash/isPlainObject'
 import { version } from '../package.json'
+import autoResize from './utils/autoResize'
 
 const PREVIEW_COUNT = 5
 
@@ -141,6 +142,10 @@ const menuCommand = {
     callback: () => {
       window.open(`${config.origin}/ShinyColors.user.js`)
     }
+  },
+  resize: {
+    id: 0, title: '调整窗口尺寸',
+    callback: () => autoResize(10)
   }
 }
 
@@ -171,7 +176,7 @@ const setGMMenuCommand = (type) => {
 
 const setAllGMMenuCommand = () => {
   if (!window.GM_registerMenuCommand || !window.GM_unregisterMenuCommand) return
-  const menuCommandList = ['update', 'bgm', 'story', 'origin', 'auto', 'dev']
+  const menuCommandList = ['update', 'bgm', 'story', 'origin', 'auto', 'dev', 'resize']
   menuCommandList.forEach(type => {
     setGMMenuCommand(type)
   })
