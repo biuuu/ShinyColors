@@ -35,12 +35,9 @@ const start = async () => {
   }
 }
 
-if (document.readyState != 'loading') {
+let win = (window.unsafeWindow || window)
+if (win.document.readyState != 'loading') {
   start()
 } else {
-  if (window.unsafeWindow) {
-    window.unsafeWindow.addEventListener('DOMContentLoaded', start)
-  } else {
-    window.addEventListener('DOMContentLoaded', start)
-  }
+  win.addEventListener('DOMContentLoaded', start)
 }
