@@ -32,13 +32,25 @@ const isReady = () => {
   return !!require
 }
 
-const originFreeze = Object.freeze
+// const originFreeze = Object.freeze
 
-Object.freeze = new Proxy(originFreeze, {
-  apply (target, self, [data]) {
-    return data
+// Object.freeze = new Proxy(originFreeze, {
+//   apply (target, self, [data]) {
+//     return data
+//   }
+// })
+let unfreezeflag = false
+const tryUnfreeze = (id) => {
+  if (unfreezeflag) return
+  unfreezeflag = true
+  for (let key in require) {
+    const obj = require[key]
+    if (obj && obj[0]?.exports?.loaders) {
+      obj[id].exports = Object.assign({}, obj[id].exports)
+      return obj[id].exports
+    }
   }
-})
+}
 
 const originCall = Function.prototype.call
 let win = { Reflect: window.Reflect }
@@ -72,19 +84,24 @@ const setIdList = (id, offset) => {
 const findModule = (id, conditionFunc) => {
   let idList = setIdList(id, OFFSET)
   let module
+  let realId
   for (let i = 0; i < idList.length; i++) {
     let _module = require(idList[i])
     if (conditionFunc(_module)) {
       module = _module
+      realId = idList[i]
       break
     }
   }
-  return module
+  return [module, realId]
 }
 
 const getModule = async (name) => {
   const { moduleId } = await getHash
-  const md = findModule(moduleId[name], conditions.get(name))
+  let [md, id] = findModule(moduleId[name], conditions.get(name))
+  if (name === 'REQUEST') {
+    md = tryUnfreeze(id)
+  }
   return md ? resultMap.get(name)(md) : null
 }
 
