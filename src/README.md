@@ -1,5 +1,5 @@
 ## 使用
-1. 建议使用 Chrome，首先安装 [Tampermonkey](https://tampermonkey.net/) 扩展
+1. 建议使用 Chrome，首先安装 [Violentmonkey](https://violentmonkey.github.io/get-it) 扩展
 2. 扩展安装完成后，点击脚本的地址 https://www.shiny.fun/ShinyColors.user.js ，根据扩展的提示安装脚本
 3. 回到游戏页面刷新
 
@@ -11,12 +11,12 @@
 - iOS: Alook
 - Android: Kiwi
 
-Kiwi浏览器安装插件的方法跟PC一致，先安装Tampermonkey扩展，再点击脚本地址添加用户脚本
+Kiwi浏览器安装插件的方法跟PC一致，先安装Violentmonkey扩展，再点击脚本地址添加用户脚本
 
 Alook可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html)
 
 另外Alook也可以按下面的步骤自行添加插件：
-- 设置 -> 自定义设置 -> JavaScript扩展 
+- 设置 -> 自定义设置 -> JavaScript扩展
 - 点加号 -> 新建被动扩展
 - 名称随便填，匹配类型选域名，匹配值`shinycolors.enza.fun`，运行时间尽早
 
