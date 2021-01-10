@@ -1,6 +1,6 @@
 let win = (window.unsafeWindow || window)
-const th = 640
-const tw = 1136
+const th = Math.floor(640 / win.devicePixelRatio)
+const tw = Math.floor(1136 / win.devicePixelRatio)
 
 const resize = () => {
   let ih = win.outerHeight
