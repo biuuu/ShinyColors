@@ -1,6 +1,6 @@
 import isString from 'lodash/isString'
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
-import { replaceWords, log, log2, replaceQuote, fixWrap, replaceWrap, tagStoryText, sess } from '../utils/index'
+import { replaceWords, log, log2, replaceQuote, fixWrap, replaceWrap, storyTextLogStyle, tagStoryText, sess } from '../utils/index'
 import { fetchInfo } from './fetch'
 import tagText from './tagText'
 import { getCommStory } from '../store/story'
@@ -181,11 +181,12 @@ const autoTrans = async (data, name, printText, skip = false) => {
   if (!hasCache && (config.dev || !name || printText)) {
     let mergedList = []
     textList.forEach((text, index) => {
-      mergedList.push(replaceWrap(text), fixedTransList[index])
+      mergedList.push([replaceWrap(text), replaceWrap(fixedTransList[index])])
     })
     let _log = log
     if (!name || printText) _log = log2
-    _log(mergedList.join('\n'))
+    const text = storyTextLogStyle(mergedList)
+    _log(text)
   }
   fixedTransList.forEach((trans, idx) => {
     let _trans = trans

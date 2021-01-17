@@ -1,5 +1,6 @@
 import isString from 'lodash/isString'
 import config from '../config'
+import { restoreText } from './tagText'
 
 const isDomain = (str) => {
   if (!/^https?:\/\//.test(str)) return false
@@ -76,6 +77,30 @@ const randomSep = (length = 2) => {
     str += String.fromCharCode(Math.floor(Math.random() * 16 + 65520))
   }
   return str
+}
+
+const storyTextLogStyle = (list) => {
+  // let count = 0
+  let text = list.map(item => {
+    if (item[1]) {
+      // count++
+      item[1] = restoreText(item[1])
+      return item.join('\n') + '\n'
+    }
+    return item[0]
+  }).join('\n')
+  // count += list.length
+  // text = `%c${text}%c`
+  // const styleList = []
+  // for (let i = 0; i < count; i++) {
+  //   if (i % 2 === 0) {
+  //     styleList.push(`background-color:#ead2de;padding:0 4px`)
+  //   } else {
+  //     styleList.push(`background-color:#c7d9bd;padding:0 4px`)
+  //   }
+  // }
+  // styleList.push('')
+  return text
 }
 
 const isNewVersion = (newVer = '0.0.0', oldVer = '0.0.0') => {
@@ -157,5 +182,5 @@ const sess = (key, data) => {
 export {
   trim, trimWrap, fixWrap, isDomain, log, log2,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
-  sleep, tagStoryText, sess, uniqueStoryId, isNewVersion
+  sleep, tagStoryText, sess, uniqueStoryId, isNewVersion, storyTextLogStyle
 }
