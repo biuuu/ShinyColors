@@ -12,7 +12,7 @@ const server = http.createServer((request, response) => {
   })
 })
 
-server.listen(15944, () => {
+server.listen(15944, async () => {
   console.log('Local server at http://127.0.0.1:15944')
-  open('http://localhost:15944/ShinyColors.user.js')
+  await open('http://localhost:15944/ShinyColors.user.js')
 })
