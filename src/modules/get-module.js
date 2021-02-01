@@ -72,7 +72,7 @@ Function.prototype.call = new Proxy(originCall, {
   }
 })
 
-let OFFSET = 10
+let OFFSET = 20
 const setIdList = (id, offset) => {
   let start = id - offset
   let end = id + offset
