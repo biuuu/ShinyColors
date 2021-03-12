@@ -1,5 +1,5 @@
 const getModule = async (name, condition) => {
-  for (let i = 1; i < 1500; i++) {
+  for (let i = 1; i < 200; i++) {
     let module = _require(i)
     if (module && condition(module)) {
       console.info(`${name}: ${i}`)
