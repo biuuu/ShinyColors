@@ -62,10 +62,12 @@ let win = { Reflect: window.Reflect }
 Function.prototype.call = new Proxy(originCall, {
   apply (target, self, args) {
     if (args?.[3]?.toString) {
-      if (args[3].toString() === 'function o(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,o),r.l=!0,r.exports}') {
-        require = args[3]
-        if (ENVIRONMENT === 'development') unsafeWindow._require = require
-        Function.prototype.call = originCall
+      if (args[3].toString() === 'function i(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,i),r.l=!0,r.exports}') {
+        if (args[3].caller?.arguments?.[0]?.length > 1000) {
+          require = args[3]
+          if (ENVIRONMENT === 'development') unsafeWindow._require = require
+          Function.prototype.call = originCall
+        }
       }
     }
     return win.Reflect.apply(target, self, args)
