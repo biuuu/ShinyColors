@@ -46,7 +46,8 @@
 `(function () {
     const script = document.createElement('script');
     script.setAttribute('src', 'https://www.shiny.fun/ShinyColors.user.js');
-    document.head.appendChild(script);
+    script.setAttribute('defer', true);
+    document.documentElement.appendChild(script);
 })();`
             );
             var appJson = {
