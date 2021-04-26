@@ -1,3 +1,4 @@
+import './utils/fixModule'
 import './modules/index'
 import transPhrase from './modules/phrase'
 import watchText from './modules/text'
