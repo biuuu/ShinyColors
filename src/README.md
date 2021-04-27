@@ -17,7 +17,7 @@
 - iOS: Alook
 - Android: Kiwi
 
-Alook也可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html)
+Alook也可以直接通过这个网址安装插件：[https://www.shiny.fun/install.alook](https://www.shiny.fun/install.alook)
 
 **关于机翻**
 

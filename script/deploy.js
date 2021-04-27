@@ -114,6 +114,8 @@ const start = async () => {
   console.log('move install.html...')
   await fse.copy('./script/install.html', './dist/install.html')
 
+  await fse.copy('./script/install.alook', './dist/install.alook')
+
   console.log('move etc...')
   for (let fileName of etcFiles) {
     await fse.move(`./dist/data/etc/${fileName}.csv`, `./dist/data/${fileName}.csv`, { overwrite: true })
