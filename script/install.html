@@ -44,10 +44,29 @@
             var base64 = new Base64();
             var codeStr = base64.encode(
 `(function () {
-    const script = document.createElement('script');
+  let scriptContent = '';
+  let version = '';
+  const script = document.createElement('script');
+  try {
+    scriptContent = localStorage.getItem('sczh-script');
+    version = localStorage.getItem('sczh-version');
+  } catch (e) {}
+  if (!scriptContent) {
     script.setAttribute('src', 'https://www.shiny.fun/ShinyColors.user.js');
     script.setAttribute('defer', true);
-    document.documentElement.appendChild(script);
+  } else {
+    script.textContent = scriptContent;
+  }
+  document.documentElement.appendChild(script);
+  fetch('https://www.shiny.fun/manifest.json')
+    .then(res => res.json())
+    .then(async function (data) {
+      if (data.version !== version) {
+        const text = await (await fetch('https://www.shiny.fun/ShinyColors.user.js')).text();
+        localStorage.setItem('sczh-script', text);
+        localStorage.setItem('sczh-version', data.version);
+      }
+    })
 })();`
             );
             var appJson = {
