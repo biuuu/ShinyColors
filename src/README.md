@@ -15,6 +15,8 @@ Kiwi浏览器安装插件的方法跟PC一致，先安装Violentmonkey扩展，�
 
 Alook可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html)
 
+注意需要在弹出的安装窗口，将 “运行时间” 改为 “尽早”。
+
 另外Alook也可以按下面的步骤自行添加插件：
 - 设置 -> 自定义设置 -> JavaScript扩展
 - 点加号 -> 新建被动扩展
@@ -22,11 +24,31 @@ Alook可以直接通过这个网址安装插件：[https://www.shiny.fun/install
 
 JavaScript代码栏里，填写如下代码：
 ```javascript
-(function(){
+(function () {
+  let scriptContent = '';
+  let version = '';
   const script = document.createElement('script');
-  script.src = 'https://www.shiny.fun/ShinyColors.user.js';
-  document.head.appendChild(script);
-}())
+  try {
+    scriptContent = localStorage.getItem('sczh-script');
+    version = localStorage.getItem('sczh-version');
+  } catch (e) {}
+  if (!scriptContent) {
+    script.setAttribute('src', 'https://www.shiny.fun/ShinyColors.user.js');
+    script.setAttribute('defer', true);
+  } else {
+    script.textContent = scriptContent;
+  }
+  document.documentElement.appendChild(script);
+  fetch('https://www.shiny.fun/manifest.json')
+    .then(res => res.json())
+    .then(async function (data) {
+      if (data.version !== version) {
+        const text = await (await fetch('https://www.shiny.fun/ShinyColors.user.js')).text();
+        localStorage.setItem('sczh-script', text);
+        localStorage.setItem('sczh-version', data.version);
+      }
+    })
+})();
 ```
 
 **使用插件提取文本和预览翻译**
