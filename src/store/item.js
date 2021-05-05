@@ -1,6 +1,4 @@
-import fetchData from '../utils/fetch'
-import parseCsv from '../utils/parseCsv'
-import { getLocalData, setLocalData } from './index'
+import { getList } from './index'
 import { trimWrap, trim } from '../utils/index'
 
 const itemMap = new Map()
@@ -10,12 +8,7 @@ let loaded = false
 
 const getItem = async () => {
   if (!loaded) {
-    let csv = await getLocalData('item')
-    if (!csv) {
-      csv = await fetchData('/data/item.csv')
-      setLocalData('item', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('item')
     list.forEach(item => {
       if (item?.text) {
         const text = trimWrap(item.text)

@@ -1,7 +1,5 @@
-import fetchData from '../utils/fetch'
-import parseCsv from '../utils/parseCsv'
 import parseRegExp from '../utils/parseRegExp'
-import { getLocalData, setLocalData } from './index'
+import { getList } from './index'
 import { trim, trimWrap, pureRE } from '../utils/index'
 import sortWords from '../utils/sortWords'
 import getItem from './item'
@@ -15,12 +13,7 @@ let loaded = false
 
 const getMission = async (full = false) => {
   if (!loaded) {
-    let csv = await getLocalData('mission-re')
-    if (!csv) {
-      csv = await fetchData('/data/mission-re.csv')
-      setLocalData('mission-re', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('mission-re')
     const nounArr = []
     const nameArr = []
     const noteArr = []

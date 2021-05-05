@@ -1,6 +1,8 @@
 import config from '../config'
-import { getHash } from '../utils/fetch'
-import { isNewVersion } from '../utils/'
+import fetchData, { getHash } from '../utils/fetch'
+import { isNewVersion, trimWrap } from '../utils/'
+import parseCsv from '../utils/parseCsv'
+import sortWords from '../utils/sortWords'
 
 let data = null
 
@@ -56,4 +58,51 @@ const setLocalData = (type, value) => {
   }
 }
 
-export { getLocalData, setLocalData }
+const listMap = new Map()
+const getList = async (name, path) => {
+  const csvPath = path || name
+  if (listMap.has(name)) {
+    return listMap.get(name)
+  }
+  let csv = await getLocalData(name)
+  if (!csv) {
+    csv = await fetchData(`/data/${csvPath}.csv`)
+    setLocalData(name, csv)
+  }
+  const list = parseCsv(csv)
+  listMap.set(name, list)
+  return list
+}
+
+const commonStore = (option) => {
+  const dataMap = new Map()
+  let loaded = false
+
+  const { name, path } = option
+  const keys = option.keys || {}
+  const textKey = keys.text || 'text'
+  const transKey = keys.trans || 'trans'
+
+  const getData = async () => {
+    if (!loaded) {
+      const list = await getList(name, path)
+      if (option.sort) {
+        sortWords(list, option.sort)
+      }
+      list.forEach(item => {
+        const text = trimWrap(item[textKey])
+        const trans = trimWrap(item[transKey], true)
+        if (text && trans && text !== trans) {
+          dataMap.set(text, trans)
+        }
+      })
+      loaded = true
+    }
+    return dataMap
+  }
+
+  return getData
+}
+
+
+export { getLocalData, setLocalData, getList, commonStore }

@@ -1,6 +1,6 @@
 import fetchData from '../utils/fetch'
 import parseCsv from '../utils/parseCsv'
-import { getLocalData, setLocalData } from './index'
+import { getList, getLocalData, setLocalData } from './index'
 import { trimWrap, trim, uniqueStoryId } from '../utils/index'
 import tagText from '../utils/tagText'
 
@@ -64,12 +64,7 @@ const getStory = async (name) => {
 
 const getCommStory = async () => {
   if (!commStoryLoaded) {
-    let csv = await getLocalData('comm-story')
-    if (!csv) {
-      csv = await fetchData('/data/comm-story.csv')
-      setLocalData('comm-story', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('comm-story')
     list.forEach(item => {
       if (item?.text) {
         const text = trimWrap(item.text)

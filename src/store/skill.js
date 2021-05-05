@@ -1,6 +1,4 @@
-import fetchData from '../utils/fetch'
-import parseCsv from '../utils/parseCsv'
-import { getLocalData, setLocalData } from './index'
+import { getList } from './index'
 import { trim, pureRE, trimWrap } from '../utils/index'
 import sortWords from '../utils/sortWords'
 import parseRegExp from '../utils/parseRegExp'
@@ -19,12 +17,7 @@ const brackets = (str) => {
 const getSupportSkill = async () => {
   const { expMap, nounMap, nounArr, loaded } = supportSkillCache
   if (!loaded) {
-    let csv = await getLocalData('support-skill')
-    if (!csv) {
-      csv = await fetchData('/data/support-skill.csv')
-      setLocalData('support-skill', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('support-skill')
     const reMap = new Map()
     sortWords(list, 'text').forEach(item => {
       if (item?.text) {
@@ -65,12 +58,7 @@ const getSkill = async () => {
   const { expMap, nounMap, textMap, nameMap, otherMap,
      nounArr, nameArr, otherArr, loaded } = skillCache
   if (!loaded) {
-    let csv = await getLocalData('skill')
-    if (!csv) {
-      csv = await fetchData('/data/skill.csv')
-      setLocalData('skill', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('skill')
     const reMap = new Map()
     sortWords(list, 'text').forEach(item => {
       if (item?.text) {

@@ -1,6 +1,4 @@
-import fetchData from '../utils/fetch'
-import parseCsv from '../utils/parseCsv'
-import { getLocalData, setLocalData } from './index'
+import { getList } from './index'
 import { trimWrap } from '../utils/index'
 import tagText from '../utils/tagText'
 
@@ -9,12 +7,7 @@ let loaded = false
 
 const getPhrase = async (full = false) => {
   if (!loaded) {
-    let csv = await getLocalData('phrase')
-    if (!csv) {
-      csv = await fetchData('/data/phrase.csv')
-      setLocalData('phrase', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('phrase')
     list.forEach(item => {
       if (item?.id) {
         const id = trimWrap(item.id)

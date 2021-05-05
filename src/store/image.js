@@ -1,6 +1,4 @@
-import fetchData from '../utils/fetch'
-import parseCsv from '../utils/parseCsv'
-import { getLocalData, setLocalData } from './index'
+import { getList } from './index'
 import { trim } from '../utils/index'
 
 const imageMap = new Map()
@@ -8,12 +6,7 @@ let loaded = false
 
 const getImage = async () => {
   if (!loaded) {
-    let csv = await getLocalData('image')
-    if (!csv) {
-      csv = await fetchData('/data/image.csv')
-      setLocalData('image', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('image')
     list.forEach(item => {
       if (item?.name) {
         const name = trim(item.name)

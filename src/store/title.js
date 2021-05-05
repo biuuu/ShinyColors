@@ -1,6 +1,4 @@
-import fetchData from '../utils/fetch'
-import parseCsv from '../utils/parseCsv'
-import { getLocalData, setLocalData } from './index'
+import { getList } from './index'
 import { trimWrap, trim } from '../utils/index'
 import parseRegExp from '../utils/parseRegExp'
 
@@ -11,12 +9,7 @@ let loaded = false
 
 const getTitle = async () => {
   if (!loaded) {
-    let csv = await getLocalData('title')
-    if (!csv) {
-      csv = await fetchData('/data/title.csv')
-      setLocalData('title', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('title')
     list.forEach(item => {
       if (item?.text) {
         const text = trimWrap(item.text)

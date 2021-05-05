@@ -1,6 +1,4 @@
-import fetchData from '../utils/fetch'
-import parseCsv from '../utils/parseCsv'
-import { getLocalData, setLocalData } from './index'
+import { getList } from './index'
 import { trim } from '../utils/index'
 
 const iconMap = new Map()
@@ -9,12 +7,7 @@ let loaded = false
 
 const getSpeakerIcon = async () => {
   if (!loaded) {
-    let csv = await getLocalData('speaker-icon')
-    if (!csv) {
-      csv = await fetchData('/data/speaker-icon.csv')
-      setLocalData('speaker-icon', csv)
-    }
-    const list = parseCsv(csv)
+    const list = await getList('speaker-icon')
     list.forEach(item => {
       let { name, id, type } = item
       name = trim(name)
