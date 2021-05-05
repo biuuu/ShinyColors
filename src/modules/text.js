@@ -82,7 +82,9 @@ export default async function watchText () {
   try {
     commMap = await getCommMap()
     typeTextMap = await getTypeTextMap()
-  } catch (e) {}
+  } catch (e) {
+    debugger
+  }
 
   // watch typeText
   const originTypeText = aoba.Text.prototype.typeText

@@ -2,6 +2,7 @@ import { getList } from './index'
 import { trim, pureRE, trimWrap } from '../utils/index'
 import sortWords from '../utils/sortWords'
 import parseRegExp from '../utils/parseRegExp'
+import { getIdolName } from './name'
 
 const supportSkillCache = {
   expMap: new Map(),
@@ -55,10 +56,12 @@ const skillCache = {
 }
 
 const getSkill = async () => {
-  const { expMap, nounMap, textMap, nameMap, otherMap,
+  let { expMap, nounMap, textMap, nameMap, otherMap,
      nounArr, nameArr, otherArr, loaded } = skillCache
   if (!loaded) {
     const list = await getList('skill')
+    const idolMap = await getIdolName()
+    nameArr = [...idolMap.keys()]
     const reMap = new Map()
     sortWords(list, 'text').forEach(item => {
       if (item?.text) {
@@ -83,6 +86,9 @@ const getSkill = async () => {
         }
       }
     })
+
+    skillCache.nameMap = new Map([...nameMap, ...idolMap])
+    nameMap = skillCache.nameMap
     const expList = [
       { re: /\$noun/g, exp: `(${nounArr.join('|')})` },
       { re: /\$name/g, exp: `(${nameArr.join('|')})` },

@@ -3,6 +3,7 @@ import { getList } from './index'
 import { trim, trimWrap, pureRE } from '../utils/index'
 import sortWords from '../utils/sortWords'
 import getItem from './item'
+import { getIdolName } from './name'
 
 let textMap = new Map()
 let expMap = new Map()
@@ -14,8 +15,9 @@ let loaded = false
 const getMission = async (full = false) => {
   if (!loaded) {
     const list = await getList('mission-re')
+    const idolMap = await getIdolName(false)
     const nounArr = []
-    const nameArr = []
+    const nameArr = [...idolMap.keys()]
     const noteArr = []
     const reMap = new Map()
     sortWords(list, 'text').forEach(item => {
@@ -43,6 +45,7 @@ const getMission = async (full = false) => {
         }
       }
     })
+    nameMap = new Map([...nameMap, ...idolMap])
     const expList = [
       { re: /\$name/g, exp: `(${nameArr.join('|')})` },
       { re: /\$noun/g, exp: `(${nounArr.join('|')})` },
