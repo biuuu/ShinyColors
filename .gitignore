@@ -1,6 +1,7 @@
 .vscode/
 node_modules/
 dist/
+data/
 localfont/
 localtext/
 yarn-error.log
