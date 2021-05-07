@@ -2,6 +2,7 @@ import { log } from '../utils/index'
 import getImage from '../store/image'
 import config from '../config'
 import { getModule } from './get-module'
+import replaceComic from './comic'
 
 let imageDataPrms = null
 const ensureImage = async () => {
@@ -23,16 +24,19 @@ export default async function resourceHook () {
     }
     try {
       const imageMap = await ensureImage()
-      if (type === 'image' && imageMap.has(this.name)) {
-        const data = imageMap.get(this.name)
-        if (this.url.endsWith(`v=${data.version}`)) {
-          const imagePath = `image/${data.url}`
-          this.url = `${config.origin}/data/${imagePath}?v=${config.hashes[imagePath]}`
-          this.crossOrigin = true
-        } else {
-          log('%cimage version not match', 'color:#fc4175')
-          log(this.name, this.url)
+      if (type === 'image') {
+        if (imageMap.has(this.name)) {
+          const data = imageMap.get(this.name)
+          if (this.url.endsWith(`v=${data.version}`)) {
+            const imagePath = `image/${data.url}`
+            this.url = `${config.origin}/data/${imagePath}?v=${config.hashes[imagePath]}`
+            this.crossOrigin = true
+          } else {
+            log('%cimage version not match', 'color:#fc4175')
+            log(this.name, this.url)
+          }
         }
+        await replaceComic(this)
       }
     } catch (e) {
 
