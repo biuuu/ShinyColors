@@ -6,7 +6,8 @@ const getNounFix = commonStore({
   keys: {
     trans: 'fixed'
   },
-  sort: 'text'
+  sort: 'text',
+  ignoreTrans: true
 })
 
 const getCaiyunPrefix = commonStore({
@@ -15,7 +16,8 @@ const getCaiyunPrefix = commonStore({
   keys: {
     trans: 'fixed'
   },
-  sort: 'text'
+  sort: 'text',
+  ignoreTrans: true
 })
 
 const getTextFix = async () => {

@@ -78,7 +78,7 @@ const commonStore = (option) => {
   const dataMap = new Map()
   let loaded = false
 
-  const { name, path } = option
+  const { name, path, ignoreTrans } = option
   const keys = option.keys || {}
   const textKey = keys.text || 'text'
   const transKey = keys.trans || 'trans'
@@ -92,7 +92,7 @@ const commonStore = (option) => {
       list.forEach(item => {
         const text = trimWrap(item[textKey])
         const trans = trimWrap(item[transKey], true)
-        if (text && trans) {
+        if (text && (trans || ignoreTrans)) {
           dataMap.set(text, trans)
         }
       })
