@@ -1,6 +1,6 @@
 import { getHash } from '../utils/fetch'
 
-let win = (window.unsafeWindow || window)
+let require = null
 
 const conditions = new Map([
   ['AOBA', (module) => {
@@ -29,16 +29,16 @@ const resultMap = new Map([
 ])
 
 const isReady = () => {
-  return !!win._require
+  return !!require
 }
 
-// const originFreeze = Object.freeze
+const originFreeze = Object.freeze
 
-// Object.freeze = new Proxy(originFreeze, {
-//   apply (target, self, [data]) {
-//     return data
-//   }
-// })
+Object.freeze = new Proxy(originFreeze, {
+  apply (target, self, [data]) {
+    return data
+  }
+})
 // let unfreezeflag = false
 // const tryUnfreeze = (id) => {
 //   if (unfreezeflag) return
@@ -56,23 +56,23 @@ const isReady = () => {
 //     }
 //   }
 // }
-
-// const originCall = Function.prototype.call
-// let win = { Reflect: window.Reflect }
-// Function.prototype.call = new Proxy(originCall, {
-//   apply (target, self, args) {
-//     if (args?.[3]?.toString) {
-//       if (args[3].toString() === 'function i(t){if(n[t])return n[t].exports;var r=n[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,i),r.l=!0,r.exports}') {
-//         if (args[3].caller?.arguments?.[0]?.length > 1000) {
-//           require = args[3]
-//           if (ENVIRONMENT === 'development') unsafeWindow._require = require
-//           Function.prototype.call = originCall
-//         }
-//       }
-//     }
-//     return win.Reflect.apply(target, self, args)
-//   }
-// })
+const requireRegExp = /^function\s(\w)\((\w)\){if\((\w)\[\2\]\)return\s\3\[\2\]\.exports;var\s(\w)=\3\[\2\]={\w:\2,(\w):!1,exports:{}};return\s\w\[\2\]\.call\(\4.exports,\4,\4\.exports,\1\),\4\.\5=!0,\4\.exports}$/
+const originCall = Function.prototype.call
+let win = { Reflect: window.Reflect }
+Function.prototype.call = new Proxy(originCall, {
+  apply (target, self, args) {
+    if (args?.[3]?.toString) {
+      if (requireRegExp.test(args[3].toString())) {
+        if (args[3].caller?.arguments?.[0]?.length > 1000) {
+          require = args[3]
+          if (ENVIRONMENT === 'development') unsafeWindow._require = require
+          Function.prototype.call = originCall
+        }
+      }
+    }
+    return win.Reflect.apply(target, self, args)
+  }
+})
 
 let OFFSET = 20
 const setIdList = (id, offset) => {
@@ -93,7 +93,7 @@ const findModule = (id, conditionFunc) => {
   let module
   let realId
   for (let i = 0; i < idList.length; i++) {
-    let _module = win._require(idList[i])
+    let _module = require(idList[i])
     if (conditionFunc(_module)) {
       module = _module
       realId = idList[i]
@@ -106,6 +106,9 @@ const findModule = (id, conditionFunc) => {
 const getModule = async (name) => {
   const { moduleId } = await getHash
   let [md, id] = findModule(moduleId[name], conditions.get(name))
+  // if (!unfreezeflag && name === 'REQUEST') {
+  //   md = tryUnfreeze(id)
+  // }
   return md ? resultMap.get(name)(md) : null
 }
 
