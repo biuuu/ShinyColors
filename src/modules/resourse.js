@@ -1,4 +1,4 @@
-import { log } from '../utils/index'
+import { log, log2 } from '../utils/index'
 import getImage from '../store/image'
 import config from '../config'
 import { getModule } from './get-module'
@@ -12,6 +12,23 @@ const ensureImage = async () => {
   return await imageDataPrms
 }
 
+let resName = ''
+const getLocalResName = () => {
+  try {
+    resName = sessionStorage.getItem('sczh:res-name')
+  } catch (e) {}
+}
+
+getLocalResName()
+
+const setLocalResName = (name) => {
+  try {
+    sessionStorage.setItem('sczh:res-name', name)
+  } catch (e) {}
+}
+let win = (window.unsafeWindow || window)
+win.queryImageName = setLocalResName
+
 let replaced = false
 export default async function resourceHook () {
   const aoba = await getModule('AOBA')
@@ -19,8 +36,9 @@ export default async function resourceHook () {
   aoba.loaders.Resource.prototype = Object.assign({}, aoba.loaders.Resource.prototype)
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
   aoba.loaders.Resource.prototype._loadElement = async function (type) {
-    if (config.dev && type === 'image' && RES_NAME && this.url.includes(RES_NAME)) {
-      log(this.url, this.name)
+    if (config.dev && type === 'image' && resName && this.url.includes(resName)) {
+      log2('%c查询到的图片：', 'color:#66ccff')
+      log2(this.url, this.name)
     }
     try {
       const imageMap = await ensureImage()
@@ -32,7 +50,6 @@ export default async function resourceHook () {
             this.url = `${config.origin}/data/${imagePath}?v=${config.hashes[imagePath]}`
             this.crossOrigin = true
           } else {
-            log('%cimage version not match', 'color:#fc4175')
             log(this.name, this.url)
           }
         }
