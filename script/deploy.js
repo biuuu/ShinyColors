@@ -1,4 +1,3 @@
-const ghpages = require('gh-pages')
 const fse = require('fs-extra')
 const path = require('path')
 const md5 = require('md5-file')
@@ -139,13 +138,6 @@ const start = async () => {
   if (process.env.GITHUB_ACTION) {
     return
   }
-
-  console.log('start publish...')
-  ghpages.publish('dist', {
-    add: false
-  }, function () {
-    console.log('finished')
-  })
 }
 
 start()
