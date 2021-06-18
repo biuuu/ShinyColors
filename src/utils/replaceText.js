@@ -20,6 +20,9 @@ const replaceText = (text, expMap, wordMaps = []) => {
           }
         })
         if (!replaced) {
+          if (/億$/.test(arr[i])) {
+            arr[i] = arr[i].replace(/億$/, '亿')
+          }
           _trans = _trans.replace(`$${i}`, arr[i])
         }
       }
