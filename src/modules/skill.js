@@ -465,6 +465,28 @@ const produceAreaAbilitySkill = async (data) => {
     transSkill(item, 'name')
     transSkill(item, 'comment')
   })
+  data.produceMusics?.forEach(item => {
+    commSkill(item.feverActiveSkill)
+    item.produceMusicProficiencyBonuses.forEach(m => {
+      transSkill(item, 'description')
+      if (!m.ability) return
+      commSkill(m.ability)
+      transSkill(m.ability, 'acquireComment')
+      m.ability.produceAbilityAcquireConditionComments.forEach(comm => {
+        transSkill(comm, 'name')
+      })
+    })
+  })
+}
+
+const userProduceMusicProficiency = async (data) => {
+  await produceAreaAbilitySkill(data.userProduceMusicProficiency)
+}
+
+const userProduceMusicProficiencies = async (data) => {
+  for (let item of data.userProduceMusicProficiencies) {
+    await produceAreaAbilitySkill(item)
+  }
 }
 
 router.get([
@@ -483,7 +505,8 @@ router.get([
   ['userRaidDecks', userRaidDeck],
   ['produces/{num}/decks', producesDecksSkill],
   ['userProduceAbilities', produceAbilitiySkill],
-  ['userProduceAreas', produceAreaAbilitySkill]
+  [['userProduceAreas', 'produceMusics'], produceAreaAbilitySkill],
+  ['userProduces', userProduceMusicProficiencies]
 ])
 
 router.post([
@@ -493,6 +516,7 @@ router.post([
   ['userSupportIdols/{num}/produceExSkills/{num}/actions/set', [ userSptIdolsSkill, supportSkill]],
   ['produces/actions/(resume|next)', [ideaNotesSkill, supportSkill]],
   [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
+  [['produces/actions/resume', 'produces/actions/next'], userProduceMusicProficiencies],
   ['produces/actions/act', [noteResultSkill]],
   ['fes(Match|Raid)?Concert/actions/start', [fesMatchConcertSkill]],
   ['fes(Match)?Concert/actions/resume', [resumeGameSkill]],
@@ -501,7 +525,8 @@ router.post([
   [['produce(Teaching)?s/({num}/audition|concert)/actions/start', 'produceTeachings/(auditions|concerts)/start'], [auditionSkill]],
   ['produces/({num}/audition|concert)/actions/(start|finish)', finishAbility],
   [['produceTeachings/resume', 'produceTeachings/next'], supportSkill],
-  ['userProduceAbilities', produceAbilitiySkill]
+  ['userProduceAbilities', produceAbilitiySkill],
+  ['userProduceMusicProficiencies', userProduceMusicProficiency]
 ])
 
 router.patch('userSupportIdols/{num}', supportSkill)
