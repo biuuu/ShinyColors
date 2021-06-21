@@ -29,6 +29,17 @@ const homeProduceTitle = async (data) => {
   transTitle(data?.userProduce?.produce, 'title')
 }
 
+const produceAreaTitles = async (data) => {
+  await ensureTitle()
+  data.produceHintSettings?.forEach(item => {
+    transTitle(item, 'title')
+  })
+}
+
+router.get([
+  ['userProduceAreas', produceAreaTitles]
+])
+
 router.post([
   ['myPage', homeProduceTitle],
   ['produces/actions/(resume|next)', [produceEventTitle, produceIdolName]],
