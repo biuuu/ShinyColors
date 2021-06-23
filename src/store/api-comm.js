@@ -4,52 +4,12 @@ import sortWords from '../utils/sortWords'
 import parseRegExp from '../utils/parseRegExp'
 import { getIdolName } from './name'
 
-const supportSkillCache = {
-  expMap: new Map(),
-  nounMap: new Map(),
-  nounArr: [],
-  loaded: false
-}
-
 const brackets = (str) => {
   return str.replace(/\[/g, '\\[').replace(/\]/g, '\\]')
 }
 
-const getSupportSkill = async () => {
-  const { expMap, nounMap, nounArr, loaded } = supportSkillCache
-  if (!loaded) {
-    const list = await getList('support-skill')
-    const reMap = new Map()
-    sortWords(list, 'text').forEach(item => {
-      if (item?.text) {
-        const text = trimWrap(item.text)
-        const trans = trimWrap(item.trans, true)
-        const type = trim(item.type)
-        if (text && trans) {
-          if (type === 'noun') {
-            nounArr.push(pureRE(text))
-            nounMap.set(text, trans)
-          } else {
-            reMap.set(text, trans)
-          }
-        }
-      }
-    })
-    const expList = [
-      { re: /\$noun/g, exp: `(${nounArr.join('|')})` }
-    ]
-    for (let [key, value] of reMap) {
-      const re = parseRegExp(key, expList)
-      expMap.set(re, value)
-    }
-    supportSkillCache.loaded = true
-  }
-
-  return { expMap, wordMaps: [nounMap] }
-}
-
-const getCommSkill = (type = 'skill') => {
-  const skillCache = {
+const getCommApiData = (type) => {
+  const dataCache = {
     expMap: new Map(), textMap: new Map(),
     nounMap: new Map(), nameMap: new Map(), otherMap: new Map(),
     nounArr: [], nameArr: [], otherArr: [],
@@ -57,7 +17,7 @@ const getCommSkill = (type = 'skill') => {
   }
   return async () => {
     let { expMap, nounMap, textMap, nameMap, otherMap,
-       nounArr, nameArr, otherArr, loaded } = skillCache
+       nounArr, nameArr, otherArr, loaded } = dataCache
     if (!loaded) {
       const list = await getList(type)
       const idolMap = await getIdolName()
@@ -87,8 +47,10 @@ const getCommSkill = (type = 'skill') => {
         }
       })
 
-      skillCache.nameMap = new Map([...nameMap, ...idolMap])
-      nameMap = skillCache.nameMap
+      dataCache.nameMap = new Map([...nameMap, ...idolMap])
+      nameMap = dataCache.nameMap
+      dataCache.textMap = new Map([...textMap, ...nameMap, nounMap, otherMap])
+      textMap = dataCache.textMap
       const expList = [
         { re: /\$noun/g, exp: `(${nounArr.join('|')})` },
         { re: /\$name/g, exp: `(${nameArr.join('|')})` },
@@ -98,7 +60,7 @@ const getCommSkill = (type = 'skill') => {
         const re = parseRegExp(key, expList)
         expMap.set(re, value)
       }
-      skillCache.loaded = true
+      dataCache.loaded = true
     }
 
     const wordMaps = [nounMap, otherMap, nameMap]
@@ -106,7 +68,4 @@ const getCommSkill = (type = 'skill') => {
   }
 }
 
-const getSkill = getCommSkill()
-const getFanMeeting = getCommSkill('etc/fan-meeting')
-
-export { getSupportSkill, getSkill, getFanMeeting }
+export default getCommApiData

@@ -1,122 +1,40 @@
-import { replaceItem } from '../utils/replaceText'
-import { getSupportSkill, getSkill, getFanMeeting } from '../store/skill'
-import { log, makePromise } from '../utils/index'
-import tagText from '../utils/tagText'
-import { router } from './request'
+import transApi from '../api-comm'
 
-let skillData = null
-
-const ensureSkillData = makePromise(getSkill)
-const internalCb = (callback) => {
-  return async (data) => {
-    if (!skillData) {
-      skillData = await ensureSkillData()
-    }
-    callback(data)
-  }
-}
-
-const processRouter = (list) => {
-  return list.map(item => {
-    const target = item[1]
-    if (Array.isArray(target)) {
-      return target.map(func => internalCb(func))
-    } else {
-      return internalCb(target)
-    }
-  })
-}
-
-const nameWithPlus = (list, data) => {
-  if (data) {
-    list.forEach((str, index) => {
-      list[index] = str + data[index]
-    })
-  } else {
-    let arr = []
-    list.forEach((str, index) => {
-      let rgs = str.match(/([＋+]+)$/)
-      if (rgs?.[1]) {
-        arr.push(rgs[1])
-        list[index] = str.replace(/[＋+]+$/, '')
-      } else {
-        arr.push('')
-      }
-    })
-    return arr
-  }
-}
-
-const transSkill = (item, key, data = skillData) => {
-  if (item?.[key]) {
-    let arr = item[key].split('/')
-    arr.forEach((txt, index) => {
-      let plusList = nameWithPlus(arr)
-      replaceItem(arr, index, data)
-      nameWithPlus(arr, plusList)
-    })
-    let text = arr.join('/')
-    if (text !== item[key]) {
-      item[key] = tagText(text)
-    } else {
-      // log(text)
-    }
-  }
-}
-
-const transSupportSkill = (list, sData) => {
-  list?.forEach(item => {
-    transSkill(item, 'description', sData)
-    transSkill(item, 'name', sData)
-  })
-}
-
-const supportSkill = async (data) => {
-  const sData = await getSupportSkill()
-  const supportIdol = data.userSupportIdol ?? data
-  transSupportSkill(supportIdol.acquiredSupportSkills, sData)
-  transSupportSkill(supportIdol.supportSkills, sData)
-  transSupportSkill(supportIdol.supportIdol?.supportSkills, sData)
-}
+const { api, transItem } = transApi('skill')
 
 const transEffects = (data) => {
   data.skillEffects?.forEach(item => {
-    transSkill(item, 'effectName')
-    transSkill(item, 'effectDescription')
+    transItem(item, 'effectName')
+    transItem(item, 'effectDescription')
   })
   data.rivalMemoryAppealEffects?.forEach(item => {
-    transSkill(item, 'effectName')
-    transSkill(item, 'effectDescription')
+    transItem(item, 'effectName')
+    transItem(item, 'effectDescription')
   })
 }
 
 const commSkill = (data, transEffect = false) => {
   if (!data) return
-  transSkill(data, 'comment')
-  transSkill(data, 'name')
+  transItem(data, 'comment')
+  transItem(data, 'name')
   if (transEffect) {
     transEffects(data)
   }
   if (data.linkSkill) {
-    transSkill(data.linkSkill, 'comment')
-    transSkill(data.linkSkill, 'name')
+    transItem(data.linkSkill, 'comment')
+    transItem(data.linkSkill, 'name')
     if (transEffect) {
       transEffects(data.linkSkill)
     }
   }
 }
 
-const exSkill = (data) => {
-  transSkill(data, 'name')
-  transSkill(data, 'description')
-}
-
 const skillPanel = (data) => {
   if (!data) return
   data.forEach(item => {
-    transSkill(item, 'releaseConditions')
-    transSkill(item.passiveSkills, 'comment')
-    transSkill(item.passiveSkills, 'name')
+    transItem(item, 'releaseConditions')
+    transItem(item.passiveSkills, 'comment')
+    transItem(item.passiveSkills, 'name')
     commSkill(item.skill)
     commSkill(item.concertActiveSkill)
     if (item.activeSkills) {
@@ -189,9 +107,6 @@ const audRivalsSkill = (data) => {
 const userIdolsSkill = (data) => {
   skillPanel(data.idol.skillPanels)
   memoryAppeal(data.idol.memoryAppeals)
-  data.userIdolProduceExSkills.forEach(item => {
-    exSkill(item.produceExSkill)
-  })
 }
 
 const userProIdolsSkill = (data) => {
@@ -199,9 +114,6 @@ const userProIdolsSkill = (data) => {
     commSkill(item)
   })
   memoryAppeal(data.userIdol.idol.memoryAppeals)
-  data.userProduceIdolProduceExSkills.forEach(item => {
-    exSkill(item.produceExSkill)
-  })
 }
 
 const reserveUserIdolsSkill = (data) => {
@@ -211,31 +123,25 @@ const reserveUserIdolsSkill = (data) => {
 
 const userSptIdolsSkill = (data) => {
   skillPanel(data.supportIdol.skillPanels)
-  data.userSupportIdolProduceExSkills?.forEach(item => {
-    exSkill(item.produceExSkill)
-  })
   data.supportIdol?.supportIdolActiveSkill?.activeSkills?.forEach(item => {
-    transSkill(item, 'comment')
-    transSkill(item, 'name')
+    transItem(item, 'comment')
+    transItem(item, 'name')
   })
 }
 
 const userProSptIdolsSkill = (data) => {
   skillPanel(data.skillPanels)
-  data.userProduceSupportIdolProduceExSkills?.forEach(item => {
-    exSkill(item.produceExSkill)
-  })
   data.userSupportIdol?.supportIdol?.supportIdolActiveSkill?.activeSkills?.forEach(item => {
-    transSkill(item, 'comment')
-    transSkill(item, 'name')
+    transItem(item, 'comment')
+    transItem(item, 'name')
   })
 }
 
 const reserveUserSptIdolsSkill = (data) => {
   skillPanel(data.supportIdol.skillPanels)
   data.supportIdol?.supportIdolActiveSkill?.activeSkills?.forEach(item => {
-    transSkill(item, 'comment')
-    transSkill(item, 'name')
+    transItem(item, 'comment')
+    transItem(item, 'name')
   })
 }
 
@@ -246,36 +152,12 @@ const userFesIdolsSkill = (data) => {
   })
   commSkill(fesIdol.memoryAppeal)
   fesIdol.passiveSkills.forEach(item => {
-    transSkill(item, 'comment')
-    transSkill(item, 'name')
-  })
-  fesIdol.userFesIdolProduceExSkills.forEach(item => {
-    exSkill(item.produceExSkill)
-  })
-  fesIdol.userFesSupportIdols.forEach(sptIdol => {
-    sptIdol.userFesSupportIdolProduceExSkills.forEach(item => {
-      exSkill(item.produceExSkill)
-    })
+    transItem(item, 'comment')
+    transItem(item, 'name')
   })
 }
 
 const otherFesIdolSkill = userFesIdolsSkill
-
-const produceExSkillTop = (data) => {
-  data.userProduceExSkills.forEach(item => {
-    exSkill(item.produceExSkill)
-  })
-}
-
-const userFesDeck = (data) => {
-  data.userFesDecks.forEach(deck => {
-    deck.userFesDeckMembers.forEach(member => {
-      member.userFesIdol?.activeSkills.forEach(item => {
-        commSkill(item)
-      })
-    })
-  })
-}
 
 const userRaidDeck = (data) => {
   data.userRaidDecks.forEach(deck => {
@@ -311,8 +193,8 @@ const fesMatchConcertSkill = (data) => {
     })
     commSkill(member.userFesIdol.memoryAppeal, true)
     member.userFesIdol.passiveSkills.forEach(item => {
-      transSkill(item, 'comment')
-      transSkill(item, 'name')
+      transItem(item, 'comment')
+      transItem(item, 'name')
       transEffects(item)
     })
   }
@@ -348,9 +230,9 @@ const resumeGameSkill = (data) => {
   try {
     let gData = JSON.parse(data.gameData)
     if (gData.produceAudition || gData.produceConcert) {
-      await auditionSkill(gData)
+      auditionSkill(gData)
     } else if (gData.userFesDeck || gData.userRaidDeck) {
-      await fesMatchConcertSkill(gData)
+      fesMatchConcertSkill(gData)
     }
     data.gameData = JSON.stringify(gData)
   } catch (e) {
@@ -363,52 +245,12 @@ const resumeRaidGameSkill = (data) => {
   try {
     let gData = JSON.parse(data.gameState.game_data)
     if (gData.userRaidDeck) {
-      await fesMatchConcertSkill(gData)
+      fesMatchConcertSkill(gData)
     }
     data.gameState.game_data = JSON.stringify(gData)
   } catch (e) {
     log(e)
   }
-}
-
-const produceResultSkill = (data) => {
-  data.produceExSkillRewards.forEach(reward => {
-    exSkill(reward.produceExSkill)
-  })
-}
-
-const ideaNotesSkill = (data) => {
-  if (!data.userProduceIdeaNotes) return
-  data.userProduceIdeaNotes.forEach(note => {
-    let bonus = note.produceIdeaNote.produceIdeaNoteCompleteBonus
-    transSkill(bonus, 'title')
-    transSkill(bonus, 'comment')
-    note.produceIdeaNote.produceIdeaNoteExtraBonuses.forEach(item => {
-      transSkill(item, 'comment')
-      transSkill(item, 'condition')
-    })
-  })
-}
-
-const noteResultSkill = (data) => {
-  let item = data.lessonResult?.userProduceIdeaNote?.produceIdeaNote?.produceIdeaNoteCompleteBonus
-  commSkill(item)
-}
-
-const producesDecksSkill = (data) => {
-  const sData = await getSupportSkill()
-  data.userSupportIdols?.forEach(item => {
-    transSupportSkill(item.supportIdol?.supportSkills, sData)
-  })
-}
-
-const producesActionReadySkill = (data) => {
-  const sData = await getSupportSkill()
-  data.userDecks.forEach(deck => {
-    deck.userSupportIdols.forEach(item => {
-      transSupportSkill(item.supportIdol?.supportSkills, sData)
-    })
-  })
 }
 
 const produceAbilitiySkill = (data) => {
@@ -421,12 +263,12 @@ const produceAreaAbilitySkill = (data) => {
   data.produceMusics?.forEach(item => {
     commSkill(item.feverActiveSkill)
     item.produceMusicProficiencyBonuses.forEach(m => {
-      transSkill(item, 'description')
+      transItem(item, 'description')
       if (!m.ability) return
       commSkill(m.ability)
-      transSkill(m.ability, 'acquireComment')
+      transItem(m.ability, 'acquireComment')
       m.ability.produceAbilityAcquireConditionComments.forEach(comm => {
-        transSkill(comm, 'name')
+        transItem(comm, 'name')
       })
     })
   })
@@ -442,12 +284,16 @@ const userProduceMusicProficiencies = (data) => {
   })
 }
 
-router.get([
-  [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], [supportSkill, userSptIdolsSkill]],
-  ['userProduce(Teaching)?SupportIdols/{num}', [supportSkill, userProSptIdolsSkill]],
-  ['userReserveSupportIdols/userSupportIdol/{num}', [supportSkill, reserveUserSptIdolsSkill]],
-  ['userIdols/{num}/produceExSkillTop', produceExSkillTop],
-  ['userSupportIdols/{num}/produceExSkillTop', produceExSkillTop],
+const userProduceReporterEvent = data => {
+  data.userProduceReporterEvent?.produceReporterEventResult?.produceReporterEventSkills?.forEach(item => {
+    transItem(item, 'name')
+  })
+}
+
+api.get([
+  [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], [userSptIdolsSkill]],
+  ['userProduce(Teaching)?SupportIdols/{num}', [userProSptIdolsSkill]],
+  ['userReserveSupportIdols/userSupportIdol/{num}', [reserveUserSptIdolsSkill]],
   [['userIdols/{num}', 'userIdols/statusMax', 'produceTeachingIdols/{num}'], [userIdolsSkill]],
   [['userProduce(Teaching)?Idols/{num}', 'userProduceTeachingIdol'], userProIdolsSkill],
   ['userReserveIdols/userIdol/{num}', reserveUserIdolsSkill],
@@ -456,29 +302,21 @@ router.get([
   ['fes(Match)?Concert/actions/resume', [resumeGameSkill]],
   ['earthUsers/{uuid}/userFesIdols/{num}', otherFesIdolSkill],
   ['userRaidDecks', userRaidDeck],
-  ['produces/{num}/decks', producesDecksSkill],
   ['userProduceAbilities', produceAbilitiySkill],
   [['userProduceAreas', 'produceMusics'], produceAreaAbilitySkill],
-  ['userProduces', userProduceMusicProficiencies]
+  ['userProduces', [userProduceMusicProficiencies, userProduceReporterEvent]]
 ])
 
-router.post([
+api.post([
   ['userIdols/{num}/produceExSkills/{num}/actions/set', userIdolsSkill],
-  ['produces/{num}/actions/ready', [producesActionReadySkill]],
   [['userProduce(Teaching)?s/skillPanels/{num}', 'userProduces/limitedSkills/{num}'], proSkillPanels],
-  ['userSupportIdols/{num}/produceExSkills/{num}/actions/set', [ userSptIdolsSkill, supportSkill]],
-  ['produces/actions/(resume|next)', [ideaNotesSkill, supportSkill]],
+  ['userSupportIdols/{num}/produceExSkills/{num}/actions/set', [userSptIdolsSkill]],
   [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
-  [['produces/actions/resume', 'produces/actions/next'], userProduceMusicProficiencies],
-  ['produces/actions/act', [noteResultSkill]],
+  [['produces/actions/resume', 'produces/actions/next'], [userProduceMusicProficiencies, userProduceReporterEvent]],
   ['fes(Match|Raid)?Concert/actions/start', [fesMatchConcertSkill]],
   ['fes(Match)?Concert/actions/resume', [resumeGameSkill]],
   ['fesRaidConcert/actions/resume', [resumeRaidGameSkill]],
-  ['produces/actions/result', [produceResultSkill]],
   [['produce(Teaching)?s/({num}/audition|concert)/actions/start', 'produceTeachings/(auditions|concerts)/start'], [auditionSkill]],
-  [['produceTeachings/resume', 'produceTeachings/next'], supportSkill],
   ['userProduceAbilities', produceAbilitiySkill],
   ['userProduceMusicProficiencies', userProduceMusicProficiency]
 ])
-
-router.patch('userSupportIdols/{num}', supportSkill)

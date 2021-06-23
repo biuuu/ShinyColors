@@ -179,8 +179,22 @@ const sess = (key, data) => {
   } catch (e) {}
 }
 
+const makePromise = (callback, ...args) => {
+  let result = null
+  let promiseObj = null
+  return async () => {
+    if (!promiseObj) {
+      promiseObj = callback(...args)
+    }
+    if (!result) {
+      result = await promiseObj
+    }
+    return result
+  }
+}
+
 export {
-  trim, trimWrap, fixWrap, isDomain, log, log2,
+  trim, trimWrap, fixWrap, isDomain, log, log2, makePromise,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
   sleep, tagStoryText, sess, uniqueStoryId, isNewVersion, storyTextLogStyle
 }
