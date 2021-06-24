@@ -30,6 +30,10 @@ const producesActionReadySkill = (data) => {
   })
 }
 
+const useProduceItem = data => {
+  transSupportSkill(data.supportSkills)
+}
+
 api.get([
   [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], [supportSkill]],
   ['userProduce(Teaching)?SupportIdols/{num}', [supportSkill]],
@@ -45,5 +49,6 @@ api.post([
 ])
 
 api.patch([
-  ['userSupportIdols/{num}', supportSkill]
+  ['userSupportIdols/{num}', supportSkill],
+  ['produces/{num}/produceItem/consume', useProduceItem]
 ])

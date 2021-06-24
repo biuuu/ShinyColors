@@ -49,6 +49,8 @@ const fesMatchConcertSkill = (data) => {
 }
 
 const auditionSkill = (data) => {
+  const proIdol = data.userProduceIdol
+  if (!proIdol) return
   proIdol.abilities?.forEach(skill => {
     commSkill(skill, true)
   })

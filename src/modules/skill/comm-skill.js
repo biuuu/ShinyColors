@@ -3,6 +3,7 @@ import transApi from '../api-comm'
 const { api, transItem } = transApi('skill')
 
 const transEffects = (data) => {
+  if (!data) return
   data.skillEffects?.forEach(item => {
     transItem(item, 'effectName')
     transItem(item, 'effectDescription')
@@ -205,6 +206,7 @@ const fesMatchConcertSkill = (data) => {
   judegsSkill(data.judges)
   fesRivalsSkill(data.userFesRivals)
   fesRivalsSkill(data.userFesRaidRivals)
+  transEffects(data.feverActiveSkill)
 }
 
 const auditionSkill = (data) => {
