@@ -186,18 +186,20 @@ const produceFinish = (data) => {
   shortProIdol(data)
 }
 
+const transDeckMember = (member) => {
+  if (!member.userFesIdol) return
+  member.userFesIdol.activeSkills.forEach(item => {
+    commSkill(item, true)
+  })
+  commSkill(member.userFesIdol.memoryAppeal, true)
+  member.userFesIdol.passiveSkills?.forEach(item => {
+    transItem(item, 'comment')
+    transItem(item, 'name')
+    transEffects(item)
+  })
+}
+
 const fesMatchConcertSkill = (data) => {
-  const transDeckMember = (member) => {
-    member.userFesIdol.activeSkills.forEach(item => {
-      commSkill(item, true)
-    })
-    commSkill(member.userFesIdol.memoryAppeal, true)
-    member.userFesIdol.passiveSkills.forEach(item => {
-      transItem(item, 'comment')
-      transItem(item, 'name')
-      transEffects(item)
-    })
-  }
   data.userFesDeck?.userFesDeckMembers.forEach(transDeckMember)
   data.userRaidDeck?.userRaidDeckMembers.forEach(transDeckMember)
   judegsSkill(data.judges)
@@ -290,6 +292,12 @@ const userProduceReporterEvent = data => {
   })
 }
 
+const userFesDecks = data => {
+  data.userFesDecks.forEach(deck => {
+    deck.userFesDeckMembers.forEach(transDeckMember)
+  })
+}
+
 api.get([
   [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], [userSptIdolsSkill]],
   ['userProduce(Teaching)?SupportIdols/{num}', [userProSptIdolsSkill]],
@@ -319,4 +327,8 @@ api.post([
   [['produce(Teaching)?s/({num}/audition|concert)/actions/start', 'produceTeachings/(auditions|concerts)/start'], [auditionSkill]],
   ['userProduceAbilities', produceAbilitiySkill],
   ['userProduceMusicProficiencies', userProduceMusicProficiency]
+])
+
+api.patch([
+  ['userFesDecks', userFesDecks]
 ])
