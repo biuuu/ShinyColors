@@ -62,6 +62,12 @@ const produceExSkillTop = (data) => {
       exSkill(item.produceExSkill)
     })
   })
+  data.userIdol?.userIdolProduceExSkills?.forEach(item => {
+    exSkill(item.produceExSkill)
+  })
+  data.userSupportIdol?.userSupportIdolProduceExSkills?.forEach(item => {
+    exSkill(item.produceExSkill)
+  })
   data.userProduceExSkills.forEach(item => {
     exSkill(item.produceExSkill)
     exSkill(item.produceExSkillUpgrade?.produceExSkill)
@@ -74,6 +80,10 @@ const businessFinish = (data) => {
       exSkill(item.produceExSkill)
     })
   })
+}
+
+const upgradeExSkill = (data) => {
+  exSkill(data.produceExSkill)
 }
 
 api.get([
@@ -90,5 +100,6 @@ api.post([
   ['userIdols/{num}/produceExSkills/{num}/actions/set', userIdolsSkill],
   ['userSupportIdols/{num}/produceExSkills/{num}/actions/set', [userSptIdolsSkill]],
   ['produces/actions/result', [produceResultSkill]],
-  ['business/actions/finish', businessFinish]
+  ['business/actions/finish', businessFinish],
+  ['userProduceExSkills/actions/upgrade', upgradeExSkill]
 ])
