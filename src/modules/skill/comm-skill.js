@@ -261,31 +261,6 @@ const produceAbilitiySkill = (data) => {
   })
 }
 
-const produceAreaAbilitySkill = (data) => {
-  data.produceMusics?.forEach(item => {
-    commSkill(item.feverActiveSkill)
-    item.produceMusicProficiencyBonuses.forEach(m => {
-      transItem(item, 'description')
-      if (!m.ability) return
-      commSkill(m.ability)
-      transItem(m.ability, 'acquireComment')
-      m.ability.produceAbilityAcquireConditionComments.forEach(comm => {
-        transItem(comm, 'name')
-      })
-    })
-  })
-}
-
-const userProduceMusicProficiency = (data) => {
-  produceAreaAbilitySkill(data.userProduceMusicProficiency)
-}
-
-const userProduceMusicProficiencies = (data) => {
-  data.userProduceMusicProficiencies?.forEach(item => {
-    produceAreaAbilitySkill(item)
-  })
-}
-
 const userProduceReporterEvent = data => {
   data.userProduceReporterEvent?.produceReporterEventResult?.produceReporterEventSkills?.forEach(item => {
     transItem(item, 'name')
@@ -311,8 +286,7 @@ api.get([
   ['earthUsers/{uuid}/userFesIdols/{num}', otherFesIdolSkill],
   ['userRaidDecks', userRaidDeck],
   ['userProduceAbilities', produceAbilitiySkill],
-  [['userProduceAreas', 'produceMusics'], produceAreaAbilitySkill],
-  ['userProduces', [userProduceMusicProficiencies, userProduceReporterEvent]]
+  ['userProduces', [userProduceReporterEvent]]
 ])
 
 api.post([
@@ -320,13 +294,12 @@ api.post([
   [['userProduce(Teaching)?s/skillPanels/{num}', 'userProduces/limitedSkills/{num}'], proSkillPanels],
   ['userSupportIdols/{num}/produceExSkills/{num}/actions/set', [userSptIdolsSkill]],
   [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
-  [['produces/actions/resume', 'produces/actions/next'], [userProduceMusicProficiencies, userProduceReporterEvent]],
+  [['produces/actions/resume', 'produces/actions/next'], [userProduceReporterEvent]],
   ['fes(Match|Raid)?Concert/actions/start', [fesMatchConcertSkill]],
   ['fes(Match)?Concert/actions/resume', [resumeGameSkill]],
   ['fesRaidConcert/actions/resume', [resumeRaidGameSkill]],
   [['produce(Teaching)?s/({num}/audition|concert)/actions/start', 'produceTeachings/(auditions|concerts)/start'], [auditionSkill]],
-  ['userProduceAbilities', produceAbilitiySkill],
-  ['userProduceMusicProficiencies', userProduceMusicProficiency]
+  ['userProduceAbilities', produceAbilitiySkill]
 ])
 
 api.patch([

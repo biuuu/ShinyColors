@@ -59,7 +59,7 @@ const transApi = (type) => {
       })
       let text = arr.join('/')
       if (text !== item[key]) {
-        item[key] = tagText(text)
+        item[key] = text
       } else {
         // log(text)
       }
