@@ -5,6 +5,7 @@ import { replaceWrap, log } from '../../utils/index'
 import isString from 'lodash/isString'
 import config from '../../config'
 import { router } from '../request'
+import tagText from '../../utils/tagText'
 
 let titleMaps
 let nameMap
@@ -44,7 +45,9 @@ const saveTitle = (id, text) => {
 const transTitle = (item = {}, key) => {
   let text = item[key]
   replaceItem(item, key, titleMaps)
-  if (config.dev && text === item[key]) {
+  if (text !== item[key]) {
+    item[key] = tagText(text, true)
+  } else if (config.dev) {
     collectTitles(text)
   }
 }

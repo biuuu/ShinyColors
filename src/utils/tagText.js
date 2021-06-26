@@ -1,4 +1,7 @@
-const tagText = (text) => {
+const tagText = (text, taged = false) => {
+  if (taged && text.startsWith('\u200b')) {
+    return text
+  }
   return `\u200b${text}`
 }
 
