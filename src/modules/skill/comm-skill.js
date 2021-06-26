@@ -227,6 +227,7 @@ const auditionSkill = (data) => {
   let audition = data.produceAudition || data.produceConcert
   judegsSkill(audition.judges)
   audRivalsSkill(audition.rivals)
+  transEffects(data.feverActiveSkill)
 }
 
 const resumeGameSkill = (data) => {
