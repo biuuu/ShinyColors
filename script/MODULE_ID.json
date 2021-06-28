@@ -1,7 +1,8 @@
 {
   "AOBA": 0,
-  "REQUEST": 4,
+  "REQUEST": 6,
   "PHRASE": 5,
-  "SCENARIO": 160,
-  "SPEAKER": 621
+  "SCENARIO": 161,
+  "SPEAKER": 630,
+  "WEBP": 136
 }

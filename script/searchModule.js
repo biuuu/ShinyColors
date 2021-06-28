@@ -21,3 +21,7 @@ getModule('SCENARIO', (module) => {
 getModule('SPEAKER', (module) => {
   return module.default && module.default['getCharacterBackLogIconId']
 })
+
+getModule('WEBP', (module) => {
+  return module.default && module.default['isSupportedWebP']
+})

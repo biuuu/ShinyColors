@@ -32,6 +32,7 @@ win.queryImageName = setLocalResName
 let replaced = false
 export default async function resourceHook () {
   const aoba = await getModule('AOBA')
+  const { isSupportedWebP, toWebPUrl } = await getModule('WEBP')
   if (replaced) return
   aoba.loaders.Resource.prototype = Object.assign({}, aoba.loaders.Resource.prototype)
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
@@ -46,8 +47,12 @@ export default async function resourceHook () {
         if (imageMap.has(this.name)) {
           const data = imageMap.get(this.name)
           if (this.url.endsWith(`v=${data.version}`)) {
-            const imagePath = `image/${data.url}`
-            this.url = `${config.origin}/data/${imagePath}?v=${config.hashes[imagePath]}`
+            const imageKey = `image/${data.url}`
+            let imagePath = imageKey
+            if (isSupportedWebP() && !imagePath.startsWith('tips/')) {
+              imagePath = toWebPUrl(imagePath)
+            }
+            this.url = `${config.origin}/data/${imagePath}?v=${config.hashes[imageKey]}`
             this.crossOrigin = true
           } else {
             log(this.name, this.url)
@@ -56,7 +61,7 @@ export default async function resourceHook () {
         await replaceComic(this)
       }
     } catch (e) {
-
+      log(e)
     }
     return originLoadElement.call(this, type)
   }

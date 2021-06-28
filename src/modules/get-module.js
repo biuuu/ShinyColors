@@ -17,6 +17,9 @@ const conditions = new Map([
   }],
   ['SPEAKER', (module) => {
     return module && module.default && module.default.getCharacterBackLogIconId
+  }],
+  ['WEBP', (module) => {
+    return module && module.default && module.default.isSupportedWebP
   }]
 ])
 
@@ -25,7 +28,8 @@ const resultMap = new Map([
   ['SCENARIO', (module) => module.default],
   ['REQUEST', (module) => module],
   ['PHRASE', (module) => module.default._polyglot.phrases],
-  ['SPEAKER', (module) => module.default]
+  ['SPEAKER', (module) => module.default],
+  ['WEBP', (module) => module.default]
 ])
 
 const isReady = () => {
@@ -106,9 +110,6 @@ const findModule = (id, conditionFunc) => {
 const getModule = async (name) => {
   const { moduleId } = await getHash
   let [md, id] = findModule(moduleId[name], conditions.get(name))
-  // if (!unfreezeflag && name === 'REQUEST') {
-  //   md = tryUnfreeze(id)
-  // }
   return md ? resultMap.get(name)(md) : null
 }
 
