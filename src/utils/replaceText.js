@@ -30,7 +30,9 @@ const replaceText = (text, expMap, wordMaps = []) => {
     })
     re.lastIndex = 0
   }
-  autoTransCache.set(text, result)
+  if (text !== result) {
+    autoTransCache.set(text, result)
+  }
   return result
 }
 

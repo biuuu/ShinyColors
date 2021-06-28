@@ -9,62 +9,56 @@ const brackets = (str) => {
 }
 
 const getCommApiData = (type) => {
-  const dataCache = {
-    expMap: new Map(), textMap: new Map(),
-    nounMap: new Map(), nameMap: new Map(), otherMap: new Map(),
-    nounArr: [], nameArr: [], otherArr: [],
-    loaded: false
-  }
+  let loaded = false
+  let allTextMap = new Map()
+  let wordMaps = []
+  let expMap = new Map()
   return async () => {
-    let { expMap, nounMap, textMap, nameMap, otherMap,
-       nounArr, nameArr, otherArr, loaded } = dataCache
     if (!loaded) {
       const list = await getList(type)
       const idolMap = await getIdolName()
-      nameArr = [...idolMap.keys()]
+      const wordMap = new Map()
+      const textMap = new Map()
       const reMap = new Map()
+      const typeTemp = new Map([
+        ['name', [...idolMap.keys()]]
+      ])
+      const expList = []
       sortWords(list, 'text').forEach(item => {
         if (item?.text) {
           const text = trimWrap(item.text)
           const trans = trimWrap(item.trans, true)
           const type = trim(item.type)
           if (text && trans) {
-            if (type === 'noun') {
-              nounArr.push(pureRE(text))
-              nounMap.set(text, trans)
-            } else if (type === 'text') {
+            if (type === 'text') {
               textMap.set(text, trans)
-            } else if (type === 'name') {
-              nameArr.push(pureRE(text))
-              nameMap.set(text, trans)
-            } else if (type === 'other') {
-              otherArr.push(pureRE(text))
-              otherMap.set(text, trans)
-            } else {
+            } else if (!type || type === 'exp') {
               reMap.set(brackets(text), trans)
+            } else {
+              if (!typeTemp.has(type)) {
+                typeTemp.set(type, [])
+              }
+              typeTemp.get(type).push(pureRE(text))
+              wordMap.set(text, trans)
             }
           }
         }
       })
-
-      dataCache.nameMap = new Map([...nameMap, ...idolMap])
-      nameMap = dataCache.nameMap
-      dataCache.textMap = new Map([...textMap, ...nameMap, nounMap, otherMap])
-      textMap = dataCache.textMap
-      const expList = [
-        { re: /\$noun/g, exp: `(${nounArr.join('|')})` },
-        { re: /\$name/g, exp: `(${nameArr.join('|')})` },
-        { re: /\$other/g, exp: `(${otherArr.join('|')})` }
-      ]
+      for (let [type, arr] of typeTemp) {
+        expList.push({
+          re: new RegExp(`\\$${type}`, 'g'),
+          exp: `(${arr.join('|')})`
+        })
+      }
       for (let [key, value] of reMap) {
         const re = parseRegExp(key, expList)
         expMap.set(re, value)
       }
-      dataCache.loaded = true
+      allTextMap = new Map([...textMap, ...wordMap, ...idolMap])
+      wordMaps = [wordMap, idolMap]
+      loaded = true
     }
-
-    const wordMaps = [nounMap, otherMap, nameMap]
-    return { expMap, wordMaps, textMap }
+    return { expMap, wordMaps, allTextMap }
   }
 }
 
