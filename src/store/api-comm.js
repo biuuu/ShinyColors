@@ -58,7 +58,7 @@ const getCommApiData = (type) => {
       wordMaps = [wordMap, idolMap]
       loaded = true
     }
-    return { expMap, wordMaps, allTextMap }
+    return { expMap, wordMaps, textMap: allTextMap }
   }
 }
 
