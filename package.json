@@ -11,6 +11,8 @@
     "dev": "yarn data && rollup --config ./script/build.js --environment BUILD:development,DEV && yarn server",
     "dev-s": "rollup --config ./script/build.js --environment BUILD:development,DEV && yarn server",
     "dev-text": "yarn data && rollup --config ./script/build.js --environment BUILD:development,DEV,TEXT && yarn server",
+    "deploy": "node ./script/cleanDist.js && rollup --config ./script/build.js && node ./script/deploy.js",
+    "deploy_action": "cross-env CUSTOM_DOMAIN=true GITHUB_ACTION=true yarn deploy",
     "server": "node ./script/server.js"
   },
   "dependencies": {
