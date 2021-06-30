@@ -1,8 +1,33 @@
-import getItem from '../store/item'
+import { replaceItem } from '../utils/replaceText'
 import tagText from '../utils/tagText'
-import { fixWrap, replaceWrap, log } from '../utils/'
-import config from '../config'
-import { router } from './request'
+import transApi from './api-comm'
+
+const { api, getTransItem, ensureData } = transApi('etc/item-re')
+
+const transDesc = getTransItem((item, key, data) => {
+  if (item?.[key]) {
+    let arr = item[key].split('\n')
+    arr.forEach((txt, index) => {
+      replaceItem(arr, index, data)
+    })
+    let text = arr.join('\n')
+    if (text !== item[key]) {
+      item[key] = tagText(text, true)
+    }
+  }
+})
+
+const transName = getTransItem(replaceItem)
+const transShopTitle = getTransItem((item, key, data) => {
+  if (item?.[key]) {
+    let text = item[key]
+    replaceItem(item, key, data)
+    if (item[key] === text) {
+      item[key] = item[key].replace('\n', '')
+      replaceItem(item, key, data)
+    }
+  }
+})
 
 const userItemTypes = [
   'userRecoveryItems',
@@ -26,84 +51,19 @@ const itemTypes = [
   'enhancementItem'
 ]
 
-
-let itemMaps
-let itemPrms
-const ensureItem = async () => {
-  if (!itemPrms) {
-    itemPrms = getItem()
-  }
-  if (!itemMaps) {
-    itemMaps = await itemPrms
-  }
-}
-
-let unknownItems = []
-const collectItems = (text) => {
-  if (!text) return
-  let _text = replaceWrap(text)
-  if (!unknownItems.includes(_text)) {
-    unknownItems.push(_text)
-  }
-}
-
-let win = (window.unsafeWindow || window)
-win.printUnknowItems = () => log(unknownItems.join('\n'))
-
-const transItem = (item, key) => {
-  if (!item || typeof item[key] !== 'string') return
-  const { itemMap, itemLimitMap, itemNoteMap} = itemMaps
-  let text = fixWrap(item[key])
-  let limit = ''
-  let note = ''
-  let exp = ''
-  if (/[\s\S]+[\r\n]{0,2}\[[^\]]+\]$/.test(text)) {
-    let rgs = text.match(/([\s\S]+)([\r\n]{0,2}\[[^\]]+\])$/)
-    text = rgs[1].trim()
-    let txt = rgs[2]
-    if (itemLimitMap.has(txt)) {
-      limit = itemLimitMap.get(txt)
-    } else {
-      limit = txt
-    }
-  }
-
-  if (/[\s\S]+[\r\n]{0,2}【Exp:\d+】$/.test(text)) {
-    let rgs = text.match(/([\s\S]+)([\r\n]{0,2}【Exp:\d+】)$/)
-    text = rgs[1].trim()
-    exp = rgs[2]
-  }
-
-  if (/[\s\S]+[\r\n]{0,2}[(（][^)）]+[）)]$/.test(text)) {
-    let rgs = text.match(/([\s\S]+)([\r\n]{0,2})[(（]([^)）]+)[）)]$/)
-    text = rgs[1].trim()
-    let txt = rgs[3]
-    if (itemNoteMap.has(txt)) {
-      note = `${rgs[2]}（${itemNoteMap.get(txt)}）`
-    } else {
-      note = `${rgs[2]}（txt）`
-    }
-  }
-
-  if (itemMap.has(text)) {
-    let trans = itemMap.get(text)
-    trans = `${trans}${note}${exp}${limit}`
-    item[key] = tagText(trans)
-  } else if (config.dev) {
-    collectItems(item[key])
-  }
-}
-
 const switchShop = (shop) => {
   shop?.shopMerchandises?.forEach(item => {
-    transItem(item, 'title')
-    transItem(item, 'shopTitle')
-    transItem(item, 'comment')
+    transName(item, 'title')
+    transShopTitle(item, 'shopTitle')
+    transDesc(item, 'comment')
+    item.shopContents?.forEach(data => {
+      transName(data.content, 'name')
+      transDesc(data.content, 'comment')
+    })
   })
 }
 
-const transShopItem = async (data) => {
-  await ensureItem()
+const transShopItem = (data) => {
   if (data) {
     if (Array.isArray(data.userShops)) {
       data.userShops.forEach(shop => {
@@ -118,10 +78,9 @@ const transShopItem = async (data) => {
   }
 }
 
-const transUserItem = async (data) => {
+const transUserItem = (data) => {
   let list = data
   if (data.userProduceItems) list = data.userProduceItems
-  await ensureItem()
   if (Array.isArray(list)) {
     list.forEach(obj => {
       const item = obj[itemTypes[0]]
@@ -132,111 +91,116 @@ const transUserItem = async (data) => {
       || obj[itemTypes[5]]
       || obj[itemTypes[6]]
       || obj[itemTypes[7]];
-      transItem(item, 'name')
-      transItem(item, 'comment')
+      transName(item, 'name')
+      transDesc(item, 'comment')
     })
   }
 }
 
-const transShopPurchase = async (data) => {
-  await ensureItem()
-  transItem(data?.shopMerchandise, 'title')
-  transItem(data?.shopMerchandise, 'comment')
+const transShopPurchase = (data) => {
+  transName(data?.shopMerchandise, 'title')
+  transDesc(data?.shopMerchandise, 'comment')
 }
 
-const transPresentItem = async (data) => {
-  await ensureItem()
+const transPresentItem = (data) => {
   if (Array.isArray(data)) {
     data.forEach(obj => {
-      transItem(obj.content, 'name')
-      transItem(obj, 'note')
+      transName(obj.content, 'name')
+      transName(obj, 'note')
     })
   }
 }
 
-const transReceivePresent = async (data) => {
-  await ensureItem()
-  transItem(data.receivedPresent, 'Name')
+const transReceivePresent = (data) => {
+  transName(data.receivedPresent, 'Name')
 }
 
-const transReceiveMission = async (data) => {
-  await ensureItem()
-  transItem(data.userMission.mission.missionReward.content, 'name')
+const transReceiveMission = (data) => {
+  transName(data.userMission.mission.missionReward.content, 'name')
 }
 
-const transLoginBonus = async (data) => {
-  await ensureItem()
+const transLoginBonus = (data) => {
   data.userLoginBonuses.forEach(item => {
     item.loginBonus.sheets.forEach(sheet => {
       sheet.rewards.forEach(reward => {
-        transItem(reward.content, 'name')
+        transName(reward.content, 'name')
       })
     })
   })
   data.userTotalBonuses.forEach(item => {
     item.rewards.forEach(reward => {
-      transItem(reward.content, 'name')
+      transName(reward.content, 'name')
     })
   })
 }
 
-const transFesReward = async (data) => {
-  await ensureItem()
+const transFesReward = (data) => {
   if (data.lastRankingResult) {
     if (Array.isArray(data.lastRankingResult.fesMatchGradeRewards)) {
       data.lastRankingResult.fesMatchGradeRewards.forEach(item => {
-        transItem(item.content, 'name')
+        transName(item.content, 'name')
       })
     }
   }
 }
 
-const transAccumulatedPresent = async (data) => {
-  await ensureItem()
+const transAccumulatedPresent = (data) => {
   data.accumulatedPresent.userGameEventAccumulatedPresents.forEach(item => {
     item.gameEventAccumulatedPresent.rewards.forEach(reward => {
-      transItem(reward.content, 'name')
+      transName(reward.content, 'name')
     })
   })
 }
 
-const selectLoginBonus = async (data) => {
-  await ensureItem()
+const selectLoginBonus = (data) => {
   data.rewards.forEach(reward => {
-    transItem(reward.content, 'name')
+    transName(reward.content, 'name')
   })
 }
 
-const produceActiveItem = async (data) => {
-  await ensureItem()
+const produceActiveItem = (data) => {
   data?.activeProduceItems?.forEach(item => {
-    transItem(item.produceItem, 'name')
-    transItem(item.produceItem, 'comment')
+    transName(item.produceItem, 'name')
+    transDesc(item.produceItem, 'comment')
   })
 }
 
-const homeProduceActiveItem = async (data) => {
-  await produceActiveItem(data.userProduce)
+const homeProduceActiveItem = (data) => {
+  produceActiveItem(data.userProduce)
 }
 
-const useProduceItem = async (data) => {
-  await ensureItem()
+const useProduceItem = (data) => {
   const item = data.consumeProduceItem?.produceItem
   if (item) {
-    transItem(item, 'name')
-    transItem(item, 'comment')
+    transName(item, 'name')
+    transDesc(item, 'comment')
   }
 }
 
-router.get([
+const gachaResult = data => {
+  data.acquiredStampRewards?.forEach(item => {
+    transName(item.content, 'name')
+  })
+}
+
+const gashaGroups = data => {
+  data.gashaGroups?.forEach(group => {
+    const item = group.userGashaTicket?.gashaTicket
+    transName(item, 'name')
+    transDesc(item, 'comment')
+  })
+}
+
+api.get([
   [['userShops', 'userIdolPieceShops'], transShopItem],
   [userItemTypes, transUserItem],
   [['userPresents\\?limit={num}', 'userPresentHistories\\?limit={num}'], transPresentItem],
   ['userProduces', produceActiveItem],
-  ['missionEvents/{num}/top', transAccumulatedPresent]
+  ['missionEvents/{num}/top', transAccumulatedPresent],
+  ['gashaGroups', gashaGroups]
 ])
 
-router.post([
+api.post([
   ['myPage', homeProduceActiveItem],
   ['(produceMarathons|fesMarathons|trainingEvents)/{num}/top', transAccumulatedPresent],
   ['userShops/actions/purchase', transShopPurchase],
@@ -245,9 +209,12 @@ router.post([
   ['userMissions/{num}/actions/receive', transReceiveMission],
   ['userLoginBonuses', transLoginBonus],
   ['fesTop', transFesReward],
-  ['userSelectLoginBonuses/{num}', selectLoginBonus]
+  ['userSelectLoginBonuses/{num}', selectLoginBonus],
+  ['gashas/{num}/actions/draw', gachaResult]
 ])
 
-router.patch('produces/{num}/produceItem/consume', useProduceItem)
+api.patch([
+  ['produces/{num}/produceItem/consume', useProduceItem]
+])
 
-export { ensureItem, transItem }
+export { transName as transItemName, transDesc as transItemDesc, ensureData as ensureItemData }

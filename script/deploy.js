@@ -99,7 +99,7 @@ const buildStory = async (DATA_PATH) => {
   await fse.writeJSON('./dist/story.json', storyData)
 }
 
-const etcFiles = ['image', 'item', 'support-skill', 'mission-re', 'speaker-icon']
+const etcFiles = ['image', 'item', 'support-skill', 'mission-re', 'speaker-icon', 'mission']
 const DATA_PATH = './data/'
 const start = async () => {
   await fse.emptyDir('./dist/data/')

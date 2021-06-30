@@ -1,5 +1,4 @@
 import { commonStore } from './index'
-import getItem from './item'
 import getName from './name'
 
 let loaded = false
@@ -12,9 +11,8 @@ const getBaseMap = commonStore({
 const getCommMap = async () => {
   if (!loaded) {
     commonMap = await getBaseMap()
-    const { itemMap } = await getItem()
     const nameMap = await getName()
-    commonMap = new Map([...itemMap, ...nameMap, ...commonMap])
+    commonMap = new Map([...nameMap, ...commonMap])
     loaded = true
   }
 

@@ -4,7 +4,7 @@ import tagText from '../utils/tagText'
 import { router } from './request'
 import getCommApiData from '../store/api-comm'
 
-const transApi = (type) => {
+const transApi = (type, ensureMoreData) => {
   let commData = null
   const getData = getCommApiData(type)
   const ensureData = makePromise(getData)
@@ -12,8 +12,13 @@ const transApi = (type) => {
     return async (data) => {
       if (!commData) {
         commData = await ensureData()
+        if (ensureMoreData) {
+          await ensureMoreData()
+        }
       }
-      callback(data)
+      if (callback) {
+        callback(data)
+      }
     }
   }
 
@@ -60,10 +65,12 @@ const transApi = (type) => {
       let text = arr.join('/')
       if (text !== item[key]) {
         item[key] = tagText(text, true)
-      } else {
-        // log(text)
       }
     }
+  }
+
+  const getTransItem = (callback) => (item, key) => {
+    callback(item, key, commData)
   }
 
   return {
@@ -81,7 +88,9 @@ const transApi = (type) => {
         router.patch(processRouter(list))
       }
     },
-    transItem
+    transItem,
+    getTransItem,
+    ensureData: internalCb()
   }
 }
 
