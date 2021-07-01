@@ -24,7 +24,11 @@ const transShopTitle = getTransItem((item, key, data) => {
     replaceItem(item, key, data)
     if (item[key] === text) {
       item[key] = item[key].replace('\n', '')
+      let temp = item[key]
       replaceItem(item, key, data)
+      if (temp === item[key]) {
+        item[key] = text
+      }
     }
   }
 })
