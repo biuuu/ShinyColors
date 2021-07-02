@@ -195,13 +195,20 @@ const gashaGroups = data => {
   })
 }
 
+const businessTop = data => {
+  data.userRecoveryItems?.forEach(item => {
+    transName(item, 'name')
+  })
+}
+
 api.get([
   [['userShops', 'userIdolPieceShops'], transShopItem],
   [userItemTypes, transUserItem],
   [['userPresents\\?limit={num}', 'userPresentHistories\\?limit={num}'], transPresentItem],
   ['userProduces', produceActiveItem],
   ['missionEvents/{num}/top', transAccumulatedPresent],
-  ['gashaGroups', gashaGroups]
+  ['gashaGroups', gashaGroups],
+  ['businessTop', businessTop]
 ])
 
 api.post([
