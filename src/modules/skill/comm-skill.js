@@ -276,6 +276,10 @@ const userFesDecks = data => {
   })
 }
 
+const patchSupportIdol = data => {
+  userSptIdolsSkill(data.userSupportIdol)
+}
+
 api.get([
   [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], [userSptIdolsSkill]],
   ['userProduce(Teaching)?SupportIdols/{num}', [userProSptIdolsSkill]],
@@ -306,5 +310,6 @@ api.post([
 ])
 
 api.patch([
-  ['userFesDecks', userFesDecks]
+  ['userFesDecks', userFesDecks],
+  ['userSupportIdols/{num}', patchSupportIdol]
 ])
