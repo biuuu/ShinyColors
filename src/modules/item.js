@@ -197,7 +197,7 @@ const gashaGroups = data => {
 
 const businessTop = data => {
   data.userRecoveryItems?.forEach(item => {
-    transName(item, 'name')
+    transName(item.recoveryItem, 'name')
   })
 }
 
