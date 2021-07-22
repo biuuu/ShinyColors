@@ -1,7 +1,7 @@
 const numRE = '([+-＋－]?[0-9０-９]{1,10}\\.?[0-9０-９]{0,4}[万億]?)'
 const percentRE = '([+-＋－]?[0-9０-９]{1,10}\\.?[0-9０-９]{0,4}?[%％])'
-const unknownRE = '(.*?)'
-const sepRE = '[\\d\\D]?'
+const unknownRE = '([\\s\\S]+)'
+const sepRE = '[\\s\\S]?'
 
 const parseRegExp = (str, list = []) => {
   let result = str.replace(/\./g, '\\.')
