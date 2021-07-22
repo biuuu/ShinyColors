@@ -2,7 +2,7 @@ import { replaceItem } from '../utils/replaceText'
 import tagText from '../utils/tagText'
 import transApi from './api-comm'
 
-const { api, getTransItem, ensureData } = transApi('etc/item-re')
+const { api, getTransItem, ensureData } = transApi('item')
 
 const transDesc = getTransItem((item, key, data) => {
   if (item?.[key]) {
