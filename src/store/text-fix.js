@@ -1,8 +1,7 @@
 import { commonStore } from './index'
 
 const getNounFix = commonStore({
-  name: 'noun-fix',
-  path: 'etc/noun-fix',
+  name: 'etc/noun-fix',
   keys: {
     trans: 'fixed'
   },
@@ -11,8 +10,7 @@ const getNounFix = commonStore({
 })
 
 const getCaiyunPrefix = commonStore({
-  name: 'caiyun-prefix',
-  path: 'etc/caiyun-prefix',
+  name: 'etc/caiyun-prefix',
   keys: {
     trans: 'fixed'
   },

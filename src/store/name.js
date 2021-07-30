@@ -8,8 +8,7 @@ const getBaseName = commonStore({
 })
 
 const getBaseIdolName = commonStore({
-  name: 'idol-name',
-  path: 'etc/idol-name',
+  name: 'etc/idol-name',
   keys: {
     text: 'name'
   }
