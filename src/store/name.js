@@ -14,9 +14,11 @@ const getBaseIdolName = commonStore({
   }
 })
 
+let idolMap = null
 const getIdolName = async (full = true) => {
+  if (idolMap) return idolMap
   const map = await getBaseIdolName()
-  const idolMap = new Map()
+  idolMap = new Map()
   for (let [text, trans] of map) {
     const textArr = text.split(' ')
     const transArr = trans.split(' ')
