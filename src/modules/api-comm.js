@@ -19,6 +19,7 @@ const transApi = (type, ensureMoreData) => {
       if (callback) {
         callback(data)
       }
+      return commData
     }
   }
 

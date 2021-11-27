@@ -20,6 +20,13 @@ const conditions = new Map([
   }],
   ['WEBP', (module) => {
     return module && module.default && module.default.isSupportedWebP
+  }],
+  ['PROFILE_KEY', (module) => {
+    if (Array.isArray(module?.default?.children)) {
+      if (module.default.children.findIndex(item => item?.name === 'nameKana') !== -1) {
+        return true
+      }
+    }
   }]
 ])
 
@@ -29,7 +36,8 @@ const resultMap = new Map([
   ['REQUEST', (module) => module],
   ['PHRASE', (module) => module.default._polyglot.phrases],
   ['SPEAKER', (module) => module.default],
-  ['WEBP', (module) => module.default]
+  ['WEBP', (module) => module.default],
+  ['PROFILE_KEY', (module) => module.default.children]
 ])
 
 const isReady = () => {
