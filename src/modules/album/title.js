@@ -69,7 +69,6 @@ const albumTopTitle = async (data) => {
 
 const characterAlbumTitle = async (data) => {
   await ensureTitle()
-  debugger
   data.albumCommunicationTitles.forEach(item => {
     transTitle(item, 'title')
   })
