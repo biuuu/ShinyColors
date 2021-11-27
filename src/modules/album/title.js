@@ -45,9 +45,7 @@ const saveTitle = (id, text) => {
 const transTitle = (item = {}, key) => {
   let text = item[key]
   replaceItem(item, key, titleMaps)
-  if (text !== item[key]) {
-    item[key] = tagText(text, true)
-  } else if (config.dev) {
+  if (text === item[key] && config.dev) {
     collectTitles(text)
   }
 }
@@ -71,6 +69,7 @@ const albumTopTitle = async (data) => {
 
 const characterAlbumTitle = async (data) => {
   await ensureTitle()
+  debugger
   data.albumCommunicationTitles.forEach(item => {
     transTitle(item, 'title')
   })
