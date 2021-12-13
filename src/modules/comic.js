@@ -22,8 +22,8 @@ const ensureComicMap = () => {
 }
 
 const replaceComic = async function (self) {
-  if (/^images\/content\/comics\/(web|limited|special)\/page\/\d+\.jpg/.test(self.name)) {
-    const id = parseInt(self.name.match(/page\/(\d+)\.jpg/)[1])
+  if (/^images\/content\/comics\/(web|limited|special)\/page\/[^_]+_\d+\.jpg/.test(self.name)) {
+    const id = parseInt(self.name.match(/page\/[^_]+_(\d+)\.jpg/)[1])
     await ensureComicMap()
     if (comicMap.has(id)) {
       self.url = `https://comic.shiny.fun/4ko/${comicMap.get(id).name}`
