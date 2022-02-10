@@ -86,6 +86,12 @@ const upgradeExSkill = (data) => {
   exSkill(data.produceExSkill)
 }
 
+const producerSkillSumm = (list) => {
+  list.forEach(item => {
+    exSkill(item)
+  })
+}
+
 api.get([
   [['userIdols/produceExSkillTop', 'userSupportIdols/produceExSkillTop', 'userIdols/{num}/produceExSkillTop', 'userSupportIdols/{num}/produceExSkillTop'], produceExSkillTop],
   [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], [userSptIdolsSkill]],
@@ -93,7 +99,8 @@ api.get([
   [['userIdols/{num}', 'userIdols/statusMax', 'produceTeachingIdols/{num}'], [userIdolsSkill]],
   [['userProduce(Teaching)?Idols/{num}', 'userProduceTeachingIdol'], userProIdolsSkill],
   ['userFesIdols/{num}', userFesIdolsSkill],
-  ['earthUsers/{uuid}/userFesIdols/{num}', otherFesIdolSkill]
+  ['earthUsers/{uuid}/userFesIdols/{num}', otherFesIdolSkill],
+  ['userProducerSkills/summaries', producerSkillSumm]
 ])
 
 api.post([

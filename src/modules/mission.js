@@ -14,6 +14,13 @@ const processReward = (data, key) => {
   }
 }
 
+const transTextList = (list) => {
+  if (!list) return
+  for (let i = 0; i < list; i++) {
+    transItem(list, i)
+  }
+}
+
 const processMission = (list) => {
   list?.forEach(item => {
     transItem(item.mission, 'title')
@@ -128,20 +135,40 @@ const idolRoadForward = (data) => {
   idolRoadRewards(data.userIdol)
 }
 
+const producerDesk = (data) => {
+  transTextList(data.producerDesk?.messages)
+}
+
+const producerLevelRewards = (data) => {
+  data.producerLevelRewards.forEach(item => {
+    transItem(item, 'title')
+    processReward(item.content, 'name')
+  })
+}
+
+const producerProgress = (data) => {
+  data.progresses.forEach(item => {
+    transItem(item, 'comment')
+    transItem(item, 'title')
+  })
+}
+
 api.get([
   ['userMissions', transMission],
   ['fesRaidEvents/{num}/rewards', fesRaidMission],
   ['userProduces', [teachingMission]],
   ['userBeginnerMissions/top', beginnerMission],
   ['idolRoads/top', idolRoadMission],
-  ['missionEvents/{num}/top', [fesRecomMission]]
+  ['missionEvents/{num}/top', [fesRecomMission]],
+  ['producerDesk/rewards', producerLevelRewards]
 ])
 
 api.post([
-  ['myPage', [reportMission, beginnerMissionComplete]],
+  ['myPage', [reportMission, beginnerMissionComplete, producerDesk]],
   ['(produceMarathons|fesMarathons|trainingEvents)/{num}/top', [fesRecomMission]],
   [['produceTeachings/resume', 'produceTeachings/next'], teachingMission],
-  ['userLectureMissions/{num}/actions/receive', beginnerMission]
+  ['userLectureMissions/{num}/actions/receive', beginnerMission],
+  ['producerDesk/top', producerProgress]
 ])
 
 api.put([
