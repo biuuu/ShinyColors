@@ -63,6 +63,7 @@ const transMission = (data) => {
   })
   processMission(data.normalUserMissions)
   processMission(data.specialUserMissions)
+  processMission(data.fesMatchRankingUserMissions)
 }
 
 const reportMission = (data) => {
