@@ -16,7 +16,7 @@ const processReward = (data, key) => {
 
 const transTextList = (list) => {
   if (!list) return
-  for (let i = 0; i < list; i++) {
+  for (let i = 0; i < list.length; i++) {
     transItem(list, i)
   }
 }
