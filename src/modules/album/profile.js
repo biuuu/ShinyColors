@@ -1,36 +1,7 @@
 import getProfile from '../../store/profile'
 import { getIdolName } from '../../store/name'
 import { router } from '../request'
-import { getModule } from '../get-module'
 import tagText from '../../utils/tagText'
-import { sleep } from '../../utils/index'
-
-const transProfileKey = (list, labelMap) => {
-  for (let [key, name] of labelMap) {
-    const data = list.find(item => item.name === key)
-    if (data?.children) {
-      const profileKeyObj = data.children.find(obj => obj.name === 'title' || obj.name === `${key}Title`)
-      if (profileKeyObj) {
-        profileKeyObj.text = name
-      }
-    }
-  }
-}
-
-const transProfileKeys = (type) => {
-  let profileKeyTransed = false
-  return async () => {
-    if (profileKeyTransed) return
-    profileKeyTransed = true
-    const profileMap = await getProfile()
-    const labelMap = profileMap.get('label')
-    await sleep(1000)
-    const list = await getModule(type)
-    transProfileKey(list, labelMap)
-  }
-}
-
-const profileKey1 = transProfileKeys('PROFILE_KEY')
 
 const transName = async (data) => {
   const idolName = await getIdolName()

@@ -2,14 +2,6 @@ import { getHash } from '../utils/fetch'
 
 let require = null
 
-const profileKeyCheck = (module) => {
-  if (Array.isArray(module?.default?.children)) {
-    if (module.default.children.findIndex(item => item?.name === 'nameKana') !== -1) {
-      return true
-    }
-  }
-}
-
 const conditions = new Map([
   ['AOBA', (module) => {
     return module && module.loaders && module.Text && module.BLEND_MODES
@@ -28,9 +20,7 @@ const conditions = new Map([
   }],
   ['WEBP', (module) => {
     return module && module.default && module.default.isSupportedWebP
-  }],
-  ['PROFILE_KEY', profileKeyCheck],
-  ['PROFILE_KEY2', profileKeyCheck]
+  }]
 ])
 
 const resultMap = new Map([
@@ -39,9 +29,7 @@ const resultMap = new Map([
   ['REQUEST', (module) => module],
   ['PHRASE', (module) => module.default._polyglot.phrases],
   ['SPEAKER', (module) => module.default],
-  ['WEBP', (module) => module.default],
-  ['PROFILE_KEY', (module) => module.default.children],
-  ['PROFILE_KEY2', (module) => module.default.children]
+  ['WEBP', (module) => module.default]
 ])
 
 const isReady = () => {
