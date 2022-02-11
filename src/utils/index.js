@@ -25,6 +25,10 @@ const trimWrap = (str, trans = false) => {
   return trans ? _str : _str.replace(/\n{2,}/g, '\n')
 }
 
+const restoreSpace = (str) => {
+  return str.replace(/\u200b/g, ' ')
+}
+
 const fixWrap = (str) => {
   return trim(str).replace(/\r/g, '\n').replace(/\n{2,}/g, '\n')
 }
@@ -194,7 +198,7 @@ const makePromise = (callback, ...args) => {
 }
 
 export {
-  trim, trimWrap, fixWrap, isDomain, log, log2, makePromise,
+  trim, trimWrap, restoreSpace, fixWrap, isDomain, log, log2, makePromise,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
   sleep, tagStoryText, sess, uniqueStoryId, isNewVersion, storyTextLogStyle
 }

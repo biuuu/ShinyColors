@@ -1,5 +1,5 @@
 import { getList } from './index'
-import { trim, pureRE, trimWrap } from '../utils/index'
+import { trim, pureRE, trimWrap, restoreSpace } from '../utils/index'
 import sortWords from '../utils/sortWords'
 import parseRegExp from '../utils/parseRegExp'
 import { getIdolName } from './name'
@@ -27,7 +27,7 @@ const getCommApiData = (type) => {
       sortWords(list, 'text').forEach(item => {
         if (item?.text) {
           const text = trimWrap(item.text)
-          const trans = trimWrap(item.trans, true)
+          const trans = restoreSpace(trimWrap(item.trans, true))
           const type = trim(item.type)
           if (text && trans) {
             if (type === 'text') {
