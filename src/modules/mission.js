@@ -1,5 +1,7 @@
 import transApi from './api-comm'
 import { transItemName, transItemDesc, ensureItemData } from './item'
+import config from '../config'
+import { log } from '../utils/index'
 
 const { api, transItem } = transApi('mission', ensureItemData)
 
@@ -16,8 +18,16 @@ const processReward = (data, key) => {
 
 const transTextList = (list) => {
   if (!list) return
+  const unTransList = []
   for (let i = 0; i < list.length; i++) {
+    let txt = list[i]
     transItem(list, i)
+    if (txt === list[i]) {
+      unTransList.push(txt)
+    }
+  }
+  if (config.dev && unTransList.length) {
+    log(unTransList.join('\n'))
   }
 }
 
