@@ -19,7 +19,7 @@ iOS 的 Alook 可以直接通过这个网址安装插件：[https://www.shiny.fu
 Alook也可以选择手动添加 js 脚本，和上面的链接效果一样，代码如下：
 <details>
     <summary>展开代码</summary>
-  
+
 ```javascript
 (function () {
   let scriptContent = '';
@@ -49,9 +49,16 @@ Alook也可以选择手动添加 js 脚本，和上面的链接效果一样，�
 ```
 
 </details>
-  
---------------------
 
+### 使用插件提取文本和预览翻译
+
+插件提供了提取剧情文本并预览的功能，如果你经常录翻译视频，可以考虑使用这个功能节省手动添加字幕的步骤。
+[查看详情](https://github.com/biuuu/ShinyColors/blob/master/data/README.md)
+
+**将自己的翻译录成视频并没有任何限制，但录制他人的翻译前需要取得译者的同意。**
+
+--------------------
+### 插件选项
 _如果使用的是PC浏览器，可以通过点击浏览器上的扩展图标里的Violentmonkey图标，打开插件的选项。_
 
 _通过点击选项可以直接完成下方提到的操作。_
@@ -74,6 +81,7 @@ _通过点击选项可以直接完成下方提到的操作。_
 
 也可以直接点这两个链接来开启或关闭，[保持BGM持续播放](https://shinycolors.enza.fun/home#bgm=on)  /  [取消保持BGM播放](https://shinycolors.enza.fun/home#bgm=off)
 
+### 其它
 **无法访问脚本链接**
 
 如果点不开脚本地址，可能是因网络问题无法访问 `www.shiny.fun` 这个域名。
