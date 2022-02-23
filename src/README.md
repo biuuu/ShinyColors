@@ -1,23 +1,62 @@
 ## 使用
-1. 建议使用 Chrome，首先安装 [Tampermonkey](https://tampermonkey.net/) 扩展
+_注意：因为本脚本的运行机制，Tampermonkey无法稳定加载，推荐使用Violentmonkey。_
+1. 建议使用 Chrome，首先安装 [Violentmonkey](https://violentmonkey.github.io/get-it/) 扩展
 2. 扩展安装完成后，点击脚本的地址 https://www.shiny.fun/ShinyColors.user.js ，根据扩展的提示安装脚本
 3. 回到游戏页面刷新
 
-游戏地址：[直接打开](https://shinycolors.enza.fun/home) 或帮忙点下我的 [招待链接](https://go.enza.fun/YLZXbw) 来开始游戏。
+游戏地址：[直接打开](https://shinycolors.enza.fun/home) ，新用户也可以通过我的 [招待链接](https://go.enza.fun/YLZXbw) 来开始游戏。
 
-如果是用手机，可以安装支持用户脚本的浏览器，使用下面的代码。
-```javascript
-(function(){
-  const script = document.createElement('script');
-  script.src = 'https://www.shiny.fun/ShinyColors.user.js';
-  document.head.appendChild(script);
-}())
-```
-已知支持用户脚本的浏览器
+__如果是用手机，可以安装支持用户脚本的浏览器。__
+
+已知支持用户脚本的手机浏览器
 - iOS: Alook
 - Android: Kiwi
 
-Alook也可以直接通过这个网址安装插件：[https://www.shiny.fun/install.alook](https://www.shiny.fun/install.alook)
+Android 的 Kiwi 浏览器安装同 PC 的 Chrome 一样，先安装 Violentmonkey 在点击脚本地址。
+
+iOS 的 Alook 可以直接通过这个网址安装插件：[https://www.shiny.fun/install.alook](https://www.shiny.fun/install.alook) ，如果提示下载文件，则在下载后再点击下载好的文件添加扩展。
+
+Alook也可以选择手动添加 js 脚本，和上面的链接效果一样，代码如下：
+<details>
+    <summary>展开代码</summary>
+  
+```javascript
+(function () {
+  let scriptContent = '';
+  let version = '';
+  const script = document.createElement('script');
+  try {
+    scriptContent = localStorage.getItem('sczh-script');
+    version = localStorage.getItem('sczh-version');
+  } catch (e) {}
+  if (!scriptContent) {
+    script.setAttribute('src', 'https://www.shiny.fun/ShinyColors.user.js');
+    script.setAttribute('defer', true);
+  } else {
+    script.textContent = scriptContent;
+  }
+  document.documentElement.appendChild(script);
+  fetch('https://www.shiny.fun/manifest.json')
+    .then(res => res.json())
+    .then(async function (data) {
+      if (data.version !== version) {
+        const text = await (await fetch('https://www.shiny.fun/ShinyColors.user.js')).text();
+        localStorage.setItem('sczh-script', text);
+        localStorage.setItem('sczh-version', data.version);
+      }
+    })
+})();
+```
+
+</details>
+  
+--------------------
+
+_如果使用的是PC浏览器，可以通过点击浏览器上的扩展图标里的Violentmonkey图标，打开插件的选项。_
+
+_通过点击选项可以直接完成下方提到的操作。_
+
+[![QQ截图20220223095820](https://user-images.githubusercontent.com/10892119/155250068-885723a5-4953-4f51-b271-2de24a2ba94b.png)
 
 **关于机翻**
 
@@ -45,6 +84,7 @@ Alook也可以直接通过这个网址安装插件：[https://www.shiny.fun/inst
 
 改回默认数据源则是 `#origin=` 。
 
-也可以直接点这两个链接来修改或恢复，[修改数据源](https://shinycolors.enza.fun/home#origin=https://cdn.jsdelivr.net/gh/biuuu/ShinyColors@gh-pages)  /  [取消修改](https://shinycolors.enza.fun/home#origin=)
+也可以直接点这两个链接来修改或恢复，
+修改数据源](https://shinycolors.enza.fun/home#origin=https://cdn.jsdelivr.net/gh/biuuu/ShinyColors@gh-pages)  /  [取消修改](https://shinycolors.enza.fun/home#origin=)
 
 上面涉及到 `www.shiny.fun` 地方的操作都可以替换为 `cdn.jsdelivr.net/gh/biuuu/ShinyColors@gh-pages`
