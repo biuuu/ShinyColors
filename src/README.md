@@ -1,5 +1,5 @@
 ## 使用
-_注意：因为本脚本的运行机制，Tampermonkey无法稳定加载，推荐使用Violentmonkey。_
+_注意：因为本脚本的运行机制，Tampermonkey 无法稳定加载，推荐使用 Violentmonkey。_
 1. 建议使用 Chrome，首先安装 [Violentmonkey](https://violentmonkey.github.io/get-it/) 扩展
 2. 扩展安装完成后，点击脚本的地址 https://www.shiny.fun/ShinyColors.user.js ，根据扩展的提示安装脚本
 3. 回到游戏页面刷新
@@ -12,7 +12,7 @@ __如果是用手机，可以安装支持用户脚本的浏览器。__
 - iOS: Alook
 - Android: Kiwi
 
-Android 的 Kiwi 浏览器安装同 PC 的 Chrome 一样，先安装 Violentmonkey 在点击脚本地址。
+Android 的 Kiwi 浏览器安装同 PC 的 Chrome 一样，先安装 Violentmonkey 再点击脚本地址。
 
 iOS 的 Alook 可以直接通过这个网址安装插件：[https://www.shiny.fun/install.alook](https://www.shiny.fun/install.alook) ，如果提示下载文件，则在下载后再点击下载好的文件添加扩展。
 
