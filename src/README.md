@@ -19,7 +19,7 @@ iOS 的 Alook 可以直接通过这个网址安装插件：[https://www.shiny.fu
 Alook也可以选择手动添加 js 脚本，和上面的链接效果一样，代码如下：
 <details>
     <summary>展开代码</summary>
-  
+
 ```javascript
 (function () {
   let scriptContent = '';

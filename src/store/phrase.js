@@ -1,6 +1,5 @@
 import { getList } from './index'
 import { trimWrap } from '../utils/index'
-import tagText from '../utils/tagText'
 
 const phraseMap = new Map()
 let loaded = false
@@ -16,7 +15,7 @@ const getPhrase = async (full = false) => {
           if (full) {
             phraseMap.set(id, item.trans)
           } else if (trans) {
-            phraseMap.set(id, tagText(trans))
+            phraseMap.set(id, trans)
           }
         }
       }

@@ -1,5 +1,7 @@
 import transApi from './api-comm'
 import { transItemName, transItemDesc, ensureItemData } from './item'
+import config from '../config'
+import { log } from '../utils/index'
 
 const { api, transItem } = transApi('mission', ensureItemData)
 
@@ -11,6 +13,21 @@ const processReward = (data, key) => {
     } else {
       transItemDesc(data, key)
     }
+  }
+}
+
+const transTextList = (list) => {
+  if (!list) return
+  const unTransList = []
+  for (let i = 0; i < list.length; i++) {
+    let txt = list[i]
+    transItem(list, i)
+    if (txt === list[i]) {
+      unTransList.push(txt)
+    }
+  }
+  if (config.dev && unTransList.length) {
+    log(unTransList.join('\n'))
   }
 }
 
@@ -63,6 +80,7 @@ const transMission = (data) => {
   })
   processMission(data.normalUserMissions)
   processMission(data.specialUserMissions)
+  processMission(data.fesMatchRankingUserMissions)
 }
 
 const reportMission = (data) => {
@@ -127,20 +145,40 @@ const idolRoadForward = (data) => {
   idolRoadRewards(data.userIdol)
 }
 
+const producerDesk = (data) => {
+  transTextList(data.producerDesk?.messages)
+}
+
+const producerLevelRewards = (data) => {
+  data.producerLevelRewards.forEach(item => {
+    transItem(item, 'title')
+    processReward(item.content, 'name')
+  })
+}
+
+const producerProgress = (data) => {
+  data.progresses.forEach(item => {
+    transItem(item, 'comment')
+    transItem(item, 'title')
+  })
+}
+
 api.get([
   ['userMissions', transMission],
   ['fesRaidEvents/{num}/rewards', fesRaidMission],
   ['userProduces', [teachingMission]],
   ['userBeginnerMissions/top', beginnerMission],
   ['idolRoads/top', idolRoadMission],
-  ['missionEvents/{num}/top', [fesRecomMission]]
+  ['missionEvents/{num}/top', [fesRecomMission]],
+  ['producerDesk/rewards', producerLevelRewards]
 ])
 
 api.post([
-  ['myPage', [reportMission, beginnerMissionComplete]],
+  ['myPage', [reportMission, beginnerMissionComplete, producerDesk]],
   ['(produceMarathons|fesMarathons|trainingEvents)/{num}/top', [fesRecomMission]],
   [['produceTeachings/resume', 'produceTeachings/next'], teachingMission],
-  ['userLectureMissions/{num}/actions/receive', beginnerMission]
+  ['userLectureMissions/{num}/actions/receive', beginnerMission],
+  ['producerDesk/top', producerProgress]
 ])
 
 api.put([

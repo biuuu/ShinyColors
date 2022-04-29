@@ -1,6 +1,7 @@
 import getPhrase from '../store/phrase'
 import CSV from 'papaparse/papaparse.min'
 import { replaceWrap, log } from '../utils/index'
+import tagText from '../utils/tagText'
 import { getModule } from './get-module'
 let phraseMap = null
 
@@ -18,6 +19,10 @@ const collectPhrases = (obj) => {
   log(CSV.unparse(list))
 }
 
+const specialKey = [
+  'concert.skill.betweenString',
+  'concert.skill.appealString'
+]
 export default async function transPhrase () {
   const obj = await getModule('PHRASE')
   if (!obj) return
@@ -27,6 +32,6 @@ export default async function transPhrase () {
   // }
   phraseMap = await getPhrase()
   for (let [key, value] of phraseMap) {
-    obj[key] = value
+    obj[key] = specialKey.includes(key) ? value : tagText(value)
   }
 }

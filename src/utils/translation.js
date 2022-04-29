@@ -7,7 +7,6 @@ import { getCommStory } from '../store/story'
 import getTypeTextMap from '../store/typeText'
 import config from '../config'
 import caiyunApi from './caiyun'
-import googleApi from './google'
 
 const joinBr = (list, br, transArr) => {
   br.forEach(count => {
@@ -85,23 +84,6 @@ const caiyunTrans = async (source) => {
   }
 }
 
-const googleTrans = async (source) => {
-  try {
-    let [query, br] = joinText(source)
-    let textArr = splitText(query)
-    let result = await Promise.all(textArr.map(query => {
-      return googleApi(query)
-    }))
-    let list = result.reduce((a, b) => a.concat(b))
-    let transArr = []
-    joinBr(list, br, transArr)
-    return transArr
-  } catch (e) {
-    log(e)
-    return []
-  }
-}
-
 const textKeys = [
   'text', 'select', 'comment', 'title',
   'actionComment', 'actionComment2', 'reactionComment',
@@ -170,8 +152,6 @@ const autoTrans = async (data, name, printText, skip = false) => {
       if (transApi === 'caiyun') {
         let fixedTextList = await preFix(textList)
         transList = await caiyunTrans(fixedTextList)
-      } else if (transApi === 'google') {
-        transList = await googleTrans(textList)
       }
       fixedTransList = await nounFix(transList)
     }

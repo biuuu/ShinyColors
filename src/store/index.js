@@ -1,6 +1,6 @@
 import config from '../config'
 import fetchData, { getHash } from '../utils/fetch'
-import { isNewVersion, trimWrap } from '../utils/'
+import { isNewVersion, trimWrap, restoreSpace } from '../utils/'
 import parseCsv from '../utils/parseCsv'
 import sortWords from '../utils/sortWords'
 
@@ -91,7 +91,7 @@ const commonStore = (option) => {
       }
       list.forEach(item => {
         const text = trimWrap(item[textKey])
-        const trans = trimWrap(item[transKey], true)
+        const trans = restoreSpace(trimWrap(item[transKey], true))
         if (text && (trans || ignoreTrans)) {
           dataMap.set(text, trans)
         }

@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "闪耀色彩异步脚本",
+    "description": "扩展名"
+  },
+  "desc": {
+    "message": "通过给游戏的app脚本设置async属性使第三方用户脚本更稳定的加载",
+    "description": "Extension description"
+  }
+}
