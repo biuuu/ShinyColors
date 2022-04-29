@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "ShinyColors async app script",
+    "description": "Extension name"
+  },
+  "desc": {
+    "message": "Make third-party userscripts load more stable by setting the async attribute on the game's app script",
+    "description": "Extension description"
+  }
+}
