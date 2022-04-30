@@ -88,7 +88,8 @@ const textKeys = [
   'text', 'select', 'comment', 'title',
   'actionComment', 'actionComment2', 'reactionComment',
   'resultLoseComment', 'resultStartComment', 'resultWinComment',
-  'characterComment', 'producerComment', 'comment1', 'comment2'
+  'characterComment', 'producerComment', 'comment1', 'comment2',
+  'mainText', 'resultText', 'name'
 ]
 const collectText = (data, commMap, typeTextMap) => {
   const textInfo = []

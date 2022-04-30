@@ -212,6 +212,33 @@ const trustLevelUp = async (data) => {
   }
 }
 
+const fesTowerPanels = async (data) => {
+  if (!data.fesTowerPanelRandom) return
+  const list = [
+    {
+      name: data.fesTowerPanelRandom.mainText
+    },
+    ...data.fesTowerPanelRandom.fesTowerPanelRandomChoices
+  ]
+  await autoTransText(list, 'name')
+  data.fesTowerPanelRandom.mainText = list[0].name
+}
+
+const fesTowerPanelsResult = async (data) => {
+  if (!data.fesTowerPanelRandomEffect) return
+  await autoTransText([data.fesTowerPanelRandomEffect], 'resultText')
+}
+
+const resumeFesTower = async (data) => {
+  for (let stage of data.userFesTowerStages) {
+    const history = stage.userFesTowerPanelHistory?.userFesTowerRandomPanelHistory
+    if (history) {
+      await fesTowerPanels(history)
+      await fesTowerPanelsResult(history)
+    }
+  }
+}
+
 router.get([
   ['userProduces', topCharacterReaction],
   ['fes(Match)?Concert/actions/resume', resumeGamedata],
@@ -229,6 +256,9 @@ router.post([
   ['produces/actions/result', trustLevelUp],
   ['produces/({num}/audition|concert)/actions/(start|finish)', [produceAudition, characterComment]],
   ['userProduceHelperSupportIdols', helperSupportIdols],
+  ['userFesTowerPanels/{num}/random', fesTowerPanels],
+  ['userFesTowerPanels/{num}/random/actions/choice', fesTowerPanelsResult],
+  ['userFesTowerAreas/{num}', resumeFesTower]
 ])
 
 export { transText }
