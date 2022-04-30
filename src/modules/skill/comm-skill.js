@@ -202,6 +202,7 @@ const transDeckMember = (member) => {
 
 const fesMatchConcertSkill = (data) => {
   data.userFesDeck?.userFesDeckMembers.forEach(transDeckMember)
+  data.userFesEventDeck?.userFesEventDeckMembers.forEach(transDeckMember)
   data.userRaidDeck?.userRaidDeckMembers.forEach(transDeckMember)
   judegsSkill(data.judges)
   fesRivalsSkill(data.userFesRivals)
@@ -249,7 +250,7 @@ const resumeRaidGameSkill = (data) => {
   if (!data.gameState || !data.gameState.game_data) return
   try {
     let gData = JSON.parse(data.gameState.game_data)
-    if (gData.userRaidDeck) {
+    if (gData.userRaidDeck || gData.userFesEventDeck) {
       fesMatchConcertSkill(gData)
     }
     data.gameState.game_data = JSON.stringify(gData)
@@ -302,9 +303,9 @@ api.post([
   ['userSupportIdols/{num}/produceExSkills/{num}/actions/set', [userSptIdolsSkill]],
   [['produces/actions/resume', 'produces/actions/finish', 'produceTeachings/resume'], [produceFinish, resumeGameSkill]],
   [['produces/actions/resume', 'produces/actions/next'], [userProduceReporterEvent]],
-  ['fes(Match|Raid)?Concert/actions/start', [fesMatchConcertSkill]],
+  ['fes(Match|Raid|Tower)?Concert/actions/start', [fesMatchConcertSkill]],
   ['fes(Match)?Concert/actions/resume', [resumeGameSkill]],
-  ['fesRaidConcert/actions/resume', [resumeRaidGameSkill]],
+  ['fes(Raid|Tower)Concert/actions/resume', [resumeRaidGameSkill]],
   [['produce(Teaching)?s/({num}/audition|concert)/actions/start', 'produceTeachings/(auditions|concerts)/start'], [auditionSkill]],
   ['userProduceAbilities', produceAbilitiySkill]
 ])
