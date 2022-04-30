@@ -239,6 +239,13 @@ const resumeFesTower = async (data) => {
   }
 }
 
+const fesTowerReaction = async (data) => {
+  const list = data.userFesTowerEventTopIdols?.map(idol => {
+    return idol.fesTowerEventTopCharacterReaction
+  })
+  await autoTransText(list)
+}
+
 router.get([
   ['userProduces', topCharacterReaction],
   ['fes(Match)?Concert/actions/resume', resumeGamedata],
@@ -258,7 +265,8 @@ router.post([
   ['userProduceHelperSupportIdols', helperSupportIdols],
   ['userFesTowerPanels/{num}/random', fesTowerPanels],
   ['userFesTowerPanels/{num}/random/actions/choice', fesTowerPanelsResult],
-  ['userFesTowerAreas/{num}', resumeFesTower]
+  ['userFesTowerAreas/{num}', resumeFesTower],
+  ['fesTowerEvents/top', fesTowerReaction]
 ])
 
 export { transText }
