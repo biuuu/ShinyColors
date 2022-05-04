@@ -43,23 +43,7 @@ Object.freeze = new Proxy(originFreeze, {
     return data
   }
 })
-// let unfreezeflag = false
-// const tryUnfreeze = (id) => {
-//   if (unfreezeflag) return
-//   unfreezeflag = true
-//   for (let key in require) {
-//     const obj = require[key]
-//     if (obj && obj[0]?.exports?.loaders) {
-//       obj[id].exports = Object.assign({}, obj[id].exports)
 
-//       obj[id].exports.request.bind = (function (arg) {
-
-//         return obj[id].exports.request
-//       }).bind(obj[id].exports)
-//       return obj[id].exports
-//     }
-//   }
-// }
 const requireRegExp = /^function\s(\w)\((\w)\){if\((\w)\[\2\]\)return\s\3\[\2\]\.exports;var\s(\w)=\3\[\2\]={\w:\2,(\w):!1,exports:{}};return\s\w\[\2\]\.call\(\4.exports,\4,\4\.exports,\1\),\4\.\5=!0,\4\.exports}$/
 const originCall = Function.prototype.call
 let win = { Reflect: window.Reflect }
@@ -78,7 +62,7 @@ Function.prototype.call = new Proxy(originCall, {
   }
 })
 
-let OFFSET = 20
+let OFFSET = 50
 const setIdList = (id, offset) => {
   let start = id - offset
   let end = id + offset
