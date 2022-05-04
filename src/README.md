@@ -1,5 +1,5 @@
 ## 使用
-_注意：因为本脚本的运行机制，Tampermonkey 无法稳定加载，推荐使用 Violentmonkey。_
+_注意：因为本脚本的运行机制，Tampermonkey 无法稳定加载，推荐使用 Violentmonkey。如果还是出现偶尔汉化未生效的问题，可以安装这个[Chrome扩展](https://chrome.google.com/webstore/detail/caafhkjcgpbinkgnghkojaoipgdkbcbc)试试。_
 1. 浏览器建议使用 [Edge](https://www.microsoft.com/zh-cn/edge) 或者 [Chrome](https://www.google.com/intl/zh-CN/chrome/)，首先安装 [Violentmonkey](https://violentmonkey.github.io/get-it/) 扩展
 2. 扩展安装完成后，点击脚本的地址 https://www.shiny.fun/ShinyColors.user.js ，根据扩展的提示安装脚本
 3. 回到游戏页面刷新
