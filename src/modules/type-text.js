@@ -1,6 +1,7 @@
 import autoTrans from '../utils/translation'
 import { log } from '../utils/index'
 import { router } from './request'
+import { transTitleList } from './album/title'
 
 const autoTransText = async (data, key = 'comment') => {
   if (!data) return
@@ -82,6 +83,7 @@ const mypageComments = async (data) => {
       })
     }
     await transText(list)
+    await transTitleList(list, 'speakerName')
   } catch (e) {
     log(e)
   }

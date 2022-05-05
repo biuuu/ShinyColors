@@ -1,5 +1,5 @@
 import getTitle from '../../store/title'
-import getName from '../../store/name'
+import { getIdolName } from '../../store/name'
 import { replaceItem } from '../../utils/replaceText'
 import { replaceWrap, log } from '../../utils/index'
 import isString from 'lodash/isString'
@@ -14,7 +14,7 @@ let namePrms
 const ensureTitle = async () => {
   if (!titlePrms) {
     titlePrms = getTitle()
-    namePrms = getName()
+    namePrms = getIdolName()
   }
   if (!titleMaps || !nameMap) {
     titleMaps = await titlePrms
@@ -112,6 +112,13 @@ const marathonTitle = async (data) => {
   transTitle(data.gameEvent, 'name')
 }
 
+const transTitleList = async (list, key) => {
+  await ensureTitle()
+  list.forEach(item => {
+    transTitle(item, key)
+  })
+}
+
 router.get([
   [['userSupportIdols/{num}', 'userSupportIdols/statusMax', 'produceTeachingSupportIdols/{num}'], userSupportIdolsTitle],
   [['userIdols/{num}', 'userIdols/statusMax', 'produceTeachingIdols/{num}'], userIdolsTitle],
@@ -123,4 +130,4 @@ router.post([
   ['produceMarathons/{num}/top', marathonTitle]
 ])
 
-export { ensureTitle, saveTitle, transTitle, storyTitle }
+export { ensureTitle, saveTitle, transTitle, transTitleList, storyTitle }
