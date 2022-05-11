@@ -1,11 +1,12 @@
 import transApi from '../api-comm'
+import { ensureIdolFilter, someSupportSkillName } from '../idol-filter'
 
-const { api, transItem } = transApi('support-skill')
+const { api, transItem } = transApi('support-skill', ensureIdolFilter)
 
 const transSupportSkill = (list) => {
   list?.forEach(item => {
     transItem(item, 'description')
-    transItem(item, 'name')
+    someSupportSkillName(item)
   })
 }
 

@@ -1,6 +1,21 @@
 import transApi from './api-comm'
 
-const { api, transItem } = transApi('etc/idol-filter')
+const { api, transItem, ensureData } = transApi('etc/idol-filter')
+
+export const ensureIdolFilter = ensureData
+
+export const someSupportSkillName = (item) => {
+  const name = item.name
+  if (name.includes('マスタリー') && !name.endsWith('マスタリー')) {
+    const suffix = name.replace(/.+マスタリー/, '')
+    const keyword = name.replace(suffix, '')
+    const temp = { keyword }
+    transItem(temp, 'keyword')
+    item.name = temp.keyword + suffix
+  } else {
+    transItem(item, 'name')
+  }
+}
 
 const transLabel = (data) => {
   const keys = ['activeSkills', 'ideas', 'idolArrivalTypes', 'knowHowBooks', 'supportSkillAttributes', 'supportSkillEffects']
