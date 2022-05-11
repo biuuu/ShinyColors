@@ -52,6 +52,12 @@ const memoryAppeal = (data) => {
   })
 }
 
+const ablities = (data) => {
+  data.forEach(item => {
+    commSkill(item)
+  })
+}
+
 const shortProIdol = (data, panel = false) => {
   let proIdol = data.userProduceIdol
   if (!proIdol) return
@@ -108,6 +114,7 @@ const audRivalsSkill = (data) => {
 const userIdolsSkill = (data) => {
   skillPanel(data.idol.skillPanels)
   memoryAppeal(data.idol.memoryAppeals)
+  ablities(data.ablities)
 }
 
 const userProIdolsSkill = (data) => {
