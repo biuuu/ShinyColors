@@ -1,4 +1,3 @@
-import isString from 'lodash/isString'
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
 import { replaceWords, log, log2, replaceQuote, fixWrap, replaceWrap, storyTextLogStyle, tagStoryText, sess } from '../utils/index'
 import { fetchInfo } from './fetch'
@@ -15,7 +14,7 @@ const joinBr = (list, br, transArr) => {
     while (i >= 0) {
       i--
       let _str = list.shift()
-      if (isString(_str)) {
+      if (typeof _str === 'string') {
         if (!_str) {
           _str = '……'
         }
