@@ -14,9 +14,9 @@ __如果是用手机，可以安装支持用户脚本的浏览器。__
 
 Android 的 Kiwi 浏览器安装同 PC 的 Chrome 一样，先安装 Violentmonkey 再点击脚本地址。
 
-iOS 的 Alook 可以直接通过这个网址安装插件：[https://www.shiny.fun/install.alook](https://www.shiny.fun/install.alook) ，如果提示下载文件，则在下载后再点击下载好的文件添加扩展。
+iOS 的 Alook 可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html) ，注意把 _运行时间_ 改为 _尽早_ 。
 
-Alook也可以选择手动添加 js 脚本，和上面的链接效果一样，代码如下：
+另外Alook也可以选择手动添加 js 脚本，和上面的链接效果一样，代码如下：
 <details>
     <summary>展开代码</summary>
 
