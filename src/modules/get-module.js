@@ -43,19 +43,17 @@ Object.freeze = new Proxy(originFreeze, {
     return data
   }
 })
-
-const requireRegExp = /^function\s(\w)\((\w)\){if\((\w)\[\2\]\)return\s\3\[\2\]\.exports;var\s(\w)=\3\[\2\]={\w:\2,(\w):!1,exports:{}};return\s\w\[\2\]\.call\(\4.exports,\4,\4\.exports,\1\),\4\.\5=!0,\4\.exports}$/
+// function\s\w\((\w)\){var\s(\w)=(\w)\[\1\];if\(void\s0!==\2\)return\s\2\.exports;var\s(\w)=\3\[\1\]={id:\1,loaded:!1,exports:{}};return\s\w\[\1\]\.call\(\4\.exports,\4,\4\.exports,\w\),\4\.loaded=!0,\4\.exports}
+const requireRegExp = /^function\s\w\((\w)\){var\s(\w)=(\w)\[\1\];if\(void\s0!==\2\)return\s\2\.exports;var\s(\w)=\3\[\1\]={id:\1,loaded:!1,exports:{}};return\s\w\[\1\]\.call\(\4\.exports,\4,\4\.exports,\w\),\4\.loaded=!0,\4\.exports}$/
 const originCall = Function.prototype.call
 let win = { Reflect: window.Reflect }
 Function.prototype.call = new Proxy(originCall, {
   apply (target, self, args) {
     if (args?.[3]?.toString) {
       if (requireRegExp.test(args[3].toString())) {
-        if (args[3].caller?.arguments?.[0]?.length > 1000) {
-          require = args[3]
-          if (ENVIRONMENT === 'development') unsafeWindow._require = require
-          Function.prototype.call = originCall
-        }
+        require = args[3]
+        if (ENVIRONMENT === 'development') unsafeWindow._require = require
+        Function.prototype.call = originCall
       }
     }
     return win.Reflect.apply(target, self, args)
@@ -81,7 +79,10 @@ const findModule = (id, conditionFunc) => {
   let module
   let realId
   for (let i = 0; i < idList.length; i++) {
-    let _module = require(idList[i])
+    let _module
+    try {
+      _module = require(idList[i])
+    } catch (e) {}
     if (conditionFunc(_module)) {
       module = _module
       realId = idList[i]

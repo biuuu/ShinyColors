@@ -1,13 +1,19 @@
 const getModule = async (name, condition) => {
-  for (let i = 1; i < 1200; i++) {
-    let module = _require(i)
+  for (let i = 1; i < 202000; i++) {
+    let module
+    try {
+      module = _require(i)
+    } catch (e) {}
+
     if (module && condition(module)) {
       console.info(`${name}: ${i}`)
       break
     }
   }
 }
-
+getModule('AOBA', (module) => {
+  return module && module.loaders && module.Text && module.BLEND_MODES
+})
 getModule('REQUEST', (module) => {
   return module.get && module.post && module.put && module.patch
 })
