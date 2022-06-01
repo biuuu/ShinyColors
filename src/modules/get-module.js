@@ -10,7 +10,7 @@ const conditions = new Map([
     return module && module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
   }],
   ['REQUEST', (module) => {
-    return module && module.get && module.post && module.put && module.patch
+    return module.get && module.post && module.put && module.patch && module._encryptRequest
   }],
   ['PHRASE', (module) => {
     return module && module.default && module.default._polyglot && module.default._polyglot.phrases
@@ -43,7 +43,7 @@ Object.freeze = new Proxy(originFreeze, {
     return data
   }
 })
-// function\s\w\((\w)\){var\s(\w)=(\w)\[\1\];if\(void\s0!==\2\)return\s\2\.exports;var\s(\w)=\3\[\1\]={id:\1,loaded:!1,exports:{}};return\s\w\[\1\]\.call\(\4\.exports,\4,\4\.exports,\w\),\4\.loaded=!0,\4\.exports}
+
 const requireRegExp = /^function\s\w\((\w)\){var\s(\w)=(\w)\[\1\];if\(void\s0!==\2\)return\s\2\.exports;var\s(\w)=\3\[\1\]={id:\1,loaded:!1,exports:{}};return\s\w\[\1\]\.call\(\4\.exports,\4,\4\.exports,\w\),\4\.loaded=!0,\4\.exports}$/
 const originCall = Function.prototype.call
 let win = { Reflect: window.Reflect }

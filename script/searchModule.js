@@ -15,7 +15,7 @@ getModule('AOBA', (module) => {
   return module && module.loaders && module.Text && module.BLEND_MODES
 })
 getModule('REQUEST', (module) => {
-  return module.get && module.post && module.put && module.patch
+  return module.get && module.post && module.put && module.patch && module._encryptRequest
 })
 getModule('PHRASE', (module) => {
   return module.default && module.default._polyglot && module.default._polyglot.phrases

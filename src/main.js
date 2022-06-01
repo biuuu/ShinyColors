@@ -1,7 +1,7 @@
 import './modules/index'
 import transPhrase from './modules/phrase'
 import watchText from './modules/text'
-// import requestHook from './modules/request'
+import requestHook from './modules/request'
 import resourceHook from './modules/resourse'
 import transStory from './modules/story'
 import { isReady } from './modules/get-module'
@@ -16,7 +16,7 @@ const main = async () => {
       addFont(),
       transPhrase(),
       watchText(),
-      // requestHook(),
+      requestHook(),
       transStory()])
   } catch (e) {
     log(e)

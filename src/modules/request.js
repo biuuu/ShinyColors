@@ -104,17 +104,16 @@ export default async function requestHook () {
   const request = await getModule('REQUEST')
 
   // GET
-  // const originGet = request.get
-  // request.get = async function (...args) {
-  //   const type = args[0]
-  //   const res = await originGet.apply(this, args)
-  //   if (!type) return res
-  //   let data = res.body
-  //   requestLog('GET', '#009688', args, data)
-  //   await requestRouter(data, type, routerMaps['get'])
-  //   return res
-  // }
-  // request.get.query = originGet.query
+  const originGet = request.get
+  request.get = async function (...args) {
+    const type = args[0]
+    const res = await originGet.apply(this, args)
+    if (!type) return res
+    let data = res.body
+    requestLog('GET', '#009688', args, data)
+    await requestRouter(data, type, routerMaps['get'])
+    return res
+  }
 
   // PATCH
   const originPatch = request.patch
