@@ -2,7 +2,6 @@ import { getList } from './index'
 import { trim } from '../utils/index'
 
 const iconMap = new Map()
-const subIconMap = new Map()
 let loaded = false
 
 const getSpeakerIcon = async () => {
@@ -14,17 +13,13 @@ const getSpeakerIcon = async () => {
       id = trim(id)
       type = trim(type)
       if (name && id) {
-        if (type === 'sub') {
-          subIconMap.set(name, id)
-        } else {
-          iconMap.set(name, id)
-        }
+        iconMap.set(id, name)
       }
     })
     loaded = true
   }
 
-  return { iconMap, subIconMap }
+  return { iconMap }
 }
 
 export default getSpeakerIcon

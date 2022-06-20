@@ -2,40 +2,33 @@ import { getModule } from '../get-module'
 import getSpeakerIcon from '../../store/speakerIcon'
 import getName from '../../store/name'
 import { trim, log2 } from '../../utils/'
-import tagText, { restoreText } from '../../utils/tagText'
+import tagText from '../../utils/tagText'
 
 let namePromise = null
+let iconMap = new Map()
 const ensureName = async () => {
   if (!namePromise) {
     namePromise = getName()
+    iconMap = (await getSpeakerIcon()).iconMap
   }
   return await namePromise
 }
 
-let isHooked = false
-const hookSpeakerIcon = async () => {
-  if (isHooked) return
-  isHooked = true
-  const speakerModule = await getModule('SPEAKER')
-  if (!speakerModule) return log2('Speaker-icon module not found.')
-  const { iconMap, subIconMap } = await getSpeakerIcon()
-  const originSubChar = speakerModule.getSubCharacterBackLogIconId
-  const originCharBack = speakerModule.getCharacterBackLogIconId
-  speakerModule.getSubCharacterBackLogIconId = function (name) {
-    const _name = restoreText(name)
-    if (subIconMap.has(_name)) {
-      return subIconMap.get(_name)
+const originObjKeys = Object.keys
+Object.keys = new Proxy(originObjKeys, {
+  apply (target, self, args) {
+    if (args[0]?.['002']?.includes('灯織') || args[0]?.[901]?.includes('はづき')) {
+      for (let [id, name] of iconMap) {
+        let _name = tagText(name)
+        if (Array.isArray(args[0][id]) && !args[0][id].includes(_name)) {
+          args[0][id].push(_name)
+          log2(id, name)
+        }
+      }
     }
-    return originSubChar.call(this, name)
+    return Reflect.apply(target, self, args)
   }
-  speakerModule.getCharacterBackLogIconId = function (name) {
-    const _name = restoreText(name)
-    if (iconMap.has(_name)) {
-      return iconMap.get(_name)
-    }
-    return originCharBack.call(this, name)
-  }
-}
+})
 
 const nameWithNum = (name, map) => {
   let text = name
@@ -57,7 +50,6 @@ const splitText = (text, sep, map) => {
 
 const transSpeaker = async (item) => {
   if (item.speaker) {
-    await hookSpeakerIcon()
     const nameMap = await ensureName()
     let text = trim(item.speaker)
     if (nameMap.has(text)) {
@@ -73,5 +65,4 @@ const transSpeaker = async (item) => {
   }
 }
 
-export { hookSpeakerIcon }
 export default transSpeaker

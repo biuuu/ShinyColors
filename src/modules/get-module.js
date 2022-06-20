@@ -7,29 +7,25 @@ const conditions = new Map([
     return module && module.loaders && module.Text && module.BLEND_MODES
   }],
   ['SCENARIO', (module) => {
-    return module && module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
+    return module && module.Z && module.Z['load'] && module.Z['_errorEvent'] && module.Z['_handleError']
   }],
   ['REQUEST', (module) => {
-    return module.get && module.post && module.put && module.patch && module._encryptRequest
+    return module?.Z?._encryptRequest
   }],
   ['PHRASE', (module) => {
-    return module && module.default && module.default._polyglot && module.default._polyglot.phrases
-  }],
-  ['SPEAKER', (module) => {
-    return module && module.default && module.default.getCharacterBackLogIconId
+    return module?.Z?._polyglot?.phrases
   }],
   ['WEBP', (module) => {
-    return module && module.default && module.default.isSupportedWebP
+    return module?.Z?.isSupportedWebP
   }]
 ])
 
 const resultMap = new Map([
   ['AOBA', (module) => module],
-  ['SCENARIO', (module) => module.default],
-  ['REQUEST', (module) => module],
-  ['PHRASE', (module) => module.default._polyglot.phrases],
-  ['SPEAKER', (module) => module.default],
-  ['WEBP', (module) => module.default]
+  ['SCENARIO', (module) => module.Z],
+  ['REQUEST', (module) => module.Z],
+  ['PHRASE', (module) => module.Z._polyglot.phrases],
+  ['WEBP', (module) => module.Z]
 ])
 
 const isReady = () => {
