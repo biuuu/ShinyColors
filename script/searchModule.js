@@ -15,15 +15,15 @@ getModule('AOBA', (module) => {
   return module && module.loaders && module.Text && module.BLEND_MODES
 })
 getModule('REQUEST', (module) => {
-  return module?.Z?._encryptRequest
+  return module?.default?._encryptRequest
 })
 getModule('PHRASE', (module) => {
-  return module?.Z?._polyglot?.phrases
+  return module?.default?._polyglot?.phrases
 })
 getModule('SCENARIO', (module) => {
-  return module && module.Z && module.Z['load'] && module.Z['_errorEvent'] && module.Z['_handleError']
+  return module && module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
 })
 
 getModule('WEBP', (module) => {
-  return module?.Z?.isSupportedWebP
+  return module?.default?.isSupportedWebP
 })

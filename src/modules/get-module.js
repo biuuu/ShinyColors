@@ -7,25 +7,25 @@ const conditions = new Map([
     return module && module.loaders && module.Text && module.BLEND_MODES
   }],
   ['SCENARIO', (module) => {
-    return module && module.Z && module.Z['load'] && module.Z['_errorEvent'] && module.Z['_handleError']
+    return module && module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
   }],
   ['REQUEST', (module) => {
-    return module?.Z?._encryptRequest
+    return module?.default?._encryptRequest
   }],
   ['PHRASE', (module) => {
-    return module?.Z?._polyglot?.phrases
+    return module?.default?._polyglot?.phrases
   }],
   ['WEBP', (module) => {
-    return module?.Z?.isSupportedWebP
+    return module?.default?.isSupportedWebP
   }]
 ])
 
 const resultMap = new Map([
   ['AOBA', (module) => module],
-  ['SCENARIO', (module) => module.Z],
-  ['REQUEST', (module) => module.Z],
-  ['PHRASE', (module) => module.Z._polyglot.phrases],
-  ['WEBP', (module) => module.Z]
+  ['SCENARIO', (module) => module.default],
+  ['REQUEST', (module) => module.default],
+  ['PHRASE', (module) => module.default._polyglot.phrases],
+  ['WEBP', (module) => module.default]
 ])
 
 const isReady = () => {
