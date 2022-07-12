@@ -14,10 +14,25 @@ const ensureName = async () => {
   return await namePromise
 }
 
+let idolFlag = false
+let staffFlag = false
+const checkSpeakerData = (data, type) => {
+  if (idolFlag && staffFlag) {
+    return false
+  }
+  if (type === 'idol' && data[0]?.['002']?.includes && data[0]?.['002']?.includes('灯織')) {
+    idolFlag = true
+    return data[0]?.['002']?.includes('灯織')
+  } else if (data[0]?.[901]?.includes && data[0]?.[901]?.includes('はづき')) {
+    staffFlag = true
+    return data[0]?.[901]?.includes('はづき')
+  }
+}
+
 const originObjKeys = Object.keys
 Object.keys = new Proxy(originObjKeys, {
   apply (target, self, args) {
-    if (args[0]?.['002']?.includes('灯織') || args[0]?.[901]?.includes('はづき')) {
+    if (checkSpeakerData(args, 'idol') || checkSpeakerData(args, 'staff')) {
       for (let [id, name] of iconMap) {
         let _name = tagText(name)
         if (Array.isArray(args[0][id]) && !args[0][id].includes(_name)) {
