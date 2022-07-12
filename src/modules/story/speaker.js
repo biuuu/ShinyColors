@@ -1,7 +1,7 @@
 import { getModule } from '../get-module'
 import getSpeakerIcon from '../../store/speakerIcon'
 import getName from '../../store/name'
-import { trim, log2 } from '../../utils/'
+import { trim } from '../../utils/'
 import tagText from '../../utils/tagText'
 
 let namePromise = null
@@ -22,7 +22,6 @@ Object.keys = new Proxy(originObjKeys, {
         let _name = tagText(name)
         if (Array.isArray(args[0][id]) && !args[0][id].includes(_name)) {
           args[0][id].push(_name)
-          log2(id, name)
         }
       }
     }
