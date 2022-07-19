@@ -116,7 +116,8 @@ const transStory = async () => {
       type.includes('/mypage_communications/') ||
       type.includes('/produce_communication_cheers/') ||
       type.includes('/produce_communication_auditions/') ||
-      type.includes('/produce_communication_televisions/')
+      type.includes('/produce_communication_televisions/') ||
+      type.includes('/business_unit_communication/')
     ) {
       try {
         if (!Array.isArray(res)) return res
