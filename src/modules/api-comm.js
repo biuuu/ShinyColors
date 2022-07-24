@@ -57,7 +57,7 @@ const transApi = (type, ensureMoreData) => {
 
   const transItem = (item, key, data = commData) => {
     if (item?.[key]) {
-      let arr = item[key].split('/')
+      let arr = key === 'name' ? [item[key]] : item[key].split('/')
       arr.forEach((txt, index) => {
         let plusList = nameWithPlus(arr)
         replaceItem(arr, index, data)
