@@ -1,12 +1,11 @@
 import getProfile from '../../store/profile'
 import { getIdolName } from '../../store/name'
 import { router } from '../request'
-import tagText from '../../utils/tagText'
 
 const transName = async (data) => {
   const idolName = await getIdolName()
   if (idolName.has(data.name)) {
-    data.name = tagText(idolName.get(data.name))
+    data.name = idolName.get(data.name)
   }
   if (idolName.has(data.firstName)) {
     data.firstName = idolName.get(data.firstName)

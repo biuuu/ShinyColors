@@ -6,7 +6,6 @@ import { storyTitle } from './album/title'
 import transSpeaker from './story/speaker'
 import autoTrans from '../utils/translation'
 import { requestLog } from './request'
-import tagText from '../utils/tagText'
 import { getModule } from './get-module'
 
 const storyCache = {
@@ -84,7 +83,7 @@ const startTrans = (data, storyMap, commMap) => {
       } else if (id && storyMap.has(`${id}`)) {
         item.text = storyMap.get(`${id}`)
       } else if (commMap.has(text)) {
-        item.text = tagText(commMap.get(text))
+        item.text = commMap.get(text)
       }
     }
     if (item.select) {
@@ -93,7 +92,7 @@ const startTrans = (data, storyMap, commMap) => {
       if (storyMap.has(sKey)) {
         item.select = storyMap.get(sKey)
       } else if (commMap.has(select)) {
-        item.select = tagText(commMap.get(item.select))
+        item.select = commMap.get(item.select)
       }
     }
   })

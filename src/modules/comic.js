@@ -1,5 +1,4 @@
 import { router } from './request'
-import tagText from '../utils/tagText'
 
 let comicMap = null
 const getInfo = async () => {
@@ -39,7 +38,7 @@ const transComicTitle = async (data) => {
     if (comicMap.has(id)) {
       const title = comicMap.get(id).title
       if (title) {
-        item.title = tagText(title)
+        item.title = title
       }
     }
   })

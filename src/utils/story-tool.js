@@ -12,7 +12,7 @@ const html = `
     background: #ffffff;
     border-radius: 24px;
     box-sizing: border-box;
-    font-family: sczh-yuanti;
+    font-family: HummingStd-E;
     align-items: center;
     justify-content: center;
     color: #ff6499;
@@ -67,7 +67,7 @@ const html = `
     align-items: center;
     justify-content: center;
     z-index: 1;
-    font-family: sczh-heiti;
+    font-family: UDKakugo_SmallPr6-B;
     font-size: 15px;
   }
   #sczh-story-tool:hover {
@@ -154,7 +154,7 @@ const showStoryTool = (storyCache) => {
 
   window.addEventListener('resize', setToolPos)
   const btnDl = document.getElementById('btn-download-sczh')
-  
+
   btnDl.addEventListener('click', function () {
     if (storyCache.name) {
       const str = CSV.unparse(storyCache.list)

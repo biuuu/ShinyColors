@@ -2,7 +2,6 @@ import fetchData from '../utils/fetch'
 import parseCsv from '../utils/parseCsv'
 import { getList, getLocalData, setLocalData } from './index'
 import { trimWrap, trim, uniqueStoryId } from '../utils/index'
-import tagText from '../utils/tagText'
 
 const storyTemp = new Map()
 const commStoryMap = new Map()
@@ -20,12 +19,12 @@ const getStoryMap = (csv) => {
     const name = trim(item.name)
     if (text && trans) {
       if (id && !/^0+$/.test(id) && id !== 'select') {
-        storyMap.set(id, tagText(trans))
+        storyMap.set(id, trans)
       } else {
         if (id === 'select') {
-          storyMap.set(`${text}-select`, tagText(trans))
+          storyMap.set(`${text}-select`, trans)
         } else {
-          storyMap.set(text, tagText(trans))
+          storyMap.set(text, trans)
         }
       }
     }

@@ -1,5 +1,4 @@
 import { replaceItem } from '../utils/replaceText'
-import tagText from '../utils/tagText'
 import transApi from './api-comm'
 
 const { api, getTransItem, ensureData } = transApi('item')
@@ -12,7 +11,7 @@ const transDesc = getTransItem((item, key, data) => {
     })
     let text = arr.join('\n')
     if (text !== item[key]) {
-      item[key] = tagText(text, true)
+      item[key] = text
     }
   }
 })

@@ -18,12 +18,14 @@ const addFont = async () => {
   const { hashes } = await getHash
   tag.innerHTML = `
   @font-face {
-    font-family: "sczh-heiti";
-    src: url("${config.origin}${getPath('heiti', hashes)}");
+    font-family: "UDKakugo_SmallPr6-B";
+    src: url("${config.origin}${getPath('heiti', hashes)}"),
+      url("/assets/fonts/primula-UDKakugo_SmallPr6-B.woff2?v=5b98f6814db5b7ff2e73b0bbbd48ebb3");
   }
   @font-face {
-    font-family: "sczh-yuanti";
-    src: url("${config.origin}${getPath('yuanti', hashes)}");
+    font-family: "HummingStd-E";
+    src: url("${config.origin}${getPath('yuanti', hashes)}"),
+      url("/assets/fonts/primula-HummingStd-E.woff2?v=57f0e9684ac32d5ed54c567c001eaaaa");
   }
   ::-webkit-scrollbar {
     display: none;
@@ -36,7 +38,7 @@ const addFont = async () => {
     preload(`${config.origin}${getPath('heiti', hashes)}`)
   }
 
-  document.head.appendChild(tag)
+  document.body.appendChild(tag)
 }
 
 export default addFont

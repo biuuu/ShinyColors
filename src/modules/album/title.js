@@ -5,7 +5,6 @@ import { replaceWrap, log } from '../../utils/index'
 import isString from 'lodash/isString'
 import config from '../../config'
 import { router } from '../request'
-import tagText from '../../utils/tagText'
 
 let titleMaps
 let nameMap

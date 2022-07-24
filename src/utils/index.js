@@ -1,6 +1,5 @@
 import isString from 'lodash/isString'
 import config from '../config'
-import { restoreText } from './tagText'
 
 const isDomain = (str) => {
   if (!/^https?:\/\//.test(str)) return false
@@ -88,7 +87,7 @@ const storyTextLogStyle = (list) => {
   let text = list.map(item => {
     if (item[1]) {
       // count++
-      item[1] = restoreText(item[1])
+      item[1] = item[1]
       return item.join('\n') + '\n'
     }
     return item[0]
@@ -149,7 +148,7 @@ const replaceQuote = (str) => {
 
 const tagStoryText = (data) => {
   data.forEach(item => {
-    if (item.text && !item.text.startsWith('\u200b')) {
+    if (item.text) {
       item.text = '\u200c' + item.text
     }
   })

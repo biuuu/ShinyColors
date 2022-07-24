@@ -1,7 +1,6 @@
 import { getNounFix, getCaiyunPrefix } from '../store/text-fix'
 import { replaceWords, log, log2, replaceQuote, fixWrap, replaceWrap, storyTextLogStyle, tagStoryText, sess } from '../utils/index'
 import { fetchInfo } from './fetch'
-import tagText from './tagText'
 import { getCommStory } from '../store/story'
 import getTypeTextMap from '../store/typeText'
 import config from '../config'
@@ -98,9 +97,9 @@ const collectText = (data, commMap, typeTextMap) => {
       let text = fixWrap(item[key])
       if (item[key]) {
         if (commMap.has(text)) {
-          item[key] = tagText(commMap.get(text))
+          item[key] = commMap.get(text)
         } else if (typeTextMap.has(text)) {
-          item[key] = tagText(typeTextMap.get(text))
+          item[key] = typeTextMap.get(text)
         } else {
           textInfo.push({ key, index })
           textList.push(text)
@@ -178,7 +177,7 @@ const autoTrans = async (data, name, printText, skip = false) => {
     _trans = replaceQuote(_trans)
 
     if (idx === 0 && !printText) _trans = `${_trans} ☁️`
-    data[index][key] = tagText(_trans)
+    data[index][key] = _trans
   })
 
   tagStoryText(data)

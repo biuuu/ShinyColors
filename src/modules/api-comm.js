@@ -1,6 +1,5 @@
 import { replaceItem } from '../utils/replaceText'
 import { log, makePromise } from '../utils/index'
-import tagText from '../utils/tagText'
 import { router } from './request'
 import getCommApiData from '../store/api-comm'
 
@@ -65,7 +64,7 @@ const transApi = (type, ensureMoreData) => {
       })
       let text = arr.join('/')
       if (text !== item[key]) {
-        item[key] = tagText(text, true)
+        item[key] = text
       }
     }
   }

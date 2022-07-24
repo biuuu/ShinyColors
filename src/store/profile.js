@@ -1,6 +1,5 @@
 import { getList } from './index'
 import { trimWrap, trim } from '../utils/index'
-import tagText from '../utils/tagText'
 
 const profileMap = new Map()
 let loaded = false
@@ -17,11 +16,11 @@ const getProfile = async () => {
             const text = trimWrap(item.nameKana)
             const arr = text.split('|')
             profileMap.set(id, new Map(keys.map((key, idx) => {
-              return [key, tagText(trim(arr[idx]))]
+              return [key, trim(arr[idx])]
             })))
           } else {
             for (let key in item) {
-              item[key] = tagText(trimWrap(item[key]))
+              item[key] = trimWrap(item[key])
             }
             profileMap.set(id, item)
           }

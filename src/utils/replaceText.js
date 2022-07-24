@@ -1,4 +1,3 @@
-import tagText from './tagText'
 import { fixWrap } from './index'
 import isString from 'lodash/isString'
 
@@ -43,11 +42,11 @@ const replaceItem = (item, key, data) => {
   let _text = text
   if (!text) return
   if (textMap?.has(text)) {
-    item[key] = tagText(textMap.get(text))
+    item[key] = textMap.get(text)
   } else {
     _text = replaceText(text, expMap, wordMaps)
     if (text !== _text) {
-      item[key] = tagText(_text)
+      item[key] = _text
     }
   }
 }

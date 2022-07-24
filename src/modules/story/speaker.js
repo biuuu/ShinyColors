@@ -1,8 +1,6 @@
-import { getModule } from '../get-module'
 import getSpeakerIcon from '../../store/speakerIcon'
 import getName from '../../store/name'
 import { trim } from '../../utils/'
-import tagText from '../../utils/tagText'
 
 let namePromise = null
 let iconMap = new Map()
@@ -34,7 +32,7 @@ Object.keys = new Proxy(originObjKeys, {
   apply (target, self, args) {
     if (checkSpeakerData(args, 'idol') || checkSpeakerData(args, 'staff')) {
       for (let [id, name] of iconMap) {
-        let _name = tagText(name)
+        let _name = name
         if (Array.isArray(args[0][id]) && !args[0][id].includes(_name)) {
           args[0][id].push(_name)
         }
@@ -67,14 +65,14 @@ const transSpeaker = async (item) => {
     const nameMap = await ensureName()
     let text = trim(item.speaker)
     if (nameMap.has(text)) {
-      return item.speaker = tagText(nameMap.get(text))
+      return item.speaker = nameMap.get(text)
     }
     const sepList = ['＆', '&']
     sepList.forEach(sep => {
       text = splitText(text, sep, nameMap)
     })
     if (text !== item.speaker) {
-      item.speaker = tagText(text)
+      item.speaker = text
     }
   }
 }

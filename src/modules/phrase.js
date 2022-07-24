@@ -1,7 +1,6 @@
 import getPhrase from '../store/phrase'
 import CSV from 'papaparse/papaparse.min'
 import { replaceWrap, log } from '../utils/index'
-import tagText from '../utils/tagText'
 import { getModule } from './get-module'
 let phraseMap = null
 
@@ -32,6 +31,6 @@ export default async function transPhrase () {
   // }
   phraseMap = await getPhrase()
   for (let [key, value] of phraseMap) {
-    obj[key] = specialKey.includes(key) ? value : tagText(value)
+    obj[key] = value
   }
 }

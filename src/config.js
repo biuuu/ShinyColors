@@ -22,22 +22,8 @@ const config = {
 
 const defaultConfig = Object.assign({}, config)
 
-const fontList = ['yuanti', 'heiti', 'yuanti2']
-
-const FONT = {
-  HEITI_JA: 'UDKakugo_SmallPr6-B',
-  HEITI_TRANS: `sczh-heiti,UDKakugo_SmallPr6-B`,
-  YUAN_JA: 'HummingStd-E',
-  YUAN_TRANS: `sczh-yuanti,HummingStd-E`
-}
-
 const _keys = ['origin', 'font1', 'font2', 'timeout', 'story', 'auto', 'bgm', 'dev']
 const keys = DEV ? _keys.slice(1, _keys.length) : _keys
-
-const setFont = () => {
-  FONT.HEITI_TRANS = `${fontList.includes(config.font2) ? 'sczh-' : ''}${config.font2},${FONT.HEITI_JA}`
-  FONT.YUAN_TRANS = `${fontList.includes(config.font1) ? 'sczh-' : ''}${config.font1},${FONT.YUAN_JA}`
-}
 
 const getLocalConfig = () => {
   const str = localStorage.getItem('sczh:setting')
@@ -55,7 +41,6 @@ const getLocalConfig = () => {
     }
   })
 
-  setFont()
   if (DEV & ENVIRONMENT === 'development') {
     config.origin = 'http://localhost:15944'
   }
@@ -96,7 +81,7 @@ const getConfigFromHash = () => {
 
 const menuCommand = {
   auto: {
-    on: '关闭机翻', off: '开启机翻', id: 0, 
+    on: '关闭机翻', off: '开启机翻', id: 0,
     callback: () => {
       config.auto = config.auto !== 'off' ? 'off' : 'on'
     }
@@ -117,7 +102,7 @@ const menuCommand = {
     }
   },
   bgm: {
-    on: '关闭BGM后台播放', off: '开启BGM后台播放', id: 0, 
+    on: '关闭BGM后台播放', off: '开启BGM后台播放', id: 0,
     callback: () => {
       config.bgm = config.bgm !== 'off' ? 'off' : 'on'
     }
@@ -188,5 +173,5 @@ setAllGMMenuCommand()
 
 window.addEventListener('hashchange', getConfigFromHash)
 
-export { FONT, PREVIEW_COUNT, saveConfig }
+export { PREVIEW_COUNT, saveConfig }
 export default config
