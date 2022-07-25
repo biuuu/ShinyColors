@@ -52,7 +52,7 @@ const memoryAppeal = (data) => {
   })
 }
 
-const ablities = (data) => {
+const abilities = (data) => {
   data.forEach(item => {
     commSkill(item)
   })
@@ -114,7 +114,7 @@ const audRivalsSkill = (data) => {
 const userIdolsSkill = (data) => {
   skillPanel(data.idol.skillPanels)
   memoryAppeal(data.idol.memoryAppeals)
-  ablities(data.ablities)
+  abilities(data.idol.abilities)
 }
 
 const userProIdolsSkill = (data) => {
