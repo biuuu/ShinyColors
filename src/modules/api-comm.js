@@ -1,4 +1,4 @@
-import { replaceItem } from '../utils/replaceText'
+import { replaceItem, transText } from '../utils/replaceText'
 import { log, makePromise } from '../utils/index'
 import { router } from './request'
 import getCommApiData from '../store/api-comm'
@@ -34,37 +34,28 @@ const transApi = (type, ensureMoreData) => {
     })
   }
 
-  const nameWithPlus = (list, data) => {
-    if (data) {
-      list.forEach((str, index) => {
-        list[index] = str + data[index]
-      })
-    } else {
-      let arr = []
-      list.forEach((str, index) => {
-        let rgs = str.match(/([＋+]+)$/)
-        if (rgs?.[1]) {
-          arr.push(rgs[1])
-          list[index] = str.replace(/[＋+]+$/, '')
-        } else {
-          arr.push('')
-        }
-      })
-      return arr
-    }
+  const transWithPlus = (text, data) => {
+    const reMatch = text.match(/(.+?)([＋+]+)$/)
+    if (!reMatch) return transText(text, data)
+    return transText(reMatch[1], data) + reMatch[2]
+  }
+
+  const transWithSlash = (text, data) => {
+    const arr = text.split('/')
+    return arr.map(txt => {
+      return transWithPlus(txt, data)
+    }).join('/')
   }
 
   const transItem = (item, key, data = commData) => {
     if (item?.[key]) {
-      let arr = key === 'name' ? [item[key]] : item[key].split('/')
-      arr.forEach((txt, index) => {
-        let plusList = nameWithPlus(arr)
-        replaceItem(arr, index, data)
-        nameWithPlus(arr, plusList)
-      })
-      let text = arr.join('/')
-      if (text !== item[key]) {
-        item[key] = text
+      let result = transWithPlus(item[key], data)
+      if (result !== item[key]) {
+        return item[key] = result
+      }
+      result = transWithSlash(item[key], data)
+      if (result !== item[key]) {
+        item[key] = result
       }
     }
   }

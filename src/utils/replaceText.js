@@ -35,21 +35,27 @@ const replaceText = (text, expMap, wordMaps = []) => {
   return result
 }
 
-const replaceItem = (item, key, data) => {
-  if (!item || !isString(item[key])) return
+const transText = (str, data) => {
   const { expMap, wordMaps, textMap } = data
-  const text = fixWrap(item[key])
+  const text = fixWrap(str)
   let _text = text
-  if (!text) return
+  if (!text) return str
   if (textMap?.has(text)) {
-    item[key] = textMap.get(text)
+    return textMap.get(text)
   } else {
     _text = replaceText(text, expMap, wordMaps)
     if (text !== _text) {
-      item[key] = _text
+      return _text
     }
   }
+  return str
 }
 
-export { replaceItem }
+const replaceItem = (item, key, data) => {
+  if (!item || !isString(item[key])) return
+  const str = item[key]
+  item[key] = transText(str, data)
+}
+
+export { replaceItem, transText }
 export default replaceText
