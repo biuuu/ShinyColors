@@ -56,7 +56,6 @@ const saveConfig = () => {
       data[key] = config[key]
     }
   })
-  setFont()
   localStorage.setItem('sczh:setting', JSON.stringify(data))
 }
 
