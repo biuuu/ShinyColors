@@ -1,7 +1,6 @@
 
 import { log } from '../utils/index'
 import cloneDeep from 'lodash/cloneDeep'
-import { getModule } from './get-module'
 import config from '../config'
 
 const logStyles = color => ([
@@ -99,55 +98,26 @@ const router = {
   put: routerOf('put')
 }
 
-export { requestLog, router }
-export default async function requestHook () {
-  const request = await getModule('REQUEST')
-
-  // GET
-  const originGet = request.get
-  request.get = async function (...args) {
-    const type = args[0]
-    const res = await originGet.apply(this, args)
-    if (!type) return res
-    let data = res.body
-    requestLog('GET', '#009688', args, data)
-    await requestRouter(data, type, routerMaps['get'])
-    return res
-  }
-
-  // PATCH
-  const originPatch = request.patch
-  request.patch = async function (...args) {
-    const type = args[0]
-    const res = await originPatch.apply(this, args)
-    if (!type) return res
-    let data = res.body
-    requestLog('PATCH', '#8BC34A', args, data)
-    await requestRouter(data, type, routerMaps['patch'])
-    return res
-  }
-
-  // POST
-  const originPost = request.post
-  request.post = async function (...args) {
-    const type = args[0]
-    const res = await originPost.apply(this, args)
-    if (!type) return res
-    let data = res.body
-    requestLog('POST', '#3F51B5', args, data)
-    await requestRouter(data, type, routerMaps['post'])
-    return res
-  }
-
-  // PUT
-  const originPut = request.put
-  request.put = async function (...args) {
-    const type = args[0]
-    const res = await originPut.apply(this, args)
-    if (!type) return res
-    let data = res.body
-    requestLog('PUT', '#9C27B0', args, data)
-    await requestRouter(data, type, routerMaps['put'])
-    return res
-  }
+const methodColor = {
+  GET: "#009688",
+  PATCH: "#8BC34A",
+  POST: "#3F51B5",
+  PUT: "#9C27B0"
 }
+
+const requestResolver = (method, path, options, resolve) => async (...args) => {
+  requestLog(method, methodColor[method], [path], args[0]?.body)
+  await requestRouter(args[0]?.body, path, routerMaps[method.toLowerCase()])
+  return resolve(...args)
+}
+
+const originPush = Array.prototype.push
+Array.prototype.push = function (...args) {
+    if (typeof args[0]==='object' && args[0]?.method) {
+      const { path, method, options, resolve } = args[0]
+      args[0].resolve = requestResolver(method.toUpperCase(), path, options, resolve)
+    }
+    return originPush.apply(this, args)
+}
+
+export { requestLog, router }

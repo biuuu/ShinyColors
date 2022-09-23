@@ -14,9 +14,6 @@ const getModule = async (name, condition) => {
 getModule('AOBA', (module) => {
   return module && module.loaders && module.Text && module.BLEND_MODES
 })
-getModule('REQUEST', (module) => {
-  return module?.default?._encryptRequest
-})
 getModule('PHRASE', (module) => {
   return module?.default?._polyglot?.phrases
 })

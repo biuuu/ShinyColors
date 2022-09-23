@@ -9,9 +9,6 @@ const conditions = new Map([
   ['SCENARIO', (module) => {
     return module && module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
   }],
-  ['REQUEST', (module) => {
-    return module?.default?._encryptRequest
-  }],
   ['PHRASE', (module) => {
     return module?.default?._polyglot?.phrases
   }],
@@ -23,7 +20,6 @@ const conditions = new Map([
 const resultMap = new Map([
   ['AOBA', (module) => module],
   ['SCENARIO', (module) => module.default],
-  ['REQUEST', (module) => module.default],
   ['PHRASE', (module) => module.default._polyglot.phrases],
   ['WEBP', (module) => module.default]
 ])
