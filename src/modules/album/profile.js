@@ -29,7 +29,6 @@ const transProfile = async (data) => {
 
 const albumProfile = async (data) => {
   await transProfile(data)
-  profileKey1()
 }
 
 const idolProfile = async (data) => {
