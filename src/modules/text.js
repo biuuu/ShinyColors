@@ -34,7 +34,7 @@ const replaceText = (text, map) => {
 }
 
 const checkText = (text, isType = false) => {
-  if (!typeof text !== 'string') return text
+  if (typeof text !== 'string') return text
   let _text = text
   if (text.trim()) {
     if (isType) {
