@@ -9,16 +9,18 @@ _注意：因为本脚本的运行机制，Tampermonkey 无法稳定加载，推
 __如果是用手机，可以安装支持用户脚本的浏览器。__
 
 已知支持用户脚本的手机浏览器
-- iOS: Alook
+- iOS: Safari (iOS 15以上)
 - Android: Kiwi
+
+iOS安装方法参考视频：https://www.bilibili.com/video/BV1WT411T7dU/
 
 Android 的 Kiwi 浏览器安装同 PC 的 Chrome 一样，先安装 Violentmonkey 再点击脚本地址。
 
+<details>
+    <summary>iOS使用Alook浏览器的方法（不推荐）</summary>
 iOS 的 Alook 可以直接通过这个网址安装插件：[https://www.shiny.fun/install.html](https://www.shiny.fun/install.html) ，注意把 _运行时间_ 改为 _尽早_ 。
 
 另外Alook也可以选择手动添加 js 脚本，和上面的链接效果一样，代码如下：
-<details>
-    <summary>展开代码</summary>
 
 ```javascript
 (function () {
