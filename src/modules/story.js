@@ -78,10 +78,10 @@ const startTrans = (data, storyMap, commMap) => {
     if (item.text) {
       const id = getId(item.id)
       const text = fixWrap(item.text)
-      if (storyMap.has(text)) {
-        item.text = storyMap.get(text)
-      } else if (id && storyMap.has(`${id}`)) {
+      if (id && storyMap.has(`${id}`)) {
         item.text = storyMap.get(`${id}`)
+      } else if (storyMap.has(text)) {
+        item.text = storyMap.get(text)
       } else if (commMap.has(text)) {
         item.text = commMap.get(text)
       }
