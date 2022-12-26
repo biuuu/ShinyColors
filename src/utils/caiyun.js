@@ -27,11 +27,13 @@ if (!bid) {
 
 const getAuth = async () => {
   const res = await request('https://api.interpreter.caiyunai.com/v1/page/auth', {
-    cors: true,
+    // cors: true,
     method: 'POST',
     headers: {
       'X-Authorization': `token ${fetchInfo.data.cyweb_token}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'origin': 'https://fanyi.caiyunapp.com',
+      'referer': 'https://fanyi.caiyunapp.com/'
     },
     data: JSON.stringify({
       browser_id: bid,
