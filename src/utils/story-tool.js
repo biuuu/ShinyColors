@@ -171,7 +171,7 @@ const showStoryTool = (storyCache) => {
 
   const iptPreview = document.getElementById('ipt-preview-sczh')
   iptPreview.addEventListener('change', function () {
-    const files = this.files
+    const files = [...this.files]
     if (!files.length) return
     files.forEach(file => {
       const reader = new FileReader()
