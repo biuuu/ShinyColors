@@ -7,8 +7,12 @@ const CSV = require('papaparse')
 const moduleId = require('./MODULE_ID.json')
 
 const cyweb_token = 't4d0s9zds4fw272poa11'
-const trans_api = 'caiyun'  // Optional: google
-const language = 'zh-CN'    // Can be changed when using google: en/ko/de/fr/ru etc.
+const trans_api = 'caiyun'
+const language = 'zh-CN'
+
+
+const etcFiles = ['image', 'item', 'support-skill', 'speaker-icon', 'mission']
+const DATA_PATH = './data/'
 
 const Glob = glob.Glob
 glob.promise = function (pattern, options) {
@@ -68,7 +72,7 @@ const md5File = async () => {
   return data
 }
 
-const buildStory = async (DATA_PATH) => {
+const buildStory = async () => {
   console.log('story...')
   await fse.emptyDir('./dist/data/story/')
   const files = await glob.promise(`${DATA_PATH}story/**/*.csv`)
@@ -99,8 +103,21 @@ const buildStory = async (DATA_PATH) => {
   await fse.writeJSON('./dist/story.json', storyData)
 }
 
-const etcFiles = ['image', 'item', 'support-skill', 'speaker-icon', 'mission']
-const DATA_PATH = './data/'
+const mergeTypetext = async () => {
+  const files = await glob.promise(`${DATA_PATH}type-text/**/*.csv`)
+  await fse.emptyDir('./dist/data/type-text/')
+  const prims = files.map(async file => {
+    const list = await readCsv(file)
+    return list.filter(item => item.trans)
+  })
+  const result = (await Promise.all(prims)).flat()
+
+  const list = await readCsv(`${DATA_PATH}type-text.csv`)
+  const fullList = result.concat(list.filter(item => item.trans))
+  const str = CSV.unparse([...new Set(fullList)])
+  await fse.writeFile('./dist/data/type-text.csv', str)
+}
+
 const start = async () => {
   await fse.emptyDir('./dist/data/')
   const hash = version
@@ -108,7 +125,7 @@ const start = async () => {
   console.log('move data files...')
   await fse.copy(DATA_PATH, './dist/data/')
 
-  await buildStory(DATA_PATH)
+  await buildStory()
 
   console.log('move install.html...')
   await fse.copy('./script/install.html', './dist/install.html')
@@ -119,6 +136,9 @@ const start = async () => {
   for (let fileName of etcFiles) {
     await fse.move(`./dist/data/etc/${fileName}.csv`, `./dist/data/${fileName}.csv`, { overwrite: true })
   }
+
+  console.log('merge type-text...')
+  await mergeTypetext()
 
   console.log('file md5...')
   const hashes = await md5File()
