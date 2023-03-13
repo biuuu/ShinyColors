@@ -82,12 +82,13 @@ const buildStory = async () => {
       if (list[i].id === 'info') {
         if (list[i].name) {
           const name = list[i].name.trim()
+          const filepath = file.replace(/^.+\/story(?=\/)/, '')
           if (name) {
             const hash = (await md5(file)).slice(0, 7)
             await fse.copy(file, `./dist/data/story/${hash}.csv`, {
               overwrite: false, errorOnExist: true
             })
-            return [name, hash]
+            return [name, hash, filepath]
           }
         }
       }
@@ -100,7 +101,8 @@ const buildStory = async () => {
     }
     return false
   })
-  await fse.writeJSON('./dist/story.json', storyData)
+  await fse.writeJSON('./dist/story.json', storyData.map(item => item.slice(0, 2)))
+  await fse.writeJSON('./dist/story-path.json', storyData.map(item => [item[0], item[2]]))
 }
 
 const mergeTypetext = async () => {
