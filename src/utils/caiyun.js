@@ -4,7 +4,7 @@ import x64hash128 from './x64hash128'
 
 let bid = ''
 let uid = ''
-let pid = ''
+let pid = 2158370
 let limited = false
 
 const setBid = () => {
@@ -39,8 +39,8 @@ const getAuth = async () => {
       browser_id: bid,
       device_id: '',
       os_type: 'web',
-      title: document.title,
-      url: document.URL,
+      title: 'アイドルマスター シャイニーカラーズ',
+      url: 'https://shinycolors.enza.fun/',
       user_id: uid
     })
   })
@@ -54,10 +54,7 @@ const getAuth = async () => {
 }
 
 const translator = async (list, from = 'ja') => {
-  await getAuth()
-  if (limited) {
-    return []
-  }
+  // await getAuth()
   const res = await request('https://api.interpreter.caiyunai.com/v1/page/translator', {
     cors: true,
     method: 'POST',
@@ -73,11 +70,13 @@ const translator = async (list, from = 'ja') => {
       request_id: bid || uid,
       source: list,
       trans_type: `${from}2zh`,
-      url: document.URL
+      url: 'https://shinycolors.enza.fun/'
     })
   })
   if (res && res.target) {
     return res.target.map(item => item.target)
+  } else if (res.rc) {
+    setBid()
   }
   return []
 }
