@@ -1,5 +1,6 @@
 import { log, log2 } from '../utils/index'
 import getImage from '../store/image'
+import { getPictureMap } from '../store/picture'
 import config from '../config'
 import { getModule } from './get-module'
 import replaceComic from './comic'
@@ -33,6 +34,7 @@ let replaced = false
 export default async function resourceHook () {
   const aoba = await getModule('AOBA')
   const { isSupportedWebP, toWebPUrl } = await getModule('WEBP')
+  const pictureMap = await getPictureMap()
   if (replaced) return
   aoba.loaders.Resource.prototype = Object.assign({}, aoba.loaders.Resource.prototype)
   const originLoadElement = aoba.loaders.Resource.prototype._loadElement
@@ -57,6 +59,9 @@ export default async function resourceHook () {
           } else {
             log(this.name, this.url)
           }
+        } else if (pictureMap.has(this.name?.replace('images/', ''))) {
+          this.url = `${config.origin}/data/${this.name.replace('images/', 'picture/')}?v=${pictureMap.get(this.name.replace('images/', ''))}`
+          this.crossOrigin = true
         }
         await replaceComic(this)
       }

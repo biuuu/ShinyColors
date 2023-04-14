@@ -120,6 +120,19 @@ const mergeTypetext = async () => {
   await fse.writeFile('./dist/data/type-text.csv', str)
 }
 
+const collectPicture = async () => {
+  const files = await glob.promise(`${DATA_PATH}picture/**/*.jpg`)
+  const data = new Map()
+  const prms = files.map(file => {
+    return md5(path.resolve(process.cwd(), file)).then(hash => {
+      const key = file.replace(/.+picture\//, '')
+      data.set(key, hash.slice(0, 7))
+    })
+  })
+  await Promise.all(prms)
+  await fse.writeJSON('./dist/picture.json', [...data])
+}
+
 const start = async () => {
   await fse.emptyDir('./dist/data/')
   const hash = version
@@ -141,6 +154,9 @@ const start = async () => {
 
   console.log('merge type-text...')
   await mergeTypetext()
+
+  console.log('collecting pictures...')
+  await collectPicture()
 
   console.log('file md5...')
   const hashes = await md5File()
