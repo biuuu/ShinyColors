@@ -2,7 +2,7 @@ import transApi from '../api-comm'
 
 const { api, transItem } = transApi('skill')
 
-const transEffects = (data) => {
+export const transEffects = (data) => {
   if (!data) return
   data.skillEffects?.forEach(item => {
     transItem(item, 'effectName')
