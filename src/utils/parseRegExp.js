@@ -1,6 +1,6 @@
 const numRE = '([+-＋－]?[0-9０-９]{1,10}\\.?[0-9０-９]{0,4}[万億]?)'
 const percentRE = '([+-＋－]?[0-9０-９]{1,10}\\.?[0-9０-９]{0,4}?[%％])'
-const unknownRE = '([\\s\\S]+)'
+const unknownRE = '([\\s\\S]*)'
 const sepRE = '[\\s\\S]?'
 
 const parseRegExp = (str, list = []) => {
