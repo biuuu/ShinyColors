@@ -6,7 +6,7 @@ const glob = require('glob')
 const CSV = require('papaparse')
 const moduleId = require('./MODULE_ID.json')
 
-const cyweb_token = 't4d0s9zds4fw272poa11'
+const cyweb_token = 'qgemv4jr1y38jyq6vhvi'
 const trans_api = 'caiyun'
 const language = 'zh-CN'
 

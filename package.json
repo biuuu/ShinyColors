@@ -1,6 +1,6 @@
 {
   "name": "shinycolors-zh",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "main": "main.js",
   "repository": "git@github.com:biuuu/ShinyColors.git",
   "author": "biuuu",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "core-js": "3",
+    "js-base64": "^3.7.5",
     "lodash": "^4.17.21",
     "papaparse": "^5.2.0"
   },
