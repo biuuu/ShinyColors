@@ -2,6 +2,7 @@ import request from './request'
 import { fetchInfo } from './fetch'
 import x64hash128 from './x64hash128'
 import { Base64 } from 'js-base64'
+import jwt_decode from 'jwt-decode'
 
 let bid = ''
 let jwt = ''
@@ -27,9 +28,19 @@ function transform (e) {
   return e.split("").map(o).join("")
 }
 
+const checkJwt = () => {
+  try {
+    const { exp } = jwt_decode(jwt)
+    if (exp * 1000 < Date.now()) {
+      jwt = ''
+    }
+  } catch (e) {}
+}
+
 try {
   bid = localStorage.getItem('sczh:bid')
   jwt = localStorage.getItem('sczh:caiyun-jwt')
+  checkJwt()
 } catch (e) {}
 
 if (!bid) {
@@ -37,6 +48,7 @@ if (!bid) {
 }
 
 const getAuth = async () => {
+  checkJwt()
   if (jwt) return
   const res = await request('https://api.interpreter.caiyunai.com/v1/user/jwt/generate', {
     method: 'POST',
@@ -89,7 +101,7 @@ const translator = async (list, from = 'ja') => {
   })
   if (res && res.target) {
     return res.target.map(str => Base64.decode(transform(str)))
-  } else if (res.rc) {
+  } else {
     reset()
   }
   return []
