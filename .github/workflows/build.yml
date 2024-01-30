@@ -21,9 +21,9 @@ jobs:
     - name: Move data files
       run: cp -r scdata/data/ ./
     - name: Use Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
+        node-version: '18.x'
     - name: Install dependencies
       run: yarn --frozen-lockfile
     - name: Build data
