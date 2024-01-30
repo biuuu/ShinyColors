@@ -25,9 +25,9 @@ jobs:
       with:
         node-version: '18.x'
     - name: Install dependencies
-      run: npm set strict-ssl false && yarn --frozen-lockfile
+      run: pnpm install
     - name: Build data
-      run: yarn deploy_action
+      run: pnpm deploy_action
     - name: Deploy
       if: success()
       uses: crazy-max/ghaction-github-pages@v2
