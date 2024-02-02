@@ -139,6 +139,8 @@ const menuCommandCb = (cb) => {
   setAllGMMenuCommand()
 }
 
+let win = (window.unsafeWindow || window)
+
 const setGMMenuCommand = (type) => {
   const value = config[type]
   const data = menuCommand[type]
@@ -151,15 +153,15 @@ const setGMMenuCommand = (type) => {
   }
   const id = data.id
   if (id) {
-    window.GM_unregisterMenuCommand(id)
+    win.GM_unregisterMenuCommand(id)
   }
-  data.id = window.GM_registerMenuCommand(text, () => {
+  data.id = win.GM_registerMenuCommand(text, () => {
     menuCommandCb(data.callback)
   })
 }
 
 const setAllGMMenuCommand = () => {
-  if (!window.GM_registerMenuCommand || !window.GM_unregisterMenuCommand) return
+  if (!win.GM_registerMenuCommand || !win.GM_unregisterMenuCommand) return
   const menuCommandList = ['update', 'bgm', 'story', 'origin', 'auto', 'dev', 'resize']
   menuCommandList.forEach(type => {
     setGMMenuCommand(type)
@@ -170,7 +172,7 @@ getLocalConfig()
 getConfigFromHash()
 setAllGMMenuCommand()
 
-window.addEventListener('hashchange', getConfigFromHash)
+win.addEventListener('hashchange', getConfigFromHash)
 
 export { PREVIEW_COUNT, saveConfig }
 export default config
