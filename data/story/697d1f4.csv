@@ -1,0 +1,5 @@
+id,name,text,trans
+select,,他の演劇部員にも\n話を聞けるかな？,向其他演剧部成员\n打听吧？
+select,,俺のほうでも\n調べてみるよ,我也\n去调查吧
+info,special_communications/490101103.json,,
+译者,,,StYL3
