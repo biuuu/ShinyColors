@@ -153,15 +153,15 @@ const setGMMenuCommand = (type) => {
   }
   const id = data.id
   if (id) {
-    win.GM_unregisterMenuCommand(id)
+    GM_unregisterMenuCommand(id)
   }
-  data.id = win.GM_registerMenuCommand(text, () => {
+  data.id = GM_registerMenuCommand(text, () => {
     menuCommandCb(data.callback)
   })
 }
 
 const setAllGMMenuCommand = () => {
-  if (!win.GM_registerMenuCommand || !win.GM_unregisterMenuCommand) return
+  if (!GM_registerMenuCommand || !GM_unregisterMenuCommand) return
   const menuCommandList = ['update', 'bgm', 'story', 'origin', 'auto', 'dev', 'resize']
   menuCommandList.forEach(type => {
     setGMMenuCommand(type)
