@@ -44,7 +44,8 @@ const request = async (pathname) => {
     let timer = setTimeout(() => {
       rej(`加载${pathname}超时`)
     }, config.timeout * 1000)
-    fetch(`${origin}${pathname}`)
+    const url = pathname.startsWith('https://') ? pathname: `${origin}${pathname}`
+    fetch(url)
     .then(res => {
       clearTimeout(timer)
       if (!res.ok) {

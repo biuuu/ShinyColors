@@ -8,6 +8,7 @@ const PREVIEW_COUNT = 5
 
 const config = {
   origin: 'https://www.shiny.fun',
+  ai_host: 'https://ai.shiny.fun',
   hash: '',
   localHash: '',
   version: version,
@@ -22,7 +23,7 @@ const config = {
 
 const defaultConfig = Object.assign({}, config)
 
-const _keys = ['origin', 'font1', 'font2', 'timeout', 'story', 'auto', 'bgm', 'dev']
+const _keys = ['origin', 'ai_host', 'font1', 'font2', 'timeout', 'story', 'auto', 'bgm', 'dev']
 const keys = DEV ? _keys.slice(1, _keys.length) : _keys
 
 const getLocalConfig = () => {

@@ -9,6 +9,7 @@ const moduleId = require('./MODULE_ID.json')
 const cyweb_token = 'qgemv4jr1y38jyq6vhvi'
 const trans_api = 'caiyun'
 const language = 'zh-CN'
+const ai_host = 'https://ai.shiny.fun'
 
 
 const etcFiles = ['image', 'item', 'support-skill', 'speaker-icon', 'mission']
@@ -163,6 +164,7 @@ const start = async () => {
   await fse.writeJSON('./dist/manifest.json', {
     hash, version, hashes, moduleId,
     cyweb_token, trans_api, language,
+    ai_host,
     date: getDate(8)
   })
 

@@ -1,7 +1,7 @@
 import { log, replaceWrap, fixWrap, trim, uniqueStoryId } from '../utils/index'
 import config from '../config'
 import showStoryTool from '../utils/story-tool'
-import getStory, { getCommStory } from '../store/story'
+import getStory, { getCommStory, getAIStory } from '../store/story'
 import { storyTitle } from './album/title'
 import transSpeaker from './story/speaker'
 import autoTrans from '../utils/translation'
@@ -132,11 +132,16 @@ const transStory = async () => {
         } else {
           storyMap = await getStory(name)
         }
+        const commMap = await getCommStory()
         if (storyMap) {
-          const commMap = await getCommStory()
           startTrans(res, storyMap, commMap)
         } else if (config.auto === 'on') {
-          await autoTrans(res, name)
+          let aiStoryMap = await getAIStory(name)
+          if (aiStoryMap) {
+            startTrans(res, aiStoryMap, commMap)
+          } else {
+            await autoTrans(res, name)
+          }
         } else {
           await autoTrans(res, name, false, true)
         }

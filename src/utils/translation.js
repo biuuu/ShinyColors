@@ -176,7 +176,7 @@ const autoTrans = async (data, name, printText, skip = false) => {
     }
     _trans = replaceQuote(_trans)
 
-    if (idx === 0 && !printText) _trans = `${_trans} ☁️`
+    if (idx === 0 && !printText) _trans = `[彩云小译机翻]${_trans}`
     data[index][key] = _trans
   })
 
