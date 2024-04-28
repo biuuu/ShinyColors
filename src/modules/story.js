@@ -7,6 +7,7 @@ import transSpeaker from './story/speaker'
 import autoTrans from '../utils/translation'
 import { requestLog } from './request'
 import { getModule } from './get-module'
+import showAiTransHint from '../utils/aiTransHint'
 
 const storyCache = {
   name: '',
@@ -96,6 +97,9 @@ const startTrans = (data, storyMap, commMap) => {
       }
     }
   })
+  if (storyMap.has('isAI')) {
+    showAiTransHint(storyMap.get('isAI'))
+  }
 }
 
 const transStory = async () => {

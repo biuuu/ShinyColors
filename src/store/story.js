@@ -15,7 +15,7 @@ const getStoryMap = (csv, isAI) => {
   const list = parseCsv(csv)
   const storyMap = new Map()
   const getId = uniqueStoryId()
-  let aiHint = false
+
   const translator = list.find(item => {
     return item.id === '译者'
   }).name || ''
@@ -25,10 +25,6 @@ const getStoryMap = (csv, isAI) => {
     let trans = trimWrap(item.trans, true)
     const name = trim(item.name)
     if (text && trans) {
-      if (!aiHint) {
-        aiHint = true
-        trans = `[${translator}(LLM)机翻]${trans}`
-      }
       if (id && !/^0+$/.test(id) && id !== 'select') {
         storyMap.set(id, trans)
       } else {
@@ -43,6 +39,9 @@ const getStoryMap = (csv, isAI) => {
       storyMap.set('name', name)
     }
   })
+  if (isAI) {
+    storyMap.set('isAI', `这段剧情由 ${translator}(LLM) 机翻`)
+  }
   return storyMap
 }
 
@@ -89,7 +88,7 @@ const getAIStory = async (name) => {
     } else {
       const fileName = aiStoryIndex.get(name)
       const csvStr = await fetchData(`${config.ai_host}/story/${fileName}.csv`)
-      const storyMap = getStoryMap(csvStr)
+      const storyMap = getStoryMap(csvStr, true)
       aiStoryTemp.set(name, storyMap)
       return storyMap
     }

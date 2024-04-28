@@ -5,6 +5,7 @@ import { getCommStory } from '../store/story'
 import getTypeTextMap from '../store/typeText'
 import config from '../config'
 import caiyunApi from './caiyun'
+import showAiTransHint from '../utils/aiTransHint'
 
 const joinBr = (list, br, transArr) => {
   br.forEach(count => {
@@ -176,7 +177,9 @@ const autoTrans = async (data, name, printText, skip = false) => {
     }
     _trans = replaceQuote(_trans)
 
-    if (idx === 0 && !printText) _trans = `[彩云小译机翻]${_trans}`
+    if (idx === 0 && !printText) {
+      showAiTransHint('这段剧情由彩云小译机翻')
+    }
     data[index][key] = _trans
   })
 
