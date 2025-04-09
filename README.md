@@ -15,20 +15,20 @@
 
 ## Devlopment
 ```bash
-# 全局安装 yarn
-npm install -g yarn
+# 全局安装 pnpm
+npm install -g pnpm
 
-# 用 yarn 安装模块
-yarn install
+# 用 pnpm 安装模块
+pnpm install
 
 # 调试模式，构建一个用户脚本，并使用本地数据源
-yarn dev
+pnpm dev
 
 # 构建用户脚本
-yarn build
+pnpm build
 
 # 打包CSV和构建用户脚本，并push到当前repo的gh-pages分支
-yarn deploy
+pnpm deploy
 ```
 
 ## License
