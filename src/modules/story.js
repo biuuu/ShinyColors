@@ -8,6 +8,8 @@ import autoTrans from '../utils/translation'
 import { requestLog } from './request'
 import { getModule } from './get-module'
 import showAiTransHint from '../utils/aiTransHint'
+import { setStoryMap } from './story/trackStory'
+import { getTextTrans, getSelectTrans } from './story/utils'
 
 const storyCache = {
   name: '',
@@ -74,27 +76,19 @@ const saveData = (data, name) => {
 }
 
 const startTrans = (data, storyMap, commMap) => {
+  setStoryMap(null, null)
+  if (config.transCover === 'on') {
+    setStoryMap(storyMap, commMap)
+  }
   const getId = uniqueStoryId()
   data.forEach(item => {
-    if (item.text) {
-      const id = getId(item.id)
-      const text = fixWrap(item.text)
-      if (id && storyMap.has(`${id}`)) {
-        item.text = storyMap.get(`${id}`)
-      } else if (storyMap.has(text)) {
-        item.text = storyMap.get(text)
-      } else if (commMap.has(text)) {
-        item.text = commMap.get(text)
-      }
+    if (item.text && config.transCover !== 'on') {
+      const trans = getTextTrans(getId, storyMap, commMap, item)
+      if (trans) item.text = trans
     }
     if (item.select) {
-      const select = fixWrap(item.select)
-      const sKey = `${select}-select`
-      if (storyMap.has(sKey)) {
-        item.select = storyMap.get(sKey)
-      } else if (commMap.has(select)) {
-        item.select = commMap.get(item.select)
-      }
+      const trans = getSelectTrans(storyMap, commMap, item)
+      if (trans) item.select = trans
     }
   })
   if (storyMap.has('isAI')) {
@@ -123,6 +117,7 @@ const transStory = async () => {
       type.includes('/business_unit_communication/')
     ) {
       try {
+        setStoryMap(null)
         if (!Array.isArray(res)) return res
         const name = type.replace(/^\/assets\/json\//, '')
         let storyMap

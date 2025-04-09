@@ -14,6 +14,9 @@ const conditions = new Map([
   }],
   ['WEBP', (module) => {
     return module?.default?.isSupportedWebP
+  }],
+  ['TRACK_MANAGER', (module) => {
+    return module?.default?.TrackManager
   }]
 ])
 
@@ -21,7 +24,8 @@ const resultMap = new Map([
   ['AOBA', (module) => module],
   ['SCENARIO', (module) => module.default],
   ['PHRASE', (module) => module.default._polyglot.phrases],
-  ['WEBP', (module) => module.default]
+  ['WEBP', (module) => module.default],
+  ['TRACK_MANAGER', (module) => module.default.TrackManager]
 ])
 
 const isReady = () => {

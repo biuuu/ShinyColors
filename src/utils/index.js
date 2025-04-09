@@ -196,8 +196,71 @@ const makePromise = (callback, ...args) => {
   }
 }
 
+/**
+ * 在指定的HTML元素中实现打字机效果显示文本
+ * @param {string} text 要显示的纯文本内容
+ * @param {HTMLElement} box 用于显示文本的HTML节点
+ * @param {number} [interval=100] 每个字符显示的间隔时间（毫秒），默认为 100ms
+ * @returns {Promise<void>} 返回一个Promise，在文本显示完成后解析
+ */
+function typewriterEffect(text, box, interval = 100) {
+  // --- 输入验证 ---
+  if (typeof text !== 'string') {
+    console.error('Typewriter Error: text must be a string.');
+    return Promise.reject(new Error('text must be a string.'));
+  }
+  if (!(box instanceof HTMLElement)) {
+    console.error('Typewriter Error: box must be an HTMLElement.');
+    return Promise.reject(new Error('box must be an HTMLElement.'));
+  }
+  if (typeof interval !== 'number' || interval <= 0) {
+    console.warn(`Typewriter Warning: Invalid interval (${interval}), using default 100ms.`);
+    interval = 100;
+  }
+
+  // --- 核心逻辑 ---
+  return new Promise((resolve) => {
+    // 检查并取消该box上可能存在的上一个打字机动画
+    if (box._typewriterTimerId) {
+      // console.log('Cancelling previous typewriter animation for:', box);
+      clearInterval(box._typewriterTimerId);
+      // 可选：如果上一个动画有对应的Promise，你可能想在这里拒绝它
+      // 但在这个简单实现中，我们仅停止计时器，新的Promise会覆盖旧的行为
+    }
+
+    let index = 0;
+    box.textContent = ''; // 清空容器，准备显示新文本
+
+    // 处理空文本的边缘情况
+    if (text.length === 0) {
+        delete box._typewriterTimerId; // 清理可能存在的旧ID（虽然理论上应该没有）
+        resolve(); // 空文本立即完成
+        return;
+    }
+
+    // 启动新的打字机计时器
+    const timerId = setInterval(() => {
+      if (index < text.length) {
+        // 使用 textContent 来避免 XSS 风险，并确保显示纯文本
+        box.textContent += text[index];
+        index++;
+      } else {
+        // 文本已全部显示
+        clearInterval(timerId); // 清除当前计时器
+        delete box._typewriterTimerId; // 从box上移除计时器ID的引用，表示动画已结束
+        // console.log('Typewriter animation finished for:', box);
+        resolve(); // Promise 完成
+      }
+    }, interval);
+
+    // 将当前计时器的ID存储在box元素上，以便下次调用时可以找到并清除它
+    box._typewriterTimerId = timerId;
+    // console.log('Started new typewriter animation for:', box, 'with timerId:', timerId);
+  });
+}
+
 export {
   trim, trimWrap, restoreSpace, fixWrap, isDomain, log, log2, makePromise,
   tryDownload, replaceWrap, removeWrap, replaceWords, replaceQuote, pureRE,
-  sleep, tagStoryText, sess, uniqueStoryId, isNewVersion, storyTextLogStyle
+  sleep, tagStoryText, sess, uniqueStoryId, isNewVersion, storyTextLogStyle, typewriterEffect
 }

@@ -18,12 +18,13 @@ const config = {
   font2: 'heiti',
   auto: 'off',
   bgm: 'off',
+  transCover: 'off',
   dev: false
 }
 
 const defaultConfig = Object.assign({}, config)
 
-const _keys = ['origin', 'ai_host', 'font1', 'font2', 'timeout', 'story', 'auto', 'bgm', 'dev']
+const _keys = ['origin', 'ai_host', 'font1', 'font2', 'timeout', 'story', 'auto', 'bgm', 'dev', 'transCover']
 const keys = DEV ? _keys.slice(1, _keys.length) : _keys
 
 const getLocalConfig = () => {
@@ -84,6 +85,13 @@ const menuCommand = {
     on: '关闭机翻', off: '开启机翻', id: 0,
     callback: () => {
       config.auto = config.auto !== 'off' ? 'off' : 'on'
+    }
+  },
+  transCover: {
+    on: '关闭双语翻译', off: '开启双语翻译', id: 0,
+    callback: () => {
+      config.transCover = config.transCover !== 'off' ? 'off' : 'on'
+      location.reload()
     }
   },
   story: {
@@ -163,7 +171,7 @@ const setGMMenuCommand = (type) => {
 
 const setAllGMMenuCommand = () => {
   if (!GM_registerMenuCommand || !GM_unregisterMenuCommand) return
-  const menuCommandList = ['update', 'bgm', 'story', 'origin', 'auto', 'dev', 'resize']
+  const menuCommandList = ['update', 'bgm', 'story', 'origin', 'auto', 'transCover', 'dev', 'resize']
   menuCommandList.forEach(type => {
     setGMMenuCommand(type)
   })
