@@ -29,7 +29,7 @@ const getManifest = async () => {
     if (isNewVersion(version, data.version)) {
       data = await saveManifest()
     } else {
-      setTimeout(saveManifest, 5 * 1000)
+      setTimeout(() => saveManifest(), 5 * 1000) // 수정된 부분
     }
   }
   return data
