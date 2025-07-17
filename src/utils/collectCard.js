@@ -25,7 +25,7 @@ export default function (data) {
       })
     }
   })
-  fetch('http://127.0.0.1:8032/imsccard', {
+  fetch('https://127.0.0.1:8032/imsccard', {
     body: JSON.stringify({ type: 'normal', text: JSON.stringify(normal) }),
     method: 'post',
     mode: 'cors',
@@ -33,7 +33,7 @@ export default function (data) {
       'content-type': 'application/json'
     }
   })
-  fetch('http://127.0.0.1:8032/imsccard', {
+  fetch('https://127.0.0.1:8032/imsccard', {
     body: JSON.stringify({ type: 'sr', text: JSON.stringify(sr) }),
     method: 'post',
     mode: 'cors',
