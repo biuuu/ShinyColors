@@ -124,7 +124,13 @@ const menuCommand = {
   update: {
     id: 0, title: '检查更新',
     callback: () => {
-      window.open(`${config.origin}/ShinyColors.user.js`)
+      const allowedDomains = ['shiny.fun']; // 허용된 도메인 목록
+      const url = new URL(config.origin);
+      if (allowedDomains.includes(url.hostname)) {
+        window.open(`${config.origin}/ShinyColors.user.js`)
+      } else {
+        alert('허용되지 않은 도메인입니다.');
+      }
     }
   },
   resize: {

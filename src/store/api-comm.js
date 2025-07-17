@@ -5,7 +5,7 @@ import parseRegExp from '../utils/parseRegExp'
 import { getIdolName } from './name'
 
 const brackets = (str) => {
-  return str.replace(/\[/g, '\\[').replace(/\]/g, '\\]')
+  return str.replace(/\\/g, '\\\\').replace(/\[/g, '\\[').replace(/\]/g, '\\]')
 }
 
 const getCommApiData = (keyword) => {
