@@ -4,7 +4,8 @@ const unknownRE = '([\\s\\S]+)'
 const sepRE = '[\\s\\S]?'
 
 const parseRegExp = (str, list = []) => {
-  let result = str.replace(/\./g, '\\.')
+  let result = str.replace(/\\/g, '\\\\') // 백슬래시 이스케이프 추가
+    .replace(/\./g, '\\.')
     .replace(/\$num/g, numRE)
     .replace(/\$percent/g, percentRE)
     .replace(/\$unknown/g, unknownRE)

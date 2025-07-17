@@ -16,15 +16,16 @@ const getPath = (name, hashes) => `/data/font/${name}.woff2?v=${hashes[`font/${n
 const addFont = async () => {
   const tag = document.createElement('style')
   const { hashes } = await getHash
+  const safeOrigin = new URL(config.origin).origin; // Ensure the origin is a valid URL
   tag.innerHTML = `
   @font-face {
     font-family: "UDKakugo_SmallPr6-B";
-    src: url("${config.origin}${getPath('heiti', hashes)}"),
+    src: url("${safeOrigin}${getPath('heiti', hashes)}"),
       url("/assets/fonts/primula-UDKakugo_SmallPr6-B.woff2?v=5b98f6814db5b7ff2e73b0bbbd48ebb3");
   }
   @font-face {
     font-family: "HummingStd-E";
-    src: url("${config.origin}${getPath('yuanti', hashes)}"),
+    src: url("${safeOrigin}${getPath('yuanti', hashes)}"),
       url("/assets/fonts/primula-HummingStd-E.woff2?v=57f0e9684ac32d5ed54c567c001eaaaa");
   }
   ::-webkit-scrollbar {
@@ -32,10 +33,10 @@ const addFont = async () => {
   }
   `
   if (config.font1 === 'yuanti') {
-    preload(`${config.origin}${getPath('yuanti', hashes)}`)
+    preload(`${safeOrigin}${getPath('yuanti', hashes)}`)
   }
   if (config.font2 === 'heiti') {
-    preload(`${config.origin}${getPath('heiti', hashes)}`)
+    preload(`${safeOrigin}${getPath('heiti', hashes)}`)
   }
 
   document.body.appendChild(tag)

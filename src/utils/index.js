@@ -33,7 +33,8 @@ const fixWrap = (str) => {
 }
 
 const pureRE = str => {
-  return str.replace(/\?/g, '\\?')
+  return str.replace(/\\/g, '\\\\') // 백슬래시 이스케이프 추가
+  .replace(/\?/g, '\\?')
   .replace(/\./g, '\\.').replace(/\*/g, '\\*')
   .replace(/\+/g, '\\+').replace(/\(/g, '\\(')
   .replace(/\)/g, '\\)')
@@ -129,7 +130,8 @@ const replaceWords = (str, map) => {
   }
   for (let [key, val] of map) {
     if (!key || key.length < 2) continue
-    const expr = key.replace(/\./g, '\\.')
+    const expr = key.replace(/\\/g, '\\\\') // 백슬래시 이스케이프 추가
+      .replace(/\./g, '\\.')
       .replace(/\*/g, '\\*')
     _str = _str.replace(new RegExp(expr, 'g'), val)
   }

@@ -182,7 +182,7 @@ const showStoryTool = (storyCache) => {
           const _name = storyMap.get('name')
           storyCache.preview.set(_name, storyMap)
           savePreview(storyCache.preview)
-          alert(`导入${_name}成功`)
+          alert(`导入${_name.replace(/</g, "&lt;").replace(/>/g, "&gt;")}成功`)
         }
       }
       reader.readAsText(file)
