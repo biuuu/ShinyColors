@@ -1,5 +1,7 @@
 import { getHash } from '../utils/fetch'
 
+const DEFAULT_KEY = 'A'
+
 let require = null
 
 const conditions = new Map([
@@ -7,25 +9,25 @@ const conditions = new Map([
     return module && module.loaders && module.Text && module.BLEND_MODES
   }],
   ['SCENARIO', (module) => {
-    return module && module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
+    return module && module[DEFAULT_KEY] && module[DEFAULT_KEY]['load'] && module[DEFAULT_KEY]['_errorEvent'] && module[DEFAULT_KEY]['_handleError']
   }],
   ['PHRASE', (module) => {
-    return module?.default?._polyglot?.phrases
+    return module?.[DEFAULT_KEY]?._polyglot?.phrases
   }],
   ['WEBP', (module) => {
-    return module?.default?.isSupportedWebP
+    return module?.[DEFAULT_KEY]?.isSupportedWebP
   }],
   ['TRACK_MANAGER', (module) => {
-    return module?.default?.TrackManager
+    return module?.[DEFAULT_KEY]?.TrackManager
   }]
 ])
 
 const resultMap = new Map([
   ['AOBA', (module) => module],
-  ['SCENARIO', (module) => module.default],
-  ['PHRASE', (module) => module.default._polyglot.phrases],
-  ['WEBP', (module) => module.default],
-  ['TRACK_MANAGER', (module) => module.default.TrackManager]
+  ['SCENARIO', (module) => module[DEFAULT_KEY]],
+  ['PHRASE', (module) => module[DEFAULT_KEY]._polyglot.phrases],
+  ['WEBP', (module) => module[DEFAULT_KEY]],
+  ['TRACK_MANAGER', (module) => module[DEFAULT_KEY].TrackManager]
 ])
 
 const isReady = () => {

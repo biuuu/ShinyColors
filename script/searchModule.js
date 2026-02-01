@@ -1,3 +1,4 @@
+const DEFAULT_KEY = 'A'
 const getModule = async (name, condition) => {
   for (let i = 1; i < 202000; i++) {
     let module
@@ -15,12 +16,16 @@ getModule('AOBA', (module) => {
   return module && module.loaders && module.Text && module.BLEND_MODES
 })
 getModule('PHRASE', (module) => {
-  return module?.default?._polyglot?.phrases
+  return module?.[DEFAULT_KEY]?._polyglot?.phrases
 })
 getModule('SCENARIO', (module) => {
-  return module && module.default && module.default['load'] && module.default['_errorEvent'] && module.default['_handleError']
+  return module && module[DEFAULT_KEY] && module[DEFAULT_KEY]['load'] && module[DEFAULT_KEY]['_errorEvent'] && module[DEFAULT_KEY]['_handleError']
 })
 
 getModule('WEBP', (module) => {
-  return module?.default?.isSupportedWebP
+  return module?.[DEFAULT_KEY]?.isSupportedWebP
+})
+
+getModule('TRACK_MANAGER', (module) => {
+  return module?.[DEFAULT_KEY]?.TrackManager
 })
