@@ -1,4 +1,5 @@
 import debounce from 'lodash/debounce'
+import { storyCache } from '../modules/story'
 
 const html = `
   <style>
@@ -15,7 +16,7 @@ const html = `
     text-shadow: 1px 1px 3px rgb(0 0 0 / 24%);
   }
   #sczh-aitrans-hint.hide {
-    display: none;
+    display: none !important;
   }
   </style>
   <div id="sczh-aitrans-hint" class="hide">

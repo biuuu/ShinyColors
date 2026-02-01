@@ -11,7 +11,7 @@ import showAiTransHint from '../utils/aiTransHint'
 import { setStoryMap } from './story/trackStory'
 import { getTextTrans, getSelectTrans } from './story/utils'
 
-const storyCache = {
+export const storyCache = {
   name: '',
   filename: '',
   list: '',
