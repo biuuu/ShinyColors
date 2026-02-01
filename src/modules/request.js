@@ -20,6 +20,7 @@ const requestLog = (method, color, args, data) => {
 }
 
 const requestRouter = async (data, type, map) => {
+  if (!map) return
   try {
     for (let [key, params] of map) {
       let pass = false
