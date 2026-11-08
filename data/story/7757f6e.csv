@@ -1,0 +1,12 @@
+id,name,text,trans
+select,,犯行時刻を絞り込む,去推算准确的作案时间
+select,,凶器について調べる,去调查凶器
+select,,動機について調べる,去调查动机
+select,,屋敷の中を見廻る,去看一圈洋房的状况
+select,,犯行時刻を絞り込む,去推算准确的作案时间
+select,,凶器について調べる,去调查凶器
+select,,動機について調べる,去调查动机
+select,,屋敷の中を見廻る,去看一圈洋房的状况
+select,,もう一度現場を\n確認する,再次前去确认现场
+info,special_communications/490103235.json,,
+译者,沙漏,,
